@@ -1,0 +1,3072 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 10: Emerging technologies and artificial intelligence | BSIT E-Book</title>
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap"
+    >
+
+    <style>
+       
+          :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+             <a class="brand" href="index.html">
+    <img
+        src="photos/BookSphere-removebg-preview.png"
+        alt="BookSphere Logo"
+        class="brand-logo"
+    >
+
+    <span>
+        BookSphere
+        <small>STUDENT LEARNING PORTAL</small>
+    </span>
+</a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+
+        <!-- MAIN CONTENT -->
+        
+<!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Emerging technologies and artificial intelligence
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+    
+
+    <!-- TWO-COLUMN LESSON LAYOUT -->
+    <div class="lesson-layout">
+
+        <!-- LEFT TABLE OF CONTENTS -->
+        <aside class="lesson-sidebar">
+
+            <h3 class="sidebar-title">Table of Contents</h3>
+
+            <p class="sidebar-description">
+                Navigate through the sections of this lesson.
+            </p>
+
+            <p class="sidebar-label">LESSON CONTENT</p>
+
+            <nav id="lessonTOC">
+
+                <a href="#overview" class="active">Overview</a>
+
+                <a href="#artificial-intelligence">
+                    Artificial Intelligence
+                </a>
+
+                <a href="#machine-learning">
+                    Machine Learning
+                </a>
+
+                <a href="#deep-learning">
+                    Deep Learning and Neural Networks
+                </a>
+
+                <a href="#ai-applications">
+                    Applications of AI
+                </a>
+
+                <a href="#ai-healthcare">
+                    AI in Healthcare
+                </a>
+
+                <a href="#big-data">
+                    Big Data Analytics
+                </a>
+
+                <a href="#iot">
+                    Internet of Things (IoT)
+                </a>
+
+                <a href="#cloud-computing">
+                    Cloud Computing
+                </a>
+
+                <a href="#cybersecurity">
+                    Cybersecurity
+                </a>
+
+                <a href="#communication-skills">
+                    Communication Skills
+                </a>
+
+                <a href="#problem-solving">
+                    Creative Problem-Solving
+                </a>
+
+                <a href="#critical-thinking">
+                    Critical Thinking
+                </a>
+
+                <a href="#collaboration">
+                    Collaboration Skills
+                </a>
+
+                <a href="#key-takeaways">
+                    Key Takeaways
+                </a>
+
+            </nav>
+
+            <!-- SIDEBAR INFORMATION -->
+            <div class="sidebar-info">
+                <strong>Study Reminder</strong>
+                <p>
+                    Read each section carefully and review the key
+                    takeaways after completing the lesson.
+                </p>
+            </div>
+
+        </aside>
+
+    
+
+                <!-- RIGHT LESSON CONTENT -->
+                <div class="lesson-main">
+
+                    <article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+
+        <h2>Overview</h2>
+
+        <p>
+            Emerging technologies are new and developing technologies
+            that improve how people live, work, communicate, and solve
+            problems. Examples include Artificial Intelligence,
+            Machine Learning, Big Data Analytics, Internet of Things,
+            Cloud Computing, and Cybersecurity.
+        </p>
+
+        <p>
+            This lesson also introduces important skills needed in
+            the digital world, such as communication, creative
+            problem-solving, critical thinking, and collaboration.
+        </p>
+
+        <img class="lesson-image"
+             src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+             alt="Computer technology and digital innovation"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Modern technology and digital innovation
+        </p>
+
+    </section>
+
+
+    <!-- ARTIFICIAL INTELLIGENCE -->
+    <section class="lesson-block" id="artificial-intelligence">
+
+        <h2>Artificial Intelligence (AI)</h2>
+
+        <p>
+            Artificial Intelligence (AI) is a technology that allows
+            machines and computers to perform tasks that normally
+            require human intelligence. It helps machines recognize
+            patterns, understand information, answer questions,
+            and make decisions.
+        </p>
+
+        <img class="lesson-image"
+             src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
+             alt="Artificial intelligence technology"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Artificial Intelligence and computer technology
+        </p>
+
+        <h3>Examples of AI</h3>
+
+        <ul>
+            <li>
+                <strong>Typing Software:</strong>
+                Identifies spelling and grammar mistakes and
+                suggests words while typing.
+            </li>
+
+            <li>
+                <strong>Online Shopping:</strong>
+                Recommends products based on previous searches,
+                purchases, and user preferences.
+            </li>
+
+            <li>
+                <strong>Chatbots:</strong>
+                Answer common questions and provide information
+                through websites and online services.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- MACHINE LEARNING -->
+    <section class="lesson-block" id="machine-learning">
+
+        <h2>Machine Learning</h2>
+
+        <p>
+            Machine Learning is a way of developing AI. It allows
+            computers to learn from data and improve their
+            performance without being programmed for every task.
+        </p>
+
+        <p>
+            For example, a computer can study thousands of pictures
+            of cats and learn how to recognize cats in other images.
+        </p>
+
+        <img class="lesson-image"
+             src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80"
+             alt="Machine learning and computer programming"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Machine learning and computer data processing
+        </p>
+
+        <h3>Methods of Machine Learning</h3>
+
+        <ul>
+            <li>
+                <strong>Supervised Learning:</strong>
+                Learns from labeled data and is used for predictions,
+                such as detecting possible credit card fraud.
+            </li>
+
+            <li>
+                <strong>Unsupervised Learning:</strong>
+                Finds patterns and groups similar information,
+                such as identifying groups of customers.
+            </li>
+
+            <li>
+                <strong>Semi-supervised Learning:</strong>
+                Uses both labeled and unlabeled data. It is useful
+                when labeling all information is difficult or costly.
+            </li>
+
+            <li>
+                <strong>Reinforcement Learning:</strong>
+                Learns through trial and error by choosing actions
+                that provide better results or rewards.
+            </li>
+        </ul>
+
+        <h3>Who Uses Machine Learning?</h3>
+
+        <ul>
+            <li>
+                <strong>Financial Services:</strong>
+                Detects fraud and analyzes financial information.
+            </li>
+
+            <li>
+                <strong>Government Agencies:</strong>
+                Helps analyze information and improve public services.
+            </li>
+
+            <li>
+                <strong>Healthcare:</strong>
+                Supports medical research and patient diagnosis.
+            </li>
+
+            <li>
+                <strong>Retail:</strong>
+                Studies customer behavior and recommends products.
+            </li>
+
+            <li>
+                <strong>Oil and Gas:</strong>
+                Helps find energy sources and predict equipment problems.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- DEEP LEARNING -->
+    <section class="lesson-block" id="deep-learning">
+
+        <h2>Deep Learning and Neural Networks</h2>
+
+        <h3>Deep Learning</h3>
+
+        <p>
+            Deep Learning is a type of Machine Learning inspired
+            by the structure and functions of the human brain.
+            It uses multiple layers of artificial neural networks
+            to study information and recognize patterns.
+        </p>
+
+        <img class="lesson-image"
+             src="https://cdn.prod.website-files.com/64b90f2245cd70647208323c/650447782500bf3dfe473ac2_Deep%20Neural%20Network-min.jpg"
+             alt="Deep neural network showing different processing layers"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Structure of an artificial neural network
+        </p>
+
+        <h3>Neural Networks</h3>
+
+        <p>
+            Neural Networks are computer systems designed to
+            work similarly to the connections of neurons in
+            the human brain. They learn by analyzing examples
+            and identifying patterns.
+        </p>
+
+        <p>
+            For example, a neural network can study pictures
+            of cars, houses, and other objects to learn how
+            to recognize them.
+        </p>
+
+    </section>
+
+
+    <!-- AI APPLICATIONS -->
+    <section class="lesson-block" id="ai-applications">
+
+        <h2>Applications of Artificial Intelligence</h2>
+
+        <img class="lesson-image"
+             src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80"
+             alt="Robot representing artificial intelligence applications"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Robotics and real-world AI applications
+        </p>
+
+        <ul>
+            <li>
+                <strong>Robotics:</strong>
+                Helps robots perform tasks such as assembling
+                cars, packing products, cleaning homes, and
+                assisting people.
+            </li>
+
+            <li>
+                <strong>Real-Time Translation:</strong>
+                Translates text or speech from one language
+                into another.
+            </li>
+
+            <li>
+                <strong>Digital Assistants:</strong>
+                Assistants such as Alexa and Siri understand
+                voice commands and answer questions.
+            </li>
+
+            <li>
+                <strong>Autonomous Systems:</strong>
+                Perform tasks with little or no human involvement.
+                Examples include self-driving vehicles, drones,
+                and automated factory systems.
+            </li>
+
+            <li>
+                <strong>Gaming and Simulation:</strong>
+                Augmented Reality (AR) and Virtual Reality (VR)
+                are used in training, entertainment, shopping,
+                and education.
+            </li>
+        </ul>
+
+        <h3>AI in Business</h3>
+
+        <ul>
+            <li>
+                <strong>Reasoning:</strong>
+                Helps solve problems through logical decisions.
+            </li>
+
+            <li>
+                <strong>Knowledge:</strong>
+                Helps analyze information for medical diagnosis,
+                fraud prevention, and product recommendations.
+            </li>
+
+            <li>
+                <strong>Planning:</strong>
+                Helps manage inventory, forecast demand, schedule
+                activities, and improve transportation.
+            </li>
+
+            <li>
+                <strong>Communication:</strong>
+                Uses language understanding and translation to
+                make communication easier.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- AI IN HEALTHCARE -->
+    <section class="lesson-block" id="ai-healthcare">
+
+        <h2>AI and Emerging Technologies in Healthcare</h2>
+
+        <p>
+            AI and other technologies help healthcare professionals
+            understand health information, identify diseases,
+            and improve patient care.
+        </p>
+
+        <img class="lesson-image"
+     src="https://upload.wikimedia.org/wikipedia/commons/8/87/Radiologist_interpreting_MRI.jpg"
+     alt="Radiologist examining MRI scans on a computer"
+     loading="lazy">
+
+<p class="lesson-image-caption">
+    Medical Imaging and AI-Assisted Diagnosis
+</p>
+
+        <ul>
+            <li>
+                <strong>AI and Machine Learning:</strong>
+                Help identify diseases, support diagnosis,
+                and develop treatment plans.
+            </li>
+
+            <li>
+                <strong>Healthcare Robots:</strong>
+                Assist with patient care, medical supplies,
+                rehabilitation, and hospital cleaning.
+            </li>
+
+            <li>
+                <strong>Computer and Machine Vision:</strong>
+                Help doctors examine medical images and scans.
+            </li>
+
+            <li>
+                <strong>Wearable Technology:</strong>
+                Monitors heart rhythms, blood pressure,
+                and physical activity.
+            </li>
+
+            <li>
+                <strong>AI-Enabled Genomics:</strong>
+                Helps analyze genetic information to support
+                personalized medical treatment.
+            </li>
+
+            <li>
+                <strong>3D Printing:</strong>
+                Helps create medical devices, surgical tools,
+                and prosthetic limbs.
+            </li>
+
+            <li>
+                <strong>Digital Twins:</strong>
+                Uses digital representations of patient
+                information to help understand possible
+                treatment outcomes.
+            </li>
+
+            <li>
+                <strong>5G Technology:</strong>
+                Supports faster transmission of medical files
+                and remote healthcare services.
+            </li>
+
+            <li>
+                <strong>AI Neural Networks:</strong>
+                Help analyze medical patterns and support
+                diagnostic methods.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- BIG DATA -->
+    <section class="lesson-block" id="big-data">
+
+        <h2>Big Data Analytics</h2>
+
+        <h3>Introduction to Data</h3>
+
+        <p>
+            Data refers to facts, numbers, observations, or
+            information collected about people, objects, or events.
+        </p>
+
+        <h3>Database and DBMS</h3>
+
+        <p>
+            A database is an organized collection of information
+            stored in a computer or on the cloud.
+        </p>
+
+        <p>
+            A Database Management System (DBMS) is software
+            used to store, organize, manage, and retrieve
+            information from databases.
+        </p>
+
+        <h3>What is Big Data Analytics?</h3>
+
+        <p>
+            Big Data Analytics is the process of examining
+            large amounts of data to discover patterns,
+            relationships, and useful information.
+        </p>
+
+        <img class="lesson-image"
+             src="https://images.prismic.io/turing/6566f923531ac2845a256bd4_How_Does_Big_Data_Analytics_Work_a73ed0f1ac.webp?auto=format%2Ccompress"
+             alt="Big data analytics workflow"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            The process of Big Data Analytics
+        </p>
+
+        <h3>Steps in Big Data Analytics</h3>
+
+        <ul>
+            <li>
+                <strong>Data Collection:</strong>
+                Gathering information from websites, devices,
+                transactions, and other sources.
+            </li>
+
+            <li>
+                <strong>Data Cleansing:</strong>
+                Correcting or removing incorrect, duplicated,
+                incomplete, or damaged information.
+            </li>
+
+            <li>
+                <strong>Data Exploration:</strong>
+                Examining information to discover patterns
+                and useful details.
+            </li>
+
+            <li>
+                <strong>Data Visualization:</strong>
+                Presenting information through charts, graphs,
+                and maps to make it easier to understand.
+            </li>
+        </ul>
+
+        <h3>Applications of Big Data</h3>
+
+        <ul>
+            <li>
+                <strong>Healthcare:</strong>
+                Studies treatments, diseases, and medical information.
+            </li>
+
+            <li>
+                <strong>Media and Entertainment:</strong>
+                Recommends content and improves advertising.
+            </li>
+
+            <li>
+                <strong>Traffic Optimization:</strong>
+                Helps understand traffic and improve routes.
+            </li>
+
+            <li>
+                <strong>Flight Route Optimization:</strong>
+                Helps airlines study passenger behavior
+                and route performance.
+            </li>
+
+            <li>
+                <strong>E-Commerce:</strong>
+                Recommends products and videos based on user activity.
+            </li>
+
+            <li>
+                <strong>Agriculture:</strong>
+                Uses sensors and weather information to monitor
+                crops and soil.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- IOT -->
+    <section class="lesson-block" id="iot">
+
+        <h2>Internet of Things (IoT)</h2>
+
+        <h3>What is IoT?</h3>
+
+        <p>
+            The Internet of Things (IoT) refers to physical
+            devices connected to the internet that collect,
+            share, and exchange information.
+        </p>
+
+        <p>
+            Examples include smart lights, smartphones,
+            security cameras, smart appliances, and wearable
+            devices.
+        </p>
+
+        <img class="lesson-image"
+             src="https://sumatosoft.com/wp-content/uploads/2022/03/611e0d55cab5d35bcef0a615_Stages-of-IoT-Architecture-scaled.jpg"
+             alt="Internet of Things architecture diagram"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Stages of Internet of Things Architecture
+        </p>
+
+        <h3>Examples of IoT in Banking</h3>
+
+        <ul>
+            <li>
+                <strong>Wearables:</strong>
+                Smart watches and wearable devices can support
+                contactless payments.
+            </li>
+
+            <li>
+                <strong>Connected Cars:</strong>
+                Connected vehicles can support mobile banking services.
+            </li>
+
+            <li>
+                <strong>Banking at Home:</strong>
+                Smart speakers can allow users to check balances
+                and make payments through voice commands.
+            </li>
+        </ul>
+
+        <h3>IoT Architecture</h3>
+
+        <ol>
+            <li>
+                <strong>Sensors and Actuators:</strong>
+                Collect information and perform actions.
+            </li>
+
+            <li>
+                <strong>Internet Gateways and Data Acquisition:</strong>
+                Transfer and collect information through networks.
+            </li>
+
+            <li>
+                <strong>Edge IT:</strong>
+                Processes and analyzes data near the devices.
+            </li>
+
+            <li>
+                <strong>Data Center and Cloud:</strong>
+                Stores information and supports applications and services.
+            </li>
+        </ol>
+
+        <h3>Industrial Internet of Things (IIoT)</h3>
+
+        <p>
+            The Industrial Internet of Things (IIoT) uses
+            connected devices and smart machines in industries.
+            It allows machines to collect, analyze, and share
+            information in real time.
+        </p>
+
+        <h3>Examples of IIoT</h3>
+
+        <ul>
+            <li>A connected rat trap that sends a notification to a mobile phone.</li>
+            <li>A soil sensor that measures moisture and nutrients.</li>
+            <li>Smart parking and traffic management systems.</li>
+            <li>Automated automobile assembly lines.</li>
+        </ul>
+
+        <h3>Applications of IoT</h3>
+
+        <ul>
+            <li>
+                <strong>Agriculture:</strong>
+                Monitors soil, weather, irrigation, and crops.
+            </li>
+
+            <li>
+                <strong>Consumer Use:</strong>
+                Smart homes and wearable devices improve
+                convenience and connectivity.
+            </li>
+
+            <li>
+                <strong>Healthcare:</strong>
+                Monitors patients and hospital equipment.
+            </li>
+
+            <li>
+                <strong>Insurance:</strong>
+                Uses fitness tracking to support personalized policies.
+            </li>
+
+            <li>
+                <strong>Manufacturing:</strong>
+                Tracks products and monitors equipment.
+            </li>
+
+            <li>
+                <strong>Retail:</strong>
+                Helps manage warehouses and understand customer purchases.
+            </li>
+
+            <li>
+                <strong>Transportation:</strong>
+                Uses GPS to improve routes and delivery services.
+            </li>
+
+            <li>
+                <strong>Utilities and Energy:</strong>
+                Monitors energy usage and environmental conditions.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- CLOUD COMPUTING -->
+    <section class="lesson-block" id="cloud-computing">
+
+        <h2>Cloud Computing</h2>
+
+        <h3>What is Cloud Computing?</h3>
+
+        <p>
+            Cloud Computing uses remote servers connected
+            through the internet to store, manage, and access
+            information instead of relying only on local storage.
+        </p>
+
+        <img class="lesson-image"
+             src="https://ik.imagekit.io/upgrad1/abroad-images/imageCompo/images/Key_Features_of_Cloud_Computing_in_2025BR40LX.png"
+             alt="Cloud computing services and architecture"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Cloud Computing services and technology
+        </p>
+
+        <h3>Uses of Cloud Computing</h3>
+
+        <ul>
+            <li>Developing applications and online services.</li>
+            <li>Storing, backing up, and recovering data.</li>
+            <li>Hosting websites and blogs.</li>
+            <li>Providing software through the internet.</li>
+            <li>Analyzing data.</li>
+            <li>Streaming videos and audio.</li>
+        </ul>
+
+        <h3>Advantages of Cloud Computing</h3>
+
+        <ul>
+            <li>
+                <strong>Backup and Recovery:</strong>
+                Makes it easier to restore stored information.
+            </li>
+
+            <li>
+                <strong>Collaboration:</strong>
+                Allows people to share files and work together.
+            </li>
+
+            <li>
+                <strong>Accessibility:</strong>
+                Provides access to information from different locations.
+            </li>
+
+            <li>
+                <strong>Low Maintenance Cost:</strong>
+                Reduces hardware and software maintenance costs.
+            </li>
+
+            <li>
+                <strong>Mobility:</strong>
+                Allows users to access information through different devices.
+            </li>
+
+            <li>
+                <strong>Pay-per-use:</strong>
+                Allows users to pay based on service usage.
+            </li>
+
+            <li>
+                <strong>Storage Capacity:</strong>
+                Provides large online storage spaces.
+            </li>
+
+            <li>
+                <strong>Data Security:</strong>
+                Provides security features to protect stored information.
+            </li>
+        </ul>
+
+        <h3>Types of Cloud Computing</h3>
+
+        <ul>
+            <li>
+                <strong>Public Cloud:</strong>
+                A cloud service available to users through the internet
+                and managed by a service provider.
+            </li>
+
+            <li>
+                <strong>Private Cloud:</strong>
+                A cloud environment used by one organization.
+            </li>
+
+            <li>
+                <strong>Hybrid Cloud:</strong>
+                Combines public and private cloud services.
+            </li>
+
+            <li>
+                <strong>Community Cloud:</strong>
+                A cloud environment shared by organizations
+                with similar needs.
+            </li>
+        </ul>
+
+        <h3>Applications of Cloud Computing</h3>
+
+        <ul>
+            <li>
+                <strong>Art Applications:</strong>
+                Used for creating designs and images.
+            </li>
+
+            <li>
+                <strong>Business Applications:</strong>
+                Supports business operations and communication.
+            </li>
+
+            <li>
+                <strong>Data Storage and Backup:</strong>
+                Stores files and supports recovery.
+            </li>
+
+            <li>
+                <strong>Education Applications:</strong>
+                Supports online learning and virtual classrooms.
+            </li>
+
+            <li>
+                <strong>Entertainment Applications:</strong>
+                Supports online games and video conferencing.
+            </li>
+
+            <li>
+                <strong>Management Applications:</strong>
+                Helps manage cloud resources and activities.
+            </li>
+
+            <li>
+                <strong>Social Applications:</strong>
+                Supports online communication and social networking.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- CYBERSECURITY -->
+    <section class="lesson-block" id="cybersecurity">
+
+        <h2>Cybersecurity and Cyber Attacks</h2>
+
+        <h3>What is Cybersecurity?</h3>
+
+        <p>
+            Cybersecurity refers to the technologies, processes,
+            and controls used to protect computers, networks,
+            programs, devices, and information from cyber attacks.
+        </p>
+
+        <img class="lesson-image"
+             src="https://media.licdn.com/dms/image/v2/C5622AQEWl1XNNMef4w/feedshare-shrink_800/feedshare-shrink_800/0/1627272015821?e=2147483647&t=KHJ7AboU1cPmZBct3-lyiD55UzHx6nmZdDRimkx8kEM&v=beta"
+             alt="Cybersecurity and common cyber threats"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Cybersecurity and digital protection
+        </p>
+
+        <h3>Types of Cybersecurity</h3>
+
+        <ul>
+            <li>
+                <strong>Critical Infrastructure Security:</strong>
+                Protects important systems such as electricity grids,
+                hospitals, water systems, and traffic lights.
+            </li>
+
+            <li>
+                <strong>Application Security:</strong>
+                Protects software and applications using security
+                measures such as antivirus software, firewalls,
+                and encryption.
+            </li>
+
+            <li>
+                <strong>Network Security:</strong>
+                Protects networks from unauthorized access and attacks.
+            </li>
+
+            <li>
+                <strong>Cloud Security:</strong>
+                Protects information and resources stored
+                in cloud environments.
+            </li>
+
+            <li>
+                <strong>IoT Security:</strong>
+                Protects internet-connected devices such as smart
+                appliances, routers, and security cameras.
+            </li>
+        </ul>
+
+        <h3>What is a Cyber Attack?</h3>
+
+        <p>
+            A cyber attack is a deliberate attempt to access,
+            damage, steal, or disrupt another person's or
+            organization's computer system or information.
+        </p>
+
+        <h3>Types of Cyber Attacks</h3>
+
+        <ul>
+            <li>
+                <strong>Malware:</strong>
+                Malicious software that can damage systems
+                or steal information.
+            </li>
+
+            <li>
+                <strong>Phishing:</strong>
+                Fake emails or messages designed to steal
+                personal information.
+            </li>
+
+            <li>
+                <strong>Man-in-the-Middle Attack:</strong>
+                Secretly intercepts communication between two parties.
+            </li>
+
+            <li>
+                <strong>Denial-of-Service Attack:</strong>
+                Overloads a system or network with traffic.
+            </li>
+
+            <li>
+                <strong>SQL Injection:</strong>
+                Uses harmful SQL commands to access or manipulate
+                database information.
+            </li>
+
+            <li>
+                <strong>Zero-Day Exploit:</strong>
+                Takes advantage of a newly discovered security weakness.
+            </li>
+
+            <li>
+                <strong>Password Attack:</strong>
+                Attempts to obtain or guess passwords.
+            </li>
+
+            <li>
+                <strong>Cross-Site Scripting:</strong>
+                Injects harmful scripts into trusted websites.
+            </li>
+
+            <li>
+                <strong>Rootkits:</strong>
+                Malicious tools that hide inside a system and may
+                allow unauthorized control.
+            </li>
+
+            <li>
+                <strong>IoT Attacks:</strong>
+                Target connected devices and their networks.
+            </li>
+        </ul>
+
+        <h3>Tips to Avoid Cyber Attacks</h3>
+
+        <ul>
+            <li>Learn and practice cybersecurity principles.</li>
+            <li>Install and regularly update antivirus software.</li>
+            <li>Use a firewall for internet connections.</li>
+            <li>Install operating system and application updates.</li>
+            <li>Back up important information.</li>
+            <li>Control physical access to computers and network devices.</li>
+            <li>Secure Wi-Fi networks.</li>
+            <li>Use individual accounts for each user.</li>
+            <li>Limit access to sensitive information.</li>
+            <li>Regularly change passwords.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- COMMUNICATION SKILLS -->
+    <section class="lesson-block" id="communication-skills">
+
+        <h2>Communication Skills</h2>
+
+        <h3>What is Communication?</h3>
+
+        <p>
+            Communication is the process of sharing thoughts,
+            information, emotions, and ideas from one person
+            to another through speech, writing, gestures,
+            symbols, and expressions.
+        </p>
+
+        <img class="lesson-image"
+             src="https://image.slidesharecdn.com/informationeducationcommunication-151128070258-lva1-app6891/75/Information-education-communication-15-2048.jpg"
+             alt="Communication process diagram"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            The Communication Process
+        </p>
+
+        <h3>Process of Communication</h3>
+
+        <ul>
+            <li>
+                <strong>Sender:</strong>
+                The person who creates and sends the message.
+            </li>
+
+            <li>
+                <strong>Message:</strong>
+                The information, idea, or feeling being shared.
+            </li>
+
+            <li>
+                <strong>Encoding:</strong>
+                Changing the message into words, pictures, or symbols.
+            </li>
+
+            <li>
+                <strong>Medium:</strong>
+                The method used to send the message, such as speaking or writing.
+            </li>
+
+            <li>
+                <strong>Decoding:</strong>
+                Interpreting and understanding the received message.
+            </li>
+
+            <li>
+                <strong>Recipient:</strong>
+                The person who receives the message.
+            </li>
+
+            <li>
+                <strong>Feedback:</strong>
+                The response confirming that the message was received
+                or understood.
+            </li>
+        </ul>
+
+        <h3>Barriers to Communication</h3>
+
+        <ul>
+            <li>Physical barriers</li>
+            <li>Perceptual barriers</li>
+            <li>Emotional barriers</li>
+            <li>Cultural barriers</li>
+            <li>Language barriers</li>
+            <li>Gender barriers</li>
+            <li>Interpersonal barriers</li>
+        </ul>
+
+        <h3>Importance of Communication in the Workplace</h3>
+
+        <p>
+            Good communication helps employees understand
+            instructions, ask questions, share information,
+            and work with others. It improves teamwork,
+            workplace efficiency, and professional relationships.
+        </p>
+
+        <h3>Important Communication Skills</h3>
+
+        <ul>
+            <li>
+                <strong>Emotional Intelligence:</strong>
+                Understanding and managing emotions.
+            </li>
+
+            <li>
+                <strong>Cohesion and Clarity:</strong>
+                Sharing messages clearly and in an organized way.
+            </li>
+
+            <li>
+                <strong>Friendliness:</strong>
+                Using a friendly and welcoming tone.
+            </li>
+
+            <li>
+                <strong>Confidence:</strong>
+                Expressing ideas clearly.
+            </li>
+
+            <li>
+                <strong>Empathy:</strong>
+                Understanding other people's feelings and opinions.
+            </li>
+
+            <li>
+                <strong>Respect:</strong>
+                Valuing other people's ideas and differences.
+            </li>
+
+            <li>
+                <strong>Listening:</strong>
+                Paying attention to what others are saying.
+            </li>
+
+            <li>
+                <strong>Open-mindedness:</strong>
+                Being willing to consider different opinions.
+            </li>
+
+            <li>
+                <strong>Tone of Voice:</strong>
+                Using an appropriate tone during conversations.
+            </li>
+
+            <li>
+                <strong>Asking Good Questions:</strong>
+                Asking useful questions to improve understanding.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- CREATIVE PROBLEM SOLVING -->
+    <section class="lesson-block" id="problem-solving">
+
+        <h2>Creative Problem-Solving Skills</h2>
+
+        <p>
+            Creative problem-solving is the ability to think
+            of different ways to solve a problem. It involves
+            looking at a situation from different perspectives
+            and considering possible solutions.
+        </p>
+
+        <img class="lesson-image"
+             src="https://static.wixstatic.com/media/c204f6_0c04cc50ddc64c31a189b9d5fd9d3f9f~mv2.jpg/v1/fill/w_766%2Ch_575%2Cal_c%2Clg_1%2Cq_85/c204f6_0c04cc50ddc64c31a189b9d5fd9d3f9f~mv2.jpg"
+             alt="Creative problem-solving process"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Creative Problem-Solving Process
+        </p>
+
+        <h3>Creativity in Problem-Solving</h3>
+
+        <ul>
+            <li>
+                <strong>Creativity in Leadership:</strong>
+                Using creative ideas to guide teams and solve challenges.
+            </li>
+
+            <li>
+                <strong>Encouraging Creativity:</strong>
+                Allowing people to share ideas and explore solutions.
+            </li>
+
+            <li>
+                <strong>Creativity and Innovation:</strong>
+                Developing new ideas, methods, and improvements.
+            </li>
+        </ul>
+
+        <h3>Steps in Workplace Problem-Solving</h3>
+
+        <ol>
+            <li>
+                <strong>Define the Problem:</strong>
+                Understand what needs to be solved.
+            </li>
+
+            <li>
+                <strong>Generate Solutions:</strong>
+                Think of possible ways to solve the problem.
+            </li>
+
+            <li>
+                <strong>Evaluate Solutions:</strong>
+                Compare the advantages and disadvantages of each solution.
+            </li>
+
+            <li>
+                <strong>Implement the Solution:</strong>
+                Choose and apply the most suitable solution.
+            </li>
+
+            <li>
+                <strong>Assess the Solution:</strong>
+                Check whether the solution worked.
+            </li>
+        </ol>
+
+    </section>
+
+
+    <!-- CRITICAL THINKING -->
+    <section class="lesson-block" id="critical-thinking">
+
+        <h2>Critical Thinking</h2>
+
+        <p>
+            Critical thinking is the ability to carefully
+            examine, evaluate, and understand information
+            before making a decision.
+        </p>
+
+        <p>
+            It involves questioning ideas, checking facts,
+            recognizing personal biases, and considering
+            different points of view.
+        </p>
+
+        <img class="lesson-image"
+             src="https://miro.medium.com/v2/resize%3Afit%3A1200/1%2ADBF0kZEnElgwcWLBxLOEKw.png"
+             alt="Critical thinking process"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Critical Thinking and Information Analysis
+        </p>
+
+        <h3>Applying Critical Thinking</h3>
+
+        <ul>
+            <li>Develop your own solution to an unexpected problem.</li>
+            <li>Compare advantages and disadvantages before deciding.</li>
+            <li>Avoid making assumptions about other people.</li>
+            <li>Recognize personal biases instead of accepting them without question.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- COLLABORATION SKILLS -->
+    <section class="lesson-block" id="collaboration">
+
+        <h2>Collaboration Skills</h2>
+
+        <p>
+            Collaboration skills are the abilities used when
+            working with other people to complete a task,
+            create something, or achieve a common goal.
+        </p>
+
+        <img class="lesson-image"
+             src="https://www.robertsoncollege.com/site-content/uploads/2020/03/02-5-important-teamwork-skills-1024x848.png"
+             alt="Teamwork and collaboration skills"
+             loading="lazy">
+
+        <p class="lesson-image-caption">
+            Important Teamwork and Collaboration Skills
+        </p>
+
+        <h3>Types of Collaboration Skills</h3>
+
+        <ul>
+            <li>
+                <strong>Communication Skills:</strong>
+                Sharing ideas and information clearly with
+                team members.
+            </li>
+
+            <li>
+                <strong>Emotional Intelligence:</strong>
+                Understanding emotions and maintaining
+                positive working relationships.
+            </li>
+
+            <li>
+                <strong>Respect for Diversity:</strong>
+                Accepting different backgrounds, opinions,
+                experiences, and ideas.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>
+                AI allows machines to perform tasks that normally
+                require human intelligence.
+            </li>
+
+            <li>
+                Machine Learning helps computers learn from data
+                and improve their performance.
+            </li>
+
+            <li>
+                Deep Learning uses artificial neural networks
+                to recognize patterns.
+            </li>
+
+            <li>
+                Big Data Analytics helps organizations understand
+                large amounts of information.
+            </li>
+
+            <li>
+                IoT connects physical devices through the internet.
+            </li>
+
+            <li>
+                Cloud Computing provides online storage,
+                applications, and services.
+            </li>
+
+            <li>
+                Cybersecurity protects systems, networks,
+                devices, and information from cyber threats.
+            </li>
+
+            <li>
+                Communication, problem-solving, critical thinking,
+                and collaboration are important digital workplace skills.
+            </li>
+        </ul>
+
+    </section>
+
+<section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=9" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+
+</article>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-09.html">
+                    ← Topic 9
+                </a>
+
+                
+
+            </div>
+
+        </main>
+
+
+        <!-- FOOTER -->
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    
+<script>
+    /* =====================================
+       MOBILE NAVIGATION
+    ===================================== */
+
+    const navToggle = document.getElementById("navToggle");
+    const mainNav = document.getElementById("mainNav");
+
+    navToggle.addEventListener("click", function () {
+        const isOpen = mainNav.classList.toggle("open");
+
+        navToggle.setAttribute("aria-expanded", isOpen);
+        navToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    document.querySelectorAll(".main-nav a").forEach(link => {
+        link.addEventListener("click", function () {
+            mainNav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.textContent = "☰";
+        });
+    });
+
+
+
+    /* =====================================
+       ACTIVE TABLE OF CONTENTS
+    ===================================== */
+
+    const tocLinks = document.querySelectorAll("#lessonTOC a");
+    const lessonSections = document.querySelectorAll(".lesson-block");
+
+    const sectionObserver = new IntersectionObserver(
+        function (entries) {
+
+            const visibleSections = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) =>
+                    a.boundingClientRect.top - b.boundingClientRect.top
+                );
+
+            if (visibleSections.length === 0) {
+                return;
+            }
+
+            const activeSection = visibleSections[0].target;
+
+            tocLinks.forEach(link => {
+                link.classList.remove("active");
+
+                if (
+                    link.getAttribute("href") ===
+                    "#" + activeSection.id
+                ) {
+                    link.classList.add("active");
+                }
+            });
+        },
+        {
+            rootMargin: "-15% 0px -70% 0px"
+        }
+    );
+
+    lessonSections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+
+    /* =====================================
+       TABLE OF CONTENTS CLICK
+    ===================================== */
+
+    tocLinks.forEach(link => {
+        link.addEventListener("click", function () {
+
+            tocLinks.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            this.classList.add("active");
+        });
+    });
+
+
+    /* =====================================
+       PASSKEY PROTECTION
+    ===================================== */
+
+    const CLASS_PASSKEY = "BSIT2026";
+    const ROOT = document.body.dataset.root || "";
+
+    const $ = selector => document.querySelector(selector);
+
+    const unlocked = () => {
+        try {
+            return sessionStorage.getItem("bsitOk") === "1";
+        } catch (e) {
+            return false;
+        }
+    };
+
+    const lockScreen = $("#lockScreen");
+    const site = $("#website");
+
+    let tries = 0;
+    let lockedUntil = 0;
+
+    if (lockScreen) {
+
+        const show = () => {
+            lockScreen.classList.add("hidden");
+            site.classList.remove("hidden");
+        };
+
+        if (unlocked()) {
+            show();
+        }
+
+        $("#unlockForm").addEventListener("submit", e => {
+
+            e.preventDefault();
+
+            const input = $("#passkey");
+            const err = $("#loginError");
+            const value = input.value.trim();
+
+            if (Date.now() < lockedUntil) {
+                err.textContent =
+                    "Too many wrong attempts. Try again in " +
+                    Math.ceil((lockedUntil - Date.now()) / 1000) +
+                    "s.";
+
+                return;
+            }
+
+            if (!value) {
+                err.textContent = "Please enter the passkey.";
+                return;
+            }
+
+            if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                try {
+                    sessionStorage.setItem("bsitOk", "1");
+                } catch (e) {}
+
+                err.textContent = "";
+                show();
+
+            } else {
+
+                tries++;
+
+                input.value = "";
+                input.focus();
+
+                if (tries >= 3) {
+                    lockedUntil = Date.now() + 30000;
+                    tries = 0;
+
+                    err.textContent =
+                        "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+                } else {
+                    err.textContent =
+                        "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+                }
+            }
+        });
+
+        $("#togglePass").addEventListener("click", () => {
+
+            const input = $("#passkey");
+
+            input.type =
+                input.type === "password" ? "text" : "password";
+
+            $("#togglePass").textContent =
+                input.type === "password" ? "Show" : "Hide";
+        });
+
+    } else if (!unlocked()) {
+
+        location.replace(ROOT + "index.html");
+    }
+
+
+    /* =====================================
+       LOG OUT
+    ===================================== */
+
+    $("#logoutBtn")?.addEventListener("click", () => {
+
+        try {
+            sessionStorage.removeItem("bsitOk");
+        } catch (e) {}
+
+        location.href = ROOT + "index.html";
+    });
+
+
+    /* =====================================
+       HIGHLIGHT CURRENT PAGE
+    ===================================== */
+
+    const here = location.pathname.split("/").pop() || "index.html";
+
+    document.querySelectorAll(".main-nav a").forEach(link => {
+
+        const href = link.getAttribute("href");
+
+        if (
+            href === here ||
+            (here.startsWith("topic-") && href === "chapters.html")
+        ) {
+            link.classList.add("active");
+        }
+    });
+
+
+    /* =====================================
+       GLOSSARY SEARCH
+    ===================================== */
+
+    const glossarySearch = $("#glossarySearch");
+
+    if (glossarySearch) {
+
+        glossarySearch.addEventListener("input", () => {
+
+            const query = glossarySearch.value.toLowerCase();
+            let count = 0;
+
+            document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                const matches =
+                    term.textContent.toLowerCase().includes(query);
+
+                term.hidden = !matches;
+
+                if (matches) {
+                    count++;
+                }
+            });
+
+            $("#noTerm").hidden = count > 0;
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+
+
+
+    </script>
+
+</body>
+</html>

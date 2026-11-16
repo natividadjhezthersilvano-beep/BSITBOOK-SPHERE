@@ -1,0 +1,4054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        JavaScript Fundamentals and DOM Manipulation
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+           <div class="lesson-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="lesson-sidebar">
+        <h3>On This Page</h3>
+
+        <nav class="lesson-toc" id="lessonTOC">
+            <a href="#overview">Overview</a>
+            <a href="#browser">The Browser as a Programmable Document</a>
+            <a href="#dom">The Document Object Model</a>
+            <a href="#selection">Classic Selection APIs</a>
+            <a href="#css-selectors">CSS Selectors in JavaScript</a>
+            <a href="#collections">Live Collections and Static Lists</a>
+            <a href="#creating-elements">Creating and Removing Elements</a>
+            <a href="#content">Text, HTML, Attributes, and Classes</a>
+            <a href="#traversal">DOM Traversal</a>
+            <a href="#events">JavaScript Events</a>
+            <a href="#forms">Forms and User Input</a>
+            <a href="#performance">DOM Performance</a>
+            <a href="#templates">Templates and DocumentFragment</a>
+            <a href="#mutation-observer">MutationObserver</a>
+            <a href="#shadow-dom">Shadow DOM and Web Components</a>
+            <a href="#jquery">jQuery and DOM Abstraction</a>
+            <a href="#declarative-ui">Imperative and Declarative UI</a>
+            <a href="#angular">Angular</a>
+            <a href="#react">React</a>
+            <a href="#web-applications">Modern Web Applications</a>
+            <a href="#practical-rules">Practical Rules</a>
+            <a href="#mini-project">Practical DOM Project</a>
+            <a href="#applications">Practical Applications</a>
+            <a href="#takeaways">Key Takeaways</a>
+            <a href="#references">References</a>
+        </nav>
+
+    
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+     <article class="lesson-content">
+
+            <!-- OVERVIEW -->
+            <section class="lesson-block" id="overview">
+
+                <h2>Overview</h2>
+
+                <p>
+                    JavaScript and the Document Object Model (DOM) are important
+                    parts of modern web development. They allow developers to
+                    create web pages that respond to user actions, update
+                    information dynamically, and provide interactive features.
+                </p>
+
+                <p>
+                    In the beginning, websites were mainly static documents.
+                    Users could read information, but the pages had limited
+                    interaction. JavaScript changed this by allowing developers
+                    to access the currently loaded document, inspect its
+                    elements, modify its content, and respond to user events.
+                </p>
+
+                <p>
+                    The DOM acts as the connection between JavaScript and the
+                    HTML page. Through DOM methods and properties, JavaScript
+                    can select elements, change text, update styles, create new
+                    elements, remove content, and handle events.
+                </p>
+
+                <p>
+                    Understanding the DOM is also important when learning
+                    modern JavaScript frameworks such as React and Angular.
+                    These frameworks provide organized ways to manage the
+                    interface, but they still depend on the browser's DOM.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 260" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="30" width="210" height="170" rx="12" fill="#e8efff" stroke="#4169a8" stroke-width="2"/>
+                        <text x="125" y="68" text-anchor="middle" font-size="23" font-weight="bold" fill="#183b70">HTML</text>
+                        <text x="125" y="105" text-anchor="middle" font-size="15" fill="#183b70">Page Structure</text>
+                        <text x="125" y="132" text-anchor="middle" font-size="14" fill="#183b70">Headings</text>
+                        <text x="125" y="153" text-anchor="middle" font-size="14" fill="#183b70">Paragraphs</text>
+                        <text x="125" y="174" text-anchor="middle" font-size="14" fill="#183b70">Buttons</text>
+
+                        <rect x="275" y="30" width="210" height="170" rx="12" fill="#e9f7ef" stroke="#39966a" stroke-width="2"/>
+                        <text x="380" y="68" text-anchor="middle" font-size="23" font-weight="bold" fill="#17613e">DOM</text>
+                        <text x="380" y="105" text-anchor="middle" font-size="15" fill="#17613e">Document Model</text>
+                        <text x="380" y="132" text-anchor="middle" font-size="14" fill="#17613e">Elements</text>
+                        <text x="380" y="153" text-anchor="middle" font-size="14" fill="#17613e">Nodes</text>
+                        <text x="380" y="174" text-anchor="middle" font-size="14" fill="#17613e">Relationships</text>
+
+                        <rect x="530" y="30" width="210" height="170" rx="12" fill="#fff1df" stroke="#d18a35" stroke-width="2"/>
+                        <text x="635" y="68" text-anchor="middle" font-size="23" font-weight="bold" fill="#89500e">JavaScript</text>
+                        <text x="635" y="105" text-anchor="middle" font-size="15" fill="#89500e">Page Behavior</text>
+                        <text x="635" y="132" text-anchor="middle" font-size="14" fill="#89500e">Modify Content</text>
+                        <text x="635" y="153" text-anchor="middle" font-size="14" fill="#89500e">Handle Events</text>
+                        <text x="635" y="174" text-anchor="middle" font-size="14" fill="#89500e">Create Elements</text>
+
+                        <path d="M230 115 H270" stroke="#555" stroke-width="3" fill="none"/>
+                        <path d="M262 108 L270 115 L262 122" stroke="#555" stroke-width="3" fill="none"/>
+
+                        <path d="M485 115 H525" stroke="#555" stroke-width="3" fill="none"/>
+                        <path d="M517 108 L525 115 L517 122" stroke="#555" stroke-width="3" fill="none"/>
+
+                        <text x="380" y="238" text-anchor="middle" font-size="14" fill="currentColor">
+                            HTML provides structure, the DOM represents the page, and JavaScript adds behavior.
+                        </text>
+                    </svg>
+                    <figcaption>
+                        Relationship between HTML, the DOM, and JavaScript.
+                    </figcaption>
+                </figure>
+
+            </section>
+
+
+            <!-- BROWSER -->
+            <section class="lesson-block" id="browser">
+
+                <h2>The Browser as a Programmable Document</h2>
+
+                <p>
+                    A web browser is more than a program that displays websites.
+                    It provides an environment where JavaScript can interact
+                    with the currently loaded document.
+                </p>
+
+                <p>
+                    JavaScript can inspect page elements, modify their content,
+                    respond to user actions, and create new interface behavior
+                    while the page is running.
+                </p>
+
+                <p>
+                    The main technologies work together:
+                </p>
+
+                <p>
+                    <strong>HTML</strong> provides the structure of the page.
+                    It defines headings, paragraphs, images, links, forms, and
+                    other elements.
+                </p>
+
+                <p>
+                    <strong>CSS</strong> controls the presentation. It defines
+                    colors, fonts, spacing, layouts, and visual appearance.
+                </p>
+
+                <p>
+                    <strong>JavaScript</strong> provides behavior. It allows
+                    the page to react to clicks, process input, update content,
+                    and perform other interactive tasks.
+                </p>
+
+                <p>
+                    The DOM connects JavaScript to the document. Instead of
+                    directly changing pixels on the screen, JavaScript changes
+                    the structured objects that represent the page.
+                </p>
+
+                <h3>Example of Changing a Page</h3>
+
+                <pre><code>const title = document.getElementById("main-title");
+
+title.textContent = "A Living Page";
+
+title.classList.add("highlighted");</code></pre>
+
+                <p>
+                    In this example, JavaScript selects an element using its
+                    ID, changes its text, and adds a CSS class. The browser
+                    handles the necessary visual updates.
+                </p>
+
+            </section>
+
+
+            <!-- DOM -->
+            <section class="lesson-block" id="dom">
+
+                <h2>The Document Object Model</h2>
+
+                <p>
+                    The Document Object Model, commonly called the DOM, is a
+                    programming interface that represents an HTML document as
+                    a logical tree of objects.
+                </p>
+
+                <p>
+                    Every HTML element becomes an object or node that
+                    JavaScript can access. These objects are connected through
+                    parent-child relationships.
+                </p>
+
+                <p>
+                    When a browser loads an HTML document, it parses the HTML
+                    and builds the DOM tree. JavaScript works with this live
+                    tree rather than simply editing the original HTML source.
+                </p>
+
+                <p>
+                    The live DOM can change after the page loads. JavaScript
+                    can add new elements, remove existing elements, and update
+                    properties that represent the current state of the page.
+                </p>
+
+                <h3>DOM Tree Structure</h3>
+
+                <figure>
+                    <svg viewBox="0 0 720 340" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="275" y="12" width="170" height="42" rx="8" fill="#dce9ff" stroke="#4169a8"/>
+                        <text x="360" y="39" text-anchor="middle" font-size="16" fill="#183b70">Document</text>
+
+                        <path d="M360 54 V78 M180 78 H540 M180 78 V105 M360 78 V105 M540 78 V105" stroke="currentColor" stroke-width="1.8" fill="none"/>
+
+                        <rect x="110" y="105" width="140" height="42" rx="7" fill="#e7f5ed" stroke="#39966a"/>
+                        <text x="180" y="132" text-anchor="middle" font-size="16" fill="#17613e">head</text>
+
+                        <rect x="290" y="105" width="140" height="42" rx="7" fill="#e7f5ed" stroke="#39966a"/>
+                        <text x="360" y="132" text-anchor="middle" font-size="16" fill="#17613e">body</text>
+
+                        <rect x="470" y="105" width="140" height="42" rx="7" fill="#e7f5ed" stroke="#39966a"/>
+                        <text x="540" y="132" text-anchor="middle" font-size="16" fill="#17613e">title</text>
+
+                        <path d="M360 147 V175 M200 175 H520 M200 175 V200 M360 175 V200 M520 175 V200" stroke="currentColor" stroke-width="1.8" fill="none"/>
+
+                        <rect x="130" y="200" width="140" height="42" rx="7" fill="#fff1df" stroke="#d18a35"/>
+                        <text x="200" y="227" text-anchor="middle" font-size="16" fill="#89500e">h1</text>
+
+                        <rect x="290" y="200" width="140" height="42" rx="7" fill="#fff1df" stroke="#d18a35"/>
+                        <text x="360" y="227" text-anchor="middle" font-size="16" fill="#89500e">p</text>
+
+                        <rect x="450" y="200" width="140" height="42" rx="7" fill="#fff1df" stroke="#d18a35"/>
+                        <text x="520" y="227" text-anchor="middle" font-size="16" fill="#89500e">button</text>
+
+                        <text x="360" y="285" text-anchor="middle" font-size="15" fill="currentColor">Each element is represented as a node in the tree.</text>
+                        <text x="360" y="310" text-anchor="middle" font-size="13" fill="currentColor">Parent nodes contain child nodes.</text>
+                    </svg>
+                    <figcaption>
+                        Example of a simplified DOM tree.
+                    </figcaption>
+                </figure>
+
+                <h3>Important DOM Interfaces</h3>
+
+                <p>
+                    <strong>Document</strong> represents the loaded web page.
+                    It provides methods for finding and creating elements.
+                </p>
+
+                <p>
+                    <strong>Element</strong> represents an HTML or SVG element
+                    in the document, such as a div, button, or paragraph.
+                </p>
+
+                <p>
+                    <strong>Node</strong> is a general object in the DOM tree.
+                    It includes elements, text nodes, comments, and document
+                    fragments.
+                </p>
+
+                <p>
+                    <strong>Text Node</strong> represents the actual text
+                    content inside an element.
+                </p>
+
+                <p>
+                    <strong>EventTarget</strong> represents an object that can
+                    receive events, such as a button, document, or window.
+                </p>
+
+                <p>
+                    The DOM is a live object model. Incorrect modifications
+                    can lead to performance problems, accessibility issues,
+                    security vulnerabilities, and fragile application code.
+                </p>
+
+            </section>
+
+
+            <!-- SELECTION -->
+            <section class="lesson-block" id="selection">
+
+                <h2>Classic Selection APIs</h2>
+
+                <p>
+                    DOM selection is the process of finding HTML elements that
+                    JavaScript needs to work with. Different selection methods
+                    are available depending on whether the developer needs one
+                    element or a group of elements.
+                </p>
+
+                <h3>getElementById()</h3>
+
+                <p>
+                    The <strong>getElementById()</strong> method selects one
+                    element using its unique ID attribute. It is useful when
+                    accessing a specific heading, button, form, or application
+                    container.
+                </p>
+
+                <pre><code>const app = document.getElementById("app");
+
+const saveButton = document.getElementById("save");</code></pre>
+
+                <h3>getElementsByClassName()</h3>
+
+                <p>
+                    The <strong>getElementsByClassName()</strong> method
+                    selects all elements that have the specified class name.
+                    It returns a live HTMLCollection, which automatically
+                    updates when matching elements are added or removed.
+                </p>
+
+                <pre><code>const cards = document.getElementsByClassName("card");
+
+const activeCards = document.getElementsByClassName("card active");</code></pre>
+
+                <h3>getElementsByTagName()</h3>
+
+                <p>
+                    The <strong>getElementsByTagName()</strong> method selects
+                    elements according to their HTML tag name. For example,
+                    it can select all paragraph elements or all input elements.
+                </p>
+
+                <pre><code>const paragraphs = document.getElementsByTagName("p");
+
+const inputs = document.getElementsByTagName("input");</code></pre>
+
+                <h3>getElementsByName()</h3>
+
+                <p>
+                    The <strong>getElementsByName()</strong> method selects
+                    elements based on their name attribute. It is commonly
+                    used with form controls that share the same name.
+                </p>
+
+                <pre><code>const choices = document.getElementsByName("subscription");</code></pre>
+
+                <h3>Comparison of Selection Methods</h3>
+
+                <p>
+                    <strong>getElementById()</strong> returns one matching
+                    element or null if no element is found.
+                </p>
+
+                <p>
+                    <strong>getElementsByClassName()</strong> returns a live
+                    HTMLCollection.
+                </p>
+
+                <p>
+                    <strong>getElementsByTagName()</strong> returns a live
+                    HTMLCollection.
+                </p>
+
+                <p>
+                    <strong>getElementsByName()</strong> returns a NodeList
+                    containing matching named elements.
+                </p>
+
+            </section>
+
+
+            <!-- CSS SELECTORS -->
+            <section class="lesson-block" id="css-selectors">
+
+                <h2>CSS Selectors in JavaScript</h2>
+
+                <p>
+                    JavaScript can use CSS selector syntax to find elements
+                    through <strong>querySelector()</strong> and
+                    <strong>querySelectorAll()</strong>.
+                </p>
+
+                <h3>querySelector()</h3>
+
+                <p>
+                    The <strong>querySelector()</strong> method returns the
+                    first element that matches a CSS selector. It is useful
+                    when selecting an element using an ID, class, tag name,
+                    attribute, or relationship.
+                </p>
+
+                <pre><code>const firstCard = document.querySelector(".card");
+
+const title = document.querySelector("#main-title");
+
+const input = document.querySelector("input[name='email']");</code></pre>
+
+                <h3>querySelectorAll()</h3>
+
+                <p>
+                    The <strong>querySelectorAll()</strong> method returns
+                    all elements that match a CSS selector. Its result is a
+                    static NodeList.
+                </p>
+
+                <pre><code>const cards = document.querySelectorAll(".card");
+
+const buttons = document.querySelectorAll("button.primary");</code></pre>
+
+                <p>
+                    These methods can be called on the entire document or on
+                    a specific element. Selecting within a smaller section
+                    helps prevent accidentally selecting unrelated elements.
+                </p>
+
+                <pre><code>const dialog = document.querySelector("#settings-dialog");
+
+const closeButton = dialog.querySelector("button.close");</code></pre>
+
+                <h3>Common CSS Selectors</h3>
+
+                <p>
+                    <strong>#app</strong> selects the element with the ID app.
+                </p>
+
+                <p>
+                    <strong>.card</strong> selects elements with the card class.
+                </p>
+
+                <p>
+                    <strong>button.primary</strong> selects button elements
+                    with the primary class.
+                </p>
+
+                <p>
+                    <strong>input[name="email"]</strong> selects an input
+                    whose name attribute is email.
+                </p>
+
+                <p>
+                    <strong>ul greater-than li.active</strong> selects active
+                    list items that are direct children of a ul element.
+                </p>
+
+                <p>
+                    <strong>section:not(.hidden)</strong> selects sections
+                    that do not have the hidden class.
+                </p>
+
+            </section>
+
+
+            <!-- COLLECTIONS -->
+            <section class="lesson-block" id="collections">
+
+                <h2>Live Collections and Static Lists</h2>
+
+                <p>
+                    DOM selection methods do not all return the same type of
+                    collection. An important difference is whether the
+                    collection updates automatically when the document changes.
+                </p>
+
+                <h3>Live HTMLCollection</h3>
+
+                <p>
+                    A live HTMLCollection automatically reflects changes to
+                    the DOM. If an element is added or removed, the collection
+                    updates to show the current matching elements.
+                </p>
+
+                <pre><code>const liveItems =
+    document.getElementsByClassName("item");</code></pre>
+
+                <h3>Static NodeList</h3>
+
+                <p>
+                    A static NodeList represents the elements that matched
+                    the selector at the time the selection was performed.
+                    It does not automatically update when the DOM changes.
+                </p>
+
+                <pre><code>const staticItems =
+    document.querySelectorAll(".item");</code></pre>
+
+                <h3>Why the Difference Matters</h3>
+
+                <p>
+                    When removing elements while looping through a live
+                    collection, the collection changes as the elements are
+                    removed. This can cause indexes to shift and may result
+                    in elements being skipped.
+                </p>
+
+                <p>
+                    One safer approach is to convert the live collection into
+                    an array before modifying the DOM.
+                </p>
+
+                <pre><code>const items = Array.from(
+    document.getElementsByClassName("item")
+);
+
+for (const item of items) {
+    item.remove();
+}</code></pre>
+
+                <p>
+                    When modifying elements during iteration, use
+                    querySelectorAll() or convert a live collection with
+                    Array.from() first.
+                </p>
+
+            </section>
+
+
+            <!-- CREATING ELEMENTS -->
+            <section class="lesson-block" id="creating-elements">
+
+                <h2>Creating, Inserting, Moving, and Removing Elements</h2>
+
+                <p>
+                    JavaScript can create new HTML elements and insert them
+                    into an existing page. This makes it possible to display
+                    content without reloading the entire document.
+                </p>
+
+                <h3>Creating an Element</h3>
+
+                <p>
+                    The <strong>createElement()</strong> method creates a new
+                    HTML element.
+                </p>
+
+                <pre><code>const li = document.createElement("li");
+
+li.textContent = "Modern JavaScript DOM APIs";</code></pre>
+
+                <h3>Inserting Elements</h3>
+
+                <p>
+                    The <strong>appendChild()</strong> method inserts a node
+                    as the last child of a parent element.
+                </p>
+
+                <pre><code>const list = document.querySelector("#topics");
+
+list.appendChild(li);</code></pre>
+
+                <p>
+                    Modern methods such as append() and prepend() provide
+                    additional ways to insert elements and text.
+                </p>
+
+                <pre><code>const message = document.createElement("p");
+
+message.textContent = "Saved successfully";
+
+panel.prepend(message);
+
+panel.append(" - updated just now");</code></pre>
+
+                <h3>Moving Elements</h3>
+
+                <p>
+                    When an existing element is appended to a different
+                    parent, the browser moves that element from its original
+                    location. It does not automatically create a copy.
+                </p>
+
+                <h3>Removing Elements</h3>
+
+                <p>
+                    The <strong>remove()</strong> method removes an element
+                    from the document. The removeChild() method removes a
+                    specific child through its parent.
+                </p>
+
+                <pre><code>const message = document.querySelector("#message");
+
+message.remove();</code></pre>
+
+                <h3>Replacing and Cloning Elements</h3>
+
+                <p>
+                    The replaceWith() method replaces an element with another
+                    node or text. The cloneNode() method creates a copy of
+                    an existing node.
+                </p>
+
+                <pre><code>const original = document.querySelector(".card");
+
+const copy = original.cloneNode(true);</code></pre>
+
+                <p>
+                    The true argument tells cloneNode() to copy the element's
+                    child nodes as well.
+                </p>
+
+                <h3>Common DOM Modification Methods</h3>
+
+                <p>
+                    <strong>Create:</strong> createElement() and
+                    createTextNode().
+                </p>
+
+                <p>
+                    <strong>Insert:</strong> appendChild(), append(),
+                    prepend(), before(), after(), and insertBefore().
+                </p>
+
+                <p>
+                    <strong>Replace:</strong> replaceChild() and replaceWith().
+                </p>
+
+                <p>
+                    <strong>Remove:</strong> removeChild() and remove().
+                </p>
+
+                <p>
+                    <strong>Clone:</strong> cloneNode().
+                </p>
+
+            </section>
+
+
+            <!-- CONTENT -->
+            <section class="lesson-block" id="content">
+
+                <h2>Text, HTML, Attributes, Classes, and Inline Style</h2>
+
+                <p>
+                    After selecting or creating an element, JavaScript can
+                    change its content, attributes, classes, and visual state.
+                    These operations are common in interactive websites.
+                </p>
+
+                <h3>textContent</h3>
+
+                <p>
+                    The <strong>textContent</strong> property changes or reads
+                    the plain text inside an element. It is the preferred
+                    choice when inserting text supplied by users.
+                </p>
+
+                <pre><code>const title = document.querySelector("#title");
+
+title.textContent = "Welcome to the Website";</code></pre>
+
+                <h3>innerHTML</h3>
+
+                <p>
+                    The <strong>innerHTML</strong> property reads or replaces
+                    the HTML content inside an element. It can interpret
+                    HTML markup, allowing developers to insert structured
+                    content.
+                </p>
+
+                <pre><code>const box = document.querySelector("#box");
+
+box.innerHTML = "&lt;strong&gt;Trusted markup&lt;/strong&gt;";</code></pre>
+
+                <p>
+                    Use innerHTML carefully. Inserting untrusted user input
+                    as HTML can create cross-site scripting (XSS)
+                    vulnerabilities. Use textContent for ordinary text.
+                </p>
+
+                <h3>Working with Attributes</h3>
+
+                <p>
+                    Attributes provide additional information about HTML
+                    elements. JavaScript can read, add, or change attributes
+                    using methods such as setAttribute() and getAttribute().
+                </p>
+
+                <pre><code>const link = document.querySelector("#myLink");
+
+link.setAttribute("href", "https://example.com");
+
+link.setAttribute("target", "_blank");</code></pre>
+
+                <h3>Using the dataset Property</h3>
+
+                <p>
+                    The dataset property provides access to custom data
+                    attributes that begin with data- in HTML.
+                </p>
+
+                <pre><code>const button = document.querySelector("#save");
+
+button.dataset.action = "save";
+
+console.log(button.dataset.action);</code></pre>
+
+                <h3>Using classList</h3>
+
+                <p>
+                    The classList property allows JavaScript to add, remove,
+                    check, and toggle CSS classes.
+                </p>
+
+                <pre><code>card.classList.add("active");
+
+card.classList.toggle("collapsed");
+
+card.classList.remove("loading");</code></pre>
+
+                <h3>Changing Inline Styles</h3>
+
+                <p>
+                    JavaScript can directly change the inline style of an
+                    element through its style property.
+                </p>
+
+                <pre><code>card.style.borderRadius = "12px";
+
+card.style.backgroundColor = "lightblue";</code></pre>
+
+                <p>
+                    For visual states, it is generally better to use CSS
+                    classes rather than changing many individual style
+                    properties. This keeps behavior and presentation separate.
+                </p>
+
+            </section>
+
+
+            <!-- TRAVERSAL -->
+            <section class="lesson-block" id="traversal">
+
+                <h2>DOM Traversal</h2>
+
+                <p>
+                    DOM traversal means moving through the relationships
+                    between elements in the DOM tree. JavaScript can move
+                    from a parent to its children, from one sibling to
+                    another, or from an element to its closest matching
+                    ancestor.
+                </p>
+
+                <h3>Parent and Child Elements</h3>
+
+                <p>
+                    <strong>parentElement</strong> returns the parent element
+                    of an element.
+                </p>
+
+                <p>
+                    <strong>children</strong> returns the child elements only.
+                </p>
+
+                <p>
+                    <strong>childNodes</strong> returns all child nodes,
+                    including text nodes and comments.
+                </p>
+
+                <h3>Sibling Elements</h3>
+
+                <p>
+                    <strong>firstElementChild</strong> returns the first
+                    child element.
+                </p>
+
+                <p>
+                    <strong>nextElementSibling</strong> returns the next
+                    sibling element.
+                </p>
+
+                <h3>closest()</h3>
+
+                <p>
+                    The <strong>closest()</strong> method searches upward
+                    through the DOM tree until it finds the nearest element
+                    that matches a given CSS selector.
+                </p>
+
+                <pre><code>const button = event.target;
+
+const card = button.closest(".card");
+
+const title = card.querySelector(".card-title");</code></pre>
+
+                <h3>matches()</h3>
+
+                <p>
+                    The <strong>matches()</strong> method checks whether an
+                    element matches a specific CSS selector. It returns true
+                    if the element matches and false otherwise.
+                </p>
+
+                <pre><code>if (event.target.matches("button[data-action='delete']")) {
+    event.target.closest(".item").remove();
+}</code></pre>
+
+                <p>
+                    The closest() and matches() methods are especially useful
+                    when working with event delegation and dynamically
+                    created elements.
+                </p>
+
+            </section>
+
+
+            <!-- EVENTS -->
+            <section class="lesson-block" id="events">
+
+                <h2>JavaScript Events</h2>
+
+                <p>
+                    Events allow a web page to respond to actions and
+                    activities. Without events, DOM manipulation would be
+                    mostly static because the page would not react to users.
+                </p>
+
+                <p>
+                    Events can happen when a user clicks a button, types in
+                    an input field, submits a form, moves a pointer, presses
+                    a key, or when a page or resource finishes loading.
+                </p>
+
+                <h3>Common JavaScript Events</h3>
+
+                <p>
+                    <strong>click:</strong> occurs when an element is clicked.
+                </p>
+
+                <p>
+                    <strong>input:</strong> occurs when the value of an input
+                    field changes.
+                </p>
+
+                <p>
+                    <strong>submit:</strong> occurs when a form is submitted.
+                </p>
+
+                <p>
+                    <strong>keydown:</strong> occurs when a keyboard key is
+                    pressed.
+                </p>
+
+                <p>
+                    <strong>load:</strong> occurs when a resource or page has
+                    finished loading.
+                </p>
+
+                <p>
+                    <strong>error:</strong> occurs when a resource fails to
+                    load or another supported error event occurs.
+                </p>
+
+                <h3>addEventListener()</h3>
+
+                <p>
+                    The <strong>addEventListener()</strong> method registers
+                    an event handler for an element or another EventTarget.
+                    It is the standard way to listen for events in modern
+                    JavaScript.
+                </p>
+
+                <pre><code>const button = document.querySelector("#save");
+
+button.addEventListener("click", event => {
+    event.preventDefault();
+
+    saveDocument();
+});</code></pre>
+
+                <p>
+                    Event listeners can be attached to elements, the document,
+                    and the window. Multiple listeners can be registered
+                    without replacing one another.
+                </p>
+
+                <h3>Event Flow</h3>
+
+                <p>
+                    Events usually travel through three phases:
+                </p>
+
+                <p>
+                    <strong>Capturing Phase:</strong> The event travels from
+                    the document root toward the target element.
+                </p>
+
+                <p>
+                    <strong>Target Phase:</strong> The event reaches the
+                    element where the action occurred.
+                </p>
+
+                <p>
+                    <strong>Bubbling Phase:</strong> The event travels back
+                    upward through the parent elements.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 700 270" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="230" y="15" width="240" height="42" rx="8" fill="#dce9ff" stroke="#4169a8"/>
+                        <text x="350" y="42" text-anchor="middle" font-size="16" fill="#183b70">Document</text>
+
+                        <rect x="230" y="105" width="240" height="42" rx="8" fill="#e7f5ed" stroke="#39966a"/>
+                        <text x="350" y="132" text-anchor="middle" font-size="16" fill="#17613e">Parent Element</text>
+
+                        <rect x="230" y="195" width="240" height="42" rx="8" fill="#fff1df" stroke="#d18a35"/>
+                        <text x="350" y="222" text-anchor="middle" font-size="16" fill="#89500e">Target Button</text>
+
+                        <path d="M350 57 V99 M342 91 L350 99 L358 91" stroke="#4169a8" stroke-width="3" fill="none"/>
+                        <path d="M350 147 V189 M342 181 L350 189 L358 181" stroke="#4169a8" stroke-width="3" fill="none"/>
+
+                        <path d="M380 237 V250 H510 V125 H478" stroke="#d18a35" stroke-width="2.5" fill="none"/>
+                        <path d="M486 117 L478 125 L486 133" stroke="#d18a35" stroke-width="2.5" fill="none"/>
+
+                        <text x="515" y="92" font-size="13" fill="currentColor">Capturing</text>
+                        <text x="515" y="108" font-size="13" fill="currentColor">toward target</text>
+                        <text x="530" y="248" font-size="13" fill="currentColor">Bubbling</text>
+                        <text x="530" y="264" font-size="13" fill="currentColor">back upward</text>
+                    </svg>
+                    <figcaption>
+                        Simplified event flow through the DOM tree.
+                    </figcaption>
+                </figure>
+
+                <h3>Event Delegation</h3>
+
+                <p>
+                    Event delegation is a technique where a single event
+                    listener is attached to a parent element to handle events
+                    from multiple child elements.
+                </p>
+
+                <p>
+                    It is useful for dynamic lists because newly created
+                    children can also be handled by the same parent listener.
+                    This reduces the need to attach separate listeners to
+                    every child.
+                </p>
+
+                <pre><code>document.querySelector("#menu").addEventListener("click", event => {
+
+    const item = event.target.closest("button[data-command]");
+
+    if (!item) return;
+
+    runCommand(item.dataset.command);
+
+});</code></pre>
+
+            </section>
+
+
+            <!-- FORMS -->
+            <section class="lesson-block" id="forms">
+
+                <h2>Forms, Inputs, and Real User Data</h2>
+
+                <p>
+                    Forms allow websites to receive structured information
+                    from users. They are important for applications that
+                    require registration, login, feedback, searching, and
+                    other data-entry activities.
+                </p>
+
+                <p>
+                    JavaScript can access input values, checkbox states,
+                    selected options, validation information, and form
+                    submission events.
+                </p>
+
+                <h3>Reading Form Data</h3>
+
+                <p>
+                    The FormData object provides a convenient way to collect
+                    information from form controls.
+                </p>
+
+                <pre><code>const form = document.querySelector("#signup");
+
+form.addEventListener("submit", event => {
+
+    event.preventDefault();
+
+    const data = new FormData(form);
+
+    const email = data.get("email");
+
+    const plan = data.get("plan");
+
+    console.log({ email, plan });
+
+});</code></pre>
+
+                <h3>Common Form Operations</h3>
+
+                <p>
+                    <strong>Read text:</strong> Use input.value to get the
+                    current value of a text field.
+                </p>
+
+                <p>
+                    <strong>Read a checkbox:</strong> Use checkbox.checked
+                    to determine whether it is selected.
+                </p>
+
+                <p>
+                    <strong>Focus a field:</strong> Use input.focus() to
+                    place the cursor in an input field.
+                </p>
+
+                <p>
+                    <strong>Disable a control:</strong> Set
+                    button.disabled = true to prevent interaction with
+                    the control.
+                </p>
+
+                <p>
+                    <strong>Validate:</strong> Use input.validity and
+                    form.checkValidity() to check form validity.
+                </p>
+
+                <p>
+                    <strong>Collect form data:</strong> Use
+                    new FormData(form) to collect submitted form values.
+                </p>
+
+                <h3>Example of a Simple Form</h3>
+
+                <pre><code>&lt;form id="studentForm"&gt;
+
+    &lt;label for="studentName"&gt;Student Name&lt;/label&gt;
+    &lt;input type="text" id="studentName" name="studentName" required&gt;
+
+    &lt;label for="studentEmail"&gt;Email Address&lt;/label&gt;
+    &lt;input type="email" id="studentEmail" name="email" required&gt;
+
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+
+&lt;/form&gt;
+
+&lt;p id="result"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const form = document.querySelector("#studentForm");
+
+form.addEventListener("submit", event =&gt; {
+    event.preventDefault();
+
+    const data = new FormData(form);
+
+    const name = data.get("studentName");
+    const email = data.get("email");
+
+    document.querySelector("#result").textContent =
+        `Welcome, ${name}! Your email is ${email}.`;
+});
+&lt;/script&gt;</code></pre>
+
+                <p>
+                    Client-side validation improves the user experience, but
+                    important information must also be validated on the server
+                    before it is stored or processed.
+                </p>
+
+            </section>
+
+
+            <!-- PERFORMANCE -->
+            <section class="lesson-block" id="performance">
+
+                <h2>DOM Performance: Layout, Paint, and Batching</h2>
+
+                <p>
+                    DOM operations require browser resources. When JavaScript
+                    changes the page, the browser may need to recalculate
+                    styles, update element positions, paint visual changes,
+                    and composite the final display.
+                </p>
+
+                <h3>Layout</h3>
+
+                <p>
+                    Layout is the process of calculating the size and position
+                    of elements on the page. Changes to dimensions, spacing,
+                    and positioning may require the browser to perform layout
+                    calculations again.
+                </p>
+
+                <h3>Paint</h3>
+
+                <p>
+                    Painting is the process of drawing the visual appearance
+                    of elements, including text, colors, borders, and shadows.
+                </p>
+
+                <h3>Compositing</h3>
+
+                <p>
+                    Compositing combines the browser's rendered layers to
+                    produce the final image displayed on the screen.
+                </p>
+
+                <h3>Layout Thrashing</h3>
+
+                <p>
+                    Layout thrashing happens when code repeatedly reads layout
+                    information and then writes layout-affecting changes.
+                    This can force the browser to recalculate geometry many
+                    times.
+                </p>
+
+                <p>
+                    Example of a less efficient pattern:
+                </p>
+
+                <pre><code>for (const box of boxes) {
+
+    const height = box.offsetHeight;
+
+    box.style.height = height + 10 + "px";
+
+}</code></pre>
+
+                <p>
+                    A better approach is to group layout reads first and then
+                    perform the writes.
+                </p>
+
+                <pre><code>const heights = boxes.map(box => box.offsetHeight);
+
+boxes.forEach((box, index) => {
+
+    box.style.height = heights[index] + 10 + "px";
+
+});</code></pre>
+
+                <h3>Performance Best Practices</h3>
+
+                <p>
+                    Avoid unnecessary DOM queries inside frequently repeated
+                    loops.
+                </p>
+
+                <p>
+                    Avoid repeatedly reading layout values and immediately
+                    changing layout-related styles.
+                </p>
+
+                <p>
+                    Group DOM insertions when creating multiple elements.
+                </p>
+
+                <p>
+                    Use CSS classes instead of performing many individual
+                    inline style changes.
+                </p>
+
+                <p>
+                    Use browser Developer Tools to measure performance instead
+                    of guessing where problems occur.
+                </p>
+
+            </section>
+
+
+            <!-- TEMPLATES -->
+            <section class="lesson-block" id="templates">
+
+                <h2>Templates and DocumentFragment</h2>
+
+                <p>
+                    Creating elements individually works for small tasks.
+                    However, larger applications often need to create many
+                    similar elements. HTML templates and DocumentFragment
+                    provide a more organized approach.
+                </p>
+
+                <h3>HTML Template</h3>
+
+                <p>
+                    The HTML template element stores markup that is not
+                    displayed immediately when the page loads. JavaScript can
+                    clone its content whenever a new interface element is
+                    needed.
+                </p>
+
+                <pre><code>&lt;template id="card-template"&gt;
+
+    &lt;article class="card"&gt;
+        &lt;h2&gt;&lt;/h2&gt;
+        &lt;p&gt;&lt;/p&gt;
+    &lt;/article&gt;
+
+&lt;/template&gt;</code></pre>
+
+                <h3>DocumentFragment</h3>
+
+                <p>
+                    A DocumentFragment is a lightweight container for DOM
+                    nodes. It allows developers to build a group of elements
+                    before inserting them into the main document.
+                </p>
+
+                <p>
+                    After the elements are prepared, the fragment can be
+                    inserted into the page in one operation.
+                </p>
+
+                <pre><code>const template = document.querySelector("#card-template");
+
+const fragment = document.createDocumentFragment();
+
+for (const item of items) {
+
+    const node = template.content.cloneNode(true);
+
+    node.querySelector("h2").textContent = item.title;
+
+    node.querySelector("p").textContent = item.summary;
+
+    fragment.append(node);
+
+}
+
+document.querySelector("#cards").append(fragment);</code></pre>
+
+                <p>
+                    Templates and fragments help organize repeated interface
+                    structures and reduce scattered DOM construction code.
+                    They also helped establish ideas used by larger component
+                    systems.
+                </p>
+
+            </section>
+
+
+            <!-- MUTATION OBSERVER -->
+            <section class="lesson-block" id="mutation-observer">
+
+                <h2>MutationObserver and the Observable Page</h2>
+
+                <p>
+                    MutationObserver is a browser API that allows JavaScript
+                    to observe changes in a DOM tree.
+                </p>
+
+                <p>
+                    It can detect when child elements are added or removed,
+                    when attributes change, and when changes happen within
+                    a larger section of the document.
+                </p>
+
+                <p>
+                    It is useful for browser extensions, third-party widgets,
+                    integrations, analytics tools, and libraries that need to
+                    respond to changes they did not directly create.
+                </p>
+
+                <h3>Example of MutationObserver</h3>
+
+                <pre><code>const observer = new MutationObserver(records => {
+
+    for (const record of records) {
+
+        console.log(record.type, record.target);
+
+    }
+
+});
+
+observer.observe(document.querySelector("#app"), {
+
+    childList: true,
+
+    subtree: true,
+
+    attributes: true
+
+});</code></pre>
+
+                <p>
+                    The observer watches the selected application element
+                    and reports detected changes through its callback.
+                </p>
+
+                <h3>Appropriate Uses</h3>
+
+                <p>
+                    MutationObserver is useful when integrating third-party
+                    widgets, observing page changes through browser
+                    extensions, and debugging unexpected DOM modifications.
+                </p>
+
+                <p>
+                    It should not replace proper application state management.
+                    When an application controls its own changes, it is
+                    generally better to update the application state directly
+                    instead of continuously watching the DOM.
+                </p>
+
+            </section>
+
+
+            <!-- SHADOW DOM -->
+            <section class="lesson-block" id="shadow-dom">
+
+                <h2>Shadow DOM and Web Components</h2>
+
+                <p>
+                    Shadow DOM is a browser technology that allows developers
+                    to create an encapsulated DOM subtree. It helps keep a
+                    component's internal markup and styles separate from the
+                    rest of the page.
+                </p>
+
+                <p>
+                    This makes it easier to create reusable components without
+                    allowing unrelated page styles to interfere with their
+                    internal appearance.
+                </p>
+
+                <h3>Web Components</h3>
+
+                <p>
+                    Web Components are browser technologies that allow
+                    developers to create reusable custom HTML elements.
+                    They can use custom element names, Shadow DOM, and HTML
+                    templates.
+                </p>
+
+                <h3>Example of a Custom Element</h3>
+
+                <pre><code>class UserBadge extends HTMLElement {
+
+    connectedCallback() {
+
+        const root = this.attachShadow({ mode: "open" });
+
+        root.innerHTML = `
+            &lt;style&gt;
+                strong {
+                    color: royalblue;
+                }
+            &lt;/style&gt;
+
+            &lt;strong&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/strong&gt;
+        `;
+
+    }
+
+}
+
+customElements.define("user-badge", UserBadge);</code></pre>
+
+                <p>
+                    The custom element can then be used in HTML:
+                </p>
+
+                <pre><code>&lt;user-badge&gt;Student Account&lt;/user-badge&gt;</code></pre>
+
+                <h3>Shadow DOM and Virtual DOM</h3>
+
+                <p>
+                    Shadow DOM and Virtual DOM are different concepts.
+                </p>
+
+                <p>
+                    <strong>Shadow DOM</strong> is an actual browser DOM
+                    feature that provides markup and style encapsulation.
+                </p>
+
+                <p>
+                    <strong>Virtual DOM</strong> is a JavaScript-side
+                    representation used by certain libraries to organize
+                    interface updates.
+                </p>
+
+                <p>
+                    Web Components provide reusable browser-native components.
+                    Frameworks such as React, Angular, and Vue provide
+                    additional tools for managing state, rendering, routing,
+                    data flow, and application structure.
+                </p>
+
+            </section>
+
+
+            <!-- JQUERY -->
+            <section class="lesson-block" id="jquery">
+
+                <h2>jQuery and the DOM Abstraction Era</h2>
+
+                <p>
+                    jQuery is a JavaScript library that became widely used
+                    before modern browsers provided consistent native DOM
+                    APIs.
+                </p>
+
+                <p>
+                    It simplified element selection, traversal, event
+                    handling, visual effects, and asynchronous requests.
+                    It also helped developers handle differences between
+                    older browsers.
+                </p>
+
+                <h3>Example Using jQuery</h3>
+
+                <pre><code>$(".card button").on("click", function () {
+
+    $(this).closest(".card").toggleClass("active");
+
+});</code></pre>
+
+                <h3>Modern JavaScript Equivalent</h3>
+
+                <pre><code>document.addEventListener("click", event => {
+
+    const button = event.target.closest(".card button");
+
+    if (!button) return;
+
+    button.closest(".card").classList.toggle("active");
+
+});</code></pre>
+
+                <p>
+                    jQuery helped introduce a generation of developers to
+                    the idea that web documents could be selected and
+                    transformed through JavaScript.
+                </p>
+
+                <p>
+                    Modern browsers now include many native APIs that
+                    perform tasks that once required jQuery. However,
+                    jQuery remains an important part of the history of
+                    web development because it solved real problems of
+                    its time.
+                </p>
+
+            </section>
+
+
+            <!-- DECLARATIVE UI -->
+            <section class="lesson-block" id="declarative-ui">
+
+                <h2>From Imperative DOM to Declarative UI</h2>
+
+                <p>
+                    Traditional DOM programming commonly follows an
+                    imperative approach. The developer selects an element,
+                    changes it, attaches event listeners, and manually
+                    keeps the interface synchronized with the application's
+                    data.
+                </p>
+
+                <p>
+                    This approach works well for small pages and simple
+                    interactive features. However, it can become difficult
+                    to maintain when an application contains many elements,
+                    changing data, and complex interface states.
+                </p>
+
+                <h3>Imperative DOM Example</h3>
+
+                <pre><code>function setLoggedIn(user) {
+
+    document.querySelector("#name").textContent = user.name;
+
+    document.querySelector("#login").hidden = true;
+
+    document.querySelector("#logout").hidden = false;
+
+    document.body.classList.add("authenticated");
+
+}</code></pre>
+
+                <h3>Declarative UI</h3>
+
+                <p>
+                    Declarative UI uses a different approach. Instead of
+                    manually describing every DOM change, the developer
+                    describes what the interface should look like based on
+                    the current application state.
+                </p>
+
+                <p>
+                    A framework then manages the necessary updates to the
+                    actual DOM.
+                </p>
+
+                <pre><code>function Header({ user }) {
+
+    return user
+        ? &lt;button&gt;Logout {user.name}&lt;/button&gt;
+        : &lt;button&gt;Login&lt;/button&gt;;
+
+}</code></pre>
+
+                <p>
+                    This approach is the foundation of frameworks and
+                    libraries such as Angular, React, Vue, Svelte, and
+                    Solid. They do not make the DOM irrelevant. Instead,
+                    they provide more organized ways to manage it.
+                </p>
+
+            </section>
+
+
+            <!-- ANGULAR -->
+            <section class="lesson-block" id="angular">
+
+                <h2>Angular: Templates, Bindings, and Components</h2>
+
+                <p>
+                    Angular is a web application framework that organizes
+                    applications around reusable components.
+                </p>
+
+                <p>
+                    An Angular component combines a TypeScript class,
+                    an HTML template, and a selector that identifies
+                    how the component is used in the application.
+                </p>
+
+                <h3>Angular Component Example</h3>
+
+                <pre><code>@Component({
+
+    selector: "user-card",
+
+    template: `
+        &lt;article class="card"&gt;
+
+            &lt;h2&gt;{{ user.name }}&lt;/h2&gt;
+
+            &lt;button (click)="follow()"&gt;
+                Follow
+            &lt;/button&gt;
+
+        &lt;/article&gt;
+    `
+
+})
+
+export class UserCard {
+
+    @Input() user!: User;
+
+    follow() {
+        // Follow action
+    }
+
+}</code></pre>
+
+                <h3>Angular Templates and Bindings</h3>
+
+                <p>
+                    Angular templates look like HTML but include additional
+                    features such as data binding, event listening, variables,
+                    directives, control flow, and component composition.
+                </p>
+
+                <p>
+                    Angular uses its rendering system to update the DOM based
+                    on component state and template declarations.
+                </p>
+
+                <p>
+                    Instead of encouraging random direct DOM modifications,
+                    Angular encourages developers to express the interface
+                    through templates and manage changes through bindings.
+                </p>
+
+                <p>
+                    The DOM remains the foundation, while Angular provides a
+                    higher-level structure for building and maintaining
+                    applications.
+                </p>
+
+            </section>
+
+
+            <!-- REACT -->
+            <section class="lesson-block" id="react">
+
+                <h2>React: Components, State, and the Real DOM</h2>
+
+                <p>
+                    React is a JavaScript library used to build user
+                    interfaces through reusable components.
+                </p>
+
+                <p>
+                    React allows developers to describe the interface based
+                    on application state. When the state changes, React
+                    coordinates the necessary updates to the real DOM.
+                </p>
+
+                <h3>React Counter Example</h3>
+
+                <pre><code>function Counter() {
+
+    const [count, setCount] = useState(0);
+
+    return (
+
+        &lt;button onClick={() => setCount(count + 1)}&gt;
+
+            Count: {count}
+
+        &lt;/button&gt;
+
+    );
+
+}</code></pre>
+
+                <p>
+                    In this example, the count variable stores the current
+                    value. When the button is clicked, setCount() updates
+                    the state, and React updates the displayed interface.
+                </p>
+
+                <h3>Virtual DOM</h3>
+
+                <p>
+                    The Virtual DOM is an in-memory representation of the
+                    user interface. React uses its rendering process to
+                    determine how the actual DOM should be updated when
+                    the interface changes.
+                </p>
+
+                <p>
+                    React's declarative approach reduces the need for
+                    developers to manually modify DOM elements throughout
+                    the application.
+                </p>
+
+                <h3>Manual DOM and React Comparison</h3>
+
+                <p>
+                    <strong>Manual DOM:</strong> Developers find elements
+                    and modify them directly.
+                </p>
+
+                <p>
+                    <strong>React:</strong> Developers describe the interface
+                    using components, state, and props.
+                </p>
+
+                <p>
+                    <strong>Manual DOM:</strong> Event listeners and DOM
+                    updates may be spread across different parts of the code.
+                </p>
+
+                <p>
+                    <strong>React:</strong> Event handling and interface
+                    logic are organized around components.
+                </p>
+
+                <p>
+                    <strong>Manual DOM:</strong> The programmer is responsible
+                    for keeping the interface consistent.
+                </p>
+
+                <p>
+                    <strong>React:</strong> React coordinates rendering based
+                    on the current application state.
+                </p>
+
+                <p>
+                    Direct DOM programming remains useful for small scripts
+                    and widgets, while React is commonly used for larger
+                    interactive applications.
+                </p>
+
+            </section>
+
+
+            <!-- WEB APPLICATIONS -->
+            <section class="lesson-block" id="web-applications">
+
+                <h2>Why Web Application Development Became Popular</h2>
+
+                <p>
+                    The growth of web applications was not caused by one
+                    JavaScript API or framework. It happened because several
+                    technologies developed together and made browsers capable
+                    of supporting complex applications.
+                </p>
+
+                <p>
+                    Standardized DOM APIs allowed JavaScript to interact
+                    directly with web pages. Improved JavaScript engines
+                    made browser applications faster. CSS developed to
+                    support more advanced and responsive layouts.
+                </p>
+
+                <p>
+                    Browser Developer Tools made debugging and performance
+                    analysis easier. Package ecosystems such as npm helped
+                    developers reuse and distribute software.
+                </p>
+
+                <p>
+                    TypeScript, bundlers, cloud services, APIs, and component
+                    frameworks also contributed to the growth of modern
+                    web development.
+                </p>
+
+                <h3>Important Technologies</h3>
+
+                <p>
+                    <strong>DOM APIs:</strong> Made web documents programmable
+                    and interactive.
+                </p>
+
+                <p>
+                    <strong>CSS:</strong> Provided flexible and responsive
+                    visual design.
+                </p>
+
+                <p>
+                    <strong>JavaScript Engines:</strong> Improved the speed
+                    and capabilities of browser-based applications.
+                </p>
+
+                <p>
+                    <strong>npm Ecosystem:</strong> Made code reuse and
+                    package distribution easier.
+                </p>
+
+                <p>
+                    <strong>Frameworks:</strong> Organized application
+                    architecture and interface development for larger teams.
+                </p>
+
+                <p>
+                    <strong>Cloud APIs:</strong> Connected browser interfaces
+                    to online services and data.
+                </p>
+
+                <p>
+                    <strong>Developer Tools:</strong> Helped developers
+                    inspect, debug, and improve their applications.
+                </p>
+
+                <p>
+                    The browser became a widely used application platform
+                    because it offered a practical, portable, and accessible
+                    environment across different operating systems and devices.
+                </p>
+
+            </section>
+
+
+            <!-- PRACTICAL RULES -->
+            <section class="lesson-block" id="practical-rules">
+
+                <h2>Practical Rules and Best Practices</h2>
+
+                <p>
+                    Writing effective DOM code requires choosing the
+                    appropriate methods and avoiding unnecessary operations.
+                    The following practices help make JavaScript applications
+                    easier to maintain, safer, and more efficient.
+                </p>
+
+                <h3>Element Selection</h3>
+
+                <p>
+                    Use getElementById() when selecting one unique element.
+                </p>
+
+                <p>
+                    Use querySelector() to find the first matching CSS selector.
+                </p>
+
+                <p>
+                    Use querySelectorAll() when you need a static list of
+                    matching elements.
+                </p>
+
+                <p>
+                    Use getElementsByClassName() when you intentionally need
+                    a live HTMLCollection.
+                </p>
+
+                <p>
+                    Scope selectors to a specific component or parent element
+                    when possible.
+                </p>
+
+                <h3>DOM Modification</h3>
+
+                <p>
+                    Use textContent when inserting ordinary or untrusted text.
+                </p>
+
+                <p>
+                    Avoid inserting user-provided content through innerHTML
+                    unless it has been properly sanitized.
+                </p>
+
+                <p>
+                    Use CSS classes to control visual states.
+                </p>
+
+                <p>
+                    Batch multiple DOM insertions with DocumentFragment or
+                    an appropriate framework rendering process.
+                </p>
+
+                <p>
+                    Avoid repeated layout reads and writes in tight loops.
+                </p>
+
+                <h3>Event Handling</h3>
+
+                <p>
+                    Prefer addEventListener() instead of inline HTML event
+                    attributes.
+                </p>
+
+                <p>
+                    Use event delegation for dynamic lists and repeated
+                    controls.
+                </p>
+
+                <p>
+                    Use closest() and matches() to simplify delegated
+                    event handlers.
+                </p>
+
+                <p>
+                    Remove event listeners when their lifecycle ends.
+                    AbortController can also be used to manage groups of
+                    event listeners.
+                </p>
+
+            </section>
+
+
+            <!-- MINI PROJECT -->
+            <section class="lesson-block" id="mini-project">
+
+                <h2>Practical DOM Project: Interactive Task List</h2>
+
+                <p>
+                    This example demonstrates how several DOM concepts work
+                    together. It uses element selection, template cloning,
+                    DocumentFragment, safe text insertion, event delegation,
+                    and CSS classes.
+                </p>
+
+                <h3>HTML Structure</h3>
+
+                <pre><code>&lt;template id="task-template"&gt;
+
+    &lt;li class="task"&gt;
+
+        &lt;span class="title"&gt;&lt;/span&gt;
+
+        &lt;button data-action="done"&gt;Done&lt;/button&gt;
+
+        &lt;button data-action="remove"&gt;Remove&lt;/button&gt;
+
+    &lt;/li&gt;
+
+&lt;/template&gt;
+
+&lt;ul id="tasks"&gt;&lt;/ul&gt;</code></pre>
+
+                <h3>JavaScript Code</h3>
+
+                <pre><code>const tasks = [
+    "Study DOM",
+    "Practice events",
+    "Build a component"
+];
+
+const list = document.getElementById("tasks");
+
+const template = document.getElementById("task-template");
+
+const fragment = document.createDocumentFragment();
+
+for (const title of tasks) {
+
+    const node = template.content.cloneNode(true);
+
+    node.querySelector(".title").textContent = title;
+
+    fragment.append(node);
+
+}
+
+list.append(fragment);
+
+list.addEventListener("click", event => {
+
+    const button = event.target.closest("button[data-action]");
+
+    if (!button) return;
+
+    const task = button.closest(".task");
+
+    if (button.dataset.action === "done") {
+
+        task.classList.toggle("done");
+
+    }
+
+    if (button.dataset.action === "remove") {
+
+        task.remove();
+
+    }
+
+});</code></pre>
+
+                <h3>CSS for the Task List</h3>
+
+                <pre><code>.task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.task .title {
+    flex: 1;
+}
+
+.task.done .title {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task button {
+    padding: 7px 12px;
+    cursor: pointer;
+}</code></pre>
+
+                <h3>How the Project Works</h3>
+
+                <p>
+                    The tasks array stores the task names that will appear
+                    in the list.
+                </p>
+
+                <p>
+                    getElementById() selects the task list and template.
+                </p>
+
+                <p>
+                    cloneNode(true) creates a copy of the template content
+                    for each task.
+                </p>
+
+                <p>
+                    textContent safely places the task name inside the
+                    title element.
+                </p>
+
+                <p>
+                    DocumentFragment temporarily holds the generated task
+                    elements before they are added to the page.
+                </p>
+
+                <p>
+                    Event delegation allows one click listener on the task
+                    list to handle both Done and Remove buttons.
+                </p>
+
+                <p>
+                    The Done button toggles the done class, while the Remove
+                    button deletes the selected task from the DOM.
+                </p>
+
+                <p>
+                    This example shows how basic DOM programming can already
+                    support reusable interface structures and interactive
+                    application behavior.
+                </p>
+
+            </section>
+
+
+            <!-- APPLICATIONS -->
+            <section class="lesson-block" id="applications">
+
+                <h2>Practical Applications of JavaScript and the DOM</h2>
+
+                <p>
+                    JavaScript DOM programming is used in many types of
+                    websites and web applications. It makes it possible to
+                    create interfaces that respond to user actions and
+                    update information without requiring a full page reload.
+                </p>
+
+                <p>
+                    <strong>Interactive Navigation:</strong> Menus can open,
+                    close, and respond to clicks or keyboard actions.
+                </p>
+
+                <p>
+                    <strong>Dynamic Content:</strong> Websites can add,
+                    remove, or update information based on user actions.
+                </p>
+
+                <p>
+                    <strong>Form Processing:</strong> Registration forms,
+                    login pages, and feedback forms can collect and validate
+                    user input.
+                </p>
+
+                <p>
+                    <strong>Task Management:</strong> Applications can create,
+                    update, complete, and remove tasks dynamically.
+                </p>
+
+                <p>
+                    <strong>Interactive Dashboards:</strong> Data and
+                    interface elements can change based on user selections
+                    and application state.
+                </p>
+
+                <p>
+                    <strong>Reusable Components:</strong> Templates,
+                    DocumentFragment, and Web Components can help developers
+                    create reusable page structures.
+                </p>
+
+                <p>
+                    <strong>Modern Web Applications:</strong> Frameworks
+                    such as React and Angular use organized rendering systems
+                    to manage complex interfaces.
+                </p>
+
+            </section>
+
+
+            <!-- TAKEAWAYS -->
+            <section class="lesson-block" id="takeaways">
+
+                <h2>Key Takeaways</h2>
+
+                <p>
+                    The Document Object Model represents a web page as a
+                    live tree of objects that JavaScript can access and modify.
+                </p>
+
+                <p>
+                    HTML provides structure, CSS controls presentation, and
+                    JavaScript adds behavior and interactivity.
+                </p>
+
+                <p>
+                    DOM selection methods such as getElementById(),
+                    getElementsByClassName(), querySelector(), and
+                    querySelectorAll() allow developers to find page elements.
+                </p>
+
+                <p>
+                    JavaScript can create, insert, move, replace, clone, and
+                    remove elements through DOM methods.
+                </p>
+
+                <p>
+                    textContent is appropriate for plain text, while
+                    innerHTML must be used carefully because unsafe HTML
+                    insertion can lead to security problems.
+                </p>
+
+                <p>
+                    Events and event listeners allow websites to respond to
+                    clicks, keyboard input, form submissions, and other
+                    user actions.
+                </p>
+
+                <p>
+                    Forms connect DOM programming with real user data through
+                    input values, validation, and FormData.
+                </p>
+
+                <p>
+                    DocumentFragment and HTML templates help organize the
+                    creation of repeated elements.
+                </p>
+
+                <p>
+                    MutationObserver can detect changes in a DOM tree, while
+                    Shadow DOM provides encapsulation for reusable components.
+                </p>
+
+                <p>
+                    jQuery helped establish modern DOM programming practices,
+                    while Angular and React introduced higher-level approaches
+                    to organizing application interfaces.
+                </p>
+
+                <p>
+                    Understanding the DOM remains important even when using
+                    modern frameworks because the browser still relies on
+                    DOM elements, event listeners, styles, layout, and
+                    rendering to display web applications.
+                </p>
+
+            </section>
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+             <div class="topic-nav">
+
+                <a class="btn outline" href="topic-25.html">
+                    ← Topic 5
+                </a>
+
+                <a class="btn primary" href="topic-27.html">
+                    Topic 7 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+
+    </script>
+
+</body>
+</html>

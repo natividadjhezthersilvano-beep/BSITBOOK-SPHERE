@@ -1,0 +1,2515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            left: -70px;
+        }
+
+        .main-nav a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+           <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        History and Evolution Of Computers
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+                <!-- TABLE OF CONTENTS -->
+                <aside class="lesson-sidebar">
+
+                    <h3>On this page</h3>
+
+                    <nav class="lesson-toc" id="lessonTOC">
+                        <a href="#overview" class="active">Overview</a>
+                        <a href="#objectives">Learning Objectives</a>
+                        <a href="#history">History of Computers</a>
+                        <a href="#timeline">Computer Timeline</a>
+                        <a href="#babbage">Charles Babbage</a>
+                        <a href="#generations">Generations of Computers</a>
+                        <a href="#comparison">Comparison of Generations</a>
+                        <a href="#computer-types">Types of Computers</a>
+                        <a href="#analog-digital-hybrid">Computer Classifications</a>
+                        <a href="#importance">Importance of Computers</a>
+                        <a href="#summary">Summary</a>
+                        <a href="#references">References</a>
+                    </nav>
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+<article class="lesson-content">
+
+    <section class="lesson-block" id="overview">
+        <h2>Overview</h2>
+
+        <p>
+            Computers have become an important part of everyday life. They are used
+            in education, business, communication, healthcare, entertainment, and
+            many other fields. However, computers did not always look or work like
+            the devices we use today.
+        </p>
+
+        <p>
+            The development of computers took many years. It started with simple
+            calculating tools and gradually advanced into powerful electronic
+            machines. Understanding the history of computers helps us appreciate
+            how technology has changed and continues to improve.
+        </p>
+    </section>
+
+    <section class="lesson-block" id="objectives">
+        <h2>Learning Objectives</h2>
+
+        <p>At the end of this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Understand the history and development of computers.</li>
+            <li>Identify important people who contributed to computer development.</li>
+            <li>Describe the five generations of computers.</li>
+            <li>Recognize different types and classifications of computers.</li>
+            <li>Explain the importance of computers in modern society.</li>
+        </ul>
+    </section>
+
+    <section class="lesson-block" id="history">
+        <h2>History of Computers</h2>
+
+        <p>
+            The history of computers began with early devices designed to help
+            people perform mathematical calculations. Over time, these tools
+            became more advanced and eventually led to the development of
+            electronic computers.
+        </p>
+
+        <h3>Abacus</h3>
+
+        <img 
+    src="https://upload.wikimedia.org/wikipedia/commons/2/28/Abacus_1.jpg"
+    alt="Abacus"
+    class="lesson-image">
+
+        <p>
+            The abacus is one of the earliest calculating tools. It uses beads
+            placed on rods to represent numbers. People used it to perform basic
+            mathematical operations such as addition, subtraction, multiplication,
+            and division.
+        </p>
+
+        <h3>Astrolabe</h3>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Planispheric_astrolabe_with_inscriptions_in_Latin_and_Arabic_and_later_Hebrew%2C_Spain%2C_14th_century%2C_bronze_with_silver_inserts_added_later_-_Aga_Khan_Museum_-_Toronto%2C_Canada_-_DSC06585.jpg"
+     alt="Historical brass astrolabe"
+     class="lesson-image">
+
+        <p>
+            The astrolabe was an ancient instrument used to measure the position
+            of stars and planets. It helped people determine time and location.
+            Although it was not a modern computer, it demonstrated how tools
+            could help people solve complex problems.
+        </p>
+
+        <h3>Pascal's Calculator</h3>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Machine_a_Calculer_Blaise_Pascale_1642_-_Mus%C3%A9e_des_arts_et_m%C3%A9tiers.jpg"
+     alt="Pascal's Calculator"
+     class="lesson-image">
+
+        <p>
+            Blaise Pascal developed a mechanical calculator called the Pascaline
+            in 1642. It was designed to perform addition and subtraction using
+            gears and wheels. This invention helped improve the process of
+            mathematical calculation.
+        </p>
+
+        <h3>Leibniz's Calculator</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Leibniz%20Stepped%20Reckoner.png"
+     alt="Leibniz Calculator"
+     class="lesson-image">
+
+        <p>
+            Gottfried Wilhelm Leibniz improved mechanical calculating devices
+            by developing a machine that could perform addition, subtraction,
+            multiplication, and division. His work contributed to the development
+            of more advanced calculating machines.
+        </p>
+    </section>
+
+    <section class="lesson-block" id="timeline">
+        <h2>Computer Development Timeline</h2>
+
+        <p>
+            Computers developed through different inventions and improvements.
+            Each invention contributed to the machines that people use today.
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <h3>Abacus</h3>
+                <p>
+                    An early calculating tool used for basic mathematical
+                    operations.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>1642 – Pascaline</h3>
+                <p>
+                    Blaise Pascal developed a mechanical calculator for
+                    addition and subtraction.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>1673 – Leibniz Calculator</h3>
+                <p>
+                    Leibniz developed a calculating machine capable of
+                    performing several mathematical operations.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>1800s – Mechanical Computing</h3>
+                <p>
+                    Charles Babbage designed machines that introduced important
+                    ideas used in modern computers.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>1900s – Electronic Computers</h3>
+                <p>
+                    Electronic computers were developed to process information
+                    faster and more efficiently.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Modern Computers</h3>
+                <p>
+                    Computers became smaller, faster, more affordable, and
+                    widely available for personal and professional use.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="lesson-block" id="babbage">
+        <h2>Charles Babbage: Father of the Computer</h2>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Portrait%20of%20Charles%20Babbage%20%284672397%29.jpg"
+     alt="Charles Babbage"
+     class="lesson-image">
+
+        <p>
+            Charles Babbage was an English mathematician and inventor known as
+            the Father of the Computer. He designed the Difference Engine and
+            the Analytical Engine during the nineteenth century.
+        </p>
+
+        <p>
+            The Analytical Engine introduced important concepts of modern
+            computing, including a processing unit, memory, and instructions.
+            Although the machine was not fully completed during his lifetime,
+            his designs influenced the development of modern computers.
+        </p>
+
+        <h3>Important Contributions</h3>
+
+        <ul>
+            <li>Designed the Difference Engine.</li>
+            <li>Designed the Analytical Engine.</li>
+            <li>Introduced ideas related to computer processing and memory.</li>
+            <li>Helped establish the foundation of modern computing.</li>
+        </ul>
+    </section>
+
+    <section class="lesson-block" id="generations">
+        <h2>Generations of Computers</h2>
+
+        <p>
+            The development of computers is commonly divided into five
+            generations. Each generation introduced new technology that
+            improved computer performance, size, cost, and reliability.
+        </p>
+
+        <h3>First Generation – Vacuum Tubes</h3>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Eniac_Aberdeen.jpg"
+     alt="First Generation Computer - ENIAC"
+     class="lesson-image">
+
+        <p>
+            First-generation computers used vacuum tubes for processing
+            information. These machines were very large, expensive, and
+            consumed a lot of electricity. They also produced a large amount
+            of heat.
+        </p>
+
+        <p><strong>Examples:</strong> ENIAC and UNIVAC I.</p>
+
+        <h3>Second Generation – Transistors</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IBM%201401%20at%20CHM.jpg"
+     alt="Second Generation Computer - IBM 1401"
+     class="lesson-image">
+
+        <p>
+            Second-generation computers used transistors instead of vacuum
+            tubes. Transistors made computers smaller, faster, more reliable,
+            and more energy-efficient.
+        </p>
+
+        <p><strong>Examples:</strong> IBM 1401 and IBM 7094.</p>
+
+        <h3>Third Generation – Integrated Circuits</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IBM%20system%20360.JPG"
+     alt="Third Generation Computer - IBM System 360"
+     class="lesson-image">
+
+        <p>
+            Third-generation computers used integrated circuits, also known
+            as ICs. These circuits contained multiple electronic components
+            on a small chip. Computers became smaller, faster, and more
+            efficient.
+        </p>
+
+        <p><strong>Examples:</strong> IBM System/360 and PDP-8.</p>
+
+        <h3>Fourth Generation – Microprocessors</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IBM%20PC%2C%201981%2C%20Computer%20History%20Museum.jpg"
+     alt="Fourth Generation Computer - IBM Personal Computer"
+     class="lesson-image">
+
+        <p>
+            Fourth-generation computers introduced microprocessors. A
+            microprocessor placed the central processing unit on a single
+            chip. This development made personal computers possible and
+            allowed computers to become more affordable.
+        </p>
+
+        <p><strong>Examples:</strong> IBM Personal Computer and Apple Macintosh.</p>
+
+        <h3>Fifth Generation – Artificial Intelligence</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg"
+     alt="Fifth Generation Computer and Artificial Intelligence"
+     class="lesson-image">
+
+        <p>
+            Fifth-generation computers focus on artificial intelligence,
+            advanced processing, automation, and machine learning. These
+            technologies allow computers to perform tasks that normally
+            require human intelligence.
+        </p>
+
+        <p><strong>Examples:</strong> AI-powered systems, intelligent robots,
+            and advanced computing devices.</p>
+    </section>
+
+    <section class="lesson-block" id="comparison">
+        <h2>Comparison of Computer Generations</h2>
+
+        <p>
+            The following table summarizes the main technologies used in
+            each generation of computers.
+        </p>
+
+        <div class="table-container">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Generation</th>
+                        <th>Main Technology</th>
+                        <th>Characteristics</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>First</td>
+                        <td>Vacuum Tubes</td>
+                        <td>Large, expensive, and produced much heat.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Second</td>
+                        <td>Transistors</td>
+                        <td>Smaller, faster, and more reliable.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Third</td>
+                        <td>Integrated Circuits</td>
+                        <td>Improved speed and efficiency.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Fourth</td>
+                        <td>Microprocessors</td>
+                        <td>Smaller and more affordable personal computers.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Fifth</td>
+                        <td>Artificial Intelligence</td>
+                        <td>Intelligent systems and advanced computing.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="lesson-block" id="computer-types">
+        <h2>Types of Computers</h2>
+
+        <p>
+            Computers come in different forms and sizes. They are designed
+            to perform different tasks depending on their processing power,
+            purpose, and users.
+        </p>
+
+        <h3>Personal Computer</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/RGB%20desktop%20computer%20setup%20with%20keyboard%20and%20monitor.jpg"
+     alt="Personal Computer"
+     class="lesson-image">
+
+        <p>
+            A personal computer is designed for individual use. It is commonly
+            used for schoolwork, office tasks, browsing, communication, and
+            entertainment.
+        </p>
+
+        <h3>Mainframe Computer</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IBM_mainframe_Z10.jpg"
+     alt="Mainframe Computer"
+     class="lesson-image">
+
+        <p>
+            A mainframe computer is a powerful system that processes large
+            amounts of data. It is commonly used by banks, government offices,
+            and large organizations.
+        </p>
+
+        <h3>Supercomputer</h3>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Frontier_Supercomputer_%283%29.jpg/1280px-Frontier_Supercomputer_%283%29.jpg"
+     alt="Modern Supercomputer"
+     class="lesson-image">
+
+        <p>
+            A supercomputer is designed to perform extremely complex
+            calculations at very high speeds. It is used in scientific
+            research, weather forecasting, and simulations.
+        </p>
+
+        <h3>Laptop</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Laptop_computer.jpg"
+     alt="Laptop computer"
+     class="lesson-image">
+
+        <p>
+            A laptop is a portable personal computer with a built-in screen,
+            keyboard, battery, and touchpad. It allows users to work and study
+            in different locations.
+        </p>
+
+        <h3>Microcomputer</h3>
+
+        <img src="https://coimages.sciencemuseumgroup.org.uk/242/189/medium_cd0148_011_050823_cg_2005_18_1_personal_computer.jpg"
+     alt="Microcomputer"
+     class="lesson-image">
+
+        <p>
+            A microcomputer is a small computer that uses a microprocessor
+            as its central processing unit. Personal computers and many
+            portable devices belong to this category.
+        </p>
+
+        <h3>Personal Digital Assistant (PDA)</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/PDA_HP.jpg"
+     alt="Personal Digital Assistant"
+     class="lesson-image">
+
+        <p>
+            A Personal Digital Assistant, or PDA, is a small handheld device
+            designed to organize personal information such as contacts,
+            schedules, notes, and tasks. It was commonly used before
+            smartphones became popular.
+        </p>
+    </section>
+
+    <section class="lesson-block" id="analog-digital-hybrid">
+        <h2>Computer Classifications</h2>
+
+        <p>
+            Computers can also be classified according to how they process
+            information. The three common classifications are analog,
+            digital, and hybrid computers.
+        </p>
+
+        <h3>Analog Computers</h3>
+
+        <img src="https://coimages.sciencemuseumgroup.org.uk/202/624/medium_1974_0597__0002_.jpg"
+     alt="Analog Computer"
+     class="lesson-image">
+
+        <p>
+            Analog computers process continuous data such as temperature,
+            pressure, speed, and voltage. They are commonly used in measuring
+            and monitoring systems.
+        </p>
+
+        <h3>Digital Computers</h3>
+
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000"
+     alt="Digital Computer"
+     class="lesson-image">
+
+        <p>
+            Digital computers process information using binary digits,
+            represented by 0 and 1. Most modern computers, smartphones,
+            and tablets are digital computers.
+        </p>
+
+        <h3>Hybrid Computers</h3>
+
+        <img src="photos/MvEWffWfHqKWR2eLvbpC3HIFrUzwAtk_aODP2dT62NCQGIoq3cnsuogGK6cp9oX06HeVVY-m6TxNkChow1nkDMPhGVBwGSlLpDJ0TW4-dgLprhm4u9j2ERQ9W7UzwOcLWMQXFgS7rt-reyb9OObWWCl4hQxJSTtHx9eO_xjJVCY.jpg"
+     alt="Hybrid Computer"
+     class="lesson-image">
+
+        <p>
+            Hybrid computers combine the features of analog and digital
+            computers. They can process continuous measurements and
+            digital information. They are commonly used in specialized
+            scientific and medical applications.
+        </p>
+    </section>
+
+    <section class="lesson-block" id="importance">
+        <h2>Importance of Computers in Modern Society</h2>
+
+        <p>
+            Computers play an important role in different areas of society.
+            They help people complete tasks more efficiently, communicate
+            with others, and access information.
+        </p>
+
+        <h3>Education</h3>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Students_using_a_computer.jpg"
+     alt="Computers used in education"
+     class="lesson-image">
+
+        <p>
+            Computers help students and teachers access online learning
+            materials, create presentations, conduct research, and attend
+            virtual classes.
+        </p>
+
+        <h3>Business</h3>
+
+        <p>
+            Businesses use computers to manage records, process transactions,
+            communicate with customers, and organize daily operations.
+        </p>
+
+        <h3>Healthcare</h3>
+
+        <p>
+            Hospitals and healthcare professionals use computers to manage
+            patient records, monitor health conditions, and support medical
+            research.
+        </p>
+
+        <h3>Communication</h3>
+
+        <p>
+            Computers allow people to communicate through email, messaging
+            applications, video calls, and social media platforms.
+        </p>
+
+        <h3>Entertainment</h3>
+
+        <p>
+            Computers are used for playing games, watching videos, listening
+            to music, editing photos, and creating digital content.
+        </p>
+
+        <h3>Research and Science</h3>
+
+        <p>
+            Scientists and researchers use computers to analyze information,
+            perform calculations, create simulations, and discover new
+            knowledge.
+        </p>
+    </section>
+
+    <section class="lesson-block" id="summary">
+        <h2>Summary</h2>
+
+        <p>
+            The history of computers shows how technology developed from
+            simple calculating tools into advanced electronic systems.
+            Early inventions such as the abacus, Pascaline, and Leibniz
+            calculator helped establish the foundation of modern computing.
+        </p>
+
+        <p>
+            The five generations of computers introduced major improvements
+            through vacuum tubes, transistors, integrated circuits,
+            microprocessors, and artificial intelligence. Today, computers
+            are available in many forms and are used in education, business,
+            healthcare, communication, research, and entertainment.
+        </p>
+
+        <p>
+            Understanding computer history helps us recognize the importance
+            of technology and its continuing influence on modern society.
+        </p>
+    </section>
+
+    
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <span></span>
+
+                <a class="btn primary" href="topic-02.html">
+                    Topic 2 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+        
+/* =====================================
+   READING SETTINGS
+===================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+</script>
+
+</body>
+</html>

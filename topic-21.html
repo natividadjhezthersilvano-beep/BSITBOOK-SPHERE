@@ -1,0 +1,3359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            left: -70px;
+        }
+
+        .main-nav a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Internet and World Wide Web fundamentals
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    <aside class="lesson-sidebar">
+        <h3>Lesson Contents</h3>
+
+        <nav class="lesson-toc" id="lessonTOC">
+            <a href="#overview">Overview</a>
+            <a href="#what-is-a-computer">What Is a Computer?</a>
+            <a href="#computer-structure">Structure of a Typical Computer</a>
+            <a href="#instruction-machines">Computers as Instruction-Following Machines</a>
+            <a href="#computer-instructions">The Language of Computer Instructions</a>
+            <a href="#instruction-set">Instruction Set Design</a>
+            <a href="#turing-machines">Universal Machines and Turing Machines</a>
+            <a href="#modified-turing-machine">Modified Universal Turing Machine</a>
+            <a href="#instruction-operations">Types of Instruction Set Operations</a>
+            <a href="#practical-architectures">Design of Practical Computer Architectures</a>
+            <a href="#register-machines">Modern Machines with Registers</a>
+            <a href="#stack-machines">Von Neumann Machine with a Hardware Stack</a>
+            <a href="#accumulator-machines">Accumulator-Based Machines</a>
+            <a href="#binary-information">Representing Information in Computers</a>
+            <a href="#applications">Applications of Computer Architecture</a>
+            <a href="#key-takeaways">Key Takeaways</a>
+            <a href="#practical-example">Practical Example</a>
+            <a href="#references">References</a>
+        </nav>
+    
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+        <h2>Overview of Computer Architecture</h2>
+
+        <p>
+            Computer architecture is the study of how computers are designed,
+            organized, and operated. It explains how hardware and software
+            work together to process information, execute instructions,
+            store data, and produce results.
+        </p>
+
+        <p>
+            Modern computers are used in almost every part of daily life.
+            They are found in desktop computers, laptops, smartphones,
+            tablets, televisions, gaming devices, and many other electronic
+            products. Although these devices may perform different tasks,
+            they all use computing systems to process information.
+        </p>
+
+        <p>
+            Computer architecture examines the basic technologies,
+            instructions, components, and design principles that allow
+            computers to function efficiently. Understanding these concepts
+            helps students learn how computer systems work internally and
+            how software communicates with hardware.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 300" class="lesson-image" role="img"
+                 aria-label="Computer architecture connecting hardware, software, memory, and input and output devices">
+                <rect x="300" y="20" width="250" height="65" rx="8"
+                      fill="#174ea6"/>
+                <text x="425" y="47" fill="white" text-anchor="middle"
+                      font-size="20" font-weight="bold">COMPUTER</text>
+                <text x="425" y="68" fill="white" text-anchor="middle"
+                      font-size="13">Processes information</text>
+
+                <path d="M425 85 V115 M160 115 H690 M160 115 V145 M425 115 V145 M690 115 V145"
+                      fill="none" stroke="#174ea6" stroke-width="3"/>
+
+                <rect x="45" y="145" width="230" height="95" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="160" y="180" fill="#10025e" text-anchor="middle"
+                      font-size="18" font-weight="bold">SOFTWARE</text>
+                <text x="160" y="205" fill="#333" text-anchor="middle"
+                      font-size="14">Programs and instructions</text>
+
+                <rect x="310" y="145" width="230" height="95" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="425" y="180" fill="#10025e" text-anchor="middle"
+                      font-size="18" font-weight="bold">HARDWARE</text>
+                <text x="425" y="205" fill="#333" text-anchor="middle"
+                      font-size="14">Physical components</text>
+
+                <rect x="575" y="145" width="230" height="95" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="690" y="180" fill="#10025e" text-anchor="middle"
+                      font-size="18" font-weight="bold">INFORMATION</text>
+                <text x="690" y="205" fill="#333" text-anchor="middle"
+                      font-size="14">Data and results</text>
+            </svg>
+            <figcaption>
+                Computer architecture connects software, hardware, and information processing.
+            </figcaption>
+        </figure>
+    </section>
+
+    <!-- WHAT IS A COMPUTER -->
+    <section class="lesson-block" id="what-is-computer">
+        <h2>What Is a Computer?</h2>
+
+        <p>
+            A computer is a programmable electronic device that receives
+            information, processes data according to instructions, stores
+            information, and produces meaningful results.
+        </p>
+
+        <p>
+            Computers do not independently understand every task. They
+            follow programs created by people. These programs provide
+            instructions that tell the computer what operations to perform.
+        </p>
+
+        <h3>Basic Parts of a Computer System</h3>
+
+        <ul>
+            <li>
+                <strong>Computer:</strong> The device that performs
+                operations and processes information.
+            </li>
+            <li>
+                <strong>Program:</strong> A collection of instructions
+                that tells the computer what to do.
+            </li>
+            <li>
+                <strong>Information Store:</strong> The data, numbers,
+                text, and other information used by a program.
+            </li>
+            <li>
+                <strong>Results:</strong> The output produced after
+                the computer processes the information.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 250" class="lesson-image" role="img"
+                 aria-label="Basic computer process showing program, information, computer, and results">
+                <rect x="30" y="80" width="170" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="115" y="116" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">PROGRAM</text>
+                <text x="115" y="139" text-anchor="middle" fill="#333"
+                      font-size="13">Instructions</text>
+
+                <rect x="245" y="80" width="170" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="330" y="116" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">INFORMATION</text>
+                <text x="330" y="139" text-anchor="middle" fill="#333"
+                      font-size="13">Data and values</text>
+
+                <rect x="475" y="65" width="160" height="115" rx="8"
+                      fill="#174ea6"/>
+                <text x="555" y="115" text-anchor="middle" fill="white"
+                      font-size="20" font-weight="bold">COMPUTER</text>
+                <text x="555" y="140" text-anchor="middle" fill="white"
+                      font-size="13">Processing</text>
+
+                <rect x="690" y="80" width="130" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="755" y="116" text-anchor="middle" fill="#10025e"
+                      font-size="17" font-weight="bold">RESULTS</text>
+                <text x="755" y="139" text-anchor="middle" fill="#333"
+                      font-size="13">Output</text>
+
+                <path d="M200 122 H245 M415 122 H475 M635 122 H690"
+                      stroke="#174ea6" stroke-width="3" fill="none"/>
+                <path d="M235 114 L245 122 L235 130 M465 114 L475 122 L465 130 M680 114 L690 122 L680 130"
+                      stroke="#174ea6" stroke-width="3" fill="none"/>
+            </svg>
+            <figcaption>
+                A computer receives instructions and information, processes them, and produces results.
+            </figcaption>
+        </figure>
+
+        <h3>Example of Computer Processing</h3>
+
+        <p>
+            Consider a simple program that adds two numbers. The computer
+            follows the instructions, performs the calculation, and
+            displays the answer.
+        </p>
+
+        <pre><code>a = 4;
+b = 6;
+c = a + b;
+print(c);</code></pre>
+
+        <p>
+            The computer stores the values of the variables, adds the
+            two numbers, and displays <strong>10</strong> as the result.
+        </p>
+    </section>
+
+    <!-- STRUCTURE OF COMPUTER -->
+    <section class="lesson-block" id="computer-structure">
+        <h2>Structure of a Typical Computer</h2>
+
+        <p>
+            A typical desktop computer contains several major components
+            that work together to execute programs and process information.
+            The most important components include the Central Processing
+            Unit, main memory, and permanent storage.
+        </p>
+
+        <h3>Central Processing Unit (CPU)</h3>
+
+        <p>
+            The CPU is the main processing component of a computer.
+            It executes program instructions, performs calculations,
+            makes logical decisions, and coordinates the activities
+            of other computer components.
+        </p>
+
+        <p>
+            It is commonly called the brain of the computer because
+            it controls the execution of instructions.
+        </p>
+
+        <h3>Main Memory</h3>
+
+        <p>
+            Main memory temporarily stores programs and data that the
+            CPU needs while performing tasks. It allows the processor
+            to access working information during program execution.
+        </p>
+
+        <p>
+            In ordinary computers, main memory such as RAM is volatile.
+            Its stored information is lost when the computer is powered off.
+        </p>
+
+        <h3>Hard Disk and Permanent Storage</h3>
+
+        <p>
+            Permanent storage keeps programs, documents, images, videos,
+            and other files even when the computer is turned off.
+            Examples include hard disk drives, solid-state drives,
+            and external storage devices.
+        </p>
+
+        <h3>Input and Output Devices</h3>
+
+        <p>
+            Input and output devices allow users to communicate with
+            a computer and receive information from it.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Keyboard:</strong> Used to enter text,
+                numbers, and commands.
+            </li>
+            <li>
+                <strong>Mouse:</strong> Used to control the pointer
+                and select items on the screen.
+            </li>
+            <li>
+                <strong>Monitor:</strong> Displays text, images,
+                videos, and program results.
+            </li>
+            <li>
+                <strong>Printer:</strong> Produces printed copies
+                of digital documents and images.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 410" class="lesson-image" role="img"
+                 aria-label="Computer system diagram showing CPU, RAM, storage, keyboard, mouse, monitor, and printer">
+                <rect x="285" y="25" width="280" height="85" rx="8"
+                      fill="#174ea6"/>
+                <text x="425" y="60" text-anchor="middle" fill="white"
+                      font-size="22" font-weight="bold">CPU</text>
+                <text x="425" y="85" text-anchor="middle" fill="white"
+                      font-size="14">Processes instructions</text>
+
+                <path d="M425 110 V145 M145 145 H705 M145 145 V175 M425 145 V175 M705 145 V175"
+                      stroke="#174ea6" stroke-width="3" fill="none"/>
+
+                <rect x="40" y="175" width="210" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="145" y="210" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">MAIN MEMORY</text>
+                <text x="145" y="235" text-anchor="middle" fill="#333"
+                      font-size="14">RAM</text>
+
+                <rect x="320" y="175" width="210" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="425" y="210" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">STORAGE</text>
+                <text x="425" y="235" text-anchor="middle" fill="#333"
+                      font-size="14">HDD / SSD</text>
+
+                <rect x="600" y="175" width="210" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="705" y="210" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">I/O DEVICES</text>
+                <text x="705" y="235" text-anchor="middle" fill="#333"
+                      font-size="14">Input and output</text>
+
+                <path d="M705 260 V290 M90 290 H760 M90 290 V315 M310 290 V315 M540 290 V315 M760 290 V315"
+                      stroke="#174ea6" stroke-width="2" fill="none"/>
+
+                <rect x="25" y="315" width="130" height="65" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6"/>
+                <text x="90" y="354" text-anchor="middle" fill="#10025e"
+                      font-size="15">Keyboard</text>
+
+                <rect x="245" y="315" width="130" height="65" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6"/>
+                <text x="310" y="354" text-anchor="middle" fill="#10025e"
+                      font-size="15">Mouse</text>
+
+                <rect x="475" y="315" width="130" height="65" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6"/>
+                <text x="540" y="354" text-anchor="middle" fill="#10025e"
+                      font-size="15">Monitor</text>
+
+                <rect x="695" y="315" width="130" height="65" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6"/>
+                <text x="760" y="354" text-anchor="middle" fill="#10025e"
+                      font-size="15">Printer</text>
+            </svg>
+            <figcaption>
+                Main components of a typical computer system and their connections.
+            </figcaption>
+        </figure>
+    </section>
+
+    <!-- COMPUTER BEHAVIOR -->
+    <section class="lesson-block" id="computer-processing">
+        <h2>Computers as Instruction-Following Machines</h2>
+
+        <p>
+            Computers are powerful because they can execute simple
+            instructions extremely quickly and repeatedly. However,
+            they do not naturally possess human creativity, judgment,
+            or independent understanding.
+        </p>
+
+        <p>
+            A computer follows the instructions contained in a program.
+            The programmer uses logical thinking and problem-solving
+            skills to create instructions that the computer can execute.
+        </p>
+
+        <p>
+            When human-designed programs are combined with the processing
+            speed of computers, they can perform complex tasks such as
+            managing information, creating documents, communicating,
+            analyzing data, and running applications.
+        </p>
+
+        <h3>Why Programs Are Important</h3>
+
+        <p>
+            A program provides a clear sequence of instructions. Without
+            instructions, a computer cannot know what task it is expected
+            to perform. Programs make computers useful for different
+            purposes, even when the hardware is similar.
+        </p>
+    </section>
+
+    <!-- INSTRUCTION LANGUAGE -->
+    <section class="lesson-block" id="instruction-language">
+        <h2>The Language of Computer Instructions</h2>
+
+        <p>
+            Computers operate using basic instructions that their
+            processors are designed to understand. Human programmers
+            usually write programs using high-level programming languages
+            such as C, C++, Java, and other languages.
+        </p>
+
+        <p>
+            High-level languages are easier for people to read and write.
+            However, their statements must be translated into machine-level
+            instructions before a processor can execute them.
+        </p>
+
+        <h3>Compiler</h3>
+
+        <p>
+            A compiler is a software program that translates source code
+            written in a programming language into machine code or another
+            executable form. It allows programmers to focus on solving
+            problems instead of manually writing every machine instruction.
+        </p>
+
+        <h3>Write, Compile, and Execute</h3>
+
+        <p>
+            The general process begins when a programmer writes a program.
+            The compiler translates the source code into an executable
+            program. The computer then executes the instructions and
+            produces the expected output.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 230" class="lesson-image" role="img"
+                 aria-label="Write compile execute process">
+                <rect x="35" y="65" width="210" height="90" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="140" y="100" text-anchor="middle" fill="#10025e"
+                      font-size="20" font-weight="bold">WRITE</text>
+                <text x="140" y="125" text-anchor="middle" fill="#333"
+                      font-size="14">Source program</text>
+
+                <rect x="320" y="65" width="210" height="90" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="425" y="100" text-anchor="middle" fill="#10025e"
+                      font-size="20" font-weight="bold">COMPILE</text>
+                <text x="425" y="125" text-anchor="middle" fill="#333"
+                      font-size="14">Machine code</text>
+
+                <rect x="605" y="65" width="210" height="90" rx="8"
+                      fill="#174ea6"/>
+                <text x="710" y="100" text-anchor="middle" fill="white"
+                      font-size="20" font-weight="bold">EXECUTE</text>
+                <text x="710" y="125" text-anchor="middle" fill="white"
+                      font-size="14">Program output</text>
+
+                <path d="M245 110 H320 M530 110 H605"
+                      stroke="#174ea6" stroke-width="3"/>
+                <path d="M310 102 L320 110 L310 118 M595 102 L605 110 L595 118"
+                      stroke="#174ea6" stroke-width="3" fill="none"/>
+            </svg>
+            <figcaption>
+                The write-compile-execute process converts a program into instructions the computer can run.
+            </figcaption>
+        </figure>
+
+        <h3>Instruction Set</h3>
+
+        <p>
+            An instruction set is the collection of basic commands supported
+            by a processor. These commands tell the CPU what operations
+            it can perform.
+        </p>
+
+        <p>Common instruction examples include:</p>
+
+        <ul>
+            <li><strong>ADD:</strong> Adds two values.</li>
+            <li><strong>SUBTRACT:</strong> Subtracts one value from another.</li>
+            <li><strong>MULTIPLY:</strong> Multiplies values.</li>
+            <li><strong>DIVIDE:</strong> Divides one value by another.</li>
+            <li><strong>AND / OR:</strong> Performs logical operations.</li>
+            <li><strong>NOT:</strong> Reverses a logical value.</li>
+        </ul>
+
+        <h3>Instruction Set Architecture (ISA)</h3>
+
+        <p>
+            Instruction Set Architecture, or ISA, defines the instructions
+            a processor supports and how software uses them. It describes
+            the operations, operands, registers, and interfaces that
+            software can use to communicate with the processor.
+        </p>
+
+        <p>
+            The ISA acts as an interface between software and hardware.
+            Different processor families may use different instruction
+            sets, such as x86 and ARM. A program compiled for one processor
+            architecture may not run directly on another architecture
+            without suitable translation or compatibility support.
+        </p>
+    </section>
+
+    <!-- INSTRUCTION SET DESIGN -->
+    <section class="lesson-block" id="instruction-design">
+        <h2>Instruction Set Design</h2>
+
+        <p>
+            Instruction set design involves selecting the commands that
+            a processor must support. The instruction set must allow
+            software to perform its required tasks while remaining
+            practical for hardware to implement.
+        </p>
+
+        <h3>Completeness</h3>
+
+        <p>
+            An instruction set should be capable of expressing all
+            programs intended for its processor. It needs instructions
+            for calculations, decisions, and repeated operations.
+        </p>
+
+        <p>
+            For example, a processor that only supports addition cannot
+            directly perform every required operation. It also needs
+            a way to implement subtraction, comparisons, and program
+            control.
+        </p>
+
+        <h3>Conciseness</h3>
+
+        <p>
+            An instruction set should avoid unnecessary instructions.
+            Every additional instruction may require extra hardware
+            and increase processor complexity. A carefully designed
+            instruction set balances functionality and simplicity.
+        </p>
+
+        <h3>Generic Instructions</h3>
+
+        <p>
+            Instructions should support common operations used by many
+            programs. Arithmetic and logical instructions are important
+            because they are frequently needed in everyday computing.
+        </p>
+
+        <h3>Simplicity</h3>
+
+        <p>
+            Instructions should be practical to understand, decode,
+            and implement in hardware. Simpler instruction designs
+            can help reduce the complexity of the processor.
+        </p>
+    </section>
+
+    <!-- TURING MACHINE -->
+    <section class="lesson-block" id="turing-machine">
+        <h2>Universal Machines and Turing Machines</h2>
+
+        <p>
+            A universal machine is a theoretical computing machine
+            capable of executing any program that can be represented
+            in its instruction system. The idea of universal machines
+            helps computer scientists understand the capabilities
+            and limitations of computation.
+        </p>
+
+        <p>
+            Alan Turing introduced the Turing machine as a theoretical
+            model of computation. It provides a simple way to describe
+            how a machine reads information, changes symbols, follows
+            instructions, and moves through a sequence of operations.
+        </p>
+
+        <h3>Parts of a Turing Machine</h3>
+
+        <ul>
+            <li>
+                <strong>Infinite Tape:</strong> A theoretical storage
+                area divided into cells that contain symbols.
+            </li>
+            <li>
+                <strong>Tape Head:</strong> Reads and writes symbols
+                on the tape and moves left or right.
+            </li>
+            <li>
+                <strong>State Register:</strong> Stores the current
+                state of the machine.
+            </li>
+            <li>
+                <strong>Action Table:</strong> Contains the rules
+                that determine what the machine does next.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 350" class="lesson-image" role="img"
+                 aria-label="Turing machine diagram showing tape cells, tape head, state register, and action table">
+                <text x="425" y="35" text-anchor="middle" fill="#10025e"
+                      font-size="21" font-weight="bold">TURING MACHINE</text>
+
+                <rect x="55" y="85" width="740" height="75" rx="4"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+
+                <path d="M160 85 V160 M265 85 V160 M370 85 V160 M475 85 V160 M580 85 V160 M685 85 V160"
+                      stroke="#174ea6" stroke-width="2"/>
+
+                <text x="108" y="130" text-anchor="middle" fill="#10025e" font-size="23">0</text>
+                <text x="213" y="130" text-anchor="middle" fill="#10025e" font-size="23">1</text>
+                <text x="318" y="130" text-anchor="middle" fill="#10025e" font-size="23">1</text>
+                <text x="423" y="130" text-anchor="middle" fill="#10025e" font-size="23">0</text>
+                <text x="528" y="130" text-anchor="middle" fill="#10025e" font-size="23">1</text>
+                <text x="633" y="130" text-anchor="middle" fill="#10025e" font-size="23">0</text>
+                <text x="740" y="130" text-anchor="middle" fill="#10025e" font-size="23">1</text>
+
+                <path d="M423 48 V78" stroke="#174ea6" stroke-width="3"/>
+                <path d="M415 70 L423 80 L431 70" fill="none"
+                      stroke="#174ea6" stroke-width="3"/>
+                <text x="423" y="22" text-anchor="middle" fill="#174ea6"
+                      font-size="14">Tape head</text>
+
+                <rect x="100" y="220" width="260" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="230" y="255" text-anchor="middle" fill="#10025e"
+                      font-size="19" font-weight="bold">STATE REGISTER</text>
+                <text x="230" y="280" text-anchor="middle" fill="#333"
+                      font-size="14">Stores current state</text>
+
+                <rect x="490" y="220" width="260" height="85" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="620" y="255" text-anchor="middle" fill="#10025e"
+                      font-size="19" font-weight="bold">ACTION TABLE</text>
+                <text x="620" y="280" text-anchor="middle" fill="#333"
+                      font-size="14">Contains operating rules</text>
+            </svg>
+            <figcaption>
+                A Turing machine uses a tape, tape head, state register, and action table to perform computations.
+            </figcaption>
+        </figure>
+
+        <h3>How a Turing Machine Works</h3>
+
+        <p>
+            The machine reads the symbol in the current tape cell and
+            checks its current state. It then consults the action table
+            to determine which symbol to write, which state to enter,
+            and whether the tape head should move left or right.
+        </p>
+
+        <p>
+            By repeatedly following these rules, a Turing machine can
+            perform calculations and solve computational problems.
+        </p>
+
+        <h3>Examples of Turing Machine Applications</h3>
+
+        <p>
+            The theoretical model can describe different computational
+            tasks, including incrementing a number, checking whether
+            a string is a palindrome, and processing mathematical
+            calculations.
+        </p>
+
+        <h3>Universal Turing Machine</h3>
+
+        <p>
+            A Universal Turing Machine is a Turing machine that can
+            simulate another Turing machine. Instead of being designed
+            for only one specific task, it can read the description
+            of another machine and imitate its operations.
+        </p>
+
+        <h3>Church-Turing Thesis</h3>
+
+        <p>
+            The Church-Turing thesis states that any function that
+            can be computed by an effective algorithm can be computed
+            by a Turing machine. It is an important idea in theoretical
+            computer science because it provides a common model for
+            understanding computation.
+        </p>
+
+        <h3>Turing Completeness</h3>
+
+        <p>
+            A computing system is called Turing complete when it can
+            perform the same general class of computations as a
+            universal Turing machine, assuming sufficient memory
+            and execution time.
+        </p>
+    </section>
+
+    <!-- MODIFIED TURING MACHINE -->
+    <section class="lesson-block" id="modified-machine">
+        <h2>Modified Universal Turing Machine</h2>
+
+        <p>
+            A modified universal Turing machine provides a more
+            practical way to understand how modern computer systems
+            organize instructions and data.
+        </p>
+
+        <p>
+            Instead of using only the basic theoretical tape model,
+            it organizes its information into areas that represent
+            instructions, the current state, and working data.
+        </p>
+
+        <h3>Main Components</h3>
+
+        <ul>
+            <li>
+                <strong>Instruction Table:</strong> Contains the
+                operations or instructions that the machine must execute.
+            </li>
+            <li>
+                <strong>Program Counter:</strong> Keeps track of
+                the current instruction and identifies the next
+                instruction to execute.
+            </li>
+            <li>
+                <strong>Memory:</strong> Stores instructions, variables,
+                constants, and other information needed by a program.
+            </li>
+            <li>
+                <strong>Control Unit:</strong> Coordinates instruction
+                execution and directs the operations of the processor.
+            </li>
+            <li>
+                <strong>Arithmetic Logic Unit:</strong> Performs
+                arithmetic calculations and logical operations.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 370" class="lesson-image" role="img"
+                 aria-label="Basic processing machine showing CPU, program counter, control unit, arithmetic logic unit, and memory">
+                <rect x="235" y="20" width="380" height="145" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="425" y="50" text-anchor="middle" fill="#10025e"
+                      font-size="22" font-weight="bold">CPU</text>
+
+                <rect x="260" y="75" width="145" height="65" rx="5"
+                      fill="white" stroke="#174ea6"/>
+                <text x="332" y="101" text-anchor="middle" fill="#10025e"
+                      font-size="15" font-weight="bold">PROGRAM</text>
+                <text x="332" y="121" text-anchor="middle" fill="#333"
+                      font-size="13">COUNTER</text>
+
+                <rect x="445" y="75" width="145" height="65" rx="5"
+                      fill="white" stroke="#174ea6"/>
+                <text x="517" y="101" text-anchor="middle" fill="#10025e"
+                      font-size="15" font-weight="bold">CONTROL</text>
+                <text x="517" y="121" text-anchor="middle" fill="#333"
+                      font-size="13">UNIT</text>
+
+                <rect x="340" y="195" width="170" height="60" rx="5"
+                      fill="#174ea6"/>
+                <text x="425" y="232" text-anchor="middle" fill="white"
+                      font-size="19" font-weight="bold">ALU</text>
+
+                <path d="M425 165 V195" stroke="#174ea6" stroke-width="3"/>
+
+                <rect x="90" y="285" width="285" height="65" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6" stroke-width="2"/>
+                <text x="232" y="312" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">PROGRAM</text>
+                <text x="232" y="333" text-anchor="middle" fill="#333"
+                      font-size="14">Instructions</text>
+
+                <rect x="475" y="285" width="285" height="65" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6" stroke-width="2"/>
+                <text x="617" y="312" text-anchor="middle" fill="#10025e"
+                      font-size="18" font-weight="bold">DATA</text>
+                <text x="617" y="333" text-anchor="middle" fill="#333"
+                      font-size="14">Variables and values</text>
+
+                <path d="M232 285 V270 H332 V165 M617 285 V270 H517 V165"
+                      fill="none" stroke="#174ea6" stroke-width="2"/>
+            </svg>
+            <figcaption>
+                A conceptual processing machine with a CPU, program counter, control unit, ALU, and memory.
+            </figcaption>
+        </figure>
+
+        <h3>Basic Instruction Processing</h3>
+
+        <p>
+            A processor follows a sequence of operations when executing
+            a program. It obtains the next instruction, interprets it,
+            performs the required operation, and continues to the
+            following instruction unless a branch or other control
+            instruction changes the execution sequence.
+        </p>
+    </section>
+
+    <!-- ISA TYPES -->
+    <section class="lesson-block" id="isa-types">
+        <h2>Types of Instruction Set Operations</h2>
+
+        <h3>Single-Instruction ISA</h3>
+
+        <p>
+            A single-instruction instruction set architecture uses
+            only one basic instruction to perform different computations.
+            One example is the SBN instruction, which means subtract
+            and branch if negative.
+        </p>
+
+        <p>
+            The SBN instruction subtracts the value in one memory
+            location from another, stores the result, and changes
+            the program flow if the result is negative. Although
+            theoretically powerful, writing programs with only one
+            instruction is difficult and can produce long programs.
+        </p>
+
+        <h3>Multiple-Instruction ISA</h3>
+
+        <p>
+            A multiple-instruction ISA provides different instructions
+            for common operations. This makes programs easier to write,
+            understand, and execute.
+        </p>
+
+        <h3>Major Categories of Instructions</h3>
+
+        <ul>
+            <li>
+                <strong>Arithmetic Instructions:</strong> Perform
+                calculations such as addition, subtraction,
+                multiplication, and division.
+            </li>
+            <li>
+                <strong>Data Transfer Instructions:</strong> Move
+                information between registers and memory or load
+                values into storage locations.
+            </li>
+            <li>
+                <strong>Branch Instructions:</strong> Change the
+                normal execution sequence based on a condition
+                or a program instruction.
+            </li>
+        </ul>
+    </section>
+
+    <!-- PRACTICAL ARCHITECTURES -->
+    <section class="lesson-block" id="practical-architectures">
+        <h2>Design of Practical Computer Architectures</h2>
+
+        <p>
+            Theoretical computing models help computer scientists
+            understand how computation works. Practical computer
+            architectures apply these ideas to build real machines
+            that can efficiently execute programs.
+        </p>
+
+        <h3>Harvard Architecture</h3>
+
+        <p>
+            Harvard architecture uses separate memory systems for
+            instructions and data. It also provides separate paths
+            for accessing these two types of information.
+        </p>
+
+        <p>
+            Because instructions and data are stored separately,
+            the processor can access them through their respective
+            memory systems. This organization can improve performance
+            in systems that benefit from simultaneous instruction
+            and data access.
+        </p>
+
+        <h3>Main Components of Harvard Architecture</h3>
+
+        <ul>
+            <li>
+                <strong>Instruction Memory:</strong> Stores the
+                program instructions.
+            </li>
+            <li>
+                <strong>Data Memory:</strong> Stores the information
+                used by the program.
+            </li>
+            <li>
+                <strong>Control Unit:</strong> Coordinates the
+                execution of instructions.
+            </li>
+            <li>
+                <strong>Arithmetic Logic Unit:</strong> Performs
+                arithmetic and logical operations.
+            </li>
+            <li>
+                <strong>I/O Devices:</strong> Allow the system to
+                receive input and provide output.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 330" class="lesson-image" role="img"
+                 aria-label="Harvard architecture with separate instruction and data memory">
+                <rect x="300" y="20" width="250" height="90" rx="8"
+                      fill="#174ea6"/>
+                <text x="425" y="55" text-anchor="middle" fill="white"
+                      font-size="22" font-weight="bold">CPU</text>
+                <text x="425" y="82" text-anchor="middle" fill="white"
+                      font-size="14">Control Unit and ALU</text>
+
+                <path d="M425 110 V145 M210 145 H640 M210 145 V180 M640 145 V180"
+                      fill="none" stroke="#174ea6" stroke-width="3"/>
+
+                <rect x="70" y="180" width="280" height="90" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="210" y="215" text-anchor="middle" fill="#10025e"
+                      font-size="19" font-weight="bold">INSTRUCTION MEMORY</text>
+                <text x="210" y="240" text-anchor="middle" fill="#333"
+                      font-size="14">Stores program instructions</text>
+
+                <rect x="500" y="180" width="280" height="90" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="640" y="215" text-anchor="middle" fill="#10025e"
+                      font-size="19" font-weight="bold">DATA MEMORY</text>
+                <text x="640" y="240" text-anchor="middle" fill="#333"
+                      font-size="14">Stores program data</text>
+
+                <text x="425" y="310" text-anchor="middle" fill="#555"
+                      font-size="14">Separate memory for instructions and data</text>
+            </svg>
+            <figcaption>
+                Harvard architecture separates instruction memory from data memory.
+            </figcaption>
+        </figure>
+
+        <h3>Von Neumann Architecture</h3>
+
+        <p>
+            Von Neumann architecture uses a shared memory system
+            to store both program instructions and data. The CPU
+            retrieves instructions from memory, interprets them,
+            and performs the required operations.
+        </p>
+
+        <p>
+            Its important feature is the stored-program concept.
+            Instructions are encoded and stored in memory just like
+            other data values. This allows programs to be stored,
+            modified, and executed using a common memory system.
+        </p>
+
+        <h3>Stored-Program Concept</h3>
+
+        <p>
+            The stored-program concept means that program instructions
+            are stored in memory and treated as encoded memory values.
+            This approach simplifies computer design and allows
+            instructions and data to share the same memory system.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 330" class="lesson-image" role="img"
+                 aria-label="Von Neumann architecture showing CPU, shared memory for instructions and data, and input output devices">
+                <rect x="300" y="20" width="250" height="90" rx="8"
+                      fill="#174ea6"/>
+                <text x="425" y="55" text-anchor="middle" fill="white"
+                      font-size="22" font-weight="bold">CPU</text>
+                <text x="425" y="82" text-anchor="middle" fill="white"
+                      font-size="14">Control Unit and ALU</text>
+
+                <path d="M425 110 V145" stroke="#174ea6" stroke-width="3"/>
+
+                <rect x="280" y="145" width="290" height="100" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="425" y="180" text-anchor="middle" fill="#10025e"
+                      font-size="20" font-weight="bold">SHARED MEMORY</text>
+                <text x="425" y="207" text-anchor="middle" fill="#333"
+                      font-size="14">Instructions and data</text>
+
+                <path d="M280 195 H145 V265 M570 195 H705 V265"
+                      fill="none" stroke="#174ea6" stroke-width="3"/>
+
+                <rect x="45" y="265" width="200" height="50" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6"/>
+                <text x="145" y="296" text-anchor="middle" fill="#10025e"
+                      font-size="17">INPUT DEVICES</text>
+
+                <rect x="605" y="265" width="200" height="50" rx="6"
+                      fill="#f1f4fa" stroke="#174ea6"/>
+                <text x="705" y="296" text-anchor="middle" fill="#10025e"
+                      font-size="17">OUTPUT DEVICES</text>
+            </svg>
+            <figcaption>
+                Von Neumann architecture uses shared memory for program instructions and data.
+            </figcaption>
+        </figure>
+
+        <h3>Harvard and Von Neumann Architecture Compared</h3>
+
+        <div class="lesson-table-wrapper">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Harvard Architecture</th>
+                        <th>Von Neumann Architecture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Memory</td>
+                        <td>Separate instruction and data memory</td>
+                        <td>Shared instruction and data memory</td>
+                    </tr>
+                    <tr>
+                        <td>Data Access</td>
+                        <td>Separate memory paths</td>
+                        <td>Shared memory path</td>
+                    </tr>
+                    <tr>
+                        <td>Organization</td>
+                        <td>Separate storage systems</td>
+                        <td>Unified storage system</td>
+                    </tr>
+                    <tr>
+                        <td>Common Use</td>
+                        <td>Some microcontrollers and digital signal processors</td>
+                        <td>General-purpose computer designs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- REGISTERS -->
+    <section class="lesson-block" id="registers">
+        <h2>Modern Machines with Registers</h2>
+
+        <p>
+            Modern processors commonly use registers to store values
+            that are needed immediately during instruction execution.
+            A register is a small, high-speed storage location inside
+            the processor.
+        </p>
+
+        <p>
+            Main memory can store a large amount of information, but
+            accessing it is generally slower than accessing processor
+            registers. Registers help reduce repeated memory access
+            and improve processing performance.
+        </p>
+
+        <h3>How Registers Work</h3>
+
+        <p>
+            The processor loads required values from memory into
+            registers. It then performs calculations using those
+            values and stores the results in registers or sends
+            them back to memory.
+        </p>
+
+        <p>
+            For example, when a program adds two numbers, the processor
+            can load the values into registers, perform the addition,
+            and store the result.
+        </p>
+
+        <h3>Register-Based Processing Example</h3>
+
+        <pre><code>r1 = mem[a];
+r2 = mem[b];
+r3 = r1 + r2;
+mem[c] = r3;</code></pre>
+
+        <p>
+            In this example, the computer loads two values from memory,
+            adds them using registers, and stores the answer back
+            in memory.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 290" class="lesson-image" role="img"
+                 aria-label="Register-based processor showing memory, registers, and arithmetic logic unit">
+                <rect x="35" y="90" width="210" height="110" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="140" y="130" text-anchor="middle" fill="#10025e"
+                      font-size="20" font-weight="bold">MEMORY</text>
+                <text x="140" y="158" text-anchor="middle" fill="#333"
+                      font-size="14">Stored values</text>
+
+                <rect x="320" y="50" width="220" height="190" rx="8"
+                      fill="#174ea6"/>
+                <text x="430" y="80" text-anchor="middle" fill="white"
+                      font-size="20" font-weight="bold">CPU</text>
+
+                <rect x="345" y="100" width="170" height="50" rx="5"
+                      fill="white"/>
+                <text x="430" y="131" text-anchor="middle" fill="#10025e"
+                      font-size="17">REGISTERS</text>
+
+                <rect x="345" y="170" width="170" height="45" rx="5"
+                      fill="white"/>
+                <text x="430" y="198" text-anchor="middle" fill="#10025e"
+                      font-size="17">ALU</text>
+
+                <rect x="610" y="90" width="210" height="110" rx="8"
+                      fill="#e8eef9" stroke="#174ea6" stroke-width="2"/>
+                <text x="715" y="130" text-anchor="middle" fill="#10025e"
+                      font-size="20" font-weight="bold">RESULT</text>
+                <text x="715" y="158" text-anchor="middle" fill="#333"
+                      font-size="14">Processed data</text>
+
+                <path d="M245 145 H320 M540 145 H610"
+                      stroke="#174ea6" stroke-width="3" fill="none"/>
+                <path d="M310 137 L320 145 L310 153 M600 137 L610 145 L600 153"
+                      stroke="#174ea6" stroke-width="3" fill="none"/>
+            </svg>
+            <figcaption>
+                Registers provide fast storage for values used by the CPU.
+            </figcaption>
+        </figure>
+    </section>
+
+    <!-- STACK MACHINE -->
+    <section class="lesson-block" id="stack-machine">
+        <h2>Von Neumann Machine with a Hardware Stack</h2>
+
+        <p>
+            A stack is a data structure that follows the Last In,
+            First Out (LIFO) principle. This means the last value
+            added to the stack is the first value removed.
+        </p>
+
+        <p>
+            A stack-based computer uses a hardware stack to store
+            operands during calculations. Arithmetic instructions
+            usually operate on the values at the top of the stack.
+        </p>
+
+        <h3>Basic Stack Operations</h3>
+
+        <ul>
+            <li>
+                <strong>Push:</strong> Adds a value to the top
+                of the stack.
+            </li>
+            <li>
+                <strong>Pop:</strong> Removes a value from the top
+                of the stack.
+            </li>
+        </ul>
+
+        <h3>Example of Stack Processing</h3>
+
+        <p>
+            Suppose a program needs to add two values. It pushes
+            both values onto the stack, performs the addition,
+            and replaces the operands with the calculated result.
+        </p>
+
+        <pre><code>push 1;
+push 2;
+add;
+pop result;</code></pre>
+
+        <p>
+            The stack stores the values temporarily and allows
+            the processor to perform operations without explicitly
+            identifying every operand in the arithmetic instruction.
+        </p>
+
+        <h3>Advantages and Limitations</h3>
+
+        <p>
+            Stack-based machines can produce compact instructions
+            because many operations use values already stored at
+            the top of the stack. However, managing complex expressions
+            can require additional push and pop operations.
+        </p>
+    </section>
+
+    <!-- ACCUMULATOR -->
+    <section class="lesson-block" id="accumulator">
+        <h2>Accumulator-Based Machines</h2>
+
+        <p>
+            An accumulator-based machine uses a special register
+            called an accumulator to store operands and calculation
+            results.
+        </p>
+
+        <p>
+            When an arithmetic instruction is executed, the processor
+            combines the value in the accumulator with another value
+            from memory. The result is then stored back in the accumulator.
+        </p>
+
+        <h3>Example</h3>
+
+        <pre><code>LOAD A;
+ADD B;
+STORE C;</code></pre>
+
+        <p>
+            The processor loads a value into the accumulator, adds
+            another value, and saves the final result to memory.
+            This organization was common in early computers and
+            influenced features in later processor designs.
+        </p>
+    </section>
+
+    <!-- REPRESENTING INFORMATION -->
+    <section class="lesson-block" id="representing-information">
+        <h2>Representing Information in Computers</h2>
+
+        <p>
+            Computers store and process information using binary
+            values. Their electronic components represent information
+            through two basic states, commonly represented as zero
+            and one.
+        </p>
+
+        <p>
+            Numbers, text, images, instructions, and programs must
+            all be encoded into combinations of binary digits before
+            they can be processed by a computer.
+        </p>
+
+        <h3>Binary Digits</h3>
+
+        <p>
+            A bit is the smallest basic unit of digital information.
+            It can represent one of two values: zero or one.
+        </p>
+
+        <h3>Byte</h3>
+
+        <p>
+            A byte is a group of eight bits. It is commonly used
+            as a basic unit for measuring computer memory and file sizes.
+        </p>
+
+        <h3>Word</h3>
+
+        <p>
+            A word is a group of bits that a processor handles
+            as a unit. Its size depends on the processor architecture.
+            Some systems use 32-bit words, while others use 64-bit words.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 260" class="lesson-image" role="img"
+                 aria-label="Binary information showing a bit, a byte containing eight bits, and a group of bytes">
+                <text x="425" y="35" text-anchor="middle" fill="#10025e"
+                      font-size="22" font-weight="bold">BINARY INFORMATION</text>
+
+                <rect x="50" y="80" width="120" height="75" rx="7"
+                      fill="#174ea6"/>
+                <text x="110" y="125" text-anchor="middle" fill="white"
+                      font-size="28" font-weight="bold">1</text>
+                <text x="110" y="185" text-anchor="middle" fill="#10025e"
+                      font-size="17" font-weight="bold">BIT</text>
+
+                <g fill="#e8eef9" stroke="#174ea6" stroke-width="2">
+                    <rect x="245" y="80" width="55" height="75"/>
+                    <rect x="300" y="80" width="55" height="75"/>
+                    <rect x="355" y="80" width="55" height="75"/>
+                    <rect x="410" y="80" width="55" height="75"/>
+                    <rect x="465" y="80" width="55" height="75"/>
+                    <rect x="520" y="80" width="55" height="75"/>
+                    <rect x="575" y="80" width="55" height="75"/>
+                    <rect x="630" y="80" width="55" height="75"/>
+                </g>
+
+                <g fill="#10025e" font-size="19" text-anchor="middle">
+                    <text x="272" y="125">1</text>
+                    <text x="327" y="125">0</text>
+                    <text x="382" y="125">1</text>
+                    <text x="437" y="125">0</text>
+                    <text x="492" y="125">1</text>
+                    <text x="547" y="125">0</text>
+                    <text x="602" y="125">1</text>
+                    <text x="657" y="125">0</text>
+                </g>
+
+                <text x="465" y="185" text-anchor="middle" fill="#10025e"
+                      font-size="17" font-weight="bold">BYTE = 8 BITS</text>
+
+                <text x="425" y="230" text-anchor="middle" fill="#555"
+                      font-size="14">Bits are combined to represent larger amounts of information.</text>
+            </svg>
+            <figcaption>
+                Binary information is represented through combinations of zero and one.
+            </figcaption>
+        </figure>
+    </section>
+
+    <!-- APPLICATIONS -->
+    <section class="lesson-block" id="applications">
+        <h2>Applications of Computer Architecture</h2>
+
+        <p>
+            Computer architecture is important in designing and improving
+            the computer systems used in everyday life. Its principles
+            help hardware and software developers build systems that
+            are reliable, efficient, and capable of handling different
+            workloads.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Personal Computing:</strong> Supports desktop
+                computers and laptops used for school, work, and entertainment.
+            </li>
+            <li>
+                <strong>Mobile Devices:</strong> Provides the processing
+                foundation for smartphones and tablets.
+            </li>
+            <li>
+                <strong>Business Systems:</strong> Supports databases,
+                financial applications, office systems, and business
+                information processing.
+            </li>
+            <li>
+                <strong>Scientific Computing:</strong> Helps process
+                complex calculations, simulations, and research data.
+            </li>
+            <li>
+                <strong>Embedded Systems:</strong> Powers electronic
+                devices such as appliances, vehicles, and automated
+                equipment.
+            </li>
+            <li>
+                <strong>Networking and Communication:</strong> Supports
+                devices that exchange information through computer networks.
+            </li>
+        </ul>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>
+                Computer architecture explains how hardware and software
+                work together to process information.
+            </li>
+            <li>
+                A computer follows program instructions to receive,
+                process, store, and produce information.
+            </li>
+            <li>
+                The CPU, main memory, storage, and input/output devices
+                are important parts of a computer system.
+            </li>
+            <li>
+                A compiler translates high-level programs into
+                instructions that a computer can execute.
+            </li>
+            <li>
+                An Instruction Set Architecture defines the instructions
+                supported by a processor.
+            </li>
+            <li>
+                Turing machines provide a theoretical model for
+                understanding computation.
+            </li>
+            <li>
+                Harvard and Von Neumann architectures are two important
+                computer organization models.
+            </li>
+            <li>
+                Registers, stacks, and accumulators are different ways
+                processors organize temporary data and operands.
+            </li>
+            <li>
+                Computers represent information using binary values,
+                including bits and bytes.
+            </li>
+        </ul>
+    </section>
+
+    <!-- PRACTICAL EXAMPLE -->
+    <section class="lesson-block" id="practical-example">
+        <h2>Practical Example: What Happens When You Run a Program?</h2>
+
+        <p>
+            When a student opens a calculator application and adds
+            two numbers, several computer architecture components
+            work together.
+        </p>
+
+        <ul>
+            <li>
+                The user enters numbers using an input device such
+                as a keyboard.
+            </li>
+            <li>
+                The program instructions and required data are
+                made available in memory.
+            </li>
+            <li>
+                The CPU retrieves and executes the instructions.
+            </li>
+            <li>
+                The ALU performs the addition operation.
+            </li>
+            <li>
+                The result is stored temporarily and sent to the
+                display system.
+            </li>
+            <li>
+                The monitor displays the final answer to the user.
+            </li>
+        </ul>
+
+        <p>
+            This example demonstrates how software, memory, processing
+            components, and output devices work together to complete
+            a simple computing task.
+        </p>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+        <h2>References</h2>
+
+        <ul>
+            <li>
+                Sarangi, Smruti R. <em>Introduction to Computer Architecture</em>.
+                Uploaded course reading, Chapter 1.
+            </li>
+            <li>
+                Turing, Alan. Foundational work on theoretical computation
+                and the Turing machine.
+            </li>
+            <li>
+                Von Neumann, John. Foundational work on stored-program
+                computer architecture.
+            </li>
+        </ul>
+    </section>
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <span></span>
+
+                <a class="btn primary" href="topic-22.html">
+                    Topic 1 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+
+    </script>
+
+</body>
+</html>

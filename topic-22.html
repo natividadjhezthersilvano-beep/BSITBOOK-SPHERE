@@ -1,0 +1,4054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Web Browsers, Servers, and HTTP/HTTPS
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    <aside class="lesson-sidebar">
+        <h3>Lesson Contents</h3>
+
+        <nav class="lesson-toc" id="lessonTOC">
+            <a href="#overview">Overview</a>
+            <a href="#how-web-works">How the Web Works</a>
+            <a href="#introduction-html">Introduction to HTML</a>
+            <a href="#hypertext-markup">Understanding Hypertext and Markup</a>
+            <a href="#tags-elements">HTML Tags and Elements</a>
+            <a href="#html-attributes">HTML Attributes</a>
+            <a href="#learning-html">Learning HTML</a>
+            <a href="#html-css">HTML and CSS</a>
+            <a href="#html-rules">Basic HTML Rules</a>
+            <a href="#html-structure">Overall HTML File Structure</a>
+            <a href="#wysiwyg">WYSIWYG and Webpages</a>
+            <a href="#html-validation">HTML Validation</a>
+            <a href="#html5">HTML5</a>
+            <a href="#xml">XML and Markup Languages</a>
+            <a href="#creating-webpage">How to Create a Webpage</a>
+            <a href="#publishing-webpage">Publishing a Webpage</a>
+            <a href="#practical-example">Practical HTML Example</a>
+            <a href="#key-takeaways">Key Takeaways</a>
+            <a href="#references">References</a>
+        </nav>
+    
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+ <article class="lesson-content">
+
+            <!-- OVERVIEW -->
+            <section class="lesson-block" id="overview">
+                <h2>Overview of Introduction to HTML</h2>
+
+                <p>
+                    HyperText Markup Language, commonly known as HTML,
+                    is the standard markup language used to create and
+                    organize content on webpages. It provides the
+                    structure and meaning of information displayed
+                    through a web browser.
+                </p>
+
+                <p>
+                    HTML allows developers to organize text, headings,
+                    paragraphs, links, images, and other webpage
+                    elements using tags and attributes. These elements
+                    help browsers understand how different parts of
+                    a webpage are organized.
+                </p>
+
+                <p>
+                    Modern websites use HTML together with Cascading
+                    Style Sheets (CSS) and JavaScript. HTML provides
+                    the structure, CSS controls the presentation, and
+                    JavaScript adds interactive behavior.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 330"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Relationship between HTML, CSS, JavaScript, and a webpage">
+
+                        <rect x="25" y="35" width="210" height="100"
+                              rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="130" y="75" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#174ea6">HTML</text>
+                        <text x="130" y="105" text-anchor="middle"
+                              font-size="15" fill="#202641">Structure and content</text>
+
+                        <rect x="295" y="35" width="210" height="100"
+                              rx="12" fill="#e9f8ef" stroke="#329b61" stroke-width="2"/>
+                        <text x="400" y="75" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#237348">CSS</text>
+                        <text x="400" y="105" text-anchor="middle"
+                              font-size="15" fill="#202641">Design and appearance</text>
+
+                        <rect x="565" y="35" width="210" height="100"
+                              rx="12" fill="#fff3df" stroke="#e69a27" stroke-width="2"/>
+                        <text x="670" y="75" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#a7650b">JavaScript</text>
+                        <text x="670" y="105" text-anchor="middle"
+                              font-size="15" fill="#202641">Interaction and behavior</text>
+
+                        <path d="M130 135 L130 190 L400 190"
+                              fill="none" stroke="#347fe0" stroke-width="3"/>
+                        <path d="M400 135 L400 190"
+                              fill="none" stroke="#329b61" stroke-width="3"/>
+                        <path d="M670 135 L670 190 L400 190"
+                              fill="none" stroke="#e69a27" stroke-width="3"/>
+
+                        <path d="M390 180 L400 190 L410 180"
+                              fill="none" stroke="#555" stroke-width="3"/>
+
+                        <rect x="270" y="215" width="260" height="80"
+                              rx="12" fill="#f0efff" stroke="#6555c7" stroke-width="2"/>
+                        <text x="400" y="250" text-anchor="middle"
+                              font-size="23" font-weight="bold" fill="#5142aa">Webpage</text>
+                        <text x="400" y="275" text-anchor="middle"
+                              font-size="15" fill="#202641">Complete website experience</text>
+                    </svg>
+                    <figcaption>
+                        HTML, CSS, and JavaScript work together to create modern webpages.
+                    </figcaption>
+                </figure>
+
+                <h3>Learning Objectives</h3>
+                <ul>
+                    <li>Understand how the World Wide Web works.</li>
+                    <li>Explain the purpose of HTML in web development.</li>
+                    <li>Identify HTML tags, elements, and attributes.</li>
+                    <li>Understand the relationship between HTML and CSS.</li>
+                    <li>Recognize the basic rules of writing valid HTML.</li>
+                    <li>Understand the structure of an HTML document.</li>
+                    <li>Learn how to create, test, validate, and publish webpages.</li>
+                </ul>
+            </section>
+
+            <!-- HOW THE WEB WORKS -->
+            <section class="lesson-block" id="how-web-works">
+                <h2>How the Web Works</h2>
+
+                <p>
+                    The World Wide Web allows people to access and share
+                    information through websites. When someone opens
+                    a webpage, the browser communicates with a web
+                    server to request the resources needed to display
+                    that page.
+                </p>
+
+                <h3>Understanding the Client-Server Architecture</h3>
+
+                <p>
+                    The web uses a client-server architecture. This
+                    architecture involves two main types of computers:
+                    clients and servers.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Client:</strong> A device or application
+                        that requests information from a server. A
+                        computer running a web browser is an example
+                        of a client.
+                    </li>
+                    <li>
+                        <strong>Server:</strong> A computer or system
+                        that waits for requests and provides the
+                        requested resources.
+                    </li>
+                </ul>
+
+                <p>
+                    For example, when a user enters a website address
+                    into Google Chrome, the browser sends a request
+                    to the server hosting that website. The server
+                    processes the request and sends the required
+                    webpage resources back to the browser.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 350"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Client server communication process">
+
+                        <rect x="35" y="90" width="190" height="150"
+                              rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <rect x="65" y="115" width="130" height="75"
+                              rx="6" fill="#ffffff" stroke="#347fe0" stroke-width="2"/>
+                        <rect x="95" y="195" width="70" height="8"
+                              fill="#347fe0"/>
+                        <text x="130" y="220" text-anchor="middle"
+                              font-size="19" font-weight="bold" fill="#174ea6">Client</text>
+
+                        <rect x="575" y="90" width="190" height="150"
+                              rx="12" fill="#e9f8ef" stroke="#329b61" stroke-width="2"/>
+                        <rect x="625" y="110" width="90" height="90"
+                              rx="6" fill="#ffffff" stroke="#329b61" stroke-width="2"/>
+                        <path d="M640 130 H700 M640 150 H700 M640 170 H700"
+                              stroke="#329b61" stroke-width="5"/>
+                        <text x="670" y="220" text-anchor="middle"
+                              font-size="19" font-weight="bold" fill="#237348">Web Server</text>
+
+                        <path d="M235 125 H560"
+                              stroke="#347fe0" stroke-width="3" fill="none"/>
+                        <path d="M550 115 L562 125 L550 135"
+                              stroke="#347fe0" stroke-width="3" fill="none"/>
+                        <text x="400" y="108" text-anchor="middle"
+                              font-size="16" fill="#174ea6">HTTP Request</text>
+
+                        <path d="M560 200 H235"
+                              stroke="#329b61" stroke-width="3" fill="none"/>
+                        <path d="M245 190 L233 200 L245 210"
+                              stroke="#329b61" stroke-width="3" fill="none"/>
+                        <text x="400" y="230" text-anchor="middle"
+                              font-size="16" fill="#237348">Requested Resources</text>
+
+                        <text x="400" y="305" text-anchor="middle"
+                              font-size="17" fill="#202641">
+                            The browser requests resources and receives a response from the server.
+                        </text>
+                    </svg>
+                    <figcaption>
+                        Client-server communication when accessing a website.
+                    </figcaption>
+                </figure>
+
+                <h3>How a Webpage Is Requested</h3>
+
+                <ul>
+                    <li>
+                        The user enters a URL (Uniform Resource Locator)
+                        into a web browser.
+                    </li>
+                    <li>
+                        The browser identifies the web server associated
+                        with the requested website.
+                    </li>
+                    <li>
+                        The browser communicates with the server using
+                        HTTP (HyperText Transfer Protocol).
+                    </li>
+                    <li>
+                        The web server receives and processes the request.
+                    </li>
+                    <li>
+                        The server sends the requested resource back
+                        to the browser.
+                    </li>
+                    <li>
+                        The browser reads the returned resources and
+                        displays the webpage.
+                    </li>
+                </ul>
+
+                <h3>HTTP and Web Resources</h3>
+
+                <p>
+                    HTTP is a general-purpose communication protocol
+                    used to transfer digital information over the
+                    Internet. It allows browsers and web servers to
+                    exchange different types of resources.
+                </p>
+
+                <p>Common resources transferred through HTTP include:</p>
+
+                <ul>
+                    <li>
+                        <strong>HTML files:</strong> Contain webpage
+                        content and semantic information.
+                    </li>
+                    <li>
+                        <strong>CSS files:</strong> Contain formatting
+                        and styling instructions for webpages.
+                    </li>
+                    <li>
+                        <strong>Image files:</strong> Include formats
+                        such as JPEG, PNG, and GIF.
+                    </li>
+                </ul>
+
+                <h3>Functions of a Web Browser</h3>
+
+                <p>
+                    A web browser performs several tasks to make
+                    websites accessible to users.
+                </p>
+
+                <ul>
+                    <li>Communicates with web servers using HTTP.</li>
+                    <li>Reads and interprets HTML documents.</li>
+                    <li>Applies CSS formatting to webpage content.</li>
+                    <li>Displays images and other website resources.</li>
+                    <li>Uses a JavaScript engine to execute client-side programs.</li>
+                </ul>
+            </section>
+
+            <!-- INTRODUCTION TO HTML -->
+            <section class="lesson-block" id="introduction-html">
+                <h2>Introduction to HTML</h2>
+
+                <p>
+                    HTML stands for HyperText Markup Language. It is
+                    used to organize and describe the content of
+                    webpages. HTML provides instructions that help
+                    a browser understand the different parts of a
+                    document.
+                </p>
+
+                <p>
+                    HTML is not a traditional programming language.
+                    It is a markup language because it uses tags and
+                    elements to identify and organize webpage content.
+                </p>
+
+                <h3>Purpose of HTML</h3>
+
+                <ul>
+                    <li>Creates the structure of webpages.</li>
+                    <li>Organizes information into headings and paragraphs.</li>
+                    <li>Connects webpages through hyperlinks.</li>
+                    <li>Displays images and other media.</li>
+                    <li>Provides meaningful structure for browsers and assistive technologies.</li>
+                    <li>Works with CSS and JavaScript to build complete websites.</li>
+                </ul>
+
+                <h3>Example of HTML</h3>
+
+                <p>
+                    The following example shows how HTML tags can
+                    organize simple webpage content.
+                </p>
+
+                <pre><code>&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+
+&lt;p&gt;
+    This is my first HTML webpage.
+&lt;/p&gt;
+
+&lt;a href="https://www.example.com"&gt;
+    Visit Website
+&lt;/a&gt;</code></pre>
+
+                <p>
+                    The heading displays the main title, the paragraph
+                    contains descriptive text, and the anchor element
+                    creates a clickable link.
+                </p>
+            </section>
+
+            <!-- HYPERTEXT AND MARKUP -->
+            <section class="lesson-block" id="hypertext-markup">
+                <h2>Understanding Hypertext and Markup</h2>
+
+                <h3>Hypertext</h3>
+
+                <p>
+                    Hypertext is a system of connecting information
+                    through links. It allows users to move from one
+                    document or resource to another without following
+                    a fixed, linear order.
+                </p>
+
+                <p>
+                    In a traditional printed book, pages are normally
+                    read in sequence. With hypertext, a user can select
+                    a link and immediately open another webpage,
+                    document, or resource.
+                </p>
+
+                <p>
+                    The World Wide Web combines hypertext with the
+                    Internet, allowing information from different
+                    websites to be connected and accessed.
+                </p>
+
+                <h3>Hypermedia</h3>
+
+                <p>
+                    Hypermedia expands the concept of hypertext by
+                    allowing links to connect not only written
+                    information but also other forms of media.
+                </p>
+
+                <p>
+                    Examples include links to images, audio recordings,
+                    videos, and other multimedia resources.
+                </p>
+
+                <h3>Markup</h3>
+
+                <p>
+                    Markup refers to instructions added to a document
+                    to describe how its content should be organized
+                    or interpreted. The concept originally came from
+                    publishing, where editors added notes to articles
+                    to guide typesetters about how the material should
+                    be prepared for printing.
+                </p>
+
+                <p>
+                    In HTML, markup is written using tags that identify
+                    the meaning and structure of webpage content.
+                </p>
+
+                <h3>HTML as a Language</h3>
+
+                <p>
+                    HTML is considered a language because it follows
+                    specific syntax rules and uses a defined set of
+                    elements and attributes. Developers must follow
+                    these rules so that browsers can correctly
+                    interpret the document.
+                </p>
+            </section>
+
+            <!-- TAGS AND ELEMENTS -->
+            <section class="lesson-block" id="tags-elements">
+                <h2>HTML Tags and Elements</h2>
+
+                <p>
+                    HTML uses tags to mark and organize content.
+                    Tags provide instructions that tell the browser
+                    what type of information is contained in a
+                    particular part of the document.
+                </p>
+
+                <h3>What Are HTML Tags?</h3>
+
+                <p>
+                    Tags are written using angle brackets. Most
+                    elements have an opening tag and a closing tag.
+                    The closing tag contains a forward slash before
+                    the tag name.
+                </p>
+
+                <pre><code>&lt;b&gt;Stanford&lt;/b&gt;</code></pre>
+
+                <p>
+                    In this example, <strong>&lt;b&gt;</strong> is
+                    the opening tag and
+                    <strong>&lt;/b&gt;</strong> is the closing tag.
+                    The word Stanford is the content inside the tags.
+                </p>
+
+                <h3>What Are HTML Elements?</h3>
+
+                <p>
+                    An HTML element consists of the opening tag,
+                    the content, and the closing tag. It acts as
+                    a container for a specific piece of webpage
+                    information.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 270"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Anatomy of an HTML element">
+
+                        <rect x="40" y="65" width="720" height="105"
+                              rx="12" fill="#f5f5ff" stroke="#6555c7" stroke-width="2"/>
+
+                        <rect x="70" y="90" width="190" height="55"
+                              rx="6" fill="#dce8ff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="165" y="124" text-anchor="middle"
+                              font-size="22" font-weight="bold" fill="#174ea6">
+                            &lt;p&gt;
+                        </text>
+
+                        <rect x="290" y="90" width="210" height="55"
+                              rx="6" fill="#e5f6e9" stroke="#329b61" stroke-width="2"/>
+                        <text x="395" y="124" text-anchor="middle"
+                              font-size="20" fill="#237348">Hello World</text>
+
+                        <rect x="530" y="90" width="190" height="55"
+                              rx="6" fill="#fff0dc" stroke="#e69a27" stroke-width="2"/>
+                        <text x="625" y="124" text-anchor="middle"
+                              font-size="22" font-weight="bold" fill="#a7650b">
+                            &lt;/p&gt;
+                        </text>
+
+                        <text x="165" y="205" text-anchor="middle"
+                              font-size="16" fill="#174ea6">Opening tag</text>
+                        <text x="395" y="205" text-anchor="middle"
+                              font-size="16" fill="#237348">Content</text>
+                        <text x="625" y="205" text-anchor="middle"
+                              font-size="16" fill="#a7650b">Closing tag</text>
+
+                        <text x="400" y="245" text-anchor="middle"
+                              font-size="17" font-weight="bold" fill="#202641">
+                            Complete HTML Element
+                        </text>
+                    </svg>
+                    <figcaption>
+                        An HTML element contains an opening tag, content, and a closing tag.
+                    </figcaption>
+                </figure>
+
+                <h3>Examples of HTML Tags</h3>
+
+                <ul>
+                    <li>
+                        <strong>&lt;h1&gt; to &lt;h6&gt;:</strong>
+                        Define headings, from the most important
+                        heading to lower-level headings.
+                    </li>
+                    <li>
+                        <strong>&lt;p&gt;:</strong> Defines a paragraph.
+                    </li>
+                    <li>
+                        <strong>&lt;b&gt;:</strong> Displays text in bold.
+                    </li>
+                    <li>
+                        <strong>&lt;i&gt;:</strong> Displays text in italic.
+                    </li>
+                    <li>
+                        <strong>&lt;a&gt;:</strong> Creates a hyperlink.
+                    </li>
+                    <li>
+                        <strong>&lt;img&gt;:</strong> Embeds an image.
+                    </li>
+                    <li>
+                        <strong>&lt;br&gt;:</strong> Creates a line break.
+                    </li>
+                </ul>
+
+                <h3>Text-Level and Block-Level Elements</h3>
+
+                <p>
+                    HTML elements can be grouped according to how
+                    they organize content.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Text-level elements:</strong>
+                        Used within text to identify or emphasize
+                        individual words and short phrases. Examples
+                        include &lt;strong&gt;, &lt;em&gt;, and
+                        &lt;b&gt;.
+                    </li>
+                    <li>
+                        <strong>Block-level elements:</strong>
+                        Used to organize larger sections of content.
+                        Examples include headings, paragraphs, and
+                        other structural elements.
+                    </li>
+                </ul>
+
+                <h3>Example of Nested Elements</h3>
+
+                <p>
+                    HTML elements can be placed inside other elements
+                    when the structure allows it. This is called
+                    nesting.
+                </p>
+
+                <pre><code>&lt;p&gt;
+    I am learning &lt;strong&gt;HTML&lt;/strong&gt;.
+&lt;/p&gt;</code></pre>
+
+                <p>
+                    The strong element is correctly placed inside
+                    the paragraph element.
+                </p>
+            </section>
+
+            <!-- ATTRIBUTES -->
+            <section class="lesson-block" id="html-attributes">
+                <h2>HTML Attributes</h2>
+
+                <p>
+                    Attributes provide additional information about
+                    HTML elements. They are written inside the
+                    opening tag and usually contain a name and
+                    a value.
+                </p>
+
+                <h3>Purpose of Attributes</h3>
+
+                <ul>
+                    <li>Provide additional details about an element.</li>
+                    <li>Specify the destination of a hyperlink.</li>
+                    <li>Identify the location of an image file.</li>
+                    <li>Provide alternative text for images.</li>
+                    <li>Help control how certain HTML elements behave.</li>
+                </ul>
+
+                <h3>Example of an Anchor Attribute</h3>
+
+                <p>
+                    The anchor element creates a hyperlink. The
+                    href attribute specifies the destination
+                    address of the link.
+                </p>
+
+                <pre><code>&lt;a href="https://www.example.com"&gt;
+    Visit Example Website
+&lt;/a&gt;</code></pre>
+
+                <p>
+                    In this example, <strong>href</strong> is the
+                    attribute name, while the website address is
+                    its value.
+                </p>
+
+                <h3>Common HTML Attributes</h3>
+
+                <ul>
+                    <li>
+                        <strong>href:</strong> Specifies the destination
+                        of a hyperlink.
+                    </li>
+                    <li>
+                        <strong>src:</strong> Specifies the location
+                        of an external resource, such as an image.
+                    </li>
+                    <li>
+                        <strong>alt:</strong> Provides alternative
+                        text describing an image.
+                    </li>
+                    <li>
+                        <strong>id:</strong> Identifies a unique
+                        element within a webpage.
+                    </li>
+                    <li>
+                        <strong>class:</strong> Groups elements
+                        for styling or scripting.
+                    </li>
+                    <li>
+                        <strong>title:</strong> Provides additional
+                        descriptive information.
+                    </li>
+                </ul>
+
+                <h3>Image Attribute Example</h3>
+
+                <pre><code>&lt;img
+    src="computer.jpg"
+    alt="A desktop computer"
+&gt;</code></pre>
+
+                <p>
+                    The src attribute identifies the image file,
+                    while alt provides a text description of
+                    the image.
+                </p>
+
+                <p>
+                    Attribute order generally does not change
+                    the meaning of an element. For example,
+                    src and alt can appear in either order.
+                </p>
+            </section>
+
+            <!-- LEARNING HTML -->
+            <section class="lesson-block" id="learning-html">
+                <h2>Learning HTML</h2>
+
+                <p>
+                    Learning HTML involves understanding the available
+                    elements, knowing when to use them, and learning
+                    which attributes provide additional functionality.
+                </p>
+
+                <p>
+                    Developers do not need to memorize every HTML
+                    element. They can use reliable documentation and
+                    references to find the appropriate elements and
+                    attributes when developing a webpage.
+                </p>
+
+                <h3>Important HTML Elements to Learn</h3>
+
+                <ul>
+                    <li>
+                        <strong>Heading elements:</strong>
+                        &lt;h1&gt; through &lt;h6&gt; organize titles
+                        and subsections.
+                    </li>
+                    <li>
+                        <strong>Paragraph element:</strong>
+                        &lt;p&gt; organizes blocks of written content.
+                    </li>
+                    <li>
+                        <strong>Anchor element:</strong>
+                        &lt;a&gt; connects webpages and resources.
+                    </li>
+                    <li>
+                        <strong>Image element:</strong>
+                        &lt;img&gt; displays pictures and graphics.
+                    </li>
+                    <li>
+                        <strong>List elements:</strong>
+                        &lt;ul&gt;, &lt;ol&gt;, and &lt;li&gt;
+                        organize information into lists.
+                    </li>
+                </ul>
+
+                <h3>Heading Hierarchy</h3>
+
+                <p>
+                    HTML provides six heading levels. The h1 element
+                    represents the main heading, while h2 to h6
+                    represent increasingly lower levels of headings.
+                </p>
+
+                <pre><code>&lt;h1&gt;Introduction to HTML&lt;/h1&gt;
+
+&lt;h2&gt;HTML Elements&lt;/h2&gt;
+
+&lt;h3&gt;HTML Tags&lt;/h3&gt;
+
+&lt;h4&gt;Opening and Closing Tags&lt;/h4&gt;</code></pre>
+
+                <h3>Paragraphs</h3>
+
+                <p>
+                    The paragraph element is used to organize written
+                    information. Blank lines or line breaks in the
+                    HTML source code do not automatically create
+                    separate paragraphs in the browser.
+                </p>
+
+                <pre><code>&lt;p&gt;HTML creates the structure of a webpage.&lt;/p&gt;
+
+&lt;p&gt;CSS controls the presentation of the webpage.&lt;/p&gt;</code></pre>
+
+                <p>
+                    Each paragraph should be placed inside its own
+                    paragraph element.
+                </p>
+            </section>
+
+            <!-- HTML AND CSS -->
+            <section class="lesson-block" id="html-css">
+                <h2>HTML and CSS: Semantics and Presentation</h2>
+
+                <p>
+                    HTML and CSS work together to create modern
+                    webpages. Although they are closely related,
+                    they have different responsibilities.
+                </p>
+
+                <h3>HTML: Structure and Meaning</h3>
+
+                <p>
+                    HTML focuses on the meaning and organization
+                    of webpage content. It identifies which parts
+                    of a document are headings, paragraphs, links,
+                    images, lists, and other types of information.
+                </p>
+
+                <h3>CSS: Presentation and Appearance</h3>
+
+                <p>
+                    CSS stands for Cascading Style Sheets. It
+                    controls how HTML content appears on the screen.
+                    CSS can change colors, fonts, spacing, borders,
+                    backgrounds, and page layouts.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 340"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Comparison of HTML structure and CSS presentation">
+
+                        <rect x="40" y="35" width="330" height="260"
+                              rx="12" fill="#f4f7ff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="205" y="70" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#174ea6">HTML</text>
+                        <rect x="75" y="95" width="260" height="45"
+                              rx="5" fill="#dce8ff"/>
+                        <text x="205" y="124" text-anchor="middle"
+                              font-size="18" fill="#174ea6">Main Heading</text>
+                        <rect x="75" y="155" width="260" height="35"
+                              rx="5" fill="#dce8ff"/>
+                        <text x="205" y="178" text-anchor="middle"
+                              font-size="15" fill="#174ea6">Paragraph content</text>
+                        <rect x="75" y="205" width="260" height="35"
+                              rx="5" fill="#dce8ff"/>
+                        <text x="205" y="228" text-anchor="middle"
+                              font-size="15" fill="#174ea6">Hyperlink</text>
+                        <text x="205" y="272" text-anchor="middle"
+                              font-size="15" fill="#202641">Organizes content</text>
+
+                        <rect x="430" y="35" width="330" height="260"
+                              rx="12" fill="#f1faf3" stroke="#329b61" stroke-width="2"/>
+                        <text x="595" y="70" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#237348">CSS</text>
+                        <rect x="465" y="95" width="260" height="45"
+                              rx="5" fill="#237348"/>
+                        <text x="595" y="124" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#ffffff">Styled Heading</text>
+                        <rect x="465" y="155" width="260" height="35"
+                              rx="5" fill="#d9f0df"/>
+                        <text x="595" y="178" text-anchor="middle"
+                              font-size="15" fill="#237348">Styled paragraph</text>
+                        <rect x="465" y="205" width="260" height="35"
+                              rx="5" fill="#bde5c8"/>
+                        <text x="595" y="228" text-anchor="middle"
+                              font-size="15" fill="#145d36">Styled hyperlink</text>
+                        <text x="595" y="272" text-anchor="middle"
+                              font-size="15" fill="#202641">Controls appearance</text>
+                    </svg>
+                    <figcaption>
+                        HTML organizes the content while CSS determines its visual presentation.
+                    </figcaption>
+                </figure>
+
+                <h3>Semantic HTML</h3>
+
+                <p>
+                    Semantic HTML means using elements according to
+                    their meaning and purpose instead of selecting
+                    elements only because of how they look.
+                </p>
+
+                <p>
+                    For example, a heading should be marked using
+                    a heading element rather than using an unrelated
+                    element simply to make the text appear larger.
+                </p>
+
+                <h3>Emphasis and Strong Importance</h3>
+
+                <ul>
+                    <li>
+                        <strong>&lt;em&gt;:</strong> Identifies
+                        emphasized text.
+                    </li>
+                    <li>
+                        <strong>&lt;strong&gt;:</strong> Identifies
+                        text with strong importance.
+                    </li>
+                    <li>
+                        <strong>&lt;i&gt;:</strong> Represents text
+                        set apart from the surrounding text, such
+                        as a technical term or foreign phrase.
+                    </li>
+                    <li>
+                        <strong>&lt;b&gt;:</strong> Draws attention
+                        to text without necessarily indicating
+                        additional importance.
+                    </li>
+                </ul>
+
+                <p>
+                    Browsers commonly display em and i in italic
+                    styling, and strong and b in bold styling by
+                    default. However, their meanings are different.
+                </p>
+
+                <h3>Why Semantic HTML Matters</h3>
+
+                <ul>
+                    <li>Makes webpage content easier to understand.</li>
+                    <li>Improves document organization.</li>
+                    <li>Helps assistive technologies interpret content.</li>
+                    <li>Makes webpages easier to maintain.</li>
+                    <li>Separates content meaning from visual styling.</li>
+                </ul>
+            </section>
+
+            <!-- HTML RULES -->
+            <section class="lesson-block" id="html-rules">
+                <h2>Basic HTML Rules</h2>
+
+                <p>
+                    HTML follows structural and syntax rules that
+                    developers should observe when writing webpages.
+                    Following these rules helps browsers interpret
+                    documents consistently.
+                </p>
+
+                <h3>Properly Nest HTML Elements</h3>
+
+                <p>
+                    HTML elements must be properly nested. This means
+                    an element should be completely contained inside
+                    another element when nesting is allowed.
+                </p>
+
+                <p><strong>Correct nesting:</strong></p>
+
+                <pre><code>&lt;b&gt;
+    &lt;i&gt;Hello World&lt;/i&gt;
+&lt;/b&gt;</code></pre>
+
+                <p>
+                    The italic element is completely contained
+                    inside the bold element.
+                </p>
+
+                <p><strong>Incorrect nesting:</strong></p>
+
+                <pre><code>&lt;i&gt;
+    &lt;b&gt;Hello World
+&lt;/i&gt;
+    &lt;/b&gt;</code></pre>
+
+                <p>
+                    The elements overlap instead of being properly
+                    contained within each other.
+                </p>
+
+                <h3>Use Proper Opening and Closing Tags</h3>
+
+                <p>
+                    Most HTML elements require both opening and
+                    closing tags. The closing tag uses a forward
+                    slash before the element name.
+                </p>
+
+                <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+
+                <h3>Use Correct Attribute Syntax</h3>
+
+                <p>
+                    Attribute values should be enclosed in quotation
+                    marks. HTML attribute names are not case-sensitive
+                    in standard HTML, but lowercase names and quoted
+                    values are recommended for consistent code.
+                </p>
+
+                <pre><code>&lt;img src="photo.jpg" alt="Sample photo"&gt;</code></pre>
+
+                <p>
+                    The order of attributes does not normally affect
+                    how the element works.
+                </p>
+
+                <h3>Void Elements</h3>
+
+                <p>
+                    Some HTML elements do not contain content and
+                    do not use separate closing tags. These are
+                    called void elements.
+                </p>
+
+                <p>Examples include:</p>
+
+                <ul>
+                    <li>&lt;img&gt; for embedding images.</li>
+                    <li>&lt;br&gt; for creating line breaks.</li>
+                    <li>&lt;hr&gt; for thematic breaks.</li>
+                    <li>&lt;meta&gt; for document metadata.</li>
+                    <li>&lt;input&gt; for form input controls.</li>
+                </ul>
+
+                <p>
+                    In modern HTML, these elements do not require
+                    a trailing slash. The slash may appear in some
+                    coding styles, but it is not required.
+                </p>
+
+                <h3>Follow Element Content Rules</h3>
+
+                <p>
+                    Not every HTML element can contain every other
+                    element. For example, a paragraph should not
+                    contain another paragraph or a heading.
+                </p>
+
+                <p><strong>Correct example:</strong></p>
+
+                <pre><code>&lt;p&gt;
+    I am studying &lt;strong&gt;web development&lt;/strong&gt;.
+&lt;/p&gt;</code></pre>
+
+                <p><strong>Incorrect example:</strong></p>
+
+                <pre><code>&lt;p&gt;
+    This is a paragraph.
+    &lt;h2&gt;Another Heading&lt;/h2&gt;
+&lt;/p&gt;</code></pre>
+
+                <p>
+                    The heading should be placed outside the
+                    paragraph element.
+                </p>
+            </section>
+
+            <!-- HTML FILE STRUCTURE -->
+            <section class="lesson-block" id="html-structure">
+                <h2>Overall HTML File Structure</h2>
+
+                <p>
+                    An HTML document is divided into two main
+                    sections: the head and the body. Each section
+                    has a different purpose in describing and
+                    displaying a webpage.
+                </p>
+
+                <h3>Document Structure</h3>
+
+                <figure>
+                    <svg viewBox="0 0 800 440"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Structure of an HTML document">
+
+                        <rect x="80" y="25" width="640" height="390"
+                              rx="12" fill="#f5f5ff" stroke="#6555c7" stroke-width="2"/>
+
+                        <rect x="105" y="45" width="590" height="45"
+                              rx="6" fill="#ded9ff"/>
+                        <text x="400" y="74" text-anchor="middle"
+                              font-size="19" font-weight="bold" fill="#5142aa">
+                            &lt;html&gt;
+                        </text>
+
+                        <rect x="130" y="110" width="540" height="110"
+                              rx="8" fill="#e5efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="400" y="145" text-anchor="middle"
+                              font-size="20" font-weight="bold" fill="#174ea6">
+                            &lt;head&gt;
+                        </text>
+                        <text x="400" y="177" text-anchor="middle"
+                              font-size="16" fill="#202641">
+                            Metadata, title, character encoding
+                        </text>
+                        <text x="400" y="198" text-anchor="middle"
+                              font-size="15" fill="#202641">
+                            CSS references and other page information
+                        </text>
+
+                        <rect x="130" y="240" width="540" height="145"
+                              rx="8" fill="#e5f6e9" stroke="#329b61" stroke-width="2"/>
+                        <text x="400" y="275" text-anchor="middle"
+                              font-size="20" font-weight="bold" fill="#237348">
+                            &lt;body&gt;
+                        </text>
+                        <text x="400" y="310" text-anchor="middle"
+                              font-size="16" fill="#202641">
+                            Headings, paragraphs, images
+                        </text>
+                        <text x="400" y="335" text-anchor="middle"
+                              font-size="16" fill="#202641">
+                            Links, lists, forms, and other content
+                        </text>
+                        <text x="400" y="360" text-anchor="middle"
+                              font-size="15" fill="#237348">
+                            Visible webpage content
+                        </text>
+
+                        <text x="400" y="405" text-anchor="middle"
+                              font-size="17" font-weight="bold" fill="#5142aa">
+                            &lt;/html&gt;
+                        </text>
+                    </svg>
+                    <figcaption>
+                        The head stores document information, while the body contains visible webpage content.
+                    </figcaption>
+                </figure>
+
+                <h3>The Head Section</h3>
+
+                <p>
+                    The head section contains information about
+                    the webpage. Much of this information is not
+                    directly displayed as page content.
+                </p>
+
+                <p>It commonly contains:</p>
+
+                <ul>
+                    <li>
+                        <strong>Character encoding:</strong>
+                        Specifies how characters are represented,
+                        commonly using UTF-8.
+                    </li>
+                    <li>
+                        <strong>Page title:</strong>
+                        Specifies the title displayed on the
+                        browser tab.
+                    </li>
+                    <li>
+                        <strong>CSS references:</strong>
+                        Connects the webpage to external stylesheets.
+                    </li>
+                    <li>
+                        <strong>Metadata:</strong>
+                        Provides information about the document.
+                    </li>
+                </ul>
+
+                <h3>The Body Section</h3>
+
+                <p>
+                    The body contains the actual content displayed
+                    to visitors. This includes headings, paragraphs,
+                    images, links, lists, tables, forms, and other
+                    webpage elements.
+                </p>
+
+                <h3>Basic HTML Document Example</h3>
+
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+
+    &lt;p&gt;
+        This is my first HTML webpage.
+    &lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+                <h3>Important Parts of the Document</h3>
+
+                <ul>
+                    <li>
+                        <strong>&lt;!DOCTYPE html&gt;:</strong>
+                        Declares the document as an HTML document
+                        and helps browsers use standards mode.
+                    </li>
+                    <li>
+                        <strong>&lt;html lang="en"&gt;:</strong>
+                        Identifies the root element and specifies
+                        that the document language is English.
+                    </li>
+                    <li>
+                        <strong>&lt;meta charset="UTF-8"&gt;:</strong>
+                        Specifies the character encoding.
+                    </li>
+                    <li>
+                        <strong>&lt;title&gt;:</strong>
+                        Defines the title shown on the browser tab.
+                    </li>
+                    <li>
+                        <strong>&lt;body&gt;:</strong>
+                        Contains the webpage's visible content.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- WYSIWYG -->
+            <section class="lesson-block" id="wysiwyg">
+                <h2>WYSIWYG: What You See Is Not Necessarily What You Get</h2>
+
+                <p>
+                    WYSIWYG stands for What You See Is What You Get.
+                    It refers to editing applications that display
+                    a document in a form that closely resembles
+                    its final appearance.
+                </p>
+
+                <p>
+                    Word processors such as Microsoft Word allow
+                    users to see how a document will look when
+                    printed. Users can select page sizes, margins,
+                    fonts, and layouts while editing.
+                </p>
+
+                <h3>Why WYSIWYG Is Different on the Web</h3>
+
+                <p>
+                    Webpages are displayed on many different devices
+                    and browsers. A developer does not control the
+                    exact screen size, resolution, browser, or
+                    operating environment that every visitor uses.
+                </p>
+
+                <p>
+                    A webpage may be opened using a desktop computer,
+                    laptop, tablet, smartphone, or television. These
+                    devices have different screen dimensions and
+                    display capabilities.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 340"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="A webpage displayed on desktop, tablet, and smartphone">
+
+                        <rect x="45" y="45" width="390" height="220"
+                              rx="12" fill="#26344c" stroke="#202641" stroke-width="3"/>
+                        <rect x="60" y="60" width="360" height="185"
+                              rx="5" fill="#ffffff"/>
+                        <rect x="60" y="60" width="360" height="35"
+                              fill="#dce8ff"/>
+                        <text x="240" y="83" text-anchor="middle"
+                              font-size="14" fill="#174ea6">Website on Desktop</text>
+                        <rect x="85" y="115" width="310" height="35"
+                              rx="5" fill="#e5efff"/>
+                        <rect x="85" y="165" width="140" height="55"
+                              rx="5" fill="#e9f8ef"/>
+                        <rect x="245" y="165" width="150" height="55"
+                              rx="5" fill="#fff3df"/>
+                        <rect x="185" y="265" width="110" height="12"
+                              fill="#26344c"/>
+                        <rect x="145" y="277" width="190" height="10"
+                              rx="4" fill="#26344c"/>
+
+                        <rect x="475" y="90" width="145" height="190"
+                              rx="12" fill="#26344c"/>
+                        <rect x="485" y="103" width="125" height="160"
+                              rx="5" fill="#ffffff"/>
+                        <rect x="485" y="103" width="125" height="30"
+                              fill="#dce8ff"/>
+                        <rect x="497" y="145" width="101" height="35"
+                              rx="4" fill="#e5efff"/>
+                        <rect x="497" y="190" width="101" height="58"
+                              rx="4" fill="#e9f8ef"/>
+                        <text x="548" y="303" text-anchor="middle"
+                              font-size="14" fill="#202641">Tablet</text>
+
+                        <rect x="660" y="110" width="95" height="165"
+                              rx="15" fill="#26344c"/>
+                        <rect x="668" y="123" width="79" height="135"
+                              rx="5" fill="#ffffff"/>
+                        <rect x="668" y="123" width="79" height="25"
+                              fill="#dce8ff"/>
+                        <rect x="676" y="157" width="63" height="35"
+                              rx="4" fill="#e5efff"/>
+                        <rect x="676" y="199" width="63" height="48"
+                              rx="4" fill="#e9f8ef"/>
+                        <text x="708" y="303" text-anchor="middle"
+                              font-size="14" fill="#202641">Phone</text>
+                    </svg>
+                    <figcaption>
+                        The same webpage can appear differently depending on the device and screen size.
+                    </figcaption>
+                </figure>
+
+                <h3>Factors That Affect Webpage Appearance</h3>
+
+                <ul>
+                    <li>Screen resolution and display size.</li>
+                    <li>Browser differences.</li>
+                    <li>Device type and orientation.</li>
+                    <li>Available fonts and display settings.</li>
+                    <li>Responsive layout and styling.</li>
+                </ul>
+
+                <h3>Cross-Browser and Device Testing</h3>
+
+                <p>
+                    Developers should test webpages on different
+                    browsers and devices to check whether content
+                    is displayed correctly.
+                </p>
+
+                <p>
+                    They should also consider the screen sizes and
+                    device types they intend to support. A design
+                    that works well on a desktop may not work
+                    properly on a small touchscreen.
+                </p>
+
+                <p>
+                    This is why testing is an important part of
+                    web development. What appears correctly on
+                    the developer's screen may not look exactly
+                    the same for every visitor.
+                </p>
+            </section>
+
+            <!-- VALIDATION -->
+            <section class="lesson-block" id="html-validation">
+                <h2>HTML Validation</h2>
+
+                <p>
+                    HTML validation is the process of checking
+                    whether an HTML document follows the rules
+                    and requirements of the HTML standard.
+                </p>
+
+                <p>
+                    Browsers are designed to display webpages
+                    even when they contain certain HTML errors.
+                    Instead of stopping completely, browsers
+                    often attempt to interpret and display the
+                    document as best they can.
+                </p>
+
+                <h3>Why Validation Is Important</h3>
+
+                <ul>
+                    <li>Identifies errors in HTML syntax.</li>
+                    <li>Helps detect missing or incorrectly placed tags.</li>
+                    <li>Finds invalid element nesting.</li>
+                    <li>Improves consistency between browsers.</li>
+                    <li>Makes webpages easier to maintain.</li>
+                    <li>Helps developers follow web standards.</li>
+                </ul>
+
+                <h3>What Happens When HTML Is Invalid?</h3>
+
+                <p>
+                    Different browsers may handle incorrect HTML
+                    in different ways. One browser may automatically
+                    correct a mistake, while another may interpret
+                    the same code differently.
+                </p>
+
+                <p>
+                    These differences can result in inconsistent
+                    layouts, unexpected content, and difficult
+                    debugging problems.
+                </p>
+
+                <h3>HTML Validator</h3>
+
+                <p>
+                    An HTML validator is a tool that checks a
+                    webpage's markup and reports errors or warnings.
+                    Developers can use it to identify problems
+                    before publishing a website.
+                </p>
+
+                <p>
+                    The official W3C validator is available here:
+                </p>
+
+                <p>
+                    <a href="https://validator.w3.org/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        W3C Markup Validation Service
+                    </a>
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 300"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="HTML validation process">
+
+                        <rect x="30" y="75" width="190" height="110"
+                              rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="125" y="120" text-anchor="middle"
+                              font-size="19" font-weight="bold" fill="#174ea6">HTML Code</text>
+                        <text x="125" y="150" text-anchor="middle"
+                              font-size="15" fill="#202641">Your webpage</text>
+
+                        <path d="M220 130 H290"
+                              stroke="#555" stroke-width="3"/>
+                        <path d="M280 120 L292 130 L280 140"
+                              fill="none" stroke="#555" stroke-width="3"/>
+
+                        <rect x="295" y="75" width="210" height="110"
+                              rx="12" fill="#f0efff" stroke="#6555c7" stroke-width="2"/>
+                        <text x="400" y="120" text-anchor="middle"
+                              font-size="19" font-weight="bold" fill="#5142aa">HTML Validator</text>
+                        <text x="400" y="150" text-anchor="middle"
+                              font-size="15" fill="#202641">Checks markup</text>
+
+                        <path d="M505 130 H575"
+                              stroke="#555" stroke-width="3"/>
+                        <path d="M565 120 L577 130 L565 140"
+                              fill="none" stroke="#555" stroke-width="3"/>
+
+                        <rect x="580" y="35" width="190" height="85"
+                              rx="10" fill="#e9f8ef" stroke="#329b61" stroke-width="2"/>
+                        <text x="675" y="70" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#237348">Valid Code</text>
+                        <text x="675" y="95" text-anchor="middle"
+                              font-size="14" fill="#202641">Follows HTML rules</text>
+
+                        <rect x="580" y="145" width="190" height="85"
+                              rx="10" fill="#fff0ee" stroke="#d65a4a" stroke-width="2"/>
+                        <text x="675" y="180" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#a43a2c">Errors Found</text>
+                        <text x="675" y="205" text-anchor="middle"
+                              font-size="14" fill="#202641">Fix and validate again</text>
+
+                        <path d="M505 110 H565 V78 H580"
+                              stroke="#329b61" stroke-width="2" fill="none"/>
+                        <path d="M505 150 H565 V188 H580"
+                              stroke="#d65a4a" stroke-width="2" fill="none"/>
+                    </svg>
+                    <figcaption>
+                        A validator checks HTML code and reports problems that need attention.
+                    </figcaption>
+                </figure>
+
+                <h3>Validation Process</h3>
+
+                <ul>
+                    <li>Write the HTML document.</li>
+                    <li>Open the W3C validation service.</li>
+                    <li>Submit the HTML file or webpage address.</li>
+                    <li>Review the errors and warnings.</li>
+                    <li>Correct the problems in the source code.</li>
+                    <li>Validate the webpage again.</li>
+                </ul>
+            </section>
+
+            <!-- HTML5 -->
+            <section class="lesson-block" id="html5">
+                <h2>HTML5</h2>
+
+                <p>
+                    HTML5 introduced features that expanded the
+                    capabilities of webpages and web applications.
+                    It includes modern semantic elements and browser
+                    features that support interactive and multimedia
+                    experiences.
+                </p>
+
+                <h3>HTML5 Features</h3>
+
+                <h3>Geolocation</h3>
+
+                <p>
+                    Geolocation allows a website, with the user's
+                    permission, to request location information
+                    from a supported browser or device.
+                </p>
+
+                <p>
+                    Location information may include latitude
+                    and longitude, along with other supported
+                    location details.
+                </p>
+
+                <h3>Canvas</h3>
+
+                <p>
+                    The canvas element provides an area where
+                    JavaScript can draw graphics. Developers
+                    can use it to create drawings, animations,
+                    charts, and other visual content.
+                </p>
+
+                <pre><code>&lt;canvas id="myCanvas"
+        width="300"
+        height="150"&gt;
+&lt;/canvas&gt;</code></pre>
+
+                <h3>Web Storage</h3>
+
+                <p>
+                    Web Storage allows websites to store data
+                    locally in a user's browser. This data can
+                    be accessed by client-side programs and can
+                    help websites remember certain information.
+                </p>
+
+                <p>
+                    Common Web Storage mechanisms include
+                    localStorage and sessionStorage.
+                </p>
+
+                <h3>HTML5 and Modern Web Technologies</h3>
+
+                <p>
+                    In everyday discussions, the term HTML5 may
+                    refer not only to HTML itself but also to
+                    technologies commonly used together to build
+                    modern websites, such as CSS and JavaScript.
+                </p>
+
+                <h3>W3C and WHATWG</h3>
+
+                <p>
+                    The development of HTML standards has involved
+                    different organizations and approaches.
+                    The lecture discusses two organizations:
+                    the World Wide Web Consortium (W3C) and the
+                    Web Hypertext Application Technology Working
+                    Group (WHATWG).
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>W3C:</strong> An organization that
+                        develops standards and specifications
+                        for the World Wide Web.
+                    </li>
+                    <li>
+                        <strong>WHATWG:</strong> A group closely
+                        associated with browser developers that
+                        maintains the HTML Living Standard.
+                    </li>
+                </ul>
+
+                <p>
+                    The lecture describes their different
+                    approaches to HTML development. WHATWG
+                    favors a continuously updated Living
+                    Standard instead of treating HTML as a
+                    specification that stops at a numbered
+                    version.
+                </p>
+            </section>
+
+            <!-- XML -->
+            <section class="lesson-block" id="xml">
+                <h2>XML and Other Markup Languages</h2>
+
+                <p>
+                    XML stands for Extensible Markup Language.
+                    It provides a set of rules for creating
+                    markup languages that organize and describe
+                    information using tags and attributes.
+                </p>
+
+                <p>
+                    Unlike HTML, which uses a predefined set
+                    of elements for webpage content, XML allows
+                    developers to define their own tags according
+                    to the type of information they need to
+                    describe.
+                </p>
+
+                <h3>Purpose of XML</h3>
+
+                <ul>
+                    <li>Organizes structured information.</li>
+                    <li>Allows developers to define custom tags.</li>
+                    <li>Supports data exchange between systems.</li>
+                    <li>Provides a consistent format for storing information.</li>
+                    <li>Serves as a foundation for other markup languages.</li>
+                </ul>
+
+                <h3>XML-Based Markup Languages</h3>
+
+                <p>
+                    Several markup languages have been developed
+                    using XML rules.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>CML (Chemical Markup Language):</strong>
+                        Used to describe chemical information,
+                        including atoms, molecules, and bonds.
+                    </li>
+                    <li>
+                        <strong>MathML (Mathematical Markup Language):</strong>
+                        Used to represent mathematical equations
+                        and expressions.
+                    </li>
+                    <li>
+                        <strong>SVG (Scalable Vector Graphics):</strong>
+                        Used to describe two-dimensional graphics
+                        using shapes, lines, and text.
+                    </li>
+                </ul>
+
+                <h3>SVG Graphics</h3>
+
+                <p>
+                    SVG allows developers to create scalable
+                    graphics using code. Since SVG describes
+                    objects such as circles, rectangles, and
+                    lines, the graphics can be resized without
+                    losing their sharpness.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 300"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Examples of SVG graphics including a circle, rectangle, and text">
+
+                        <circle cx="170" cy="135" r="75"
+                                fill="#e8efff" stroke="#347fe0" stroke-width="5"/>
+
+                        <rect x="320" y="65" width="150" height="140"
+                              fill="#e9f8ef" stroke="#329b61" stroke-width="5"/>
+
+                        <polygon points="625,55 700,205 550,205"
+                                 fill="#fff0dc" stroke="#e69a27" stroke-width="5"/>
+
+                        <text x="170" y="255" text-anchor="middle"
+                              font-size="18" fill="#174ea6">Circle</text>
+                        <text x="395" y="255" text-anchor="middle"
+                              font-size="18" fill="#237348">Rectangle</text>
+                        <text x="625" y="255" text-anchor="middle"
+                              font-size="18" fill="#a7650b">Triangle</text>
+                    </svg>
+                    <figcaption>
+                        SVG graphics can represent shapes and illustrations directly in a webpage.
+                    </figcaption>
+                </figure>
+
+                <h3>Basic XML Syntax Rules</h3>
+
+                <ul>
+                    <li>Element names must follow XML naming rules.</li>
+                    <li>Every opened element must have a matching closing tag.</li>
+                    <li>Elements must be properly nested.</li>
+                    <li>Attribute values must be enclosed in quotation marks.</li>
+                    <li>XML documents must have a single root element.</li>
+                    <li>XML names are case-sensitive.</li>
+                </ul>
+
+                <h3>Example of XML</h3>
+
+                <pre><code>&lt;student&gt;
+    &lt;name&gt;Juan Dela Cruz&lt;/name&gt;
+    &lt;course&gt;BSIT&lt;/course&gt;
+    &lt;year&gt;Third Year&lt;/year&gt;
+&lt;/student&gt;</code></pre>
+
+                <p>
+                    In this example, the student element contains
+                    information about a student. The name, course,
+                    and year elements describe individual pieces
+                    of data.
+                </p>
+
+                <h3>HTML and XHTML</h3>
+
+                <p>
+                    XHTML is a variant of HTML designed to follow
+                    stricter XML syntax rules. It requires
+                    well-formed markup, properly nested elements,
+                    and correctly written attributes.
+                </p>
+
+                <p>
+                    Modern HTML does not require every XML rule.
+                    For example, standard HTML allows certain
+                    closing tags to be omitted in situations
+                    defined by the HTML specification. However,
+                    writing clear and properly structured HTML
+                    remains a good development practice.
+                </p>
+            </section>
+
+            <!-- CREATING A WEBPAGE -->
+            <section class="lesson-block" id="creating-webpage">
+                <h2>How to Create a Webpage</h2>
+
+                <p>
+                    Creating an HTML webpage begins with writing
+                    code in a text editor. The developer saves
+                    the document with an HTML file extension
+                    and opens it in a web browser to see how
+                    it appears.
+                </p>
+
+                <h3>Choose a Text Editor</h3>
+
+                <p>
+                    A text editor is an application used to
+                    write and edit plain text files, including
+                    HTML and CSS source code.
+                </p>
+
+                <p>
+                    Text editors are different from word
+                    processors because they work directly
+                    with source code instead of automatically
+                    applying document formatting.
+                </p>
+
+                <h3>Examples of Text Editors</h3>
+
+                <ul>
+                    <li>
+                        <strong>Notepad:</strong> A basic text
+                        editor included with Windows.
+                    </li>
+                    <li>
+                        <strong>Notepad++:</strong> A source
+                        code editor with syntax highlighting
+                        and additional development features.
+                    </li>
+                    <li>
+                        <strong>Sublime Text:</strong> A code
+                        editor available for different operating
+                        systems.
+                    </li>
+                    <li>
+                        <strong>BBEdit:</strong> A text editor
+                        for macOS.
+                    </li>
+                    <li>
+                        <strong>Visual Studio Code:</strong>
+                        A popular code editor with extensions
+                        and development tools.
+                    </li>
+                </ul>
+
+                <h3>Start with an HTML Template</h3>
+
+                <p>
+                    Instead of creating every webpage from
+                    nothing, developers can begin with a basic
+                    HTML template. They can then add the
+                    content and elements needed for their
+                    project.
+                </p>
+
+                <h3>Write and Save the HTML File</h3>
+
+                <ul>
+                    <li>Open a text editor.</li>
+                    <li>Create a new document.</li>
+                    <li>Write the HTML structure and content.</li>
+                    <li>Save the file using the .html extension.</li>
+                    <li>Keep related images and other resources organized.</li>
+                </ul>
+
+                <h3>Test the Webpage in a Browser</h3>
+
+                <p>
+                    HTML files can be opened directly from a
+                    computer without uploading them to a
+                    web server. A developer can open the saved
+                    file using a browser or drag the file into
+                    a browser window.
+                </p>
+
+                <p>
+                    After opening the webpage, check whether
+                    the headings, paragraphs, links, images,
+                    and other elements appear correctly.
+                </p>
+
+                <h3>Debugging Webpage Problems</h3>
+
+                <p>
+                    If the webpage does not appear correctly,
+                    return to the HTML source file and inspect
+                    the code. Check for missing tags, incorrect
+                    file paths, spelling errors, and invalid
+                    nesting.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 800 300"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Web development workflow from writing code to testing a webpage">
+
+                        <rect x="25" y="80" width="170" height="115"
+                              rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="110" y="125" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#174ea6">Write HTML</text>
+                        <text x="110" y="155" text-anchor="middle"
+                              font-size="14" fill="#202641">Text editor</text>
+
+                        <path d="M195 138 H225" stroke="#555" stroke-width="3"/>
+                        <path d="M215 128 L227 138 L215 148"
+                              fill="none" stroke="#555" stroke-width="3"/>
+
+                        <rect x="230" y="80" width="170" height="115"
+                              rx="12" fill="#f0efff" stroke="#6555c7" stroke-width="2"/>
+                        <text x="315" y="125" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#5142aa">Save File</text>
+                        <text x="315" y="155" text-anchor="middle"
+                              font-size="14" fill="#202641">.html document</text>
+
+                        <path d="M400 138 H430" stroke="#555" stroke-width="3"/>
+                        <path d="M420 128 L432 138 L420 148"
+                              fill="none" stroke="#555" stroke-width="3"/>
+
+                        <rect x="435" y="80" width="150" height="115"
+                              rx="12" fill="#e9f8ef" stroke="#329b61" stroke-width="2"/>
+                        <text x="510" y="125" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#237348">Open</text>
+                        <text x="510" y="155" text-anchor="middle"
+                              font-size="14" fill="#202641">Web browser</text>
+
+                        <path d="M585 138 H615" stroke="#555" stroke-width="3"/>
+                        <path d="M605 128 L617 138 L605 148"
+                              fill="none" stroke="#555" stroke-width="3"/>
+
+                        <rect x="620" y="80" width="155" height="115"
+                              rx="12" fill="#fff3df" stroke="#e69a27" stroke-width="2"/>
+                        <text x="697" y="125" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#a7650b">Test</text>
+                        <text x="697" y="155" text-anchor="middle"
+                              font-size="14" fill="#202641">Check results</text>
+
+                        <text x="400" y="245" text-anchor="middle"
+                              font-size="17" fill="#202641">
+                            Edit and test again when errors are found.
+                        </text>
+                    </svg>
+                    <figcaption>
+                        Basic workflow for creating and testing an HTML webpage.
+                    </figcaption>
+                </figure>
+            </section>
+
+            <!-- PUBLISHING -->
+            <section class="lesson-block" id="publishing-webpage">
+                <h2>Putting a Webpage on the Web</h2>
+
+                <p>
+                    A webpage stored on a personal computer can
+                    be viewed locally, but other people cannot
+                    normally access it through a public website
+                    address. To make a webpage available online,
+                    it must be uploaded to a web server or
+                    hosting service.
+                </p>
+
+                <h3>What Is Web Hosting?</h3>
+
+                <p>
+                    Web hosting is a service that stores website
+                    files on a server and makes them accessible
+                    through the Internet. When visitors enter
+                    the website address, the server delivers
+                    the requested webpage resources to their
+                    browsers.
+                </p>
+
+                <h3>Before Publishing a Website</h3>
+
+                <ul>
+                    <li>Check that the HTML code is properly structured.</li>
+                    <li>Validate the HTML documents.</li>
+                    <li>Test the website using different browsers.</li>
+                    <li>Check the layout on different screen sizes.</li>
+                    <li>Make sure images and other resources load correctly.</li>
+                    <li>Check that navigation links work properly.</li>
+                </ul>
+
+                <h3>Uploading Website Files</h3>
+
+                <p>
+                    After testing, developers can upload their
+                    HTML files, stylesheets, images, and other
+                    website resources to a web hosting server.
+                    The hosting service provides an address
+                    through which visitors can access the website.
+                </p>
+
+                <h3>Organizing Website File Names</h3>
+
+                <p>
+                    Clear and consistent file names help
+                    developers manage website resources and
+                    reduce problems when uploading files.
+                </p>
+
+                <ul>
+                    <li>Use lowercase letters for file names.</li>
+                    <li>Use numbers when necessary.</li>
+                    <li>Use hyphens to separate words.</li>
+                    <li>Avoid unnecessary spaces and special characters.</li>
+                    <li>Use the correct file extension, such as .html or .css.</li>
+                </ul>
+
+                <p><strong>Example of organized file names:</strong></p>
+
+                <pre><code>index.html
+about-us.html
+contact-page.html
+style.css
+computer-image.jpg</code></pre>
+            </section>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <section class="lesson-block" id="practical-example">
+                <h2>Practical HTML Example</h2>
+
+                <p>
+                    The following example combines the concepts
+                    discussed in this lesson. It demonstrates
+                    how to create a simple webpage using HTML
+                    headings, paragraphs, links, images, and
+                    semantic elements.
+                </p>
+
+                <h3>Sample HTML Webpage</h3>
+
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First HTML Website&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;header&gt;
+        &lt;h1&gt;My First HTML Website&lt;/h1&gt;
+
+        &lt;p&gt;
+            Welcome to my personal webpage.
+        &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;About HTML&lt;/h2&gt;
+
+            &lt;p&gt;
+                HTML is used to create the structure
+                and content of webpages.
+            &lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Learning Resources&lt;/h2&gt;
+
+            &lt;p&gt;
+                Visit this website to learn more:
+            &lt;/p&gt;
+
+            &lt;a href="https://www.w3schools.com/html/"&gt;
+                Learn HTML
+            &lt;/a&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Sample Image&lt;/h2&gt;
+
+            &lt;img src="computer.jpg"
+                 alt="A desktop computer"&gt;
+        &lt;/section&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;My First HTML Website&lt;/p&gt;
+    &lt;/footer&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+                <h3>Explanation of the Example</h3>
+
+                <ul>
+                    <li>
+                        The DOCTYPE declaration identifies
+                        the document as HTML.
+                    </li>
+                    <li>
+                        The html element contains the entire
+                        document.
+                    </li>
+                    <li>
+                        The head contains metadata and the
+                        webpage title.
+                    </li>
+                    <li>
+                        The body contains the visible content.
+                    </li>
+                    <li>
+                        The header introduces the webpage.
+                    </li>
+                    <li>
+                        The main element contains the primary
+                        information.
+                    </li>
+                    <li>
+                        The section elements organize related
+                        content.
+                    </li>
+                    <li>
+                        The anchor element creates a link to
+                        an external learning resource.
+                    </li>
+                    <li>
+                        The image element displays a picture
+                        and provides alternative text.
+                    </li>
+                    <li>
+                        The footer contains information at
+                        the bottom of the webpage.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- KEY TAKEAWAYS -->
+            <section class="lesson-block" id="key-takeaways">
+                <h2>Key Takeaways</h2>
+
+                <ul>
+                    <li>
+                        HTML stands for HyperText Markup Language
+                        and provides the structure of webpages.
+                    </li>
+                    <li>
+                        The web uses a client-server architecture
+                        in which browsers request resources from
+                        web servers.
+                    </li>
+                    <li>
+                        HTTP is used to transfer webpage resources
+                        between clients and servers.
+                    </li>
+                    <li>
+                        HTML tags and elements organize webpage
+                        content.
+                    </li>
+                    <li>
+                        Attributes provide additional information
+                        about HTML elements.
+                    </li>
+                    <li>
+                        Semantic HTML describes the meaning and
+                        purpose of webpage content.
+                    </li>
+                    <li>
+                        CSS controls the visual presentation
+                        of HTML content.
+                    </li>
+                    <li>
+                        HTML elements must be properly nested
+                        and follow their content rules.
+                    </li>
+                    <li>
+                        An HTML document contains a head section
+                        and a body section.
+                    </li>
+                    <li>
+                        Websites should be tested on different
+                        devices and browsers.
+                    </li>
+                    <li>
+                        HTML validators help identify markup
+                        errors and improve code quality.
+                    </li>
+                    <li>
+                        HTML5 includes features such as Canvas,
+                        Geolocation, and Web Storage.
+                    </li>
+                    <li>
+                        XML provides rules for creating structured
+                        markup languages.
+                    </li>
+                    <li>
+                        Webpages can be created locally and
+                        published online through a web server
+                        or hosting service.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- REFERENCES -->
+            <section class="lesson-block" id="references">
+                <h2>References and Learning Resources</h2>
+
+                <p>
+                    The following resources can help you explore
+                    HTML concepts, review elements and attributes,
+                    and check the correctness of your webpages.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>W3Schools HTML Reference</strong>
+                        <p>
+                            A reference for HTML elements, tags,
+                            attributes, and examples.
+                        </p>
+                        <a href="https://www.w3schools.com/tags/default.asp"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Visit W3Schools HTML Tags Reference
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>W3C Markup Validation Service</strong>
+                        <p>
+                            A tool for checking HTML documents
+                            and identifying markup errors.
+                        </p>
+                        <a href="https://validator.w3.org/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Visit W3C HTML Validator
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>WHATWG HTML Living Standard</strong>
+                        <p>
+                            The maintained HTML specification
+                            describing the language and its
+                            browser behavior.
+                        </p>
+                        <a href="https://html.spec.whatwg.org/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Read the HTML Living Standard
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>MDN Web Docs - HTML</strong>
+                        <p>
+                            Learning materials and documentation
+                            about HTML elements and web development.
+                        </p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Visit MDN HTML Documentation
+                        </a>
+                    </li>
+                </ul>
+
+                <p>
+                    <strong>Primary lesson source:</strong>
+                    Lecture #10: Intro to HTML, CS106E Spring 2018,
+                    Young.
+                </p>
+            </section>
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+             <div class="topic-nav">
+
+                <a class="btn outline" href="topic-21.html">
+                    ← Topic 1
+                </a>
+
+                <a class="btn primary" href="topic-23.html">
+                    Topic 3 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+         document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

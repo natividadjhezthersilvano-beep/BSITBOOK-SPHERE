@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <meta name="description" content="BSIT E-Book learning website for computing, platform technologies, and web technologies.">
+
+    <title>Resources | BSIT E-Book</title>
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+
+        /* =========================================
+           GLOBAL STYLES
+        ========================================= */
+
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #fff;
+            --soft: #f7f7fb;
+
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --ink: #e6e9f5;
+                --navy: #e6e9f5;
+                --purple: #9d90ff;
+                --muted: #a3abc2;
+                --line: #2c3558;
+                --paper: #161d38;
+                --soft: #0f1530;
+                color-scheme: dark;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --ink: #e6e9f5;
+            --navy: #e6e9f5;
+            --purple: #9d90ff;
+            --muted: #a3abc2;
+            --line: #2c3558;
+            --paper: #161d38;
+            --soft: #0f1530;
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0 0 auto;
+            height: env(safe-area-inset-top, 0px);
+            background: var(--paper);
+            z-index: 30;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* =========================================
+           TEXT STYLES
+        ========================================= */
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .eyebrow.light {
+            color: #c8c0ff;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        h2.t {
+            font: 800 29px/1.25 Manrope, system-ui, Arial, sans-serif;
+            letter-spacing: -1px;
+            margin: 10px 0;
+            color: var(--navy);
+        }
+
+        h2.t em {
+            color: var(--purple);
+            font-style: normal;
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 0;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .full {
+            width: 100%;
+        }
+
+        .outline {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .light-btn {
+            background: #fff;
+            color: #292a56;
+        }
+
+        .danger {
+            background: transparent;
+            border: 1px solid var(--line);
+            color: #c43c55;
+            padding: 5px 10px;
+            font-size: 11px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           HEADER AND NAVIGATION
+        ========================================= */
+
+       .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .brand-symbol {
+            width: 36px;
+            height: 36px;
+            border-radius: 7px;
+            background: var(--purple);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font: 800 20px Manrope, system-ui, Arial, sans-serif;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           PAGE LAYOUT
+        ========================================= */
+
+        .section-wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .sec {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .sec-title {
+            margin-bottom: 24px;
+        }
+
+        .sec-title p {
+            font-size: 13px;
+            color: var(--muted);
+            margin: 0;
+        }
+
+
+        /* =========================================
+           RESOURCE CARDS
+        ========================================= */
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            display: block;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 12px;
+            background: var(--paper);
+            transition: .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px #22244412;
+            border-color: var(--purple);
+        }
+
+        .card b.lb {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--purple);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .card h3 {
+            font: 700 15px Manrope, system-ui, Arial, sans-serif;
+            margin: 4px 0;
+        }
+
+        .card p {
+            margin: 0;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =========================================
+         WEBSITE
+    ========================================= -->
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+           <a class="brand" href="index.html">
+    <img src="BookSphere.jfif" alt="BookSphere Logo" class="brand-logo">
+
+    <span>
+        BookSphere
+        <small>STUDENT LEARNING PORTAL</small>
+    </span>
+</a>
+
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                aria-label="Open navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="chapters.html">Chapters</a>
+                <a href="resources.html">Resources</a>
+                <a href="activities.html">Activities</a>
+                <a href="glossary.html">Glossary</a>
+                <a href="references.html">References</a>
+
+            </nav>
+
+        </header>
+
+
+        <!-- =========================================
+             MAIN CONTENT
+        ========================================= -->
+
+        <main>
+
+            <section class="section-wrap sec" id="resources">
+
+                <!-- PAGE TITLE -->
+                <div class="sec-title">
+
+                    <span class="eyebrow">
+                        KEEP DISCOVERING
+                    </span>
+
+                    <h2 class="t">
+                        Helpful learning resources
+                    </h2>
+
+                    <p>
+                        References, tutorials, videos and downloadable
+                        learning materials.
+                    </p>
+
+                </div>
+
+
+                <!-- RESOURCE CARDS -->
+                <div class="chapter-grid">
+
+                    <!-- KHAN ACADEMY -->
+                    <a
+                        class="card"
+                        href="https://www.khanacademy.org/computing"
+                        target="_blank"
+                        rel="noopener">
+
+                        <b class="lb">LEARN</b>
+
+                        <h3>Khan Academy</h3>
+
+                        <p class="muted">
+                            Beginner-friendly lessons about computing
+                            and programming.
+                        </p>
+
+                        <b style="color:var(--purple);font-size:12px;">
+                            Visit resource ↗
+                        </b>
+
+                    </a>
+
+
+                    <!-- MDN WEB DOCS -->
+                    <a
+                        class="card"
+                        href="https://developer.mozilla.org/en-US/docs/Learn"
+                        target="_blank"
+                        rel="noopener">
+
+                        <b class="lb">LEARN</b>
+
+                        <h3>MDN Web Docs</h3>
+
+                        <p class="muted">
+                            Guides and documentation for modern
+                            web technologies.
+                        </p>
+
+                        <b style="color:var(--purple);font-size:12px;">
+                            Visit resource ↗
+                        </b>
+
+                    </a>
+
+
+                    <!-- W3SCHOOLS -->
+                    <a
+                        class="card"
+                        href="https://www.w3schools.com/"
+                        target="_blank"
+                        rel="noopener">
+
+                        <b class="lb">LEARN</b>
+
+                        <h3>W3Schools</h3>
+
+                        <p class="muted">
+                            Interactive examples for HTML, CSS,
+                            JavaScript, and more.
+                        </p>
+
+                        <b style="color:var(--purple);font-size:12px;">
+                            Visit resource ↗
+                        </b>
+
+                    </a>
+
+                </div>
+
+                <!--
+                    To add another resource:
+                    Copy one complete resource card above
+                    and change its title, link, and description.
+                -->
+
+            </section>
+
+        </main>
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================= -->
+
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 BSIT E-Book Development
+                </span>
+
+                <span>
+                    Learn with curiosity. Build with purpose.
+                </span>
+
+                <a href="#top">
+                    Back to top ↑
+                </a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        /* =========================================
+           STUDENT ACCESS PROTECTION
+        ========================================= */
+
+        const isUnlocked = () => {
+            try {
+                return sessionStorage.getItem("bsitOk") === "1";
+            } catch (error) {
+                return false;
+            }
+        };
+
+        // Redirect students who have not logged in.
+        if (!isUnlocked()) {
+            window.location.replace("index.html");
+        }
+
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        const logoutButton = document.getElementById("logoutBtn");
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (error) {
+                    // Continue to the login page.
+                }
+
+                window.location.href = "index.html";
+
+            });
+
+        }
+
+
+        /* =========================================
+           MOBILE NAVIGATION
+        ========================================= */
+
+        const navToggle = document.getElementById("navToggle");
+        const mainNav = document.getElementById("mainNav");
+
+        if (navToggle && mainNav) {
+
+            navToggle.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+            });
+
+
+            // Close the menu after clicking a navigation link.
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav.classList.remove("open");
+
+                    navToggle.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+        }
+
+
+        /* =========================================
+           ACTIVE NAVIGATION LINK
+        ========================================= */
+
+        const currentPage =
+            window.location.pathname.split("/").pop() || "index.html";
+
+        document.querySelectorAll(".main-nav a").forEach(link => {
+
+            const linkPage = link.getAttribute("href");
+
+            if (linkPage === currentPage) {
+                link.classList.add("active");
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

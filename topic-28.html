@@ -1,0 +1,3826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+       User interface design and accessibility
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+           <div class="lesson-layout">
+
+    <aside class="lesson-sidebar">
+        <h3>On This Page</h3>
+
+        <nav class="lesson-toc" id="lessonTOC">
+            <a href="#overview" class="active">Overview</a>
+            <a href="#understanding-ui">Understanding User Interface Design</a>
+            <a href="#ui-vs-ux">UI and UX Design</a>
+            <a href="#ui-elements">Elements of a User Interface</a>
+            <a href="#design-principles">Principles of Good UI Design</a>
+            <a href="#visual-hierarchy">Visual Hierarchy and Layout</a>
+            <a href="#navigation">Navigation and Interaction</a>
+            <a href="#usability">Usability and User-Friendly Design</a>
+            <a href="#accessibility">Understanding Web Accessibility</a>
+            <a href="#accessibility-principles">Principles of Accessibility</a>
+            <a href="#wcag">Web Content Accessibility Guidelines</a>
+            <a href="#accessible-html">Accessible HTML Elements</a>
+            <a href="#color-contrast">Color and Contrast</a>
+            <a href="#keyboard">Keyboard Accessibility</a>
+            <a href="#images-media">Images and Multimedia Accessibility</a>
+            <a href="#forms-accessibility">Accessible Forms</a>
+            <a href="#responsive-design">Responsive and Inclusive Design</a>
+            <a href="#accessibility-testing">Accessibility Testing</a>
+            <a href="#practical-example">Practical Example</a>
+            <a href="#applications">Practical Applications</a>
+            <a href="#takeaways">Key Takeaways</a>
+        </nav>
+
+    
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+        <article class="lesson-content">
+
+            <!-- OVERVIEW -->
+            <section class="lesson-block" id="overview">
+
+                <h2>Overview</h2>
+
+                <p>
+                    User Interface (UI) Design and Accessibility are important
+                    parts of modern website and application development. A
+                    well-designed interface allows users to interact with a
+                    system easily, understand its features, and complete tasks
+                    without unnecessary difficulty.
+                </p>
+
+                <p>
+                    User interface design focuses on the appearance,
+                    organization, and interactive elements of a digital
+                    product. It includes buttons, menus, forms, icons, colors,
+                    typography, images, and page layouts.
+                </p>
+
+                <p>
+                    Accessibility ensures that websites and applications can
+                    be used by people with different abilities, including
+                    individuals with visual, hearing, physical, speech, and
+                    cognitive disabilities.
+                </p>
+
+                <p>
+                    Developers should consider both UI design and
+                    accessibility when creating websites. An attractive
+                    interface is not enough if users cannot understand or
+                    operate it. A good interface should be understandable,
+                    consistent, responsive, and accessible.
+                </p>
+
+            </section>
+
+
+            <!-- UNDERSTANDING UI -->
+            <section class="lesson-block" id="understanding-ui">
+
+                <h2>Understanding User Interface Design</h2>
+
+                <p>
+                    User Interface Design is the process of planning and
+                    creating the visual and interactive parts of a website,
+                    mobile application, desktop program, or other digital
+                    system.
+                </p>
+
+                <p>
+                    The purpose of UI design is to provide a clear way for
+                    users to communicate with a system. It determines how
+                    information is displayed and how users perform actions
+                    such as clicking buttons, entering information, opening
+                    menus, and navigating between pages.
+                </p>
+
+                <p>
+                    UI designers consider the needs of the intended users
+                    when arranging information and interactive components.
+                    They aim to make the system easy to learn and comfortable
+                    to use.
+                </p>
+
+                <h3>Goals of User Interface Design</h3>
+
+                <p><strong>Clarity:</strong> Information, labels, buttons, and
+                    instructions should be easy to understand.</p>
+
+                <p><strong>Consistency:</strong> Similar elements should have
+                    the same appearance and behavior throughout the system.</p>
+
+                <p><strong>Efficiency:</strong> Users should be able to complete
+                    tasks with as few unnecessary steps as possible.</p>
+
+                <p><strong>Accessibility:</strong> People with different
+                    abilities should be able to access and operate the
+                    interface.</p>
+
+                <p><strong>Visual appeal:</strong> The interface should have
+                    an organized and appropriate appearance that supports
+                    the purpose of the system.</p>
+
+                <p><strong>Feedback:</strong> The system should inform users
+                    when an action has been completed, when an error occurs,
+                    or when something is loading.</p>
+
+            </section>
+
+
+            <!-- UI AND UX -->
+            <section class="lesson-block" id="ui-vs-ux">
+
+                <h2>UI and UX Design</h2>
+
+                <p>
+                    User Interface Design and User Experience Design are
+                    related concepts, but they focus on different aspects of
+                    a digital product.
+                </p>
+
+                <h3>User Interface Design (UI)</h3>
+
+                <p>
+                    UI design focuses on the visual appearance and interactive
+                    components of a system. It determines how the interface
+                    looks and how users interact with its controls.
+                </p>
+
+                <p>Examples include:</p>
+
+                <p>Button styles and colors.</p>
+                <p>Navigation menus and page layouts.</p>
+                <p>Font styles and text sizes.</p>
+                <p>Icons, images, and interactive controls.</p>
+
+                <h3>User Experience Design (UX)</h3>
+
+                <p>
+                    UX design focuses on the overall experience a person has
+                    when using a product or service. It considers whether the
+                    system is useful, understandable, efficient, and
+                    satisfying.
+                </p>
+
+                <p>Examples include:</p>
+
+                <p>How easily users can complete a registration process.</p>
+                <p>How quickly users can find information.</p>
+                <p>Whether the system provides understandable instructions.</p>
+                <p>How users feel when completing tasks.</p>
+
+                <h3>Difference Between UI and UX</h3>
+
+                <p>
+                    UI focuses on the interface that users see and interact
+                    with, while UX focuses on the complete experience of using
+                    the system. Both are necessary when developing effective
+                    digital products.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 260"
+                         width="100%"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-labelledby="uiux-title uiux-desc">
+
+                        <title id="uiux-title">UI and UX design comparison</title>
+                        <desc id="uiux-desc">
+                            UI design focuses on the visual interface, while
+                            UX design focuses on the overall user experience.
+                        </desc>
+
+                        <rect x="20" y="25" width="340" height="190"
+                              rx="14" fill="#eaf1ff"
+                              stroke="#347fe0" stroke-width="2"/>
+
+                        <rect x="400" y="25" width="340" height="190"
+                              rx="14" fill="#f0edff"
+                              stroke="#6555c7" stroke-width="2"/>
+
+                        <text x="190" y="65" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#174ea6">
+                            UI Design
+                        </text>
+
+                        <text x="570" y="65" text-anchor="middle"
+                              font-size="24" font-weight="bold" fill="#5141a7">
+                            UX Design
+                        </text>
+
+                        <rect x="90" y="90" width="200" height="70"
+                              rx="8" fill="#ffffff" stroke="#347fe0"/>
+
+                        <rect x="110" y="105" width="160" height="12"
+                              rx="4" fill="#d8e5ff"/>
+
+                        <rect x="110" y="125" width="90" height="20"
+                              rx="5" fill="#347fe0"/>
+
+                        <text x="155" y="139" text-anchor="middle"
+                              font-size="10" fill="#ffffff">Button</text>
+
+                        <text x="190" y="185" text-anchor="middle"
+                              font-size="14" fill="#202641">
+                            Appearance and controls
+                        </text>
+
+                        <circle cx="570" cy="123" r="37"
+                                fill="#ffffff" stroke="#6555c7" stroke-width="2"/>
+
+                        <path d="M552 123 L565 136 L590 107"
+                              fill="none" stroke="#6555c7"
+                              stroke-width="6" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+
+                        <text x="570" y="185" text-anchor="middle"
+                              font-size="14" fill="#202641">
+                            Overall user experience
+                        </text>
+
+                    </svg>
+                    <figcaption>
+                        Comparison of User Interface Design and User
+                        Experience Design.
+                    </figcaption>
+                </figure>
+
+            </section>
+
+
+            <!-- UI ELEMENTS -->
+            <section class="lesson-block" id="ui-elements">
+
+                <h2>Elements of a User Interface</h2>
+
+                <p>
+                    A user interface is made up of different visual and
+                    interactive elements. These components help users
+                    understand information and perform actions within a
+                    website or application.
+                </p>
+
+                <h3>Buttons</h3>
+
+                <p>
+                    Buttons allow users to perform actions. They are commonly
+                    used for submitting forms, saving information, opening
+                    pages, confirming choices, and canceling operations.
+                </p>
+
+                <p>
+                    Examples include Login, Register, Submit, Save, Cancel,
+                    and Continue.
+                </p>
+
+                <h3>Navigation Menus</h3>
+
+                <p>
+                    Navigation menus provide links to different sections or
+                    pages of a website. They help users locate information
+                    and move through the system.
+                </p>
+
+                <h3>Forms and Input Fields</h3>
+
+                <p>
+                    Forms collect information from users. Input fields allow
+                    users to enter data such as names, email addresses,
+                    passwords, search terms, and contact information.
+                </p>
+
+                <h3>Icons</h3>
+
+                <p>
+                    Icons are small visual symbols that represent actions,
+                    objects, or features. Examples include a magnifying glass
+                    for search, a house for home, and a trash bin for delete.
+                </p>
+
+                <h3>Typography</h3>
+
+                <p>
+                    Typography refers to the style, size, spacing, and
+                    arrangement of text. Appropriate typography improves
+                    readability and helps users identify important
+                    information.
+                </p>
+
+                <h3>Images and Illustrations</h3>
+
+                <p>
+                    Images and illustrations communicate ideas, provide
+                    visual information, and make interfaces easier to
+                    understand. They should be relevant to the content and
+                    include appropriate alternative text when necessary.
+                </p>
+
+                <h3>Cards and Containers</h3>
+
+                <p>
+                    Cards and containers organize related information into
+                    separate sections. They are commonly used for products,
+                    services, announcements, profiles, and dashboard
+                    information.
+                </p>
+
+                <h3>Feedback Messages</h3>
+
+                <p>
+                    Feedback messages communicate the result of a user's
+                    action. Examples include successful registration,
+                    incorrect passwords, missing fields, and loading
+                    notifications.
+                </p>
+
+            </section>
+
+
+            <!-- DESIGN PRINCIPLES -->
+            <section class="lesson-block" id="design-principles">
+
+                <h2>Principles of Good UI Design</h2>
+
+                <p>
+                    Good UI design follows principles that help make digital
+                    interfaces understandable, organized, and convenient to
+                    use.
+                </p>
+
+                <h3>Simplicity</h3>
+
+                <p>
+                    A simple interface avoids unnecessary elements and
+                    distractions. It displays the information and controls
+                    users need without making the page confusing.
+                </p>
+
+                <h3>Consistency</h3>
+
+                <p>
+                    Consistency means using similar styles, colors, layouts,
+                    and behaviors throughout the system. For example, if
+                    primary buttons are blue on one page, they should follow
+                    the same design on other pages.
+                </p>
+
+                <h3>Visibility</h3>
+
+                <p>
+                    Important features and available actions should be easy
+                    to find. Users should not have to search excessively for
+                    essential controls.
+                </p>
+
+                <h3>Feedback</h3>
+
+                <p>
+                    The system should respond to user actions. For example,
+                    after submitting a form, the website should display a
+                    success message or explain what needs to be corrected.
+                </p>
+
+                <h3>Error Prevention</h3>
+
+                <p>
+                    Interfaces should be designed to prevent common mistakes.
+                    Input validation, confirmation messages, clear
+                    instructions, and appropriate default values can help
+                    reduce errors.
+                </p>
+
+                <h3>Learnability</h3>
+
+                <p>
+                    A system should be easy for new users to understand.
+                    Familiar icons, descriptive labels, clear instructions,
+                    and predictable controls help users learn how to operate
+                    the interface.
+                </p>
+
+                <h3>User Control</h3>
+
+                <p>
+                    Users should be able to control their actions. Systems
+                    should provide options to cancel, go back, edit
+                    information, or undo certain operations when appropriate.
+                </p>
+
+                <h3>Flexibility</h3>
+
+                <p>
+                    A good interface should support different user needs and
+                    situations. Examples include keyboard navigation,
+                    adjustable text sizes, responsive layouts, and different
+                    ways to complete an action.
+                </p>
+
+            </section>
+
+
+            <!-- VISUAL HIERARCHY -->
+            <section class="lesson-block" id="visual-hierarchy">
+
+                <h2>Visual Hierarchy and Layout</h2>
+
+                <p>
+                    Visual hierarchy is the arrangement of interface elements
+                    according to their importance. It helps users recognize
+                    which information they should notice first and how they
+                    should move through a page.
+                </p>
+
+                <p>
+                    Designers use size, color, spacing, position, contrast,
+                    and typography to establish visual hierarchy.
+                </p>
+
+                <h3>Size</h3>
+
+                <p>
+                    Larger text and elements often attract more attention.
+                    Main headings are usually larger than descriptions and
+                    supporting information.
+                </p>
+
+                <h3>Color and Contrast</h3>
+
+                <p>
+                    Color can emphasize important information and distinguish
+                    different types of controls. Contrast helps text and
+                    interface elements remain visible against their
+                    backgrounds.
+                </p>
+
+                <h3>Spacing</h3>
+
+                <p>
+                    Proper spacing separates related and unrelated content.
+                    It prevents pages from appearing crowded and makes
+                    information easier to scan.
+                </p>
+
+                <h3>Alignment</h3>
+
+                <p>
+                    Alignment creates order by positioning elements along
+                    consistent edges or lines. Proper alignment makes a
+                    layout appear organized.
+                </p>
+
+                <h3>Grouping</h3>
+
+                <p>
+                    Related elements should be placed near each other.
+                    For example, a form label should appear close to its
+                    corresponding input field.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 350"
+                         width="100%"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-labelledby="layout-title layout-desc">
+
+                        <title id="layout-title">Example of a website layout</title>
+                        <desc id="layout-desc">
+                            A sample website layout showing a header,
+                            navigation bar, main heading, content area,
+                            and action button.
+                        </desc>
+
+                        <rect x="50" y="20" width="660" height="305"
+                              rx="12" fill="#ffffff"
+                              stroke="#b8c5d9" stroke-width="2"/>
+
+                        <rect x="50" y="20" width="660" height="50"
+                              rx="12" fill="#174ea6"/>
+
+                        <text x="80" y="52" font-size="19"
+                              fill="#ffffff" font-weight="bold">
+                            Website Header
+                        </text>
+
+                        <rect x="50" y="70" width="660" height="38"
+                              fill="#eaf1ff"/>
+
+                        <text x="80" y="95" font-size="14"
+                              fill="#174ea6">
+                            Home     About     Services     Contact
+                        </text>
+
+                        <text x="85" y="155" font-size="27"
+                              font-weight="bold" fill="#202641">
+                            Main Page Heading
+                        </text>
+
+                        <rect x="85" y="175" width="390" height="12"
+                              rx="4" fill="#dce3ed"/>
+
+                        <rect x="85" y="196" width="470" height="12"
+                              rx="4" fill="#dce3ed"/>
+
+                        <rect x="85" y="217" width="330" height="12"
+                              rx="4" fill="#dce3ed"/>
+
+                        <rect x="85" y="255" width="145" height="40"
+                              rx="7" fill="#347fe0"/>
+
+                        <text x="157" y="280" text-anchor="middle"
+                              font-size="14" fill="#ffffff">
+                            Learn More
+                        </text>
+
+                        <rect x="520" y="135" width="145" height="135"
+                              rx="8" fill="#f0edff"
+                              stroke="#6555c7"/>
+
+                        <text x="592" y="200" text-anchor="middle"
+                              font-size="15" fill="#5141a7">
+                            Content Card
+                        </text>
+
+                    </svg>
+                    <figcaption>
+                        Example of a structured website layout with a header,
+                        navigation, main content, and action button.
+                    </figcaption>
+                </figure>
+
+            </section>
+
+
+            <!-- NAVIGATION -->
+            <section class="lesson-block" id="navigation">
+
+                <h2>Navigation and Interaction</h2>
+
+                <p>
+                    Navigation refers to the methods users use to move
+                    through a website or application. Effective navigation
+                    helps users understand where they are and how to reach
+                    other sections.
+                </p>
+
+                <h3>Common Navigation Components</h3>
+
+                <p><strong>Navigation Bar:</strong> A collection of links
+                    commonly placed at the top of a website.</p>
+
+                <p><strong>Sidebar:</strong> A vertical navigation area
+                    containing links to pages or sections.</p>
+
+                <p><strong>Breadcrumbs:</strong> Links that show the user's
+                    current location within a website's page hierarchy.</p>
+
+                <p><strong>Dropdown Menu:</strong> A menu that displays
+                    additional options when activated.</p>
+
+                <p><strong>Search Bar:</strong> A component that allows
+                    users to search for specific content.</p>
+
+                <h3>Interaction Design</h3>
+
+                <p>
+                    Interaction design focuses on how users communicate
+                    with interface elements. It considers actions such as
+                    clicking, tapping, scrolling, typing, selecting, and
+                    dragging.
+                </p>
+
+                <p>
+                    Interactive elements should provide clear indications
+                    that they can be used. For example, links should look
+                    different from ordinary text, and buttons should have
+                    visible focus or active states.
+                </p>
+
+            </section>
+
+
+            <!-- USABILITY -->
+            <section class="lesson-block" id="usability">
+
+                <h2>Usability and User-Friendly Design</h2>
+
+                <p>
+                    Usability refers to how effectively, efficiently, and
+                    comfortably users can interact with a system to achieve
+                    their goals.
+                </p>
+
+                <p>
+                    A usable website allows users to understand its purpose,
+                    locate information, complete tasks, and recover from
+                    mistakes without unnecessary difficulty.
+                </p>
+
+                <h3>Important Usability Factors</h3>
+
+                <p><strong>Effectiveness:</strong> Users can complete the
+                    intended tasks correctly.</p>
+
+                <p><strong>Efficiency:</strong> Users can complete tasks
+                    without wasting time or performing unnecessary steps.</p>
+
+                <p><strong>Satisfaction:</strong> Users feel comfortable and
+                    confident while using the system.</p>
+
+                <p><strong>Learnability:</strong> New users can understand
+                    the system without extensive instructions.</p>
+
+                <p><strong>Error Recovery:</strong> Users can identify
+                    mistakes and understand how to correct them.</p>
+
+                <h3>Examples of Poor Usability</h3>
+
+                <p>
+                    A website with unclear navigation labels can make it
+                    difficult for visitors to find information.
+                </p>
+
+                <p>
+                    A registration form without instructions may cause users
+                    to enter incorrect information.
+                </p>
+
+                <p>
+                    A page with small text and crowded content can make
+                    reading difficult.
+                </p>
+
+                <p>
+                    A button that does not provide feedback may leave users
+                    unsure whether their action was successful.
+                </p>
+
+            </section>
+
+
+            <!-- ACCESSIBILITY -->
+            <section class="lesson-block" id="accessibility">
+
+                <h2>Understanding Web Accessibility</h2>
+
+                <p>
+                    Web accessibility is the practice of designing and
+                    developing websites and web applications so that people
+                    with disabilities can perceive, understand, navigate,
+                    interact with, and contribute to the web.
+                </p>
+
+                <p>
+                    Accessibility also benefits users who experience temporary
+                    or situational limitations. For example, captions help
+                    people who are deaf or hard of hearing, but they are also
+                    useful for someone watching a video in a noisy
+                    environment.
+                </p>
+
+                <h3>Types of Accessibility Needs</h3>
+
+                <p><strong>Visual Disabilities:</strong> Users may have
+                    blindness, low vision, color blindness, or difficulty
+                    distinguishing visual information. Screen readers,
+                    alternative text, and sufficient color contrast can help.</p>
+
+                <p><strong>Hearing Disabilities:</strong> Users may be deaf
+                    or hard of hearing. Captions and transcripts provide
+                    access to audio information.</p>
+
+                <p><strong>Physical and Motor Disabilities:</strong> Some
+                    users may have difficulty using a mouse, keyboard, or
+                    touchscreen. Keyboard accessibility and alternative
+                    input methods are important.</p>
+
+                <p><strong>Cognitive and Learning Disabilities:</strong>
+                    Some users may experience difficulty with memory,
+                    attention, reading, or understanding complex information.
+                    Clear instructions and simple page structures can help.</p>
+
+                <p><strong>Speech Disabilities:</strong> Some users may have
+                    difficulty using voice-based commands. Interfaces should
+                    provide other ways to interact with the system.</p>
+
+                <h3>Why Web Accessibility Matters</h3>
+
+                <p>
+                    Accessibility makes digital information available to
+                    more people. It supports equal participation, improves
+                    usability, and helps organizations provide inclusive
+                    digital services.
+                </p>
+
+                <p>
+                    Accessible design can also improve the overall quality
+                    of a website because many accessibility practices,
+                    such as clear headings, descriptive links, and organized
+                    forms, make content easier for everyone to use.
+                </p>
+
+            </section>
+
+
+            <!-- ACCESSIBILITY PRINCIPLES -->
+            <section class="lesson-block" id="accessibility-principles">
+
+                <h2>Principles of Accessibility</h2>
+
+                <p>
+                    Accessible web content should follow four major
+                    principles: Perceivable, Operable, Understandable, and
+                    Robust. These principles are commonly known as POUR.
+                </p>
+
+                <h3>Perceivable</h3>
+
+                <p>
+                    Information and interface components must be presented
+                    in ways users can perceive. Content should not depend
+                    only on one sense, such as sight or hearing.
+                </p>
+
+                <p>Examples:</p>
+
+                <p>Provide alternative text for meaningful images.</p>
+                <p>Add captions to videos containing speech.</p>
+                <p>Use sufficient color contrast for text.</p>
+                <p>Provide text alternatives for important visual content.</p>
+
+                <h3>Operable</h3>
+
+                <p>
+                    Interface components and navigation must be usable.
+                    Users should be able to operate the website through
+                    different input methods.
+                </p>
+
+                <p>Examples:</p>
+
+                <p>Make interactive elements usable with a keyboard.</p>
+                <p>Provide enough time for users to complete tasks.</p>
+                <p>Avoid interactions that depend only on mouse movement.</p>
+                <p>Provide clear navigation and visible focus indicators.</p>
+
+                <h3>Understandable</h3>
+
+                <p>
+                    Information and interface behavior must be easy to
+                    understand. Users should know what actions are available
+                    and what happens when they perform them.
+                </p>
+
+                <p>Examples:</p>
+
+                <p>Use clear and simple language.</p>
+                <p>Provide descriptive labels and instructions.</p>
+                <p>Display helpful error messages.</p>
+                <p>Keep navigation and page behavior consistent.</p>
+
+                <h3>Robust</h3>
+
+                <p>
+                    Content should work reliably with different browsers,
+                    devices, and assistive technologies. Proper HTML
+                    structure and standards-based development help make
+                    websites more compatible.
+                </p>
+
+                <p>Examples:</p>
+
+                <p>Use valid and meaningful HTML elements.</p>
+                <p>Provide appropriate names and roles for controls.</p>
+                <p>Test pages with assistive technologies.</p>
+                <p>Avoid relying on unsupported or nonstandard interface
+                    behavior.</p>
+
+                <figure>
+                    <svg viewBox="0 0 760 350"
+                         width="100%"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-labelledby="pour-title pour-desc">
+
+                        <title id="pour-title">Four principles of web accessibility</title>
+                        <desc id="pour-desc">
+                            The four accessibility principles are
+                            Perceivable, Operable, Understandable, and Robust.
+                        </desc>
+
+                        <rect x="25" y="25" width="340" height="125"
+                              rx="12" fill="#eaf1ff"
+                              stroke="#347fe0" stroke-width="2"/>
+
+                        <rect x="395" y="25" width="340" height="125"
+                              rx="12" fill="#f0edff"
+                              stroke="#6555c7" stroke-width="2"/>
+
+                        <rect x="25" y="185" width="340" height="125"
+                              rx="12" fill="#e8f5ed"
+                              stroke="#39845a" stroke-width="2"/>
+
+                        <rect x="395" y="185" width="340" height="125"
+                              rx="12" fill="#fff3e5"
+                              stroke="#c27a26" stroke-width="2"/>
+
+                        <text x="195" y="70" text-anchor="middle"
+                              font-size="24" font-weight="bold"
+                              fill="#174ea6">Perceivable</text>
+
+                        <text x="195" y="105" text-anchor="middle"
+                              font-size="15" fill="#202641">
+                            Information can be perceived
+                        </text>
+
+                        <text x="565" y="70" text-anchor="middle"
+                              font-size="24" font-weight="bold"
+                              fill="#5141a7">Operable</text>
+
+                        <text x="565" y="105" text-anchor="middle"
+                              font-size="15" fill="#202641">
+                            Controls can be operated
+                        </text>
+
+                        <text x="195" y="230" text-anchor="middle"
+                              font-size="24" font-weight="bold"
+                              fill="#28633f">Understandable</text>
+
+                        <text x="195" y="265" text-anchor="middle"
+                              font-size="15" fill="#202641">
+                            Content is easy to understand
+                        </text>
+
+                        <text x="565" y="230" text-anchor="middle"
+                              font-size="24" font-weight="bold"
+                              fill="#9a5a18">Robust</text>
+
+                        <text x="565" y="265" text-anchor="middle"
+                              font-size="15" fill="#202641">
+                            Works with different technologies
+                        </text>
+
+                    </svg>
+                    <figcaption>
+                        The POUR principles of web accessibility.
+                    </figcaption>
+                </figure>
+
+            </section>
+
+
+            <!-- WCAG -->
+            <section class="lesson-block" id="wcag">
+
+                <h2>Web Content Accessibility Guidelines (WCAG)</h2>
+
+                <p>
+                    The Web Content Accessibility Guidelines (WCAG) are
+                    international recommendations for making web content
+                    more accessible to people with disabilities.
+                </p>
+
+                <p>
+                    WCAG is developed by the World Wide Web Consortium (W3C)
+                    through its Web Accessibility Initiative (WAI). These
+                    guidelines provide criteria that developers, designers,
+                    and organizations can use when evaluating website
+                    accessibility.
+                </p>
+
+                <h3>WCAG Conformance Levels</h3>
+
+                <p><strong>Level A:</strong> The minimum level of
+                    accessibility requirements. It addresses basic barriers
+                    that can prevent people from using web content.</p>
+
+                <p><strong>Level AA:</strong> Includes Level A requirements
+                    and additional criteria that address common accessibility
+                    problems. It is a widely used target for accessible
+                    website development.</p>
+
+                <p><strong>Level AAA:</strong> The highest conformance level.
+                    It includes additional and more demanding accessibility
+                    criteria. Not every website can meet all Level AAA
+                    requirements for all types of content.</p>
+
+                <h3>Importance of WCAG</h3>
+
+                <p>
+                    WCAG provides a consistent reference for evaluating
+                    accessibility. It helps developers identify barriers,
+                    improve website content, and make digital services more
+                    inclusive.
+                </p>
+
+                <p>
+                    Following WCAG does not automatically guarantee that
+                    every person can use a website. Testing with real users
+                    and assistive technologies remains important.
+                </p>
+
+            </section>
+
+
+            <!-- ACCESSIBLE HTML -->
+            <section class="lesson-block" id="accessible-html">
+
+                <h2>Accessible HTML Elements</h2>
+
+                <p>
+                    HTML provides semantic elements that describe the
+                    purpose and structure of website content. Using the
+                    correct HTML elements helps browsers and assistive
+                    technologies interpret a page.
+                </p>
+
+                <h3>Semantic HTML</h3>
+
+                <p>
+                    Semantic HTML uses elements according to their meaning
+                    rather than choosing elements only for their appearance.
+                </p>
+
+                <p><strong>&lt;header&gt;:</strong> Represents introductory
+                    content or a page header.</p>
+
+                <p><strong>&lt;nav&gt;:</strong> Identifies a section
+                    containing navigation links.</p>
+
+                <p><strong>&lt;main&gt;:</strong> Identifies the main content
+                    of a document.</p>
+
+                <p><strong>&lt;section&gt;:</strong> Groups related content
+                    into a thematic section.</p>
+
+                <p><strong>&lt;article&gt;:</strong> Represents independent
+                    or self-contained content.</p>
+
+                <p><strong>&lt;aside&gt;:</strong> Represents content related
+                    to the surrounding content, such as a sidebar.</p>
+
+                <p><strong>&lt;footer&gt;:</strong> Represents footer
+                    information for a page or section.</p>
+
+                <h3>Headings</h3>
+
+                <p>
+                    Headings organize content into a logical structure.
+                    HTML provides heading elements from &lt;h1&gt; to
+                    &lt;h6&gt;. Developers should use them according to
+                    the hierarchy of the content.
+                </p>
+
+                <p>
+                    A clear heading structure helps users understand the
+                    organization of a page and allows screen reader users
+                    to navigate between sections.
+                </p>
+
+                <h3>Links</h3>
+
+                <p>
+                    Links should describe their destination or purpose.
+                    Avoid unclear labels such as "Click here" when a more
+                    descriptive phrase can be used.
+                </p>
+
+                <h3>Buttons</h3>
+
+                <p>
+                    Use the &lt;button&gt; element for actions and the
+                    &lt;a&gt; element for navigation. Using the correct
+                    element provides built-in behavior that supports
+                    keyboard and assistive technology users.
+                </p>
+
+                <h3>ARIA Attributes</h3>
+
+                <p>
+                    Accessible Rich Internet Applications (ARIA) provides
+                    attributes that can communicate additional information
+                    about interface elements to assistive technologies.
+                </p>
+
+                <p>
+                    ARIA can provide accessible names, roles, states, and
+                    properties for interactive components when native HTML
+                    does not provide enough information.
+                </p>
+
+                <p>
+                    Examples include aria-label, aria-labelledby,
+                    aria-describedby, aria-expanded, and aria-live.
+                </p>
+
+                <p>
+                    Developers should prefer native semantic HTML whenever
+                    possible. ARIA should be used carefully because incorrect
+                    ARIA can make an interface more difficult to use.
+                </p>
+
+                <h3>Example of Semantic HTML</h3>
+
+                <pre><code>&lt;header&gt;
+    &lt;h1&gt;Student Portal&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav aria-label="Main navigation"&gt;
+    &lt;a href="index.html"&gt;Home&lt;/a&gt;
+    &lt;a href="courses.html"&gt;Courses&lt;/a&gt;
+    &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Welcome to the Student Portal&lt;/h2&gt;
+        &lt;p&gt;Access your academic information here.&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;Student Portal&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+
+                <p>
+                    This example uses semantic HTML elements to identify
+                    the header, navigation, main content, section, and
+                    footer of a webpage.
+                </p>
+
+            </section>
+
+
+            <!-- COLOR AND CONTRAST -->
+            <section class="lesson-block" id="color-contrast">
+
+                <h2>Color and Contrast</h2>
+
+                <p>
+                    Color and contrast affect how easily users can read
+                    text and recognize interface components. Designers
+                    should choose color combinations that make content
+                    visible to people with different visual abilities.
+                </p>
+
+                <h3>Color Contrast</h3>
+
+                <p>
+                    Color contrast is the difference in brightness between
+                    foreground content and its background. Sufficient
+                    contrast helps text remain readable.
+                </p>
+
+                <p>
+                    WCAG 2.2 specifies a contrast ratio of at least 4.5:1
+                    for normal text and 3:1 for large text at Level AA.
+                    Certain exceptions and additional requirements apply
+                    to different types of content.
+                </p>
+
+                <h3>Do Not Use Color Alone</h3>
+
+                <p>
+                    Important information should not be communicated only
+                    through color. Some users may not be able to distinguish
+                    certain colors.
+                </p>
+
+                <p>
+                    For example, instead of showing only a red border for
+                    an incorrect form field, provide an error message such
+                    as "Please enter a valid email address."
+                </p>
+
+                <h3>Good Color Practices</h3>
+
+                <p>Use readable text and background combinations.</p>
+                <p>Provide visible focus indicators.</p>
+                <p>Use text labels together with color indicators.</p>
+                <p>Test contrast before publishing a website.</p>
+                <p>Avoid placing important text over busy images without
+                    sufficient contrast.</p>
+
+            </section>
+
+
+            <!-- KEYBOARD -->
+            <section class="lesson-block" id="keyboard">
+
+                <h2>Keyboard Accessibility</h2>
+
+                <p>
+                    Keyboard accessibility allows users to operate a
+                    website without relying on a mouse or touchscreen.
+                    It is important for people with motor disabilities
+                    and users who prefer keyboard navigation.
+                </p>
+
+                <h3>Common Keyboard Controls</h3>
+
+                <p><strong>Tab:</strong> Moves focus to the next interactive
+                    element.</p>
+
+                <p><strong>Shift + Tab:</strong> Moves focus to the previous
+                    interactive element.</p>
+
+                <p><strong>Enter:</strong> Activates links and certain
+                    controls.</p>
+
+                <p><strong>Spacebar:</strong> Activates buttons and
+                    checkboxes in common browser interactions.</p>
+
+                <p><strong>Arrow Keys:</strong> Navigate between options
+                    in certain controls, such as radio groups and menus.</p>
+
+                <h3>Keyboard Focus</h3>
+
+                <p>
+                    Keyboard focus identifies the element currently selected
+                    through keyboard navigation. A visible focus indicator
+                    helps users understand where they are on the page.
+                </p>
+
+                <h3>Example of a Visible Focus Indicator</h3>
+
+                <pre><code>button:focus {
+    outline: 3px solid #174ea6;
+    outline-offset: 3px;
+}</code></pre>
+
+                <p>
+                    This CSS adds a visible outline around a button when
+                    it receives keyboard focus.
+                </p>
+
+                <h3>Keyboard Accessibility Requirements</h3>
+
+                <p>All important functions should be available through a
+                    keyboard.</p>
+
+                <p>Users should not become trapped inside an interface
+                    component.</p>
+
+                <p>Focus should follow a logical order.</p>
+
+                <p>Interactive controls should show a visible focus state.</p>
+
+            </section>
+
+
+            <!-- IMAGES AND MULTIMEDIA -->
+            <section class="lesson-block" id="images-media">
+
+                <h2>Images and Multimedia Accessibility</h2>
+
+                <p>
+                    Images, audio, and video help communicate information.
+                    However, some users may not be able to access visual
+                    or audio content in its original form. Accessible
+                    alternatives allow more people to understand the
+                    information.
+                </p>
+
+                <h3>Alternative Text for Images</h3>
+
+                <p>
+                    Alternative text, commonly called alt text, provides
+                    a text description of an image. Screen readers can
+                    read this description to users who cannot see the image.
+                </p>
+
+                <h3>Example</h3>
+
+                <pre><code>&lt;img
+    src="images/computer-laboratory.jpg"
+    alt="Students working on desktop computers in a computer laboratory"&gt;</code></pre>
+
+                <p>
+                    The alt attribute describes the important information
+                    shown in the image.
+                </p>
+
+                <h3>Decorative Images</h3>
+
+                <p>
+                    Images that do not provide meaningful information and
+                    are used only for decoration should generally use an
+                    empty alternative text value.
+                </p>
+
+                <pre><code>&lt;img src="images/decoration.png" alt=""&gt;</code></pre>
+
+                <h3>Video Captions</h3>
+
+                <p>
+                    Captions display spoken dialogue and important sounds
+                    in a video. They help users who are deaf or hard of
+                    hearing understand the content.
+                </p>
+
+                <h3>Transcripts</h3>
+
+                <p>
+                    A transcript provides a text version of audio or video
+                    content. It allows users to read information that would
+                    otherwise be available only through sound.
+                </p>
+
+                <h3>Audio Descriptions</h3>
+
+                <p>
+                    Audio descriptions provide spoken explanations of
+                    important visual information in videos, such as
+                    actions, scenes, and visual changes that are not
+                    communicated through dialogue.
+                </p>
+
+            </section>
+
+
+            <!-- FORMS ACCESSIBILITY -->
+            <section class="lesson-block" id="forms-accessibility">
+
+                <h2>Accessible Forms</h2>
+
+                <p>
+                    Forms allow users to submit information through
+                    websites and applications. An accessible form should
+                    provide clear labels, instructions, feedback, and
+                    error messages.
+                </p>
+
+                <h3>Use Labels</h3>
+
+                <p>
+                    Each input field should have a label that clearly
+                    identifies the information users need to provide.
+                </p>
+
+                <pre><code>&lt;label for="fullname"&gt;Full Name&lt;/label&gt;
+&lt;input
+    type="text"
+    id="fullname"
+    name="fullname"&gt;</code></pre>
+
+                <p>
+                    The label's for attribute should match the input's
+                    id attribute. This connection helps assistive
+                    technologies identify the purpose of the field.
+                </p>
+
+                <h3>Provide Instructions</h3>
+
+                <p>
+                    Forms should explain what information is required
+                    and how it should be entered. For example, a password
+                    field may explain the minimum length and required
+                    characters.
+                </p>
+
+                <h3>Identify Required Fields</h3>
+
+                <p>
+                    Required fields should be clearly identified. The
+                    required attribute can also inform browsers that a
+                    value must be provided before form submission.
+                </p>
+
+                <h3>Provide Clear Error Messages</h3>
+
+                <p>
+                    Error messages should identify the problem and explain
+                    how users can correct it. They should not rely only on
+                    color or vague messages.
+                </p>
+
+                <h3>Group Related Fields</h3>
+
+                <p>
+                    The fieldset and legend elements can group related
+                    controls, such as a set of radio buttons asking users
+                    to select their preferred payment method.
+                </p>
+
+                <h3>Accessible Form Example</h3>
+
+                <pre><code>&lt;form action="#" method="post"&gt;
+
+    &lt;div&gt;
+        &lt;label for="name"&gt;Full Name&lt;/label&gt;
+        &lt;input
+            type="text"
+            id="name"
+            name="name"
+            required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;label for="email"&gt;Email Address&lt;/label&gt;
+        &lt;input
+            type="email"
+            id="email"
+            name="email"
+            required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;label for="message"&gt;Your Message&lt;/label&gt;
+        &lt;textarea
+            id="message"
+            name="message"
+            rows="5"
+            required&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit"&gt;
+        Send Message
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <p>
+                    This example uses labels connected to their respective
+                    input fields and provides a clear structure for users
+                    entering information.
+                </p>
+
+            </section>
+
+
+            <!-- RESPONSIVE DESIGN -->
+            <section class="lesson-block" id="responsive-design">
+
+                <h2>Responsive and Inclusive Design</h2>
+
+                <p>
+                    Responsive web design is the practice of creating
+                    websites that adjust their layout and content according
+                    to the screen size and device being used.
+                </p>
+
+                <p>
+                    A responsive interface should remain usable on desktop
+                    computers, laptops, tablets, and smartphones.
+                </p>
+
+                <h3>Important Responsive Design Techniques</h3>
+
+                <p><strong>Flexible Layouts:</strong> Use flexible widths
+                    and layout systems such as CSS Flexbox and Grid to
+                    arrange content.</p>
+
+                <p><strong>Flexible Images:</strong> Images should scale
+                    within their containers instead of overflowing the
+                    screen.</p>
+
+                <p><strong>Media Queries:</strong> CSS media queries allow
+                    different styles to be applied depending on screen
+                    characteristics.</p>
+
+                <p><strong>Readable Text:</strong> Text should remain
+                    readable without requiring users to zoom excessively
+                    or scroll horizontally for ordinary content.</p>
+
+                <p><strong>Touch-Friendly Controls:</strong> Buttons and
+                    interactive elements should have enough space and
+                    appropriate target sizes for touch interaction.</p>
+
+                <h3>Example of Responsive CSS</h3>
+
+                <pre><code>.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+
+                <p>
+                    The example displays two content columns on wider
+                    screens and changes to a single column on smaller
+                    screens.
+                </p>
+
+                <h3>Inclusive Design</h3>
+
+                <p>
+                    Inclusive design considers the different abilities,
+                    preferences, backgrounds, and situations of users.
+                    It aims to make products usable by as many people as
+                    possible.
+                </p>
+
+                <p>
+                    Examples include providing text alternatives,
+                    supporting keyboard navigation, using readable
+                    typography, offering captions, and allowing users
+                    to access content through different devices.
+                </p>
+
+            </section>
+
+
+            <!-- ACCESSIBILITY TESTING -->
+            <section class="lesson-block" id="accessibility-testing">
+
+                <h2>Accessibility Testing</h2>
+
+                <p>
+                    Accessibility testing is the process of evaluating
+                    a website or application to identify barriers that
+                    may prevent people with disabilities from using it.
+                </p>
+
+                <p>
+                    Testing should be performed throughout development
+                    instead of waiting until the website is finished.
+                </p>
+
+                <h3>Manual Testing</h3>
+
+                <p>
+                    Manual testing involves checking the website directly
+                    to evaluate its usability and accessibility.
+                </p>
+
+                <p>Test navigation using only a keyboard.</p>
+                <p>Check whether focus indicators are visible.</p>
+                <p>Review the heading structure.</p>
+                <p>Check whether links and buttons have clear names.</p>
+                <p>Verify that form instructions and error messages are
+                    understandable.</p>
+
+                <h3>Screen Reader Testing</h3>
+
+                <p>
+                    Screen readers are assistive technologies that read
+                    information displayed on a screen. They allow users
+                    with visual disabilities to access digital content
+                    through speech or Braille output.
+                </p>
+
+                <p>
+                    Developers can test whether headings, links, form
+                    controls, images, and page sections are announced
+                    meaningfully.
+                </p>
+
+                <h3>Automated Accessibility Testing</h3>
+
+                <p>
+                    Automated tools scan websites for common accessibility
+                    problems. They can identify certain issues involving
+                    missing alternative text, contrast, labels, and HTML
+                    structure.
+                </p>
+
+                <p>
+                    Automated testing cannot detect every accessibility
+                    problem. Manual evaluation and testing with users
+                    remain necessary.
+                </p>
+
+                <h3>Common Accessibility Testing Tools</h3>
+
+                <p><strong>WAVE:</strong> A web accessibility evaluation
+                    tool that identifies common accessibility errors
+                    and potential issues.</p>
+
+                <p><strong>axe DevTools:</strong> A browser-based
+                    accessibility testing tool that helps developers
+                    identify accessibility problems.</p>
+
+                <p><strong>Lighthouse:</strong> A browser auditing tool
+                    that includes accessibility checks and other
+                    website quality measurements.</p>
+
+                <p><strong>NVDA:</strong> A free screen reader for
+                    Windows that can be used to test how websites
+                    communicate with assistive technology.</p>
+
+                <p><strong>VoiceOver:</strong> A built-in screen reader
+                    available on Apple devices.</p>
+
+                <h3>Accessibility Testing Checklist</h3>
+
+                <p>All important functions can be accessed using a
+                    keyboard.</p>
+
+                <p>Images have appropriate alternative text.</p>
+
+                <p>Text has sufficient color contrast.</p>
+
+                <p>Forms have descriptive labels and instructions.</p>
+
+                <p>Headings follow a logical structure.</p>
+
+                <p>Links and buttons clearly describe their purpose.</p>
+
+                <p>Videos provide captions when needed.</p>
+
+                <p>The website works on different screen sizes.</p>
+
+                <p>Content can be accessed using assistive technologies.</p>
+
+            </section>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <section class="lesson-block" id="practical-example">
+
+                <h2>Practical Example: Designing an Accessible Student Portal</h2>
+
+                <p>
+                    A student portal is a website where students can view
+                    announcements, access learning materials, check class
+                    schedules, and manage their academic information.
+                </p>
+
+                <p>
+                    When designing a student portal, developers should
+                    consider both the interface and accessibility of the
+                    system.
+                </p>
+
+                <h3>Interface Design Requirements</h3>
+
+                <p>
+                    The homepage should have a clear header containing the
+                    school name or logo.
+                </p>
+
+                <p>
+                    The navigation menu should provide understandable links
+                    to important pages such as Home, Subjects, Schedule,
+                    Announcements, and Profile.
+                </p>
+
+                <p>
+                    Important information should be arranged into organized
+                    content sections or cards.
+                </p>
+
+                <p>
+                    Buttons should use descriptive labels such as
+                    "View Schedule" and "Open Learning Materials."
+                </p>
+
+                <h3>Accessibility Requirements</h3>
+
+                <p>
+                    The navigation menu should be usable with a keyboard.
+                </p>
+
+                <p>
+                    The school logo should have meaningful alternative text
+                    if it communicates the school identity.
+                </p>
+
+                <p>
+                    Text and background colors should provide sufficient
+                    contrast.
+                </p>
+
+                <p>
+                    Form fields should have descriptive labels.
+                </p>
+
+                <p>
+                    The layout should adjust to different screen sizes.
+                </p>
+
+                <h3>Example of an Accessible Student Portal Layout</h3>
+
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;Student Portal&lt;/title&gt;
+
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f1f0f5;
+            color: #202641;
+        }
+
+        header {
+            background: #174ea6;
+            color: white;
+            padding: 20px;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            color: #174ea6;
+            text-decoration: none;
+        }
+
+        nav a:focus {
+            outline: 3px solid #174ea6;
+            outline-offset: 3px;
+        }
+
+        main {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        button {
+            background: #174ea6;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:focus {
+            outline: 3px solid #202641;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;header&gt;
+        &lt;h1&gt;Student Portal&lt;/h1&gt;
+        &lt;p&gt;Welcome to your academic dashboard.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;nav aria-label="Main navigation"&gt;
+        &lt;a href="#home"&gt;Home&lt;/a&gt;
+        &lt;a href="#subjects"&gt;Subjects&lt;/a&gt;
+        &lt;a href="#schedule"&gt;Schedule&lt;/a&gt;
+        &lt;a href="#announcements"&gt;Announcements&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;main id="home"&gt;
+
+        &lt;section class="card"&gt;
+            &lt;h2&gt;Welcome, Student!&lt;/h2&gt;
+            &lt;p&gt;
+                Access your academic information
+                and learning resources here.
+            &lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section class="card" id="subjects"&gt;
+            &lt;h2&gt;Learning Materials&lt;/h2&gt;
+            &lt;p&gt;View your available learning materials.&lt;/p&gt;
+            &lt;button type="button"&gt;
+                View Materials
+            &lt;/button&gt;
+        &lt;/section&gt;
+
+        &lt;section class="card" id="schedule"&gt;
+            &lt;h2&gt;Class Schedule&lt;/h2&gt;
+            &lt;p&gt;Check your upcoming classes.&lt;/p&gt;
+            &lt;button type="button"&gt;
+                View Schedule
+            &lt;/button&gt;
+        &lt;/section&gt;
+
+        &lt;section class="card" id="announcements"&gt;
+            &lt;h2&gt;Announcements&lt;/h2&gt;
+            &lt;p&gt;Read the latest school announcements.&lt;/p&gt;
+        &lt;/section&gt;
+
+    &lt;/main&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <p>
+                    This example demonstrates a simple student portal
+                    with semantic HTML, descriptive navigation links,
+                    visible keyboard focus, organized content cards,
+                    and a responsive layout.
+                </p>
+
+                <p>
+                    The example demonstrates interface structure and
+                    accessibility techniques. It does not include a
+                    complete login system, database connection, or
+                    functioning student account features.
+                </p>
+
+            </section>
+
+
+            <!-- APPLICATIONS -->
+            <section class="lesson-block" id="applications">
+
+                <h2>Practical Applications of UI Design and Accessibility</h2>
+
+                <p>
+                    UI design and accessibility are important in many
+                    digital products and services. They help organizations
+                    create interfaces that are easier to use and more
+                    inclusive.
+                </p>
+
+                <h3>Educational Websites</h3>
+
+                <p>
+                    Schools use accessible websites and student portals
+                    to provide announcements, schedules, online lessons,
+                    and learning resources to students.
+                </p>
+
+                <h3>E-Commerce Websites</h3>
+
+                <p>
+                    Online stores use clear product layouts, accessible
+                    shopping carts, understandable forms, and simple
+                    checkout processes to help customers purchase products.
+                </p>
+
+                <h3>Banking Applications</h3>
+
+                <p>
+                    Banking applications use clear navigation, readable
+                    information, accessible account controls, and
+                    understandable transaction confirmations.
+                </p>
+
+                <h3>Government Websites</h3>
+
+                <p>
+                    Government websites provide public services and
+                    important information. Accessibility helps more
+                    citizens access online applications, forms, and
+                    public information.
+                </p>
+
+                <h3>Healthcare Systems</h3>
+
+                <p>
+                    Healthcare websites and applications use accessible
+                    appointment forms, readable medical information,
+                    and clear navigation to help patients access
+                    available services.
+                </p>
+
+                <h3>Mobile Applications</h3>
+
+                <p>
+                    Mobile applications use responsive layouts, readable
+                    text, accessible controls, and assistive technology
+                    support to provide a better experience across devices.
+                </p>
+
+            </section>
+
+
+            <!-- KEY TAKEAWAYS -->
+            <section class="lesson-block" id="takeaways">
+
+                <h2>Key Takeaways</h2>
+
+                <p>
+                    User Interface Design focuses on the visual and
+                    interactive parts of websites and applications.
+                </p>
+
+                <p>
+                    User Experience Design focuses on the overall
+                    experience users have when interacting with a system.
+                </p>
+
+                <p>
+                    Good UI design should be simple, consistent,
+                    understandable, efficient, and responsive.
+                </p>
+
+                <p>
+                    Usability helps users complete tasks effectively
+                    and comfortably.
+                </p>
+
+                <p>
+                    Web accessibility allows people with different
+                    abilities to access and use digital content.
+                </p>
+
+                <p>
+                    The four principles of accessibility are Perceivable,
+                    Operable, Understandable, and Robust (POUR).
+                </p>
+
+                <p>
+                    WCAG provides guidelines for improving web accessibility.
+                </p>
+
+                <p>
+                    Semantic HTML, alternative text, keyboard navigation,
+                    captions, readable text, and sufficient color contrast
+                    help create accessible websites.
+                </p>
+
+                <p>
+                    Responsive design helps websites adapt to different
+                    devices and screen sizes.
+                </p>
+
+                <p>
+                    Accessibility testing should include automated tools,
+                    manual checks, keyboard testing, and assistive
+                    technology testing.
+                </p>
+
+            </section>
+
+
+          
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+             <div class="topic-nav">
+
+                <a class="btn outline" href="topic-27.html">
+                    ← Topic 7
+                </a>
+
+                <a class="btn primary" href="topic-29.html">
+                    Topic 9 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+
+    </script>
+
+</body>
+</html>

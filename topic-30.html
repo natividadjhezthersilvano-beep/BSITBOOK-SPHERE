@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+       Website Testing, Hosting, Deployment, and Maintenance
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+          <div class="lesson-layout">
+
+    <aside class="lesson-sidebar">
+        <h3>On This Page</h3>
+
+        <nav class="lesson-toc" id="lessonTOC">
+            <a href="#overview" class="active">Overview</a>
+            <a href="#web-security">Understanding Web Security</a>
+            <a href="#authentication">Authentication</a>
+            <a href="#authentication-methods">Authentication Methods</a>
+            <a href="#authorization">Authorization</a>
+            <a href="#access-control">Access Control Models</a>
+            <a href="#authentication-vs-authorization">Authentication vs. Authorization</a>
+            <a href="#password-security">Password Security</a>
+            <a href="#sessions-cookies">Sessions and Cookies</a>
+            <a href="#multi-factor">Multi-Factor Authentication</a>
+            <a href="#encryption">Encryption and HTTPS</a>
+            <a href="#web-threats">Common Web Security Threats</a>
+            <a href="#security-protection">Web Security Protection</a>
+            <a href="#secure-login">Secure Login Example</a>
+            <a href="#applications">Practical Applications</a>
+            <a href="#takeaways">Key Takeaways</a>
+        </nav>
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+          <article class="lesson-content">
+
+            <!-- OVERVIEW -->
+            <section class="lesson-block" id="overview">
+
+                <h2>Overview</h2>
+
+                <p>
+                    Authentication, authorization, and web security are important concepts in website and application development. They help protect user accounts, personal information, confidential files, and other resources from unauthorized access.
+                </p>
+
+                <p>
+                    Modern websites often allow users to create accounts, sign in, access personal dashboards, upload files, and perform different activities. Because these activities involve sensitive information, websites need security mechanisms to verify user identities and control what each user is allowed to do.
+                </p>
+
+                <p>
+                    Authentication verifies the identity of a user, while authorization determines which resources and operations that user can access. Web security combines these mechanisms with other protective measures to keep websites, applications, and their data safe.
+                </p>
+
+                <p>
+                    For example, when a student logs in to an online learning platform, authentication checks the student's login credentials. After successful login, authorization determines whether the student can view lessons, submit assignments, or access administrator-only functions.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 850 310" xmlns="http://www.w3.org/2000/svg" class="lesson-image" role="img" aria-label="Diagram showing authentication, authorization, and access to protected website resources">
+                        <rect x="20" y="90" width="170" height="105" rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="105" y="132" text-anchor="middle" font-size="18" font-weight="bold" fill="#174ea6">User</text>
+                        <text x="105" y="158" text-anchor="middle" font-size="13" fill="#202641">Login details</text>
+
+                        <path d="M190 142 H245" stroke="#347fe0" stroke-width="3" fill="none"/>
+                        <path d="M235 134 L245 142 L235 150" stroke="#347fe0" stroke-width="3" fill="none"/>
+
+                        <rect x="250" y="90" width="170" height="105" rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="335" y="132" text-anchor="middle" font-size="18" font-weight="bold" fill="#174ea6">Authentication</text>
+                        <text x="335" y="158" text-anchor="middle" font-size="13" fill="#202641">Verify identity</text>
+
+                        <path d="M420 142 H475" stroke="#347fe0" stroke-width="3" fill="none"/>
+                        <path d="M465 134 L475 142 L465 150" stroke="#347fe0" stroke-width="3" fill="none"/>
+
+                        <rect x="480" y="90" width="170" height="105" rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="565" y="132" text-anchor="middle" font-size="18" font-weight="bold" fill="#174ea6">Authorization</text>
+                        <text x="565" y="158" text-anchor="middle" font-size="13" fill="#202641">Check permissions</text>
+
+                        <path d="M650 142 H705" stroke="#347fe0" stroke-width="3" fill="none"/>
+                        <path d="M695 134 L705 142 L695 150" stroke="#347fe0" stroke-width="3" fill="none"/>
+
+                        <rect x="710" y="90" width="125" height="105" rx="12" fill="#e5f5e9" stroke="#299b57" stroke-width="2"/>
+                        <text x="772" y="130" text-anchor="middle" font-size="16" font-weight="bold" fill="#176b38">Access</text>
+                        <text x="772" y="153" text-anchor="middle" font-size="12" fill="#202641">Allowed</text>
+
+                        <text x="425" y="250" text-anchor="middle" font-size="16" font-weight="bold" fill="#202641">Web Security protects the entire process and its data.</text>
+                    </svg>
+                    <figcaption>Authentication verifies identity, authorization checks permissions, and web security protects the process.</figcaption>
+                </figure>
+
+            </section>
+
+            <!-- WEB SECURITY -->
+            <section class="lesson-block" id="web-security">
+
+                <h2>Understanding Web Security</h2>
+
+                <p>
+                    Web security refers to the practices, technologies, and procedures used to protect websites, web applications, servers, and information from cyberattacks and unauthorized activities.
+                </p>
+
+                <p>
+                    Websites communicate through the Internet and may store information such as names, email addresses, passwords, payment details, academic records, and other private data. Without proper protection, attackers may steal information, modify website content, gain access to user accounts, or interrupt website operations.
+                </p>
+
+                <h3>Objectives of Web Security</h3>
+
+                <p><strong>Confidentiality</strong> ensures that sensitive information can only be accessed by authorized individuals. For example, students should not be able to view another student's private academic records.</p>
+
+                <p><strong>Integrity</strong> ensures that information remains accurate and is not modified without permission. An attacker should not be able to change grades, account details, or transaction records.</p>
+
+                <p><strong>Availability</strong> ensures that websites and online services remain accessible to legitimate users when needed. Security measures help prevent attacks that make websites unavailable.</p>
+
+                <p>
+                    These three objectives are commonly known as the CIA Triad: Confidentiality, Integrity, and Availability.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" class="lesson-image" role="img" aria-label="CIA triad showing confidentiality, integrity, and availability">
+                        <path d="M300 35 L85 300 L515 300 Z" fill="#e8efff" stroke="#347fe0" stroke-width="3"/>
+                        <circle cx="300" cy="35" r="9" fill="#174ea6"/>
+                        <circle cx="85" cy="300" r="9" fill="#174ea6"/>
+                        <circle cx="515" cy="300" r="9" fill="#174ea6"/>
+                        <text x="300" y="85" text-anchor="middle" font-size="21" font-weight="bold" fill="#174ea6">Confidentiality</text>
+                        <text x="85" y="275" text-anchor="middle" font-size="20" font-weight="bold" fill="#174ea6">Integrity</text>
+                        <text x="515" y="275" text-anchor="middle" font-size="20" font-weight="bold" fill="#174ea6">Availability</text>
+                        <text x="300" y="205" text-anchor="middle" font-size="24" font-weight="bold" fill="#202641">CIA</text>
+                        <text x="300" y="232" text-anchor="middle" font-size="15" fill="#202641">Security Triad</text>
+                    </svg>
+                    <figcaption>The CIA Triad represents the three fundamental objectives of information security.</figcaption>
+                </figure>
+
+            </section>
+
+            <!-- AUTHENTICATION -->
+            <section class="lesson-block" id="authentication">
+
+                <h2>Authentication</h2>
+
+                <p>
+                    Authentication is the process of verifying the identity of a person, device, or system attempting to access a website or application. It checks whether the user is really who they claim to be.
+                </p>
+
+                <p>
+                    Websites commonly perform authentication through a login page where users enter a username, email address, or other identification information together with a password. The system checks the submitted credentials against the stored account information.
+                </p>
+
+                <h3>How Authentication Works</h3>
+
+                <p>
+                    A typical authentication process begins when a user opens a website's login page and enters their credentials. The website sends the submitted information to its server through a secure connection. The server verifies the credentials and determines whether the user can successfully sign in.
+                </p>
+
+                <p>
+                    If the credentials are correct, the system creates an authenticated session or issues a secure token. The user can then access the protected parts of the application according to their assigned permissions.
+                </p>
+
+                <h3>Common Authentication Information</h3>
+
+                <p><strong>Username:</strong> A unique or assigned name used to identify an account.</p>
+
+                <p><strong>Password:</strong> A secret combination of characters used to verify a user's identity.</p>
+
+                <p><strong>Email Address:</strong> An email account that may be used as a login identifier or for account verification.</p>
+
+                <p><strong>One-Time Password (OTP):</strong> A temporary verification code that can only be used for a limited time or a particular authentication attempt.</p>
+
+                <p><strong>Biometric Information:</strong> Physical or behavioral characteristics, such as fingerprints or facial recognition, used to verify identity.</p>
+
+            </section>
+
+            <!-- AUTHENTICATION METHODS -->
+            <section class="lesson-block" id="authentication-methods">
+
+                <h2>Authentication Methods</h2>
+
+                <p>
+                    Websites can use different authentication methods depending on the sensitivity of the information being protected and the security requirements of the application.
+                </p>
+
+                <h3>Password-Based Authentication</h3>
+
+                <p>
+                    This method requires users to provide a username or email address and a password. The system verifies the submitted password against a securely stored password hash.
+                </p>
+
+                <p>
+                    Password-based authentication is widely used because it is familiar and relatively easy to implement. However, weak or reused passwords can make accounts vulnerable to unauthorized access.
+                </p>
+
+                <h3>Token-Based Authentication</h3>
+
+                <p>
+                    Token-based authentication uses a digital token to represent an authenticated user. After successful login, the server issues a token that the client sends with later requests to prove that the user has been authenticated.
+                </p>
+
+                <p>
+                    JSON Web Token (JWT) is a commonly used token format in web applications and APIs. A token may contain claims about the user and its validity period. It must be verified properly by the receiving system.
+                </p>
+
+                <h3>Biometric Authentication</h3>
+
+                <p>
+                    Biometric authentication uses unique physical or behavioral characteristics to verify identity. Examples include fingerprint scanning, facial recognition, and voice recognition.
+                </p>
+
+                <p>
+                    This method is commonly available on smartphones, laptops, and devices that support biometric sensors.
+                </p>
+
+                <h3>Certificate-Based Authentication</h3>
+
+                <p>
+                    Certificate-based authentication uses digital certificates to establish the identity of a user, device, or server. These certificates are commonly used in systems that rely on public key infrastructure (PKI).
+                </p>
+
+                <h3>Single Sign-On (SSO)</h3>
+
+                <p>
+                    Single Sign-On allows users to access multiple connected applications after signing in once through a trusted identity provider. Instead of entering credentials separately into every application, users authenticate through a centralized service.
+                </p>
+
+                <p>
+                    For example, a student may use one school account to access email, an online classroom, and other school-related services.
+                </p>
+
+            </section>
+
+            <!-- AUTHORIZATION -->
+            <section class="lesson-block" id="authorization">
+
+                <h2>Authorization</h2>
+
+                <p>
+                    Authorization is the process of determining what an authenticated user is allowed to access or perform within a website or application. It takes place after the user's identity has been established.
+                </p>
+
+                <p>
+                    Not every user should have the same level of access. A website may have administrators, teachers, students, employees, and ordinary visitors. Each role may have different permissions depending on its responsibilities.
+                </p>
+
+                <h3>Examples of Authorization</h3>
+
+                <p><strong>Administrator:</strong> Can manage user accounts, edit website content, view system reports, and configure application settings.</p>
+
+                <p><strong>Teacher:</strong> Can upload learning materials, manage assigned classes, and record student grades.</p>
+
+                <p><strong>Student:</strong> Can view lessons, submit activities, and check personal academic information.</p>
+
+                <p><strong>Guest:</strong> Can view public website pages but cannot access private student or administrator information.</p>
+
+                <h3>How Authorization Works</h3>
+
+                <p>
+                    When an authenticated user requests a protected page or performs an action, the application checks the user's role and permissions. If the user has the required permission, the operation is allowed. Otherwise, the application denies access.
+                </p>
+
+                <p>
+                    Authorization must be checked on the server side. Hiding a button or menu item in the browser is not enough because users may attempt to access protected URLs or send requests directly.
+                </p>
+
+            </section>
+
+            <!-- ACCESS CONTROL -->
+            <section class="lesson-block" id="access-control">
+
+                <h2>Access Control Models</h2>
+
+                <p>
+                    Access control refers to the rules and mechanisms that determine who can access specific resources and what actions they can perform. Different models can be used to manage permissions.
+                </p>
+
+                <h3>Role-Based Access Control (RBAC)</h3>
+
+                <p>
+                    Role-Based Access Control assigns permissions based on a user's role. Instead of assigning every permission individually, administrators create roles and associate users with those roles.
+                </p>
+
+                <p>
+                    For example, an online learning platform may define Student, Teacher, and Administrator roles. Students can access lessons, teachers can manage learning activities, and administrators can manage the entire platform.
+                </p>
+
+                <h3>Attribute-Based Access Control (ABAC)</h3>
+
+                <p>
+                    Attribute-Based Access Control makes access decisions based on attributes associated with the user, resource, action, or environment.
+                </p>
+
+                <p>
+                    For example, a system may allow a teacher to access a student's record only if the teacher belongs to the student's assigned department or class.
+                </p>
+
+                <h3>Discretionary Access Control (DAC)</h3>
+
+                <p>
+                    Discretionary Access Control allows the owner of a resource to decide who can access it. The owner may grant or remove permissions for other users.
+                </p>
+
+                <h3>Mandatory Access Control (MAC)</h3>
+
+                <p>
+                    Mandatory Access Control uses centrally defined security policies and classifications. Users cannot freely change the access permissions assigned to protected resources.
+                </p>
+
+                <h3>Principle of Least Privilege</h3>
+
+                <p>
+                    The principle of least privilege means that users should receive only the minimum permissions necessary to perform their tasks. This reduces the damage that can happen if an account becomes compromised or is misused.
+                </p>
+
+            </section>
+
+            <!-- COMPARISON -->
+            <section class="lesson-block" id="authentication-vs-authorization">
+
+                <h2>Authentication vs. Authorization</h2>
+
+                <p>
+                    Authentication and authorization are related but perform different functions in a secure application.
+                </p>
+
+                <p><strong>Authentication</strong> answers the question: "Who are you?"</p>
+
+                <p><strong>Authorization</strong> answers the question: "What are you allowed to do?"</p>
+
+                <figure>
+                    <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" class="lesson-image" role="img" aria-label="Comparison of authentication and authorization">
+                        <rect x="35" y="30" width="310" height="205" rx="14" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="190" y="75" text-anchor="middle" font-size="23" font-weight="bold" fill="#174ea6">Authentication</text>
+                        <text x="190" y="120" text-anchor="middle" font-size="17" fill="#202641">Who are you?</text>
+                        <text x="190" y="158" text-anchor="middle" font-size="14" fill="#202641">Checks identity</text>
+                        <text x="190" y="184" text-anchor="middle" font-size="14" fill="#202641">Example: Login credentials</text>
+
+                        <rect x="415" y="30" width="310" height="205" rx="14" fill="#e5f5e9" stroke="#299b57" stroke-width="2"/>
+                        <text x="570" y="75" text-anchor="middle" font-size="23" font-weight="bold" fill="#176b38">Authorization</text>
+                        <text x="570" y="120" text-anchor="middle" font-size="17" fill="#202641">What can you do?</text>
+                        <text x="570" y="158" text-anchor="middle" font-size="14" fill="#202641">Checks permissions</text>
+                        <text x="570" y="184" text-anchor="middle" font-size="14" fill="#202641">Example: User roles</text>
+                    </svg>
+                    <figcaption>Authentication verifies the user, while authorization controls the user's access.</figcaption>
+                </figure>
+
+                <p>
+                    Consider a student logging in to a school portal. The login process verifies the student's identity. Once logged in, the system allows the student to view personal grades but prevents the student from editing official academic records. The first action involves authentication, while the access restrictions involve authorization.
+                </p>
+
+            </section>
+
+            <!-- PASSWORD SECURITY -->
+            <section class="lesson-block" id="password-security">
+
+                <h2>Password Security</h2>
+
+                <p>
+                    Password security involves protecting passwords from theft, guessing, exposure, and unauthorized use. Passwords are often the first line of defense for online accounts.
+                </p>
+
+                <h3>Characteristics of a Strong Password</h3>
+
+                <p>
+                    A strong password should be sufficiently long, difficult to guess, and unique to the account. It should avoid easily discovered information such as names, birthdays, simple number patterns, and common words.
+                </p>
+
+                <p>
+                    Using a password manager can help users create and store unique passwords for different websites.
+                </p>
+
+                <h3>Password Hashing</h3>
+
+                <p>
+                    Websites should not store passwords as plain text. Instead, passwords should be processed using a secure password-hashing algorithm before they are stored in the database.
+                </p>
+
+                <p>
+                    Hashing converts a password into a fixed-length representation. During login, the submitted password is processed and checked against the stored hash using the password-hashing algorithm.
+                </p>
+
+                <p>
+                    Password hashing is different from encryption. Hashing is designed to be one-way, while encryption is designed to be reversible when the correct decryption key is available.
+                </p>
+
+                <h3>Recommended Password-Hashing Algorithms</h3>
+
+                <p><strong>Argon2id:</strong> A modern password-hashing algorithm designed to make password guessing more expensive.</p>
+
+                <p><strong>bcrypt:</strong> A password-hashing algorithm that uses a configurable work factor to increase the cost of guessing passwords.</p>
+
+                <p><strong>scrypt:</strong> A password-hashing algorithm designed to require significant memory resources, making large-scale password guessing more difficult.</p>
+
+                <p>
+                    Password systems should also use unique salts, secure password-reset procedures, login rate limits, and monitoring for suspicious login attempts.
+                </p>
+
+            </section>
+
+            <!-- SESSIONS AND COOKIES -->
+            <section class="lesson-block" id="sessions-cookies">
+
+                <h2>Sessions and Cookies</h2>
+
+                <p>
+                    Sessions and cookies help websites maintain information about a user's activity across multiple requests. They are commonly used to keep users logged in after successful authentication.
+                </p>
+
+                <h3>Session</h3>
+
+                <p>
+                    A session is a period of interaction between a user and a website. After successful login, the server may create a session and assign it a unique session identifier.
+                </p>
+
+                <p>
+                    The server uses the session identifier to recognize the authenticated user when additional requests are made.
+                </p>
+
+                <h3>Cookie</h3>
+
+                <p>
+                    A cookie is a small piece of data stored by a web browser for a particular website. Cookies can store session identifiers, user preferences, and other information needed by the application.
+                </p>
+
+                <h3>Secure Cookie Attributes</h3>
+
+                <p><strong>Secure:</strong> Instructs the browser to send the cookie only over secure HTTPS connections.</p>
+
+                <p><strong>HttpOnly:</strong> Prevents ordinary JavaScript running in the browser from reading the cookie. This helps reduce certain cookie-theft risks.</p>
+
+                <p><strong>SameSite:</strong> Controls when cookies are sent with cross-site requests and helps reduce cross-site request forgery (CSRF) risks.</p>
+
+                <h3>Session Security Practices</h3>
+
+                <p>
+                    Applications should generate unpredictable session identifiers, use secure cookie settings, expire inactive sessions, and invalidate sessions when users log out or change important account credentials.
+                </p>
+
+            </section>
+
+            <!-- MULTI FACTOR -->
+            <section class="lesson-block" id="multi-factor">
+
+                <h2>Multi-Factor Authentication</h2>
+
+                <p>
+                    Multi-Factor Authentication (MFA) is a security method that requires users to provide two or more different types of evidence to verify their identity.
+                </p>
+
+                <p>
+                    MFA provides additional protection because an attacker who obtains a password may still be unable to access the account without the other required authentication factor.
+                </p>
+
+                <h3>Common Authentication Factors</h3>
+
+                <p><strong>Something You Know:</strong> Information that the user remembers, such as a password or PIN.</p>
+
+                <p><strong>Something You Have:</strong> An item or device controlled by the user, such as a security key, authenticator application, or registered mobile device.</p>
+
+                <p><strong>Something You Are:</strong> A physical characteristic, such as a fingerprint or facial feature.</p>
+
+                <h3>Examples of MFA</h3>
+
+                <p>
+                    A website may ask the user to enter a password and then provide a verification code generated by an authenticator application. Another system may require a password and a physical security key.
+                </p>
+
+                <p>
+                    Passkeys are also an important modern authentication option. They use public-key cryptography and can allow users to sign in using a device's screen lock or biometric verification. Unlike traditional passwords, passkeys are designed to resist phishing.
+                </p>
+
+            </section>
+
+            <!-- ENCRYPTION -->
+            <section class="lesson-block" id="encryption">
+
+                <h2>Encryption and HTTPS</h2>
+
+                <p>
+                    Encryption is the process of transforming readable information into an unreadable form so that unauthorized individuals cannot easily understand it. It helps protect sensitive information while it is being transferred or stored.
+                </p>
+
+                <h3>Symmetric Encryption</h3>
+
+                <p>
+                    Symmetric encryption uses the same secret key to encrypt and decrypt information. It is commonly used for efficiently protecting large amounts of data.
+                </p>
+
+                <h3>Asymmetric Encryption</h3>
+
+                <p>
+                    Asymmetric encryption uses a pair of related keys: a public key and a private key. The public key can be shared, while the private key must be protected.
+                </p>
+
+                <p>
+                    Public-key cryptography is used in digital certificates, secure communication, and other security systems.
+                </p>
+
+                <h3>HTTPS</h3>
+
+                <p>
+                    Hypertext Transfer Protocol Secure (HTTPS) is the secure version of HTTP. It uses Transport Layer Security (TLS) to protect communication between a browser and a web server.
+                </p>
+
+                <p>
+                    HTTPS helps protect information from being read or modified by unauthorized parties while it travels across the network. It also allows the browser to verify the server's identity through its digital certificate.
+                </p>
+
+                <p>
+                    Websites that handle login credentials, personal information, or payment transactions should use HTTPS throughout the site, not only on the login page.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg" class="lesson-image" role="img" aria-label="HTTPS secure communication between browser and web server">
+                        <rect x="35" y="65" width="200" height="135" rx="12" fill="#e8efff" stroke="#347fe0" stroke-width="2"/>
+                        <text x="135" y="112" text-anchor="middle" font-size="22" font-weight="bold" fill="#174ea6">Browser</text>
+                        <text x="135" y="145" text-anchor="middle" font-size="15" fill="#202641">User's device</text>
+
+                        <rect x="525" y="65" width="200" height="135" rx="12" fill="#e5f5e9" stroke="#299b57" stroke-width="2"/>
+                        <text x="625" y="112" text-anchor="middle" font-size="22" font-weight="bold" fill="#176b38">Web Server</text>
+                        <text x="625" y="145" text-anchor="middle" font-size="15" fill="#202641">Website data</text>
+
+                        <path d="M235 115 H525" stroke="#347fe0" stroke-width="3" stroke-dasharray="8 6"/>
+                        <path d="M235 155 H525" stroke="#299b57" stroke-width="3" stroke-dasharray="8 6"/>
+                        <text x="380" y="98" text-anchor="middle" font-size="17" font-weight="bold" fill="#174ea6">HTTPS / TLS</text>
+                        <text x="380" y="184" text-anchor="middle" font-size="13" fill="#202641">Encrypted communication</text>
+
+                        <rect x="325" y="220" width="110" height="45" rx="10" fill="#fff4d9" stroke="#d69a21" stroke-width="2"/>
+                        <text x="380" y="248" text-anchor="middle" font-size="16" font-weight="bold" fill="#8b5a00">Secure</text>
+                    </svg>
+                    <figcaption>HTTPS uses TLS to protect data exchanged between a browser and a web server.</figcaption>
+                </figure>
+
+            </section>
+
+            <!-- WEB THREATS -->
+            <section class="lesson-block" id="web-threats">
+
+                <h2>Common Web Security Threats</h2>
+
+                <p>
+                    Web applications may face different attacks that target user accounts, databases, website functionality, and sensitive information. Understanding these threats helps developers create stronger security controls.
+                </p>
+
+                <h3>SQL Injection</h3>
+
+                <p>
+                    SQL Injection occurs when an attacker inserts malicious SQL statements into an application's input fields or requests. If the application builds database queries unsafely, the attacker may read, modify, or delete database information.
+                </p>
+
+                <p>
+                    Developers can reduce this risk by using parameterized queries, prepared statements, secure database permissions, and proper input handling.
+                </p>
+
+                <h3>Cross-Site Scripting (XSS)</h3>
+
+                <p>
+                    Cross-Site Scripting happens when an attacker causes malicious scripts to execute in another user's browser through a vulnerable website.
+                </p>
+
+                <p>
+                    XSS may be used to steal information, manipulate page content, or perform actions through a victim's browser.
+                </p>
+
+                <p>
+                    Developers should encode untrusted output, sanitize user-generated content when appropriate, and use Content Security Policy (CSP) as an additional layer of protection.
+                </p>
+
+                <h3>Cross-Site Request Forgery (CSRF)</h3>
+
+                <p>
+                    CSRF is an attack that tricks an authenticated user's browser into sending an unwanted request to a website where the user is already signed in.
+                </p>
+
+                <p>
+                    For example, an attacker may attempt to make a logged-in user submit an unauthorized account change without the user's knowledge.
+                </p>
+
+                <p>
+                    CSRF tokens, appropriate SameSite cookie settings, and additional verification for sensitive operations can help prevent these attacks.
+                </p>
+
+                <h3>Brute-Force Attack</h3>
+
+                <p>
+                    A brute-force attack involves repeatedly trying different passwords or credentials until the correct combination is discovered.
+                </p>
+
+                <p>
+                    Rate limiting, account protection mechanisms, strong passwords, and multi-factor authentication help reduce the risk of successful brute-force attacks.
+                </p>
+
+                <h3>Phishing</h3>
+
+                <p>
+                    Phishing is a social engineering attack in which attackers impersonate trusted organizations or individuals to trick users into revealing passwords, payment information, or other sensitive details.
+                </p>
+
+                <p>
+                    Users should check website addresses carefully, avoid suspicious links, and never provide credentials through untrusted websites or messages.
+                </p>
+
+                <h3>Distributed Denial-of-Service (DDoS)</h3>
+
+                <p>
+                    A Distributed Denial-of-Service attack attempts to overwhelm a website or server with large amounts of traffic from multiple sources. This can make the service slow or unavailable to legitimate users.
+                </p>
+
+                <p>
+                    Traffic filtering, network monitoring, rate limiting, and specialized DDoS protection services can help reduce the impact of these attacks.
+                </p>
+
+                <h3>Malware</h3>
+
+                <p>
+                    Malware is malicious software designed to damage systems, steal information, spy on users, or gain unauthorized access to devices and networks.
+                </p>
+
+                <p>
+                    Examples include viruses, worms, ransomware, spyware, and trojans. Keeping systems updated and using trusted software helps reduce malware risks.
+                </p>
+
+            </section>
+
+            <!-- SECURITY PROTECTION -->
+            <section class="lesson-block" id="security-protection">
+
+                <h2>Web Security Protection</h2>
+
+                <p>
+                    Developers and website administrators should apply multiple layers of security because no single security measure can prevent every possible attack.
+                </p>
+
+                <h3>Input Validation</h3>
+
+                <p>
+                    Input validation checks whether information submitted by users follows the expected format and rules. For example, a registration form may require a valid email address and a password that meets the application's requirements.
+                </p>
+
+                <p>
+                    Validation should be performed on the server even when browser-side validation is also available.
+                </p>
+
+                <h3>Access Control</h3>
+
+                <p>
+                    Access control ensures that users can only view or modify information that they are authorized to access. Every protected request should be checked against the user's permissions.
+                </p>
+
+                <h3>Firewalls</h3>
+
+                <p>
+                    A firewall monitors and controls network traffic based on defined security rules. It can block unauthorized connections and help protect systems from unwanted network activity.
+                </p>
+
+                <h3>Web Application Firewall (WAF)</h3>
+
+                <p>
+                    A Web Application Firewall helps protect web applications by inspecting HTTP traffic and filtering suspicious requests. It can help defend against common attacks such as SQL injection and cross-site scripting.
+                </p>
+
+                <h3>Regular Software Updates</h3>
+
+                <p>
+                    Software updates fix known vulnerabilities, improve system stability, and provide security improvements. Developers should regularly update frameworks, libraries, plugins, servers, and operating systems.
+                </p>
+
+                <h3>Data Backups</h3>
+
+                <p>
+                    Regular backups allow organizations to restore important information after accidental deletion, hardware failure, malware attacks, or other incidents. Backups should be protected and periodically tested.
+                </p>
+
+                <h3>Security Logging and Monitoring</h3>
+
+                <p>
+                    Security logs record important activities such as login attempts, account changes, permission updates, and unusual requests. Monitoring these records can help administrators detect suspicious behavior and investigate security incidents.
+                </p>
+
+                <h3>Secure Error Handling</h3>
+
+                <p>
+                    Applications should display helpful but limited error messages. They should not expose passwords, database credentials, internal server paths, stack traces, or other sensitive technical information to ordinary users.
+                </p>
+
+            </section>
+
+            <!-- SECURE LOGIN EXAMPLE -->
+            <section class="lesson-block" id="secure-login">
+
+                <h2>Practical Example: Secure Login Interface</h2>
+
+                <p>
+                    A login page is a common example of authentication in a web application. It allows users to submit their credentials before accessing protected resources.
+                </p>
+
+                <p>
+                    The following example demonstrates a basic HTML login interface. It includes an email field, password field, labels, and a submit button. This is only the front-end portion of a login system; actual authentication must be implemented securely on the server.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 650 390" xmlns="http://www.w3.org/2000/svg" class="lesson-image" role="img" aria-label="Example login form with email and password fields">
+                        <rect x="135" y="15" width="380" height="355" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                        <text x="325" y="65" text-anchor="middle" font-size="27" font-weight="bold" fill="#174ea6">User Login</text>
+                        <text x="325" y="92" text-anchor="middle" font-size="14" fill="#64748b">Sign in to your account</text>
+
+                        <text x="180" y="137" font-size="15" fill="#202641">Email Address</text>
+                        <rect x="180" y="150" width="290" height="45" rx="7" fill="#f8fafc" stroke="#94a3b8"/>
+                        <text x="195" y="178" font-size="14" fill="#94a3b8">Enter your email</text>
+
+                        <text x="180" y="228" font-size="15" fill="#202641">Password</text>
+                        <rect x="180" y="241" width="290" height="45" rx="7" fill="#f8fafc" stroke="#94a3b8"/>
+                        <text x="195" y="269" font-size="14" fill="#94a3b8">Enter your password</text>
+
+                        <rect x="180" y="310" width="290" height="42" rx="7" fill="#174ea6"/>
+                        <text x="325" y="337" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">Sign In</text>
+                    </svg>
+                    <figcaption>A basic login interface that can be connected to a secure authentication system.</figcaption>
+                </figure>
+
+                <h3>HTML Login Form</h3>
+
+                <pre><code>&lt;form action="/login" method="POST"&gt;
+
+    &lt;h2&gt;User Login&lt;/h2&gt;
+
+    &lt;label for="email"&gt;Email Address&lt;/label&gt;
+    &lt;input
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="username"
+        required
+    &gt;
+
+    &lt;label for="password"&gt;Password&lt;/label&gt;
+    &lt;input
+        type="password"
+        id="password"
+        name="password"
+        autocomplete="current-password"
+        required
+    &gt;
+
+    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <h3>How the Login Process Works</h3>
+
+                <p>
+                    The user enters an email address and password. The browser submits the form to the server using the POST method over HTTPS. The server validates the submitted data, retrieves the corresponding account, and verifies the password using the password-hashing system.
+                </p>
+
+                <p>
+                    If authentication succeeds, the server creates a secure session or issues an appropriate authentication token. The application then checks the user's permissions before allowing access to protected resources.
+                </p>
+
+                <p>
+                    If authentication fails, the application should display a safe error message without revealing whether a particular email address or password exists in the system.
+                </p>
+
+                <p>
+                    <strong>Important:</strong> An HTML form alone does not provide secure authentication. A complete system requires server-side processing, secure password storage, session or token management, access control, and appropriate security protections.
+                </p>
+
+            </section>
+
+            <!-- APPLICATIONS -->
+            <section class="lesson-block" id="applications">
+
+                <h2>Practical Applications</h2>
+
+                <p>
+                    Authentication, authorization, and web security are used in many types of websites and digital systems.
+                </p>
+
+                <h3>Online Learning Platforms</h3>
+
+                <p>
+                    Students and teachers sign in using individual accounts. Students can view lessons and submit activities, while teachers can manage classes and learning materials. Administrators have additional permissions to manage the platform.
+                </p>
+
+                <h3>Online Banking</h3>
+
+                <p>
+                    Banking websites use authentication to verify account holders and additional verification for sensitive transactions. Authorization determines which accounts and financial operations a user can access.
+                </p>
+
+                <h3>E-Commerce Websites</h3>
+
+                <p>
+                    Online stores use authentication to manage customer accounts and protect personal information. Authorization controls access to customer profiles, order records, payment functions, and administrative tools.
+                </p>
+
+                <h3>Healthcare Systems</h3>
+
+                <p>
+                    Healthcare applications protect patient information by verifying healthcare professionals and restricting access according to their responsibilities. Only authorized individuals should be able to view or update protected medical records.
+                </p>
+
+                <h3>Business Management Systems</h3>
+
+                <p>
+                    Organizations use authentication and authorization to protect employee accounts, company documents, financial records, and internal systems. Different employees receive permissions based on their job functions.
+                </p>
+
+            </section>
+
+            <!-- TAKEAWAYS -->
+            <section class="lesson-block" id="takeaways">
+
+                <h2>Key Takeaways</h2>
+
+                <p>
+                    Authentication, authorization, and web security work together to protect websites and online applications from unauthorized access and cyber threats.
+                </p>
+
+                <p>
+                    Authentication verifies the identity of a user, while authorization determines what that user is permitted to access or perform. Web security provides the broader set of practices and technologies used to protect information, applications, and communication.
+                </p>
+
+                <p>
+                    Password hashing, multi-factor authentication, secure sessions, HTTPS, input validation, access control, firewalls, backups, and regular software updates are important parts of a secure web application.
+                </p>
+
+                <p>
+                    Developers must consider security throughout the entire development process. A website should not only function correctly but also protect its users, data, and resources from potential attacks.
+                </p>
+
+            </section>
+
+            
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+             <div class="topic-nav">
+
+                <a class="btn outline" href="topic-29.html">
+                    ← Topic 9
+                </a>
+
+                
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+
+    </script>
+
+</body>
+</html>

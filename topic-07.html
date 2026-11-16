@@ -1,0 +1,3388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+
+
+        
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Programs and processes
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+
+        <a href="#overview" class="active">Overview</a>
+
+        <a href="#objectives">Learning Objectives</a>
+
+        <a href="#programs-processes">Programs and Processes</a>
+
+        <a href="#process-states">Process States</a>
+
+        <a href="#pcb">Process Control Block (PCB)</a>
+
+        <a href="#process-context">Process Context</a>
+
+        <a href="#threads">Thread of Execution</a>
+
+        <a href="#context-switch">Context Switching</a>
+
+        <a href="#process-memory">Process in Memory</a>
+
+        <a href="#storage-classes">Storage Classes</a>
+
+        <a href="#linkage-classes">Linkage Classes</a>
+
+        <a href="#process-creation">Process Creation</a>
+
+        <a href="#exec">Loading a Different Program Using exec()</a>
+
+        <a href="#process-termination">Process Termination</a>
+
+        <a href="#zombie-process">Zombie Process</a>
+
+        <a href="#orphan-process">Orphan Process</a>
+
+        <a href="#wait">Managing Child Processes Using wait()</a>
+
+        <a href="#waitpid">Managing Child Processes Using waitpid()</a>
+
+        <a href="#applications">Practical Applications</a>
+
+        <a href="#key-takeaways">Key Takeaways</a>
+
+        <a href="#glossary">Glossary</a>
+
+        <a href="#references">References</a>
+
+    </nav>
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+
+
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+        <h2>Overview</h2>
+
+        <p>
+            A computer system performs different tasks through programs and
+            processes. Programs contain instructions that tell the computer
+            what to do, while processes represent programs that are currently
+            being executed.
+        </p>
+
+        <p>
+            The operating system manages processes by allocating CPU time,
+            controlling memory usage, tracking execution states, and managing
+            system resources. This allows multiple applications and tasks to
+            operate within the same computer system.
+        </p>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section class="lesson-block" id="objectives">
+        <h2>Learning Objectives</h2>
+
+        <p>After completing this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Explain the concept of programs and processes.</li>
+            <li>Differentiate a program from a process.</li>
+            <li>Describe the different process states and their transitions.</li>
+            <li>Explain the purpose of the Process Control Block (PCB).</li>
+            <li>Understand process context and context switching.</li>
+            <li>Identify the memory components of a process.</li>
+            <li>Explain storage classes and linkage classes.</li>
+            <li>Describe process creation and termination.</li>
+            <li>Understand zombie and orphan processes.</li>
+            <li>Explain how wait() and waitpid() manage child processes.</li>
+        </ul>
+    </section>
+
+    <!-- PROGRAMS AND PROCESSES -->
+    <section class="lesson-block" id="programs-processes">
+        <h2>Programs and Processes</h2>
+
+        <h3>Program</h3>
+
+        <p>
+            A program is a collection of instructions and functions designed
+            to accomplish a specific task. It contains the commands that tell
+            the computer how to perform an operation.
+        </p>
+
+        <p>
+            A program is considered a passive entity because it is stored
+            as a file on a storage device. It does not perform any activity
+            until it is loaded and executed.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Web browsers</li>
+            <li>Word processors</li>
+            <li>Calculator applications</li>
+            <li>Media players</li>
+            <li>Computer games</li>
+        </ul>
+
+        <h3>Process</h3>
+
+        <p>
+            A process is a program in execution. It is an active entity
+            because it is currently performing instructions and using
+            computer resources.
+        </p>
+
+        <p>
+            When a user opens an application, the operating system creates
+            and manages a process. The process contains execution information,
+            memory, and other resources needed while the application runs.
+        </p>
+
+        <h3>Program vs. Process</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Program</h3>
+                <ul>
+                    <li>Set of instructions or functions.</li>
+                    <li>Passive entity.</li>
+                    <li>Stored as a file on a storage device.</li>
+                    <li>Does not have an active execution state.</li>
+                    <li>Can exist without running.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Process</h3>
+                <ul>
+                    <li>A program in execution.</li>
+                    <li>Active entity.</li>
+                    <li>Managed by the operating system.</li>
+                    <li>Has different execution states.</li>
+                    <li>Exists while being executed.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Multiple Processes from One Program</h3>
+
+        <p>
+            A single program can be executed multiple times. Each execution
+            can create a separate process with its own process identifier,
+            memory information, and execution state.
+        </p>
+
+        <p>
+            For example, opening multiple instances of a text editor can
+            result in multiple processes running the same program.
+        </p>
+
+        <h3>Viewing Processes in Linux</h3>
+
+        <p>
+            Linux provides the <code>top</code> utility to display currently
+            running processes and their resource usage.
+        </p>
+
+        <pre><code>top</code></pre>
+
+        <p>Common process information includes:</p>
+
+        <ul>
+            <li><strong>PID:</strong> The unique process identification number.</li>
+            <li><strong>USER:</strong> The user who started the process.</li>
+            <li><strong>PR:</strong> The process priority.</li>
+            <li><strong>VIRT:</strong> The total virtual memory used by the process.</li>
+            <li><strong>RES:</strong> The resident physical memory used by the process.</li>
+            <li><strong>SHR:</strong> The shared memory size.</li>
+            <li><strong>%CPU:</strong> The percentage of CPU utilization.</li>
+            <li><strong>%MEM:</strong> The percentage of physical memory utilization.</li>
+        </ul>
+    </section>
+
+    <!-- PROCESS STATES -->
+    <section class="lesson-block" id="process-states">
+        <h2>Process States</h2>
+
+        <p>
+            A process changes its state as it executes. The operating system
+            tracks these states to determine what a process is currently doing
+            and whether it can use the CPU.
+        </p>
+
+        <figure>
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Process_state.svg"
+                 alt="Diagram showing the different states of a process"
+                 class="lesson-image">
+            <figcaption>Process states and transitions.</figcaption>
+        </figure>
+
+        <h3>New</h3>
+        <p>
+            The process is being created. The operating system prepares the
+            required information and resources before allowing it to execute.
+        </p>
+
+        <h3>Ready</h3>
+        <p>
+            The process is prepared to execute and is waiting for the CPU.
+            It has the resources needed to run but has not yet been assigned
+            processor time.
+        </p>
+
+        <h3>Running</h3>
+        <p>
+            The process is currently executing instructions using the CPU.
+            A processor core executes instructions for a running process.
+        </p>
+
+        <h3>Waiting</h3>
+        <p>
+            The process cannot continue until a particular event occurs.
+            For example, it may be waiting for an input operation, disk
+            access, or another system event to finish.
+        </p>
+
+        <h3>Terminated or Halted</h3>
+        <p>
+            The process has completed its execution or has been stopped.
+            The operating system handles the release of its resources.
+        </p>
+
+        <h3>Process State Transitions</h3>
+
+        <p>
+            A process moves between states depending on CPU availability,
+            completed operations, and events handled by the operating system.
+        </p>
+
+        <ul>
+            <li><strong>New to Ready:</strong> The process has been created and is ready to execute.</li>
+            <li><strong>Ready to Running:</strong> The CPU scheduler selects the process for execution.</li>
+            <li><strong>Running to Ready:</strong> The process loses the CPU, such as when its time slice expires.</li>
+            <li><strong>Running to Waiting:</strong> The process requests an operation or waits for an event.</li>
+            <li><strong>Waiting to Ready:</strong> The required event or operation is completed.</li>
+            <li><strong>Running to Terminated:</strong> The process finishes or exits.</li>
+        </ul>
+    </section>
+
+    <!-- PROCESS CONTROL BLOCK -->
+    <section class="lesson-block" id="pcb">
+        <h2>Process Control Block (PCB)</h2>
+
+        <p>
+            A Process Control Block is a data structure maintained by the
+            operating system to store important information about a process.
+            The operating system uses the PCB to manage, monitor, and control
+            process execution.
+        </p>
+
+        <p>
+            Every process has its own process information. The PCB allows
+            the operating system to save the current execution information
+            and restore it when the process is scheduled again.
+        </p>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Process_Control_Block.svg"
+                 alt="Illustration of a Process Control Block and its stored information"
+                 class="lesson-image">
+            <figcaption>General representation of a Process Control Block.</figcaption>
+        </figure>
+
+        <h3>Information Stored in a PCB</h3>
+
+        <h3>Process State</h3>
+        <p>
+            Identifies the current state of the process, such as new, ready,
+            running, waiting, or terminated.
+        </p>
+
+        <h3>Process ID</h3>
+        <p>
+            A unique identification number assigned to a process. It allows
+            the operating system to identify and manage individual processes.
+        </p>
+
+        <h3>Program Counter</h3>
+        <p>
+            Stores the memory address of the next instruction that the process
+            should execute when it resumes.
+        </p>
+
+        <h3>CPU Registers</h3>
+        <p>
+            Store temporary information used by the processor. These include
+            general-purpose registers and special registers.
+        </p>
+
+        <h3>Stack Pointer</h3>
+        <p>
+            Contains the address of the top of the current stack. The stack
+            stores information related to function calls, local variables,
+            and return addresses.
+        </p>
+
+        <h3>CPU Scheduling Information</h3>
+        <p>
+            Contains information used by the operating system to schedule
+            processes, including priority and other scheduling parameters.
+        </p>
+
+        <h3>Memory Management Information</h3>
+        <p>
+            Contains information about the memory assigned to the process,
+            including references to its code, data, and stack areas.
+        </p>
+
+        <h3>Accounting Information</h3>
+        <p>
+            Records resource usage, such as the amount of CPU time consumed
+            by the process.
+        </p>
+
+        <h3>I/O Status Information</h3>
+        <p>
+            Contains information about input and output operations, open
+            files, and devices being used by the process.
+        </p>
+
+        <h3>PCB in Linux</h3>
+
+        <p>
+            Linux uses a process descriptor called <code>task_struct</code>
+            to maintain information about tasks and processes.
+        </p>
+
+        <p>Its information includes:</p>
+
+        <ul>
+            <li>Process state and identification.</li>
+            <li>Parent process and process group information.</li>
+            <li>CPU registers and scheduling information.</li>
+            <li>Memory segment information.</li>
+            <li>Open files and working directory.</li>
+            <li>User and group identification.</li>
+            <li>CPU time and process accounting information.</li>
+        </ul>
+    </section>
+
+    <!-- PROCESS CONTEXT -->
+    <section class="lesson-block" id="process-context">
+        <h2>Process Context</h2>
+
+        <p>
+            Process context refers to the current execution information of
+            a process. It describes the information needed by the CPU and
+            operating system to continue executing the process.
+        </p>
+
+        <p>
+            The process context includes the contents of CPU registers,
+            the program counter, and the stack pointer. This information
+            is important when a process temporarily stops running and
+            later resumes.
+        </p>
+
+        <h3>Program Counter (PC)</h3>
+
+        <p>
+            The program counter contains the memory address of the next
+            instruction to be executed. It allows the processor to continue
+            from the correct instruction when the process resumes.
+        </p>
+
+        <h3>Stack Pointer (SP)</h3>
+
+        <p>
+            The stack pointer identifies the top of the current stack in
+            memory. The stack contains information about active function
+            calls, local variables, parameters, and return addresses.
+        </p>
+
+        <h3>General-Purpose Registers</h3>
+
+        <p>
+            These registers temporarily hold data and values required
+            during instruction execution. They allow the CPU to perform
+            operations efficiently without accessing memory for every value.
+        </p>
+    </section>
+
+    <!-- THREAD OF EXECUTION -->
+    <section class="lesson-block" id="threads">
+        <h2>Thread of Execution</h2>
+
+        <p>
+            A thread of execution represents a sequence of instructions
+            performed by the CPU. It follows a flow of control through
+            the instructions of a program.
+        </p>
+
+        <p>
+            A process normally begins with a single thread of execution.
+            A process may also contain multiple threads that perform
+            different activities within the same process.
+        </p>
+
+        <h3>Example of Threads</h3>
+
+        <p>
+            Consider a web browser. One activity may handle the user
+            interface, another may load a web page, and another may
+            perform background tasks.
+        </p>
+
+        <p>
+            These activities can be handled by separate threads within
+            the browser process, allowing different tasks to make progress.
+        </p>
+
+        <h3>Process and Thread</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Process</h3>
+                <ul>
+                    <li>An executing program.</li>
+                    <li>Has its own process address space.</li>
+                    <li>Has process management information.</li>
+                    <li>Can contain multiple threads.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Thread</h3>
+                <ul>
+                    <li>A sequence of execution within a process.</li>
+                    <li>Threads in the same process share its address space.</li>
+                    <li>Has its own execution state and stack.</li>
+                    <li>Belongs to a process.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEXT SWITCH -->
+    <section class="lesson-block" id="context-switch">
+        <h2>Context Switching</h2>
+
+        <p>
+            Context switching occurs when the CPU stops executing one
+            process and switches to another process. The operating system
+            saves the current process context and loads the saved context
+            of the next process.
+        </p>
+
+        <p>
+            This allows multiple processes to share CPU time. Even when
+            a processor core executes only one process at a time, rapid
+            switching allows users to work with several applications.
+        </p>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Context_switching.svg"
+                 alt="Diagram showing CPU context switching between processes"
+                 class="lesson-image">
+            <figcaption>Context switching between processes.</figcaption>
+        </figure>
+
+        <h3>How Context Switching Works</h3>
+
+        <ul>
+            <li>The CPU is executing a process.</li>
+            <li>An event causes the operating system to switch processes.</li>
+            <li>The current process information is saved in its PCB.</li>
+            <li>The operating system selects another ready process.</li>
+            <li>The selected process's saved context is restored.</li>
+            <li>The CPU continues executing the selected process.</li>
+        </ul>
+
+        <h3>Why Context Switching Is Important</h3>
+
+        <p>
+            Context switching allows the operating system to share CPU
+            resources among multiple processes. It helps the system
+            respond to different tasks and manage waiting processes.
+        </p>
+
+        <h3>Context-Switching Overhead</h3>
+
+        <p>
+            Context switching requires time because the operating system
+            must save and restore execution information. During this
+            activity, the CPU is performing management work instead of
+            executing application instructions.
+        </p>
+
+        <p>It can also affect performance because:</p>
+
+        <ul>
+            <li>CPU time is spent saving and restoring process information.</li>
+            <li>Cache contents may become less useful after switching.</li>
+            <li>Translation Lookaside Buffer (TLB) entries may need attention.</li>
+            <li>Frequent switching can reduce overall efficiency.</li>
+        </ul>
+    </section>
+
+    <!-- PROCESS MEMORY -->
+    <section class="lesson-block" id="process-memory">
+        <h2>Process in Memory</h2>
+
+        <p>
+            When a program executes, the operating system provides it with
+            an address space. An address space is the range of virtual
+            memory addresses available to a process.
+        </p>
+
+        <p>
+            The process uses different memory areas to store program
+            instructions, variables, temporary data, and dynamically
+            allocated information.
+        </p>
+
+        <figure>
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Program_memory_layout.svg"
+                 alt="Process memory layout"
+                 class="lesson-image">
+            <figcaption>Illustration of a process memory layout.</figcaption>
+        </figure>
+
+        <h3>Text Segment</h3>
+
+        <p>
+            The text segment contains the executable instructions of a
+            program. It stores the machine code that the CPU executes.
+        </p>
+
+        <p>
+            For example, the compiled instructions of a calculator
+            application are stored in the program's code segment.
+        </p>
+
+        <h3>Data Segment</h3>
+
+        <p>
+            The data segment stores global and static variables used by
+            the program. These variables have storage that exists beyond
+            an individual function call.
+        </p>
+
+        <h3>Stack</h3>
+
+        <p>
+            The stack stores temporary information used during program
+            execution. It commonly contains local variables, function
+            parameters, return addresses, and function call information.
+        </p>
+
+        <p>
+            When a function is called, a stack frame is created. When
+            the function finishes, its stack frame is removed.
+        </p>
+
+        <h3>Heap</h3>
+
+        <p>
+            The heap is the memory area used for dynamic memory allocation.
+            A program can request memory while it is running and release
+            it when it is no longer needed.
+        </p>
+
+        <p>
+            In C, functions such as <code>malloc()</code> and
+            <code>free()</code> are used to allocate and release
+            dynamically managed memory.
+        </p>
+
+        <h3>Program Counter and Registers</h3>
+
+        <p>
+            The program counter and CPU registers contain execution
+            information used by the processor. They are part of the
+            running context of a process rather than ordinary memory
+            segments such as the heap and stack.
+        </p>
+
+        <h3>Example of Stack and Heap</h3>
+
+        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+
+    int number = 10;  // Local variable: typically on the stack
+
+    int *ptr = malloc(sizeof(int));  // Dynamic memory: heap
+
+    if (ptr == NULL) {
+        return 1;
+    }
+
+    *ptr = 25;
+
+    printf("Number: %d\n", number);
+    printf("Dynamic value: %d\n", *ptr);
+
+    free(ptr);
+
+    return 0;
+}</code></pre>
+
+        <p>
+            In this example, <code>number</code> is a local variable,
+            while the memory requested by <code>malloc()</code> is
+            dynamically allocated from the heap. The pointer variable
+            <code>ptr</code> itself is a local variable.
+        </p>
+    </section>
+
+    <!-- STORAGE CLASSES -->
+    <section class="lesson-block" id="storage-classes">
+        <h2>Storage Classes</h2>
+
+        <p>
+            Storage classes describe the lifetime and storage behavior
+            of variables in a program. They help determine how long
+            a variable exists and where it can be used.
+        </p>
+
+        <h3>Static Storage Class</h3>
+
+        <p>
+            A variable with static storage duration retains its allocated
+            storage throughout the execution of the program. Its value
+            remains available between function calls when declared as
+            a local static variable.
+        </p>
+
+        <pre><code>#include &lt;stdio.h&gt;
+
+void counter() {
+
+    static int count = 0;
+
+    count++;
+
+    printf("Count: %d\n", count);
+}
+
+int main() {
+
+    counter();
+    counter();
+    counter();
+
+    return 0;
+}</code></pre>
+
+        <p>Output:</p>
+
+        <pre><code>Count: 1
+Count: 2
+Count: 3</code></pre>
+
+        <p>
+            The variable <code>count</code> keeps its value between
+            function calls because it has static storage duration.
+        </p>
+
+        <h3>Automatic Storage Class</h3>
+
+        <p>
+            Automatic variables are created when the block in which
+            they are declared is entered and their lifetime ends when
+            that block is exited.
+        </p>
+
+        <pre><code>#include &lt;stdio.h&gt;
+
+void display() {
+
+    int number = 10;
+
+    printf("%d\n", number);
+}
+
+int main() {
+
+    display();
+
+    return 0;
+}</code></pre>
+
+        <p>
+            The local variable <code>number</code> has automatic storage
+            duration. It is available inside the function while that
+            function is executing.
+        </p>
+
+        <h3>Comparison of Storage Classes</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Static Storage</h3>
+                <ul>
+                    <li>Exists throughout program execution.</li>
+                    <li>Retains its value between function calls.</li>
+                    <li>Can be used for global and static local variables.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Automatic Storage</h3>
+                <ul>
+                    <li>Exists during the execution of its block.</li>
+                    <li>Its lifetime ends when its block exits.</li>
+                    <li>Commonly used for ordinary local variables.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINKAGE CLASSES -->
+    <section class="lesson-block" id="linkage-classes">
+        <h2>Linkage Classes</h2>
+
+        <p>
+            Linkage determines whether an identifier, such as a variable
+            or function, can be referred to from other parts of a program
+            or from other source files.
+        </p>
+
+        <h3>Internal Linkage</h3>
+
+        <p>
+            Internal linkage means that an identifier can only be referred
+            to within the source file where it is declared.
+        </p>
+
+        <p>
+            In C, a file-scope variable or function declared with
+            <code>static</code> has internal linkage.
+        </p>
+
+        <pre><code>#include &lt;stdio.h&gt;
+
+static int count = 0;
+
+static void display() {
+
+    printf("Count: %d\n", count);
+}
+
+int main() {
+
+    display();
+
+    return 0;
+}</code></pre>
+
+        <h3>External Linkage</h3>
+
+        <p>
+            External linkage allows an identifier to be referred to
+            from other source files. This is useful when a program
+            is divided into multiple files.
+        </p>
+
+        <p>
+            A global variable or function normally has external linkage
+            unless another declaration changes its linkage.
+        </p>
+
+        <pre><code>/* file1.c */
+
+int total = 100;</code></pre>
+
+        <pre><code>/* file2.c */
+
+extern int total;
+
+void display() {
+
+    printf("%d", total);
+}</code></pre>
+
+        <p>
+            The <code>extern</code> declaration tells the compiler that
+            the variable is defined elsewhere.
+        </p>
+
+        <h3>No Linkage</h3>
+
+        <p>
+            An identifier with no linkage can only be referred to within
+            its own scope. Ordinary local variables declared inside a
+            function generally have no linkage.
+        </p>
+
+        <h3>Comparison of Linkage Classes</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Types of Linkage</h3>
+                <ul>
+                    <li><strong>Internal:</strong> Accessible only within the source file.</li>
+                    <li><strong>External:</strong> Can be accessed from other source files through declarations.</li>
+                    <li><strong>No Linkage:</strong> Limited to its own scope.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS CREATION -->
+    <section class="lesson-block" id="process-creation">
+        <h2>Process Creation</h2>
+
+        <p>
+            Process creation occurs when the operating system creates a
+            new process to execute a program or perform a task. Each
+            process receives a process identifier called a PID.
+        </p>
+
+        <h3>Parent and Child Processes</h3>
+
+        <p>
+            In UNIX and Linux, an existing process can create another
+            process. The original process is called the parent process,
+            while the newly created process is called the child process.
+        </p>
+
+        <p>
+            The parent and child processes have separate process
+            identifiers and can execute independently.
+        </p>
+
+        <h3>The fork() System Call</h3>
+
+        <p>
+            The <code>fork()</code> system call creates a new child
+            process by duplicating the calling process. The child
+            receives a separate process context and a logically
+            separate address space.
+        </p>
+
+        <p>
+            Modern Linux systems commonly use copy-on-write memory
+            management. This means memory pages are initially shared
+            until one process needs to modify them.
+        </p>
+
+        <h3>Return Values of fork()</h3>
+
+        <ul>
+            <li><strong>Zero:</strong> The code is executing in the child process.</li>
+            <li><strong>Positive value:</strong> The code is executing in the parent process. The value is the child's PID.</li>
+            <li><strong>Negative value:</strong> Process creation failed.</li>
+        </ul>
+
+        <h3>Example of fork()</h3>
+
+        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+
+int main() {
+
+    pid_t pid = fork();
+
+    if (pid == 0) {
+
+        printf("This is the child process.\n");
+        printf("Child PID: %d\n", getpid());
+
+    } else if (pid &gt; 0) {
+
+        printf("This is the parent process.\n");
+        printf("Child PID: %d\n", pid);
+
+    } else {
+
+        printf("Process creation failed.\n");
+    }
+
+    return 0;
+}</code></pre>
+
+        <p>
+            After a successful <code>fork()</code>, both processes
+            continue execution from the instruction immediately after
+            the system call. Their output order is not guaranteed because
+            the operating system schedules them independently.
+        </p>
+
+        <h3>When fork() May Fail</h3>
+
+        <p>
+            Process creation may fail when the system cannot provide
+            the resources required for a new process.
+        </p>
+
+        <ul>
+            <li><strong>EAGAIN:</strong> A process or system resource limit has been reached.</li>
+            <li><strong>ENOMEM:</strong> The system cannot allocate the required memory or kernel structures.</li>
+            <li><strong>ENOSYS:</strong> The system does not support the required operation.</li>
+        </ul>
+    </section>
+
+    <!-- EXEC -->
+    <section class="lesson-block" id="exec">
+        <h2>Loading a Different Program Using exec()</h2>
+
+        <p>
+            The <code>exec()</code> family of functions replaces the
+            current process image with a new program. It is commonly
+            used after <code>fork()</code> when a child process needs
+            to execute a different program.
+        </p>
+
+        <p>
+            Unlike <code>fork()</code>, which creates a new process,
+            <code>exec()</code> does not create another process.
+            It replaces the program being executed by the calling process.
+        </p>
+
+        <h3>Example of fork() and execlp()</h3>
+
+        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+
+    pid_t pid = fork();
+
+    if (pid &lt; 0) {
+
+        perror("fork failed");
+        return 1;
+
+    } else if (pid == 0) {
+
+        printf("Child process is running.\n");
+
+        execlp("ls", "ls", "-l", (char *)NULL);
+
+        perror("exec failed");
+        exit(1);
+
+    } else {
+
+        wait(NULL);
+
+        printf("Parent process finished waiting.\n");
+    }
+
+    return 0;
+}</code></pre>
+
+        <p>
+            The parent creates a child process using
+            <code>fork()</code>. The child then executes the
+            <code>ls</code> command using <code>execlp()</code>.
+            The parent waits until the child finishes.
+        </p>
+
+        <p>
+            If an <code>exec()</code> function succeeds, it does not
+            return to the original program. If it returns, an error
+            occurred.
+        </p>
+    </section>
+
+    <!-- PROCESS TERMINATION -->
+    <section class="lesson-block" id="process-termination">
+        <h2>Process Termination</h2>
+
+        <p>
+            Process termination occurs when a process stops executing.
+            After termination, the operating system releases the resources
+            associated with the process and records the information needed
+            for its parent to collect the exit status.
+        </p>
+
+        <h3>Voluntary Termination</h3>
+
+        <p>
+            Voluntary termination occurs when a process finishes its
+            assigned task and exits normally. In C, a program can use
+            <code>return</code> from <code>main()</code> or call
+            <code>exit()</code> to terminate.
+        </p>
+
+        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+
+    printf("Program is running.\n");
+
+    exit(0);
+}</code></pre>
+
+        <p>
+            An exit status of zero commonly indicates successful
+            completion. A nonzero status commonly indicates an error
+            or another result defined by the program.
+        </p>
+
+        <h3>Involuntary Termination</h3>
+
+        <p>
+            Involuntary termination occurs when a process is stopped
+            before completing its intended task. This can happen because
+            of an error, a signal, or an action taken by another process
+            or the operating system.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>A process is terminated by its parent.</li>
+            <li>A program encounters a segmentation fault.</li>
+            <li>A process receives a termination signal.</li>
+            <li>The operating system stops a process because of system conditions.</li>
+        </ul>
+
+        <h3>What Happens After Termination?</h3>
+
+        <p>
+            The operating system releases the process's resources.
+            However, a terminated child process may temporarily remain
+            in the process table so its parent can retrieve its exit status.
+        </p>
+    </section>
+
+    <!-- ZOMBIE PROCESS -->
+    <section class="lesson-block" id="zombie-process">
+        <h2>Zombie Process</h2>
+
+        <p>
+            A zombie process, also called a defunct process, is a process
+            that has completed execution but still has an entry in the
+            process table.
+        </p>
+
+        <p>
+            This happens when a child process terminates but its parent
+            has not yet collected its exit status using a function such
+            as <code>wait()</code> or <code>waitpid()</code>.
+        </p>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Zombie_process.svg"
+                 alt="Illustration of a zombie process"
+                 class="lesson-image">
+            <figcaption>Concept of a terminated child remaining as a zombie process.</figcaption>
+        </figure>
+
+        <h3>How a Zombie Process Occurs</h3>
+
+        <ul>
+            <li>A parent process creates a child process.</li>
+            <li>The child process completes its execution.</li>
+            <li>The child calls <code>exit()</code> or returns from its main function.</li>
+            <li>The parent does not collect the child's exit status.</li>
+            <li>The child remains as a zombie entry in the process table.</li>
+        </ul>
+
+        <h3>Problems Caused by Zombie Processes</h3>
+
+        <p>
+            A zombie process no longer executes instructions, but its
+            process table entry remains until it is reaped. Large numbers
+            of zombies can consume process table entries and process IDs,
+            eventually interfering with process creation.
+        </p>
+
+        <h3>How to Prevent Zombie Processes</h3>
+
+        <p>
+            A parent process should collect the exit status of its child
+            processes using <code>wait()</code> or <code>waitpid()</code>.
+            This process is called reaping.
+        </p>
+    </section>
+
+    <!-- ORPHAN PROCESS -->
+    <section class="lesson-block" id="orphan-process">
+        <h2>Orphan Process</h2>
+
+        <p>
+            An orphan process is a process that is still executing after
+            its original parent process has terminated.
+        </p>
+
+        <p>
+            Unlike a zombie process, an orphan process is still active.
+            It can continue performing its assigned tasks even though
+            its original parent no longer exists.
+        </p>
+
+        <h3>How an Orphan Process Occurs</h3>
+
+        <ul>
+            <li>A parent process creates a child process.</li>
+            <li>The parent terminates before the child.</li>
+            <li>The child continues executing.</li>
+            <li>The child becomes an orphan process.</li>
+        </ul>
+
+        <p>
+            On Linux, an orphan process is generally adopted by an
+            appropriate reaper process, commonly the system's init
+            process or another configured subreaper.
+        </p>
+
+        <h3>Zombie vs. Orphan Process</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Zombie Process</h3>
+                <ul>
+                    <li>Has already finished execution.</li>
+                    <li>Remains in the process table.</li>
+                    <li>Waiting for its exit status to be collected.</li>
+                    <li>Reaped using <code>wait()</code> or <code>waitpid()</code>.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Orphan Process</h3>
+                <ul>
+                    <li>Is still executing.</li>
+                    <li>Continues running without its original parent.</li>
+                    <li>Can be adopted by another process.</li>
+                    <li>Continues until it finishes or is terminated.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAIT -->
+    <section class="lesson-block" id="wait">
+        <h2>Managing Child Processes Using wait()</h2>
+
+        <p>
+            The <code>wait()</code> system call allows a parent process
+            to wait for a state change in one of its child processes.
+            It can collect information about a child that has terminated
+            and allow the operating system to remove its zombie entry.
+        </p>
+
+        <p>
+            A parent commonly calls <code>wait()</code> to ensure that
+            its child processes finish and that their exit statuses
+            are collected.
+        </p>
+
+        <h3>Example of wait()</h3>
+
+        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+
+    pid_t pid = fork();
+
+    if (pid == 0) {
+
+        printf("Child process is working.\n");
+
+        exit(0);
+
+    } else if (pid &gt; 0) {
+
+        wait(NULL);
+
+        printf("Parent collected the child process.\n");
+
+    } else {
+
+        perror("fork failed");
+        return 1;
+    }
+
+    return 0;
+}</code></pre>
+
+        <p>
+            The parent process waits until the child terminates.
+            After collecting the child's status, the child is reaped.
+        </p>
+
+        <h3>Checking the Child Exit Status</h3>
+
+        <p>
+            The parent can use the status value returned through
+            <code>wait()</code> to determine how the child terminated.
+            The macros from <code>sys/wait.h</code> help interpret
+            the status.
+        </p>
+
+        <ul>
+            <li><code>WIFEXITED(status)</code> checks whether the child terminated normally.</li>
+            <li><code>WEXITSTATUS(status)</code> retrieves the child's exit status when it terminated normally.</li>
+            <li><code>WIFSIGNALED(status)</code> checks whether the child terminated because of a signal.</li>
+            <li><code>WTERMSIG(status)</code> identifies the signal that terminated the child.</li>
+            <li><code>WIFSTOPPED(status)</code> checks whether the child was stopped by a signal.</li>
+            <li><code>WSTOPSIG(status)</code> identifies the signal that stopped the child.</li>
+        </ul>
+    </section>
+
+    <!-- WAITPID -->
+    <section class="lesson-block" id="waitpid">
+        <h2>Managing Specific Child Processes Using waitpid()</h2>
+
+        <p>
+            The <code>waitpid()</code> system call provides more control
+            over which child process the parent waits for. Unlike
+            <code>wait()</code>, which waits for any eligible child,
+            <code>waitpid()</code> can wait for a specific child process
+            using its PID.
+        </p>
+
+        <h3>Difference Between wait() and waitpid()</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>wait()</h3>
+                <ul>
+                    <li>Waits for an eligible child process.</li>
+                    <li>Provides less selection control.</li>
+                    <li>Commonly used to collect any child's status.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>waitpid()</h3>
+                <ul>
+                    <li>Can wait for a specific child process.</li>
+                    <li>Provides process selection and additional options.</li>
+                    <li>Useful when managing several child processes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Example of waitpid()</h3>
+
+        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+
+    pid_t pid = fork();
+    int status;
+
+    if (pid == 0) {
+
+        printf("Child process is running.\n");
+
+        exit(5);
+
+    } else if (pid &gt; 0) {
+
+        waitpid(pid, &amp;status, 0);
+
+        if (WIFEXITED(status)) {
+
+            printf("Child exited with status: %d\n",
+                   WEXITSTATUS(status));
+        }
+
+    } else {
+
+        perror("fork failed");
+        return 1;
+    }
+
+    return 0;
+}</code></pre>
+
+        <p>
+            The parent waits for the specific child identified by
+            <code>pid</code>. When the child terminates, the parent
+            collects its exit status.
+        </p>
+
+        <h3>Understanding waitpid() Parameters</h3>
+
+        <pre><code>waitpid(pid, &amp;status, options);</code></pre>
+
+        <ul>
+            <li><strong>pid:</strong> Specifies which child process to wait for.</li>
+            <li><strong>status:</strong> Stores information about the child's state change.</li>
+            <li><strong>options:</strong> Controls how the function waits. A value of 0 means normal blocking behavior.</li>
+        </ul>
+    </section>
+
+    <!-- PRACTICAL APPLICATIONS -->
+    <section class="lesson-block" id="applications">
+        <h2>Practical Applications of Process Management</h2>
+
+        <p>
+            Process management is used in everyday computing because
+            modern operating systems need to manage multiple applications,
+            background tasks, and system services.
+        </p>
+
+        <h3>Multitasking</h3>
+        <p>
+            Process management allows users to run a browser, document
+            editor, and music player while the operating system shares
+            CPU resources among them.
+        </p>
+
+        <h3>Application Execution</h3>
+        <p>
+            When a user opens an application, the operating system
+            creates and manages a process to execute its instructions.
+        </p>
+
+        <h3>Background Services</h3>
+        <p>
+            Operating systems run background processes to perform tasks
+            such as checking updates, managing network connections,
+            and monitoring system activity.
+        </p>
+
+        <h3>Resource Management</h3>
+        <p>
+            The operating system monitors CPU usage, memory allocation,
+            and other resources to prevent processes from interfering
+            unnecessarily with one another.
+        </p>
+
+        <h3>System Monitoring</h3>
+        <p>
+            Tools such as Linux <code>top</code> and <code>ps</code>
+            allow administrators to view running processes and examine
+            their resource consumption.
+        </p>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>A program is a set of instructions, while a process is a program in execution.</li>
+            <li>The operating system manages processes and their resources.</li>
+            <li>Process states describe the current execution condition of a process.</li>
+            <li>The Process Control Block stores important process information.</li>
+            <li>Process context contains the information needed to resume execution.</li>
+            <li>Context switching allows the CPU to switch between processes.</li>
+            <li>A process address space includes code, data, stack, and heap areas.</li>
+            <li>Storage classes determine the lifetime of variables.</li>
+            <li>Linkage classes determine how identifiers can be accessed across source files.</li>
+            <li>The fork() system call creates a child process in UNIX and Linux.</li>
+            <li>The exec() family replaces the current process image with another program.</li>
+            <li>A zombie process has terminated but has not yet been reaped.</li>
+            <li>An orphan process continues executing after its original parent terminates.</li>
+            <li>wait() and waitpid() allow parent processes to collect child process status.</li>
+        </ul>
+    </section>
+
+    
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+        <h2>References</h2>
+
+        <ul>
+            <li>
+                Tongping Liu. <em>Programs and Processes</em>.
+                Lecture 02, Operating Systems, provided course PDF.
+            </li>
+            <li>
+                Silberschatz, A., Galvin, P. B., and Gagne, G.
+                <em>Operating System Concepts</em>.
+                Process concepts and process management.
+            </li>
+            <li>
+                Linux manual pages:
+                <code>fork(2)</code>, <code>exec(3)</code>,
+                <code>wait(2)</code>, and <code>waitpid(2)</code>.
+            </li>
+            <li>
+                Linux manual pages:
+                <code>top(1)</code> and <code>getpid(2)</code>.
+            </li>
+        </ul>
+    </section>
+
+
+
+
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-06.html">
+                    ← Topic 6
+                </a>
+
+                <a class="btn primary" href="topic-08.html">
+                    Topic 8 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

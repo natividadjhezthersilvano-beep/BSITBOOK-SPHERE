@@ -1,0 +1,3337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Responsive Web Design
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    <aside class="lesson-sidebar">
+    <h3>On This Page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+        <a href="#overview">Overview</a>
+        <a href="#definition">What is Responsive Design?</a>
+        <a href="#importance">Importance of Responsive Design</a>
+        <a href="#principles">Key Principles</a>
+        <a href="#core-concepts">Core Concepts</a>
+        <a href="#media-queries">Media Queries</a>
+        <a href="#breakpoints">Breakpoints</a>
+        <a href="#mobile-friendly">Mobile-Friendly Websites</a>
+        <a href="#fluid-layouts">Fluid Layouts</a>
+        <a href="#responsive-images">Responsive Images</a>
+        <a href="#coding-example">Practical Coding Example</a>
+        <a href="#testing">Testing Responsive Websites</a>
+        <a href="#applications">Practical Applications</a>
+        <a href="#takeaways">Key Takeaways</a>
+        <a href="#learning-materials">Videos and Learning Materials</a>
+    </nav>
+
+    
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+    <article class="lesson-content">
+
+            <!-- OVERVIEW -->
+            <section class="lesson-block" id="overview">
+
+                <h2>Overview of Responsive Design</h2>
+
+                <p>
+                    Responsive web design is an important approach in modern
+                    web development. People access websites using different
+                    devices, including desktop computers, laptops, tablets,
+                    and smartphones. Each device has a different screen size
+                    and resolution, which can affect how website content
+                    appears.
+                </p>
+
+                <p>
+                    A website designed only for desktop computers may look
+                    too large, too small, or difficult to navigate on a
+                    mobile phone. Responsive design solves this problem by
+                    allowing the website layout and content to adjust
+                    according to the available screen space.
+                </p>
+
+                <p>
+                    Developers use flexible layouts, responsive images,
+                    CSS media queries, and breakpoints to create websites
+                    that remain readable, organized, and functional across
+                    different devices.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 330"
+                         width="100%"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Responsive website displayed on desktop, tablet, and mobile devices">
+
+                        <rect x="25" y="35" width="365" height="220"
+                              rx="12" fill="#e9e5ff"
+                              stroke="#6555c7" stroke-width="3"/>
+
+                        <rect x="43" y="52" width="329" height="183"
+                              rx="5" fill="#ffffff"/>
+
+                        <rect x="43" y="52" width="329" height="35"
+                              fill="#6555c7"/>
+
+                        <text x="207" y="75" text-anchor="middle"
+                              font-size="15" fill="#ffffff">
+                            WEBSITE HEADER
+                        </text>
+
+                        <rect x="58" y="103" width="135" height="55"
+                              rx="4" fill="#d8d2fa"/>
+
+                        <rect x="207" y="103" width="150" height="55"
+                              rx="4" fill="#eeeaff"/>
+
+                        <rect x="58" y="170" width="299" height="45"
+                              rx="4" fill="#eeeaff"/>
+
+                        <rect x="150" y="255" width="115" height="12"
+                              rx="5" fill="#6555c7"/>
+
+                        <text x="207" y="300" text-anchor="middle"
+                              font-size="17" font-weight="bold"
+                              fill="#493ba5">DESKTOP</text>
+
+                        <rect x="430" y="65" width="185" height="180"
+                              rx="12" fill="#e9e5ff"
+                              stroke="#6555c7" stroke-width="3"/>
+
+                        <rect x="443" y="79" width="159" height="151"
+                              rx="4" fill="#ffffff"/>
+
+                        <rect x="443" y="79" width="159" height="30"
+                              fill="#6555c7"/>
+
+                        <rect x="454" y="119" width="137" height="37"
+                              rx="3" fill="#d8d2fa"/>
+
+                        <rect x="454" y="164" width="137" height="25"
+                              rx="3" fill="#eeeaff"/>
+
+                        <rect x="454" y="197" width="137" height="25"
+                              rx="3" fill="#eeeaff"/>
+
+                        <text x="522" y="280" text-anchor="middle"
+                              font-size="17" font-weight="bold"
+                              fill="#493ba5">TABLET</text>
+
+                        <rect x="645" y="100" width="92" height="165"
+                              rx="13" fill="#e9e5ff"
+                              stroke="#6555c7" stroke-width="3"/>
+
+                        <rect x="654" y="116" width="74" height="137"
+                              rx="4" fill="#ffffff"/>
+
+                        <rect x="654" y="116" width="74" height="23"
+                              fill="#6555c7"/>
+
+                        <rect x="661" y="148" width="60" height="35"
+                              rx="3" fill="#d8d2fa"/>
+
+                        <rect x="661" y="190" width="60" height="25"
+                              rx="3" fill="#eeeaff"/>
+
+                        <rect x="661" y="222" width="60" height="22"
+                              rx="3" fill="#eeeaff"/>
+
+                        <text x="691" y="300" text-anchor="middle"
+                              font-size="15" font-weight="bold"
+                              fill="#493ba5">MOBILE</text>
+                    </svg>
+
+                    <figcaption>
+                        A responsive website adjusts its layout to fit
+                        desktop, tablet, and mobile screens.
+                    </figcaption>
+                </figure>
+
+            </section>
+
+
+            <!-- DEFINITION -->
+            <section class="lesson-block" id="definition">
+
+                <h2>What is Responsive Design?</h2>
+
+                <p>
+                    Responsive design is an approach to web design that
+                    ensures websites look good and function properly on
+                    different devices and screen sizes, from large desktop
+                    monitors to small mobile phones.
+                </p>
+
+                <p>
+                    Instead of creating a completely separate website for
+                    every device, developers create a flexible layout that
+                    automatically changes based on the screen dimensions.
+                </p>
+
+                <p>
+                    For example, a website may display three content cards
+                    beside one another on a desktop computer. When the same
+                    website is opened on a mobile phone, the cards can
+                    automatically stack vertically to make them easier to
+                    read.
+                </p>
+
+                <h3>How Responsive Design Works</h3>
+
+                <ul>
+                    <li>The browser identifies the available screen space.</li>
+                    <li>CSS rules determine how the content should be arranged.</li>
+                    <li>Media queries apply different styles when certain screen conditions are met.</li>
+                    <li>Images and other content resize to fit the available space.</li>
+                    <li>The website adjusts its layout to maintain readability and usability.</li>
+                </ul>
+
+            </section>
+
+
+            <!-- IMPORTANCE -->
+            <section class="lesson-block" id="importance">
+
+                <h2>Importance of Responsive Design</h2>
+
+                <p>
+                    Responsive design is important because users access
+                    websites using different devices. A website should
+                    provide a consistent experience regardless of whether
+                    someone is using a computer, tablet, or smartphone.
+                </p>
+
+                <h3>Mobile Usage</h3>
+
+                <p>
+                    Many people use mobile devices to browse the internet,
+                    access information, communicate, shop online, and use
+                    web applications. The lesson material highlights that
+                    over 50% of web traffic comes from mobile devices.
+                    This makes mobile-friendly website development an
+                    important consideration.
+                </p>
+
+                <h3>Improved User Experience</h3>
+
+                <p>
+                    Responsive design improves the user experience by
+                    making website content easier to read and navigate.
+                    Users do not need to constantly zoom in, zoom out,
+                    or scroll horizontally to view information.
+                </p>
+
+                <h3>SEO Benefits</h3>
+
+                <p>
+                    Search engine optimization (SEO) helps websites become
+                    more visible in search engine results. The lesson
+                    material explains that search engines such as Google
+                    prioritize mobile-friendly websites in their rankings.
+                    Responsive design can therefore support a website's
+                    search visibility.
+                </p>
+
+                <h3>Consistent Website Appearance</h3>
+
+                <p>
+                    Responsive design helps maintain a consistent visual
+                    appearance across different devices. The website can
+                    rearrange its elements while preserving its overall
+                    design and identity.
+                </p>
+
+            </section>
+
+
+            <!-- PRINCIPLES -->
+            <section class="lesson-block" id="principles">
+
+                <h2>Key Principles of Responsive Design</h2>
+
+                <p>
+                    Responsive design follows several principles that
+                    allow website content to adjust to different screen
+                    sizes and device capabilities.
+                </p>
+
+                <h3>Flexible Layouts</h3>
+
+                <p>
+                    Flexible layouts use percentages and other adaptable
+                    measurements instead of relying entirely on fixed
+                    pixel dimensions. This allows elements to resize
+                    according to the available screen width.
+                </p>
+
+                <h3>Responsive Images and Media</h3>
+
+                <p>
+                    Images and media should scale properly when the screen
+                    becomes smaller. They should maintain their proportions
+                    and avoid extending beyond their containers.
+                </p>
+
+                <h3>Breakpoints</h3>
+
+                <p>
+                    Breakpoints are specific screen widths where the
+                    website layout changes to provide a better experience
+                    for a particular screen size.
+                </p>
+
+                <h3>Better User Experience</h3>
+
+                <p>
+                    A responsive website should remain easy to use.
+                    Navigation, buttons, images, and text should be
+                    accessible and readable across different devices.
+                </p>
+
+            </section>
+
+
+            <!-- CORE CONCEPTS -->
+            <section class="lesson-block" id="core-concepts">
+
+                <h2>Core Concepts of Responsive Design</h2>
+
+                <p>
+                    Responsive web design uses flexible measurements,
+                    responsive images, and breakpoints to create layouts
+                    that adapt to different screen sizes.
+                </p>
+
+                <h3>Fluid Layouts</h3>
+
+                <p>
+                    Fluid layouts use percentage-based widths and flexible
+                    units instead of relying only on fixed pixel values.
+                    This allows webpage elements to change their sizes
+                    according to the available space.
+                </p>
+
+                <pre><code>.container {
+    width: 90%;
+    margin: auto;
+}</code></pre>
+
+                <p>
+                    In this example, the container occupies 90% of the
+                    available width instead of always having one fixed
+                    width.
+                </p>
+
+                <h3>Responsive Images</h3>
+
+                <p>
+                    Responsive images automatically adjust their size
+                    to fit their containers. A common technique is to
+                    use <code>max-width: 100%</code> so an image does not
+                    become wider than its parent element.
+                </p>
+
+                <pre><code>img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+
+                <h3>Breakpoints</h3>
+
+                <p>
+                    Breakpoints determine when a website's layout should
+                    change. For example, a three-column layout may become
+                    a single-column layout when the screen becomes smaller.
+                </p>
+
+            </section>
+
+
+            <!-- MEDIA QUERIES -->
+            <section class="lesson-block" id="media-queries">
+
+                <h2>Media Queries</h2>
+
+                <p>
+                    Media queries are CSS features that allow developers
+                    to apply styles conditionally based on certain device
+                    or display characteristics.
+                </p>
+
+                <p>
+                    They are commonly used to adjust webpage layouts based
+                    on screen width. They can also consider characteristics
+                    such as screen resolution and device orientation.
+                </p>
+
+                <p>
+                    Using media queries, developers can create different
+                    styles for desktop computers, tablets, and mobile
+                    phones without creating separate HTML pages.
+                </p>
+
+                <h3>Basic Media Query Syntax</h3>
+
+                <pre><code>@media screen and (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+}</code></pre>
+
+                <p>
+                    The rule inside the media query is applied when the
+                    viewport width is 768 pixels or smaller.
+                </p>
+
+                <h3>Common Media Query Conditions</h3>
+
+                <ul>
+                    <li><strong>max-width:</strong> Applies styles when the viewport width is at or below a specified value.</li>
+                    <li><strong>min-width:</strong> Applies styles when the viewport width is at or above a specified value.</li>
+                    <li><strong>orientation:</strong> Targets a device based on whether it is in portrait or landscape orientation.</li>
+                    <li><strong>resolution:</strong> Can target displays based on their resolution characteristics.</li>
+                </ul>
+
+                <h3>Example Using Minimum Width</h3>
+
+                <pre><code>@media screen and (min-width: 768px) {
+
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+
+}</code></pre>
+
+                <p>
+                    This example applies a horizontal Flexbox layout
+                    when the viewport width is at least 768 pixels.
+                </p>
+
+            </section>
+
+
+            <!-- BREAKPOINTS -->
+            <section class="lesson-block" id="breakpoints">
+
+                <h2>Breakpoints</h2>
+
+                <p>
+                    Breakpoints are predefined screen widths where a
+                    website's design or layout changes to better fit
+                    the available screen space.
+                </p>
+
+                <p>
+                    They help developers determine when content should
+                    resize, rearrange, or change its presentation.
+                </p>
+
+                <h3>Common Breakpoints from the Lesson</h3>
+
+                <ul>
+                    <li>
+                        <strong>Large screens – 1200px and above:</strong>
+                        Commonly used for desktop layouts with more
+                        available horizontal space.
+                    </li>
+
+                    <li>
+                        <strong>Tablets – 768px to 1199px:</strong>
+                        Layouts may use fewer columns and adjusted spacing.
+                    </li>
+
+                    <li>
+                        <strong>Mobile phones – 480px to 767px:</strong>
+                        Content is commonly arranged in a single column
+                        for easier reading.
+                    </li>
+                </ul>
+
+                <figure>
+                    <svg viewBox="0 0 760 300"
+                         width="100%"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Responsive design breakpoints for desktop, tablet, and mobile">
+
+                        <rect x="25" y="55" width="710" height="70"
+                              rx="8" fill="#6555c7"/>
+
+                        <rect x="25" y="55" width="355" height="70"
+                              rx="8" fill="#493ba5"/>
+
+                        <rect x="380" y="55" width="225" height="70"
+                              fill="#8174d4"/>
+
+                        <rect x="605" y="55" width="130" height="70"
+                              rx="8" fill="#b4a9ed"/>
+
+                        <text x="200" y="95" text-anchor="middle"
+                              font-size="18" font-weight="bold"
+                              fill="#ffffff">Desktop</text>
+
+                        <text x="492" y="95" text-anchor="middle"
+                              font-size="17" font-weight="bold"
+                              fill="#ffffff">Tablet</text>
+
+                        <text x="670" y="95" text-anchor="middle"
+                              font-size="16" font-weight="bold"
+                              fill="#30256d">Mobile</text>
+
+                        <path d="M380 135 V170" stroke="#493ba5"
+                              stroke-width="2"/>
+                        <path d="M605 135 V170" stroke="#493ba5"
+                              stroke-width="2"/>
+
+                        <text x="380" y="195" text-anchor="middle"
+                              font-size="16" fill="#493ba5">1200px</text>
+
+                        <text x="605" y="195" text-anchor="middle"
+                              font-size="16" fill="#493ba5">768px</text>
+
+                        <text x="25" y="235" font-size="15"
+                              fill="#202641">Desktop: 1200px and above</text>
+
+                        <text x="25" y="260" font-size="15"
+                              fill="#202641">Tablet: 768px – 1199px</text>
+
+                        <text x="400" y="260" font-size="15"
+                              fill="#202641">Mobile: 480px – 767px</text>
+                    </svg>
+
+                    <figcaption>
+                        Breakpoint ranges provided in the Responsive Design
+                        lecture. Actual breakpoints can be adjusted to fit
+                        the needs of a website.
+                    </figcaption>
+                </figure>
+
+                <p>
+                    These values are examples rather than universal rules.
+                    Developers should select breakpoints based on how the
+                    actual website content behaves.
+                </p>
+
+            </section>
+
+
+            <!-- MEDIA QUERY EXAMPLE -->
+            <section class="lesson-block" id="media-example">
+
+                <h2>Media Query Example</h2>
+
+                <p>
+                    Media queries can change the arrangement of website
+                    elements depending on the available screen width.
+                    A common example is changing a horizontal row into
+                    a vertical column on smaller screens.
+                </p>
+
+                <h3>Desktop View</h3>
+
+                <p>
+                    On desktop computers, content items can be arranged
+                    horizontally in one row. This makes good use of the
+                    wider screen.
+                </p>
+
+                <h3>Mobile View</h3>
+
+                <p>
+                    On mobile phones, the same items can stack vertically.
+                    This makes the content easier to read and prevents
+                    elements from becoming too narrow.
+                </p>
+
+                <h3>CSS Example</h3>
+
+                <pre><code>.items {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.item {
+    flex: 1;
+    padding: 20px;
+    background-color: #e9e5ff;
+}
+
+/* Mobile layout */
+@media screen and (max-width: 768px) {
+
+    .items {
+        flex-direction: column;
+    }
+
+}</code></pre>
+
+                <p>
+                    The default layout displays the items in a row.
+                    When the viewport width reaches 768 pixels or less,
+                    the media query changes the direction to a column.
+                </p>
+
+            </section>
+
+
+            <!-- MOBILE FRIENDLY -->
+            <section class="lesson-block" id="mobile-friendly">
+
+                <h2>Making Websites Mobile-Friendly</h2>
+
+                <p>
+                    A mobile-friendly website is designed to work properly
+                    on smaller screens and touchscreen devices. Developers
+                    should consider how users view, read, and interact
+                    with the website using mobile phones.
+                </p>
+
+                <h3>Viewport Meta Tag</h3>
+
+                <p>
+                    The viewport meta tag tells the browser how to control
+                    the dimensions and scaling of the webpage on mobile
+                    devices.
+                </p>
+
+                <pre><code>&lt;meta name="viewport"
+      content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+                <p>
+                    The <code>width=device-width</code> setting makes the
+                    viewport width match the device's screen width.
+                    The <code>initial-scale=1.0</code> setting establishes
+                    the initial zoom level.
+                </p>
+
+                <h3>Touch-Friendly Elements</h3>
+
+                <p>
+                    Buttons and links should be large enough and spaced
+                    properly so that users can tap them comfortably on
+                    touchscreen devices.
+                </p>
+
+                <pre><code>button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}</code></pre>
+
+                <h3>Readable Font Sizes</h3>
+
+                <p>
+                    Text should remain readable on small screens.
+                    Relative units such as <code>em</code> and
+                    <code>rem</code> can help developers create flexible
+                    typography.
+                </p>
+
+                <pre><code>body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+}</code></pre>
+
+                <h3>Avoid Horizontal Scrolling</h3>
+
+                <p>
+                    Horizontal scrolling happens when content becomes
+                    wider than the visible screen. It makes websites
+                    difficult to navigate, especially on mobile devices.
+                </p>
+
+                <p>
+                    Developers can prevent this problem by using flexible
+                    widths, responsive images, and appropriate media queries.
+                </p>
+
+                <pre><code>* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+
+            </section>
+
+
+            <!-- FLUID LAYOUTS -->
+            <section class="lesson-block" id="fluid-layouts">
+
+                <h2>Fluid Layouts and Flexible Grids</h2>
+
+                <p>
+                    Fluid layouts and flexible grid systems allow webpage
+                    content to resize and rearrange based on the available
+                    screen space.
+                </p>
+
+                <h3>Fluid Layouts</h3>
+
+                <p>
+                    Fluid layouts use percentage-based widths and flexible
+                    measurement units instead of relying only on fixed
+                    pixel dimensions.
+                </p>
+
+                <p>
+                    For example, a container with a width of 90% will
+                    occupy 90% of the available width of its parent
+                    element.
+                </p>
+
+                <pre><code>.container {
+    width: 90%;
+    margin: auto;
+}</code></pre>
+
+                <p>
+                    CSS also supports viewport units such as
+                    <code>vw</code> and <code>vh</code>.
+                </p>
+
+                <ul>
+                    <li><strong>vw:</strong> Represents a percentage of the viewport width.</li>
+                    <li><strong>vh:</strong> Represents a percentage of the viewport height.</li>
+                    <li><strong>%:</strong> Defines a size relative to the containing element's corresponding dimension.</li>
+                </ul>
+
+                <pre><code>.banner {
+    width: 100vw;
+    min-height: 50vh;
+}</code></pre>
+
+                <h3>Flexible Grid Systems</h3>
+
+                <p>
+                    Flexible grid systems divide webpage content into
+                    columns that can adjust according to the screen width.
+                    This helps maintain an organized layout on different
+                    devices.
+                </p>
+
+                <p>
+                    Frameworks such as Bootstrap provide predefined grid
+                    systems that developers can use to create responsive
+                    layouts more easily.
+                </p>
+
+                <h3>CSS Grid Example</h3>
+
+                <pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+}</code></pre>
+
+                <p>
+                    The desktop layout uses three equal columns. When
+                    the viewport becomes 768 pixels wide or smaller,
+                    the grid changes to a single column.
+                </p>
+
+            </section>
+
+
+            <!-- RESPONSIVE IMAGES -->
+            <section class="lesson-block" id="responsive-images">
+
+                <h2>Responsive Images</h2>
+
+                <p>
+                    Responsive images are images that adjust their size
+                    according to the available screen space. They should
+                    remain clear, maintain their original proportions,
+                    and avoid overflowing their containers.
+                </p>
+
+                <h3>Using Max-Width</h3>
+
+                <p>
+                    One of the simplest ways to make an image responsive
+                    is to use <code>max-width: 100%</code> together with
+                    <code>height: auto</code>.
+                </p>
+
+                <pre><code>img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+
+                <p>
+                    The image can shrink when the available space becomes
+                    smaller, while maintaining its original proportions.
+                </p>
+
+                <h3>Using the Picture Element</h3>
+
+                <p>
+                    The HTML <code>&lt;picture&gt;</code> element allows
+                    developers to provide different image sources for
+                    different screen conditions.
+                </p>
+
+                <pre><code>&lt;picture&gt;
+
+    &lt;source
+        media="(max-width: 600px)"
+        srcset="images/mobile-image.jpg"&gt;
+
+    &lt;source
+        media="(min-width: 601px)"
+        srcset="images/desktop-image.jpg"&gt;
+
+    &lt;img
+        src="images/desktop-image.jpg"
+        alt="Responsive website illustration"&gt;
+
+&lt;/picture&gt;</code></pre>
+
+                <p>
+                    The browser selects an appropriate image source
+                    according to the matching media condition.
+                </p>
+
+                <h3>Using the Srcset Attribute</h3>
+
+                <p>
+                    The <code>srcset</code> attribute allows developers
+                    to provide multiple image versions so the browser
+                    can choose an appropriate resource.
+                </p>
+
+                <pre><code>&lt;img
+    src="images/photo-800.jpg"
+    srcset="
+        images/photo-400.jpg 400w,
+        images/photo-800.jpg 800w,
+        images/photo-1200.jpg 1200w
+    "
+    sizes="(max-width: 600px) 100vw,
+           (max-width: 1000px) 80vw,
+           800px"
+    alt="Responsive webpage example"&gt;</code></pre>
+
+                <p>
+                    This technique can help deliver suitable image sizes
+                    to different display conditions and reduce unnecessary
+                    image loading.
+                </p>
+
+            </section>
+
+
+            <!-- BEFORE AND AFTER -->
+            <section class="lesson-block" id="before-after">
+
+                <h2>Fixed-Width vs. Responsive Design</h2>
+
+                <p>
+                    A fixed-width layout uses specific dimensions that
+                    may not adjust properly when the screen becomes
+                    smaller. A responsive layout uses flexible measurements
+                    and media queries to adapt the content.
+                </p>
+
+                <h3>Fixed-Width Layout</h3>
+
+                <p>
+                    A fixed-width website may have content that extends
+                    beyond the screen on smaller devices. Users may need
+                    to scroll horizontally or zoom in to read the content.
+                </p>
+
+                <h3>Responsive Layout</h3>
+
+                <p>
+                    A responsive website adjusts its layout based on the
+                    available screen width. It may reduce the number of
+                    columns, resize images, and stack elements vertically.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 350"
+                         width="100%"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Comparison of fixed-width and responsive webpage layouts on mobile screens">
+
+                        <text x="190" y="35" text-anchor="middle"
+                              font-size="20" font-weight="bold"
+                              fill="#b23b3b">FIXED-WIDTH</text>
+
+                        <text x="570" y="35" text-anchor="middle"
+                              font-size="20" font-weight="bold"
+                              fill="#287b50">RESPONSIVE</text>
+
+                        <rect x="45" y="60" width="290" height="250"
+                              rx="12" fill="#eeeeee"
+                              stroke="#b23b3b" stroke-width="3"/>
+
+                        <rect x="65" y="82" width="250" height="205"
+                              fill="#ffffff" stroke="#cccccc"/>
+
+                        <rect x="65" y="82" width="250" height="38"
+                              fill="#b23b3b"/>
+
+                        <rect x="80" y="135" width="105" height="75"
+                              fill="#f0b6b6"/>
+
+                        <rect x="195" y="135" width="105" height="75"
+                              fill="#f0b6b6"/>
+
+                        <rect x="80" y="220" width="220" height="50"
+                              fill="#eeeeee"/>
+
+                        <path d="M315 185 H340 M330 175 L340 185 L330 195"
+                              fill="none" stroke="#b23b3b"
+                              stroke-width="3"/>
+
+                        <rect x="425" y="60" width="290" height="250"
+                              rx="12" fill="#eeeeee"
+                              stroke="#287b50" stroke-width="3"/>
+
+                        <rect x="465" y="82" width="210" height="205"
+                              fill="#ffffff" stroke="#cccccc"/>
+
+                        <rect x="465" y="82" width="210" height="38"
+                              fill="#287b50"/>
+
+                        <rect x="480" y="135" width="180" height="50"
+                              fill="#b8e0c6"/>
+
+                        <rect x="480" y="195" width="180" height="35"
+                              fill="#dcefe2"/>
+
+                        <rect x="480" y="240" width="180" height="35"
+                              fill="#dcefe2"/>
+
+                        <text x="190" y="335" text-anchor="middle"
+                              font-size="14" fill="#b23b3b">
+                            Content may overflow
+                        </text>
+
+                        <text x="570" y="335" text-anchor="middle"
+                              font-size="14" fill="#287b50">
+                            Content adjusts to the screen
+                        </text>
+                    </svg>
+
+                    <figcaption>
+                        A fixed-width layout can overflow on smaller screens,
+                        while a responsive layout adjusts its content.
+                    </figcaption>
+                </figure>
+
+                <h3>Comparison</h3>
+
+                <ul>
+                    <li><strong>Fixed-width design:</strong> Uses specific dimensions that may not adapt to smaller screens.</li>
+                    <li><strong>Responsive design:</strong> Uses flexible dimensions and media queries to adjust the layout.</li>
+                    <li><strong>Fixed-width images:</strong> May extend beyond their containers.</li>
+                    <li><strong>Responsive images:</strong> Scale according to the available space.</li>
+                    <li><strong>Fixed-width navigation:</strong> May become difficult to use on mobile devices.</li>
+                    <li><strong>Responsive navigation:</strong> Can rearrange or adapt for smaller screens.</li>
+                </ul>
+
+            </section>
+
+
+            <!-- HANDS ON -->
+            <section class="lesson-block" id="hands-on">
+
+                <h2>Hands-On Activity</h2>
+
+                <p>
+                    This activity focuses on creating a simple responsive
+                    webpage using CSS media queries, fluid layouts, and
+                    responsive images.
+                </p>
+
+                <h3>Activity Goal</h3>
+
+                <p>
+                    Create a basic webpage that automatically adjusts
+                    its layout when viewed on desktop computers, tablets,
+                    and mobile phones.
+                </p>
+
+                <h3>Activity Instructions</h3>
+
+                <ul>
+                    <li>Start with a basic webpage layout containing a header, content area, and footer.</li>
+                    <li>Apply CSS media queries to adjust the layout at different screen widths.</li>
+                    <li>Use fluid layouts instead of relying entirely on fixed pixel values.</li>
+                    <li>Implement responsive images so they scale properly.</li>
+                    <li>Use the 1200px, 768px, and 480px breakpoints from the lesson.</li>
+                    <li>Test the webpage on desktop, tablet, and mobile screen sizes.</li>
+                </ul>
+
+                <h3>Expected Output</h3>
+
+                <ul>
+                    <li>Desktop: Content is arranged in multiple columns where appropriate.</li>
+                    <li>Tablet: Content adjusts to fit the smaller screen.</li>
+                    <li>Mobile: Content stacks vertically and remains readable.</li>
+                    <li>Images: Images resize without stretching or overflowing.</li>
+                    <li>Navigation: Links and buttons remain accessible and usable.</li>
+                </ul>
+
+            </section>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <section class="lesson-block" id="practical-example">
+
+                <h2>Practical Coding Example</h2>
+
+                <p>
+                    The following example demonstrates a responsive webpage
+                    with a header, navigation menu, content cards, and footer.
+                    It uses flexible layouts and media queries to adjust
+                    the page for different screen sizes.
+                </p>
+
+                <h3>HTML File: index.html</h3>
+
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;Responsive Website&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;header&gt;
+        &lt;h1&gt;My Responsive Website&lt;/h1&gt;
+        &lt;p&gt;A website for different devices&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        &lt;a href="#"&gt;Home&lt;/a&gt;
+        &lt;a href="#"&gt;About&lt;/a&gt;
+        &lt;a href="#"&gt;Services&lt;/a&gt;
+        &lt;a href="#"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;main class="container"&gt;
+
+        &lt;section class="card"&gt;
+            &lt;h2&gt;Desktop&lt;/h2&gt;
+            &lt;p&gt;
+                This content adjusts to different
+                screen sizes.
+            &lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section class="card"&gt;
+            &lt;h2&gt;Tablet&lt;/h2&gt;
+            &lt;p&gt;
+                The layout changes when the screen
+                becomes smaller.
+            &lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section class="card"&gt;
+            &lt;h2&gt;Mobile&lt;/h2&gt;
+            &lt;p&gt;
+                Content stacks vertically on
+                smaller screens.
+            &lt;/p&gt;
+        &lt;/section&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;Responsive Web Design Lesson&lt;/p&gt;
+    &lt;/footer&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+                <h3>CSS File: style.css</h3>
+
+                <pre><code>* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f0f5;
+    color: #202641;
+}
+
+header {
+    background-color: #6555c7;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    background-color: #202641;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.card h2 {
+    color: #6555c7;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #202641;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Tablet */
+@media screen and (max-width: 1199px) {
+
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* Small tablet and mobile */
+@media screen and (max-width: 768px) {
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+}
+
+/* Mobile phones */
+@media screen and (max-width: 480px) {
+
+    header {
+        padding: 20px 10px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        width: 95%;
+        padding: 15px 0;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+}</code></pre>
+
+                <h3>Explanation of the Code</h3>
+
+                <ul>
+                    <li><code>box-sizing: border-box;</code> makes width calculations easier by including padding and borders in the specified dimensions.</li>
+                    <li><code>width: 90%;</code> creates a flexible content container.</li>
+                    <li><code>max-width: 1200px;</code> prevents the container from becoming excessively wide.</li>
+                    <li><code>display: grid;</code> creates a grid layout for the content cards.</li>
+                    <li><code>repeat(3, 1fr)</code> creates three equal columns.</li>
+                    <li>The tablet media query changes the layout to two columns.</li>
+                    <li>The 768px media query changes the content to one column and allows navigation links to wrap.</li>
+                    <li>The 480px media query adjusts the heading, navigation, container, and card spacing for mobile phones.</li>
+                    <li><code>max-width: 100%;</code> helps images stay within their containers.</li>
+                </ul>
+
+            </section>
+
+
+            <!-- TESTING -->
+            <section class="lesson-block" id="testing">
+
+                <h2>Testing Responsive Websites</h2>
+
+                <p>
+                    Testing is an important part of responsive web development.
+                    Developers should check how the website behaves at
+                    different screen sizes to ensure that all content
+                    remains visible and usable.
+                </p>
+
+                <h3>Desktop Testing</h3>
+
+                <ul>
+                    <li>Check whether the content uses the available screen space properly.</li>
+                    <li>Verify that columns and navigation elements are aligned.</li>
+                    <li>Check that images and text are displayed correctly.</li>
+                </ul>
+
+                <h3>Tablet Testing</h3>
+
+                <ul>
+                    <li>Check whether the layout changes at the correct breakpoint.</li>
+                    <li>Verify that cards and columns fit within the screen.</li>
+                    <li>Check the spacing between buttons and links.</li>
+                </ul>
+
+                <h3>Mobile Testing</h3>
+
+                <ul>
+                    <li>Check whether content stacks vertically when necessary.</li>
+                    <li>Make sure text remains readable.</li>
+                    <li>Verify that buttons and links are easy to tap.</li>
+                    <li>Check that images do not overflow their containers.</li>
+                    <li>Make sure the page does not require horizontal scrolling.</li>
+                </ul>
+
+                <p>
+                    Developers can use browser developer tools to simulate
+                    different device sizes and inspect how a webpage responds
+                    to changes in viewport width.
+                </p>
+
+            </section>
+
+
+            <!-- APPLICATIONS -->
+            <section class="lesson-block" id="applications">
+
+                <h2>Practical Applications of Responsive Design</h2>
+
+                <p>
+                    Responsive design is used in many types of websites
+                    and online platforms. It allows users to access
+                    information and services using different devices.
+                </p>
+
+                <ul>
+                    <li><strong>School websites:</strong> Students and teachers can access announcements, academic programs, schedules, and school information using computers or mobile phones.</li>
+
+                    <li><strong>Online shopping websites:</strong> Product images, descriptions, prices, and shopping buttons adjust to smaller screens.</li>
+
+                    <li><strong>News websites:</strong> Articles, headlines, and images are arranged to remain readable on different devices.</li>
+
+                    <li><strong>Business websites:</strong> Company profiles, services, contact details, and forms remain accessible on mobile and desktop screens.</li>
+
+                    <li><strong>Learning platforms:</strong> Students can read lessons, access learning materials, and complete activities using different devices.</li>
+
+                    <li><strong>Social media websites:</strong> Posts, images, profiles, and navigation elements adapt to different screen dimensions.</li>
+                </ul>
+
+            </section>
+
+
+            <!-- KEY TAKEAWAYS -->
+            <section class="lesson-block" id="key-takeaways">
+
+                <h2>Key Takeaways</h2>
+
+                <ul>
+                    <li>Responsive design ensures websites work properly on different devices and screen sizes.</li>
+
+                    <li>Flexible layouts allow content to resize according to available screen space.</li>
+
+                    <li>Responsive images adjust to their containers while maintaining their proportions.</li>
+
+                    <li>Media queries apply CSS rules based on screen conditions such as width, resolution, and orientation.</li>
+
+                    <li>Breakpoints determine when a website layout should change.</li>
+
+                    <li>Fluid layouts use percentages and flexible units such as vw and vh.</li>
+
+                    <li>Flexible grid systems organize content into columns that can adjust to different screen sizes.</li>
+
+                    <li>The viewport meta tag helps webpages scale properly on mobile devices.</li>
+
+                    <li>Touch-friendly buttons and links improve mobile usability.</li>
+
+                    <li>Relative font sizes help maintain readable text on different screens.</li>
+
+                    <li>A responsive website should avoid unnecessary horizontal scrolling.</li>
+
+                    <li>Testing on desktop, tablet, and mobile screens helps identify layout problems.</li>
+                </ul>
+
+            </section>
+
+
+            <!-- LEARNING MATERIALS -->
+            <section class="lesson-block" id="learning-materials">
+
+                <h2>Videos and Learning Materials</h2>
+
+                <p>
+                    The following resources provide additional explanations,
+                    examples, and tutorials about responsive web design.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>MDN Web Docs – Responsive Design:</strong>
+                        <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+                           target="_blank" rel="noopener">
+                            Responsive Design Guide
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>MDN Web Docs – Media Queries:</strong>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries"
+                           target="_blank" rel="noopener">
+                            Understanding CSS Media Queries
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>W3Schools – Responsive Web Design:</strong>
+                        <a href="https://www.w3schools.com/css/css_rwd_intro.asp"
+                           target="_blank" rel="noopener">
+                            Responsive Web Design Tutorial
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>MDN Web Docs – Responsive Images:</strong>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images"
+                           target="_blank" rel="noopener">
+                            Responsive Images Guide
+                        </a>
+                    </li>
+
+                    <li>
+                        <strong>Bootstrap:</strong>
+                        <a href="https://getbootstrap.com/docs/5.3/layout/grid/"
+                           target="_blank" rel="noopener">
+                            Responsive Grid System
+                        </a>
+                    </li>
+                </ul>
+
+            </section>
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+             <div class="topic-nav">
+
+                <a class="btn outline" href="topic-24.html">
+                    ← Topic 4
+                </a>
+
+                <a class="btn primary" href="topic-26.html">
+                    Topic 6 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

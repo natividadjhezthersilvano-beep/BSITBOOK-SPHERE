@@ -1,0 +1,4048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Operating System Fundamentals
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+        <a href="#overview">Overview</a>
+        <a href="#computer-types">Types of Computers</a>
+        <a href="#computer-organization">Computer Organization</a>
+        <a href="#input-output">Input and Output Units</a>
+        <a href="#input-devices">Input Devices</a>
+        <a href="#output-devices">Output Devices</a>
+        <a href="#monitors">Types of Monitors</a>
+        <a href="#printers">Types of Printers</a>
+        <a href="#memory">Computer Memory</a>
+        <a href="#ram">Random Access Memory (RAM)</a>
+        <a href="#rom">Read Only Memory (ROM)</a>
+        <a href="#secondary-storage">Secondary Storage</a>
+        <a href="#hard-disk">Hard Disk</a>
+        <a href="#floppy-disk">Floppy Disk</a>
+        <a href="#compact-disc">Compact Disc (CD)</a>
+        <a href="#dvd">Digital Versatile Disc (DVD)</a>
+        <a href="#comparison">Device Comparison</a>
+        <a href="#practical-applications">Practical Applications</a>
+        <a href="#key-takeaways">Key Takeaways</a>
+    
+        <a href="#references">References</a>
+    </nav>
+
+
+
+
+
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+
+
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+
+        <h2>Computer Organization: Input/Output and Data Storage Devices</h2>
+
+        <p>
+            Computer organization explains how the different parts of a computer
+            system work together to receive data, process instructions, display
+            information, and store digital files. A computer system is made up
+            of hardware components that perform specific tasks.
+        </p>
+
+        <p>
+            These components include input devices, output devices, the central
+            processing unit (CPU), primary memory, and secondary storage devices.
+            Each component has an important role in the operation of a computer.
+        </p>
+
+        <p>
+            Input devices allow users to enter data. The CPU processes the
+            information using instructions. Output devices present the results,
+            while memory and storage devices keep data and programs for immediate
+            or future use.
+        </p>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/GeneralPurposeComputer.jpg"
+     alt="Computer organization showing the CPU, memory, input devices, and output devices"
+     class="lesson-image">
+            <figcaption>
+                Figure 1. Overview of computer organization, input and output
+                devices, memory, and secondary storage.
+            </figcaption>
+        </figure>
+
+        <h3>Learning Objectives</h3>
+
+        <p>After studying this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Explain the meaning and purpose of a computer.</li>
+            <li>Differentiate analog, digital, and hybrid computers.</li>
+            <li>Identify the major components of computer organization.</li>
+            <li>Explain the functions of input and output units.</li>
+            <li>Identify different types of input and output devices.</li>
+            <li>Describe the types and functions of computer memory.</li>
+            <li>Differentiate primary memory from secondary storage.</li>
+            <li>Explain how hard disks, floppy disks, CDs, and DVDs store data.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- TYPES OF COMPUTERS -->
+    <section class="lesson-block" id="computer-types">
+
+        <h2>1. Types of Computers</h2>
+
+        <p>
+            A computer is an electronic device that accepts data, processes it
+            according to a set of instructions called a program, and produces
+            information as output. It is commonly used as a data-processing
+            machine.
+        </p>
+
+        <p>
+            Users provide data through input devices. The computer processes
+            the data and presents the results through output devices.
+        </p>
+
+        <p>
+            Computers can be classified into three main categories:
+            analog computers, digital computers, and hybrid computers.
+        </p>
+
+
+        <h3>1.1 Analog Computer</h3>
+
+        <p>
+            An analog computer performs calculations using continuous physical
+            quantities. These quantities can include temperature, length,
+            electric current, voltage, and time.
+        </p>
+
+        <p>
+            Unlike digital computers, which process information using binary
+            digits, analog computers work by measuring changes in physical
+            quantities.
+        </p>
+
+        <h4>Characteristics of Analog Computers</h4>
+
+        <ul>
+            <li>Process continuous data.</li>
+            <li>Use physical quantities to represent information.</li>
+            <li>Perform calculations through measurement.</li>
+            <li>Can perform certain calculations quickly.</li>
+            <li>Accuracy depends on circuit components and measurement quality.</li>
+            <li>Used in specialized engineering and scientific applications.</li>
+        </ul>
+
+        <h4>Examples</h4>
+
+        <ul>
+            <li>Traditional analog measuring instruments.</li>
+            <li>Analog weighing systems.</li>
+            <li>Devices that measure continuous electrical signals.</li>
+            <li>Specialized scientific and engineering equipment.</li>
+        </ul>
+
+        <p>
+            For example, an analog measuring instrument may represent a changing
+            temperature through the movement of a pointer along a scale.
+        </p>
+
+
+        <h3>1.2 Digital Computer</h3>
+
+        <p>
+            A digital computer processes discontinuous data. It converts
+            information into digital form using binary digits, commonly
+            represented by 0 and 1.
+        </p>
+
+        <p>
+            Digital computers perform operations using these binary values.
+            They can process numerical data, text, images, audio, and video.
+        </p>
+
+        <h4>Characteristics of Digital Computers</h4>
+
+        <ul>
+            <li>Process discrete or discontinuous data.</li>
+            <li>Use binary digits (0 and 1).</li>
+            <li>Perform arithmetic and logical operations.</li>
+            <li>Provide consistent and precise results within their design limits.</li>
+            <li>Can store large amounts of digital information.</li>
+            <li>Are widely used in homes, schools, offices, and businesses.</li>
+        </ul>
+
+        <h4>Examples</h4>
+
+        <ul>
+            <li>Desktop computers</li>
+            <li>Laptop computers</li>
+            <li>Smartphones</li>
+            <li>Digital calculators</li>
+            <li>Digital banking systems</li>
+        </ul>
+
+
+        <h3>1.3 Hybrid Computer</h3>
+
+        <p>
+            A hybrid computer combines the features of analog and digital
+            computers. It uses analog techniques to measure continuous physical
+            quantities and digital techniques to process, calculate, or store
+            the resulting information.
+        </p>
+
+        <h4>Characteristics of Hybrid Computers</h4>
+
+        <ul>
+            <li>Combine analog and digital processing.</li>
+            <li>Can receive continuous measurements.</li>
+            <li>Can convert measurements into digital information.</li>
+            <li>Are useful in specialized monitoring and measurement systems.</li>
+        </ul>
+
+        <h4>Examples</h4>
+
+        <ul>
+            <li>Medical monitoring equipment.</li>
+            <li>Systems that measure blood pressure and temperature.</li>
+            <li>Weather monitoring and forecasting systems.</li>
+            <li>Specialized industrial control systems.</li>
+        </ul>
+
+
+        <h3>Comparison of Computer Types</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Analog</th>
+                        <th>Digital</th>
+                        <th>Hybrid</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Data processed</td>
+                        <td>Continuous</td>
+                        <td>Discrete</td>
+                        <td>Both continuous and discrete</td>
+                    </tr>
+
+                    <tr>
+                        <td>Method</td>
+                        <td>Measurement</td>
+                        <td>Binary processing</td>
+                        <td>Combination of both methods</td>
+                    </tr>
+
+                    <tr>
+                        <td>Representation</td>
+                        <td>Physical quantities</td>
+                        <td>0 and 1</td>
+                        <td>Analog measurements and digital values</td>
+                    </tr>
+
+                    <tr>
+                        <td>Applications</td>
+                        <td>Engineering and measurement</td>
+                        <td>Business and general computing</td>
+                        <td>Medical and specialized monitoring</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- COMPUTER ORGANIZATION -->
+    <section class="lesson-block" id="computer-organization">
+
+        <h2>2. Computer Organization</h2>
+
+        <p>
+            Computer organization refers to the arrangement and interaction
+            of the main hardware components of a computer. These components
+            work together to process data and produce useful information.
+        </p>
+
+        <p>
+            A basic computer system consists of the input unit, central
+            processing unit, memory unit, and output unit.
+        </p>
+
+
+        <h3>2.1 Main Components of a Computer</h3>
+
+        <h4>Input Unit</h4>
+
+        <p>
+            The input unit receives data and instructions from users or
+            external devices. It converts the received information into a
+            form that the computer can understand.
+        </p>
+
+        <p>Examples include keyboards, mice, scanners, and barcode readers.</p>
+
+
+        <h4>Central Processing Unit (CPU)</h4>
+
+        <p>
+            The Central Processing Unit, commonly called the CPU, is considered
+            the brain of the computer. It processes instructions and controls
+            the activities of the other computer components.
+        </p>
+
+        <p>
+            The CPU performs calculations, makes logical comparisons, and
+            coordinates the execution of programs.
+        </p>
+
+        <h4>Arithmetic and Logic Unit (ALU)</h4>
+
+        <p>
+            The Arithmetic and Logic Unit is responsible for performing
+            arithmetic and logical operations.
+        </p>
+
+        <p>Arithmetic operations include:</p>
+
+        <ul>
+            <li>Addition (+)</li>
+            <li>Subtraction (-)</li>
+            <li>Multiplication (*)</li>
+            <li>Division (/)</li>
+        </ul>
+
+        <p>Logical operations include:</p>
+
+        <ul>
+            <li>Less than (&lt;)</li>
+            <li>Greater than (&gt;)</li>
+            <li>Equal to (=)</li>
+        </ul>
+
+        <p>
+            For example, when a computer calculates 20 + 10, the ALU performs
+            the addition and produces the result 30.
+        </p>
+
+
+        <h4>Control Unit (CU)</h4>
+
+        <p>
+            The Control Unit manages and coordinates the activities of the
+            computer. It sends control signals to the different components
+            to make sure that instructions are performed in the correct order.
+        </p>
+
+        <p>Its important functions include:</p>
+
+        <ul>
+            <li>Retrieving instructions from memory.</li>
+            <li>Decoding instructions.</li>
+            <li>Interpreting instructions.</li>
+            <li>Directing the execution of instructions.</li>
+            <li>Coordinating the activities of other computer components.</li>
+        </ul>
+
+
+        <h4>Memory Unit</h4>
+
+        <p>
+            The memory unit stores the data and instructions needed by the
+            computer. It keeps information that is currently being processed.
+        </p>
+
+        <p>
+            Main memory is also known as primary memory. Some types of primary
+            memory are temporary and lose their stored information when the
+            computer is turned off. This is why secondary storage is also needed.
+        </p>
+
+
+        <h3>2.2 How Computer Components Work Together</h3>
+
+        <ol>
+            <li><strong>Input:</strong> The user enters data using an input device.</li>
+            <li><strong>Processing:</strong> The CPU processes the data according to instructions.</li>
+            <li><strong>Memory:</strong> The computer uses memory to hold instructions and working data.</li>
+            <li><strong>Output:</strong> The result is presented through an output device.</li>
+            <li><strong>Storage:</strong> Information can be saved for future use.</li>
+        </ol>
+
+        <p>
+            Example: When a student types a report, the keyboard sends the
+            entered characters to the computer. The CPU processes the
+            instructions, memory temporarily holds the working information,
+            and the monitor displays the report. The student can then save
+            the file to a storage device.
+        </p>
+
+    </section>
+
+
+    <!-- INPUT AND OUTPUT UNITS -->
+    <section class="lesson-block" id="input-output">
+
+        <h2>3. Input and Output Units</h2>
+
+        <h3>3.1 Input Unit</h3>
+
+        <p>
+            The input unit connects the computer to the outside world.
+            It allows users to provide data and instructions for processing.
+        </p>
+
+        <h4>Functions of the Input Unit</h4>
+
+        <ul>
+            <li>Accepts or reads data from the outside world.</li>
+            <li>Converts data into a computer-understandable form.</li>
+            <li>Transforms information into binary form when necessary.</li>
+            <li>Supplies data to the computer for processing.</li>
+        </ul>
+
+        <h3>3.2 Output Unit</h3>
+
+        <p>
+            The output unit performs the opposite function of the input unit.
+            It receives processed results from the computer and converts them
+            into a form that users can understand.
+        </p>
+
+        <h4>Functions of the Output Unit</h4>
+
+        <ul>
+            <li>Receives processed results from the computer.</li>
+            <li>Converts coded information into a user-readable form.</li>
+            <li>Transfers results to the selected output device.</li>
+        </ul>
+
+        <p>
+            Common output devices include monitors, printers, and plotters.
+        </p>
+
+    </section>
+
+
+    <!-- INPUT DEVICES -->
+    <section class="lesson-block" id="input-devices">
+
+        <h2>4. Input Devices</h2>
+
+        <p>
+            Input devices are hardware components used to enter data and
+            instructions into a computer. They allow users to communicate
+            with the computer and provide information for processing.
+        </p>
+
+
+        <h3>4.1 Mouse</h3>
+
+        <p>
+            A mouse is a pointing device used to control the movement of the
+            pointer on a computer screen. It is commonly used on a flat surface
+            and allows users to select, open, move, and interact with items.
+        </p>
+
+        <h4>Main Functions</h4>
+
+        <ul>
+            <li>Moves the pointer across the screen.</li>
+            <li>Selects files, folders, and programs.</li>
+            <li>Opens items through clicking or double-clicking.</li>
+            <li>Moves objects using drag-and-drop.</li>
+            <li>Scrolls through documents and webpages.</li>
+        </ul>
+
+        <h4>Examples of Mouse Types</h4>
+
+        <ul>
+            <li>Mechanical mouse</li>
+            <li>Optical mouse</li>
+            <li>Wireless mouse</li>
+            <li>Laser mouse</li>
+        </ul>
+
+
+        <h3>4.2 Keyboard</h3>
+
+        <p>
+            A keyboard is one of the most commonly used input devices.
+            It allows users to enter text, numbers, symbols, and commands.
+        </p>
+
+        <p>
+            Each key sends a digital code to the computer when pressed.
+            The computer interprets the code and performs the corresponding
+            action.
+        </p>
+
+        <h4>Common Keyboard Key Groups</h4>
+
+        <ul>
+            <li><strong>Alphanumeric keys:</strong> Letters and numbers used for typing.</li>
+            <li><strong>Function keys:</strong> Keys such as F1 to F12 used for special commands.</li>
+            <li><strong>Control keys:</strong> Ctrl, Alt, Shift, and other command keys.</li>
+            <li><strong>Navigation keys:</strong> Arrow keys, Home, End, Page Up, and Page Down.</li>
+            <li><strong>Numeric keypad:</strong> A group of keys for entering numbers and performing calculations.</li>
+        </ul>
+
+
+        <h3>4.3 Magnetic Strip Reader</h3>
+
+        <p>
+            A magnetic strip reader is an input device used to read data stored
+            on a magnetic strip. These strips are commonly found on the back
+            of credit cards, debit cards, and certain identification cards.
+        </p>
+
+        <p>
+            When a card is inserted or passed through a reader, the device
+            detects the magnetic information and sends the data to the
+            connected computer system.
+        </p>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Simple to use.</li>
+            <li>Relatively inexpensive to produce.</li>
+            <li>Allows information stored on the strip to be read quickly.</li>
+        </ul>
+
+        <h4>Disadvantages</h4>
+
+        <ul>
+            <li>Has limited storage capacity.</li>
+            <li>Magnetic information may be damaged by strong magnetic fields.</li>
+            <li>The strip can become worn or damaged through repeated use.</li>
+        </ul>
+
+
+        <h3>4.4 Sensors</h3>
+
+        <p>
+            Sensors detect changes in the physical or chemical environment
+            and convert those changes into electrical signals. These signals
+            can then be processed by a computer.
+        </p>
+
+        <h4>Examples of Sensor Measurements</h4>
+
+        <ul>
+            <li>Temperature</li>
+            <li>Light intensity</li>
+            <li>Pressure</li>
+            <li>Motion</li>
+            <li>Humidity</li>
+            <li>Sound levels</li>
+        </ul>
+
+        <p>
+            For example, a temperature sensor can measure the temperature
+            inside a room and send the measurement to a computer-controlled
+            air-conditioning system.
+        </p>
+
+
+        <h3>4.5 Barcode Reader</h3>
+
+        <p>
+            A barcode reader is an input device that reads information
+            represented by a pattern of bars and spaces of different widths.
+            Barcodes are commonly printed on product packaging.
+        </p>
+
+        <p>
+            A barcode reader uses a light source, commonly a laser or imaging
+            sensor, to capture the barcode pattern. The device converts the
+            pattern into information that a computer system can process.
+        </p>
+
+        <h4>Common Uses</h4>
+
+        <ul>
+            <li>Supermarket checkout counters.</li>
+            <li>Inventory management.</li>
+            <li>Product identification.</li>
+            <li>Library book tracking.</li>
+            <li>Warehouse operations.</li>
+        </ul>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Fast data entry.</li>
+            <li>Reduces manual typing.</li>
+            <li>Helps minimize data-entry errors.</li>
+        </ul>
+
+        <h4>Limitations</h4>
+
+        <ul>
+            <li>Traditional barcodes contain a limited amount of information.</li>
+            <li>The barcode must be readable and properly printed.</li>
+            <li>Damaged or dirty barcodes may be difficult to scan.</li>
+        </ul>
+
+
+        <h3>4.6 Optical Mark Reader (OMR)</h3>
+
+        <p>
+            An Optical Mark Reader is a device used to detect marks made
+            on specially designed forms. It is commonly used for multiple-choice
+            examination answer sheets, surveys, and application forms.
+        </p>
+
+        <p>
+            The OMR system scans the form and detects the marked areas.
+            It identifies the positions of the marks and converts them into
+            data for computer processing.
+        </p>
+
+        <h4>Common Applications</h4>
+
+        <ul>
+            <li>Multiple-choice examinations.</li>
+            <li>Student answer sheets.</li>
+            <li>Surveys and questionnaires.</li>
+            <li>Voting and evaluation forms.</li>
+        </ul>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Can process large numbers of forms quickly.</li>
+            <li>Reduces manual checking and data entry.</li>
+            <li>Provides accurate results when marks are clear and correctly placed.</li>
+        </ul>
+
+        <h4>Limitations</h4>
+
+        <ul>
+            <li>Forms must follow the required layout.</li>
+            <li>Marks must be clear and placed correctly.</li>
+            <li>Unclear or incorrectly placed marks may cause reading errors.</li>
+        </ul>
+
+
+        <h3>4.7 Scanner</h3>
+
+        <p>
+            A scanner is an input device that converts printed documents,
+            photographs, or physical images into digital form.
+        </p>
+
+        <p>
+            A scanning light moves across the surface of the document.
+            The scanner detects reflected light and converts the information
+            into a digital image that can be stored, edited, or shared.
+        </p>
+
+        <h4>Common Uses</h4>
+
+        <ul>
+            <li>Digitizing printed documents.</li>
+            <li>Creating digital copies of photographs.</li>
+            <li>Scanning school records and forms.</li>
+            <li>Storing paper documents electronically.</li>
+            <li>Sharing scanned files through email or online platforms.</li>
+        </ul>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Can create high-resolution digital images.</li>
+            <li>Helps preserve paper documents in digital form.</li>
+            <li>Makes documents easier to share and store electronically.</li>
+        </ul>
+
+        <h4>Disadvantages</h4>
+
+        <ul>
+            <li>High-resolution images can occupy large amounts of storage.</li>
+            <li>Scanning large documents may take time.</li>
+            <li>Image quality depends on the scanner's resolution and settings.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- OUTPUT DEVICES -->
+    <section class="lesson-block" id="output-devices">
+
+        <h2>5. Output Devices</h2>
+
+        <p>
+            Output devices are hardware components that present processed
+            information to users. They convert computer results into forms
+            that people can see, read, or otherwise use.
+        </p>
+
+        <p>
+            Examples include monitors, printers, plotters, and speakers.
+            The PDF discusses monitors and printers in detail.
+        </p>
+
+    </section>
+
+
+    <!-- MONITORS -->
+    <section class="lesson-block" id="monitors">
+
+        <h2>6. Monitors</h2>
+
+        <p>
+            A monitor, also called a screen or Visual Display Unit (VDU),
+            is an output device that displays text, graphics, images, and
+            other visual information.
+        </p>
+
+        <p>
+            The displayed image is made up of tiny picture elements called
+            pixels. The number and arrangement of pixels affect the clarity
+            and resolution of the displayed image.
+        </p>
+
+
+        <h3>6.1 Cathode Ray Tube (CRT)</h3>
+
+        <p>
+            A Cathode Ray Tube monitor is an older display technology that
+            was also used in traditional television sets.
+        </p>
+
+        <p>
+            A CRT monitor contains an electron gun located at the back of
+            the tube. The gun emits electrons that strike phosphor dots
+            on the inner surface of the screen, causing them to glow and
+            produce an image.
+        </p>
+
+        <p>
+            In a color CRT monitor, red, green, and blue phosphor dots
+            combine to create colors. A group of these dots forms a pixel.
+        </p>
+
+        <h4>CRT Resolution Standards Mentioned in the PDF</h4>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Standard</th>
+                        <th>Resolution</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>VGA</td>
+                        <td>640 × 480 pixels</td>
+                    </tr>
+
+                    <tr>
+                        <td>SVGA</td>
+                        <td>800 × 600 pixels</td>
+                    </tr>
+
+                    <tr>
+                        <td>XGA</td>
+                        <td>1024 × 768 pixels</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Can display images and text.</li>
+            <li>Was widely used in older desktop computers and televisions.</li>
+        </ul>
+
+        <h4>Disadvantages</h4>
+
+        <ul>
+            <li>Bulky and heavy compared with modern flat-panel monitors.</li>
+            <li>Requires more physical space.</li>
+            <li>Generally consumes more power than many modern displays.</li>
+        </ul>
+
+
+        <h3>6.2 Liquid Crystal Display (LCD)</h3>
+
+        <p>
+            Liquid Crystal Display technology uses tiny liquid crystals
+            to control how light passes through a display. When an electric
+            charge is applied, the crystals change how they affect the
+            light passing through them.
+        </p>
+
+        <p>
+            LCD technology is used in devices such as watches, calculators,
+            and computer displays. It consumes less power than traditional
+            CRT monitors in many applications.
+        </p>
+
+        <h4>Characteristics</h4>
+
+        <ul>
+            <li>Uses liquid crystals to control light.</li>
+            <li>Can be designed as a thin, flat display.</li>
+            <li>Generally uses less power than CRT technology.</li>
+            <li>Commonly used in electronic displays.</li>
+        </ul>
+
+
+        <h3>6.3 Thin Film Transistor (TFT)</h3>
+
+        <p>
+            Thin Film Transistor technology is an active-matrix display
+            technology. Each pixel is controlled by its own transistor.
+            This allows the display to control individual pixels more
+            effectively.
+        </p>
+
+        <h4>Characteristics</h4>
+
+        <ul>
+            <li>Uses a transistor to control each pixel.</li>
+            <li>Can produce detailed images.</li>
+            <li>Supports full-color displays.</li>
+            <li>Provides good image resolution.</li>
+        </ul>
+
+
+        <h3>6.4 Field Emission Display (FED)</h3>
+
+        <p>
+            A Field Emission Display uses two thin sheets of glass separated
+            by a vacuum. The rear sheet contains many tiny electron-emitting
+            tips. These tips emit electrons toward the front screen.
+        </p>
+
+        <p>
+            When the electrons strike phosphor dots on the front screen,
+            the dots glow and produce bright images.
+        </p>
+
+        <h4>Characteristics</h4>
+
+        <ul>
+            <li>Uses electron emission to produce images.</li>
+            <li>Contains two sheets of glass separated by a vacuum.</li>
+            <li>Uses phosphor dots to create visible light.</li>
+            <li>Designed to produce sharp and bright images.</li>
+        </ul>
+
+
+        <h3>Comparison of Monitor Technologies</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Technology</th>
+                        <th>Main Characteristics</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>CRT</td>
+                        <td>Electron beam and phosphor dots</td>
+                        <td>Older, bulky display technology.</td>
+                    </tr>
+
+                    <tr>
+                        <td>LCD</td>
+                        <td>Liquid crystals controlling light</td>
+                        <td>Thin display that uses relatively low power.</td>
+                    </tr>
+
+                    <tr>
+                        <td>TFT</td>
+                        <td>Transistor-controlled pixels</td>
+                        <td>Supports detailed full-color images.</td>
+                    </tr>
+
+                    <tr>
+                        <td>FED</td>
+                        <td>Electron-emitting tips and phosphor</td>
+                        <td>Designed to produce sharp, bright images.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- PRINTERS -->
+    <section class="lesson-block" id="printers">
+
+        <h2>7. Printers</h2>
+
+        <p>
+            A printer is an output device that produces a physical copy
+            of digital information on paper or another printable material.
+            Printed output is often called a hard copy.
+        </p>
+
+        <p>
+            Printers are used to produce documents, reports, photographs,
+            forms, receipts, and other printed materials.
+        </p>
+
+
+        <h3>7.1 Dot Matrix Printer</h3>
+
+        <p>
+            A dot matrix printer uses a print head containing a set of
+            small pins. The print head moves across the paper, and selected
+            pins strike an ink ribbon against the paper to form characters
+            and images.
+        </p>
+
+        <h4>How It Works</h4>
+
+        <ol>
+            <li>The print head moves across the paper.</li>
+            <li>Selected pins are activated.</li>
+            <li>The pins strike an ink ribbon.</li>
+            <li>The ribbon transfers ink onto the paper.</li>
+            <li>Patterns of dots form letters, numbers, and images.</li>
+        </ol>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Relatively inexpensive to operate.</li>
+            <li>Useful for certain forms and bulk printing tasks.</li>
+            <li>Can print through multi-part forms.</li>
+        </ul>
+
+        <h4>Disadvantages</h4>
+
+        <ul>
+            <li>Produces lower-quality output than many modern printers.</li>
+            <li>Can be noisy during operation.</li>
+            <li>Prints more slowly than many modern printers.</li>
+        </ul>
+
+
+        <h3>7.2 Inkjet Printer</h3>
+
+        <p>
+            An inkjet printer produces text and images by spraying tiny
+            droplets of liquid ink onto paper through small nozzles.
+        </p>
+
+        <p>
+            The ink is forced out through the print head using methods
+            such as heating or piezoelectric crystals.
+        </p>
+
+        <h4>How It Works</h4>
+
+        <ol>
+            <li>The computer sends the document to the printer.</li>
+            <li>The printer prepares the required printing pattern.</li>
+            <li>The print head moves across the paper.</li>
+            <li>Tiny ink droplets are sprayed through the nozzles.</li>
+            <li>The droplets combine to form text and images.</li>
+        </ol>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Produces good-quality printed output.</li>
+            <li>Can print colored documents and photographs.</li>
+            <li>Useful for home and small-office printing.</li>
+        </ul>
+
+        <h4>Disadvantages</h4>
+
+        <ul>
+            <li>Ink cartridges need to be replaced or refilled.</li>
+            <li>Printing large volumes can become expensive.</li>
+            <li>Ink may dry or clog if the printer is not maintained.</li>
+        </ul>
+
+
+        <h3>7.3 Laser Printer</h3>
+
+        <p>
+            A laser printer uses a powdered ink called toner. It transfers
+            toner to paper and fixes it using heat and pressure.
+        </p>
+
+        <h4>How It Works</h4>
+
+        <ol>
+            <li>The printer receives the document from the computer.</li>
+            <li>A laser creates an image pattern on a photosensitive surface.</li>
+            <li>Toner attaches to the prepared image pattern.</li>
+            <li>The toner is transferred onto paper.</li>
+            <li>Heat and pressure permanently fix the toner to the paper.</li>
+        </ol>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>Produces high-quality text.</li>
+            <li>Suitable for fast, high-volume printing.</li>
+            <li>Useful in offices and organizations.</li>
+        </ul>
+
+        <h4>Disadvantages</h4>
+
+        <ul>
+            <li>Printers can be more expensive to purchase.</li>
+            <li>Toner cartridges and maintenance may add to operating costs.</li>
+        </ul>
+
+
+        <h3>Comparison of Printer Types</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Printer</th>
+                        <th>Printing Method</th>
+                        <th>Advantages</th>
+                        <th>Limitations</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Dot Matrix</td>
+                        <td>Pins strike an ink ribbon.</td>
+                        <td>Useful for forms and certain bulk tasks.</td>
+                        <td>Lower print quality and noisy operation.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Inkjet</td>
+                        <td>Sprays liquid ink through nozzles.</td>
+                        <td>Good-quality color printing.</td>
+                        <td>Ink replacement can be costly.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Laser</td>
+                        <td>Uses toner, heat, and pressure.</td>
+                        <td>Fast and high-quality printing.</td>
+                        <td>Higher initial equipment cost.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- MEMORY -->
+    <section class="lesson-block" id="memory">
+
+        <h2>8. Computer Memory</h2>
+
+        <p>
+            Computer memory is an essential part of a computer system.
+            It stores data, instructions, and information needed by the
+            processor.
+        </p>
+
+        <p>
+            Memory devices use different technologies. The PDF identifies
+            semiconductor memory, magnetic memory, and optical memory.
+        </p>
+
+        <h3>8.1 Why Computer Memory Is Important</h3>
+
+        <ul>
+            <li>Stores program instructions.</li>
+            <li>Holds data while it is being processed.</li>
+            <li>Allows the CPU to retrieve information.</li>
+            <li>Helps the computer perform tasks efficiently.</li>
+            <li>Supports the operation of applications and the operating system.</li>
+        </ul>
+
+        <h3>8.2 Memory Hierarchy</h3>
+
+        <p>
+            Different types of memory have different speeds, capacities,
+            and costs. A computer uses several levels of memory to balance
+            fast access with sufficient storage capacity.
+        </p>
+
+        <ol>
+            <li><strong>Cache memory:</strong> Very fast memory connected directly to the CPU.</li>
+            <li><strong>Primary memory:</strong> Stores programs and data currently being used.</li>
+            <li><strong>Secondary storage:</strong> Keeps data and programs for long-term use.</li>
+        </ol>
+
+        <p>
+            The PDF describes cache memory as having an access time of
+            approximately 10 nanoseconds and primary memory as approximately
+            50 nanoseconds. These are the figures stated in the source material;
+            actual access times vary by hardware.
+        </p>
+
+    </section>
+
+
+    <!-- RAM -->
+    <section class="lesson-block" id="ram">
+
+        <h2>9. Random Access Memory (RAM)</h2>
+
+        <p>
+            Random Access Memory is a type of primary memory that allows
+            the computer to read and write data. It is called random access
+            because the computer can access a memory location directly
+            without passing through other locations first.
+        </p>
+
+        <p>
+            RAM is volatile memory. This means that its stored information
+            is lost when the power supply is turned off.
+        </p>
+
+        <p>
+            Programs and data must be loaded into RAM before or while the
+            computer uses them.
+        </p>
+
+        <h3>9.1 Characteristics of RAM</h3>
+
+        <ul>
+            <li>Supports reading and writing of data.</li>
+            <li>Allows direct access to memory locations.</li>
+            <li>Stores information currently being used.</li>
+            <li>Is volatile memory.</li>
+            <li>Helps the CPU access working data and instructions.</li>
+        </ul>
+
+
+        <h3>9.2 Static RAM (SRAM)</h3>
+
+        <p>
+            Static RAM stores information using flip-flop circuits.
+            A flip-flop is a circuit capable of storing one bit of
+            binary information.
+        </p>
+
+        <p>
+            SRAM retains its stored information as long as power is supplied.
+            It does not require the periodic refreshing used by DRAM.
+        </p>
+
+        <h4>Characteristics of SRAM</h4>
+
+        <ul>
+            <li>Uses flip-flop circuits to store bits.</li>
+            <li>Retains data while power is available.</li>
+            <li>Does not require periodic refreshing.</li>
+            <li>Is generally faster than DRAM.</li>
+            <li>Is commonly used for cache memory.</li>
+        </ul>
+
+
+        <h3>9.3 Dynamic RAM (DRAM)</h3>
+
+        <p>
+            Dynamic RAM stores information as electrical charge in
+            capacitors. The charge gradually leaks away, so the stored
+            information must be refreshed periodically.
+        </p>
+
+        <h4>Characteristics of DRAM</h4>
+
+        <ul>
+            <li>Stores bits using capacitors.</li>
+            <li>Requires periodic refreshing.</li>
+            <li>Is generally slower than SRAM.</li>
+            <li>Uses less power per bit than SRAM in the comparison described by the PDF.</li>
+            <li>Is widely used as main system memory.</li>
+        </ul>
+
+
+        <h3>SRAM and DRAM Comparison</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>SRAM</th>
+                        <th>DRAM</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Full Name</td>
+                        <td>Static Random Access Memory</td>
+                        <td>Dynamic Random Access Memory</td>
+                    </tr>
+
+                    <tr>
+                        <td>Storage method</td>
+                        <td>Flip-flop circuits</td>
+                        <td>Capacitors</td>
+                    </tr>
+
+                    <tr>
+                        <td>Refreshing</td>
+                        <td>Does not require periodic refreshing</td>
+                        <td>Requires periodic refreshing</td>
+                    </tr>
+
+                    <tr>
+                        <td>Speed</td>
+                        <td>Generally faster</td>
+                        <td>Generally slower</td>
+                    </tr>
+
+                    <tr>
+                        <td>Common use</td>
+                        <td>Cache memory</td>
+                        <td>Main memory</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- ROM -->
+    <section class="lesson-block" id="rom">
+
+        <h2>10. Read Only Memory (ROM)</h2>
+
+        <p>
+            Read Only Memory is a type of non-volatile memory. It retains
+            stored information even when the computer is turned off.
+        </p>
+
+        <p>
+            ROM is used to store information that the computer needs to
+            retain. Unlike ordinary RAM, its contents are not normally
+            changed during everyday computer operation.
+        </p>
+
+        <h3>10.1 Characteristics of ROM</h3>
+
+        <ul>
+            <li>Non-volatile memory.</li>
+            <li>Retains information without electrical power.</li>
+            <li>Used for information that must be preserved.</li>
+            <li>Can be accessed without going through other memory locations.</li>
+        </ul>
+
+
+        <h3>10.2 Programmable ROM (PROM)</h3>
+
+        <p>
+            PROM is a type of ROM that can be programmed only once.
+            After information has been written to the chip, the recorded
+            contents cannot normally be changed.
+        </p>
+
+        <p>
+            A special device called a PROM programmer is used to write
+            information into the chip.
+        </p>
+
+
+        <h3>10.3 Erasable Programmable ROM (EPROM)</h3>
+
+        <p>
+            EPROM is a type of programmable ROM whose stored contents
+            can be erased and then programmed again.
+        </p>
+
+        <p>
+            The PDF describes erasing EPROM by exposing the chip to
+            high-intensity ultraviolet light using an EPROM eraser.
+        </p>
+
+        <h4>Limitations Described in the PDF</h4>
+
+        <ul>
+            <li>The entire contents are erased during the process.</li>
+            <li>The chip must be removed from the system and placed in an erasing device.</li>
+        </ul>
+
+
+        <h3>10.4 Electrically Erasable Programmable ROM (EEPROM)</h3>
+
+        <p>
+            EEPROM is a type of ROM that can be programmed and erased
+            using electrical signals.
+        </p>
+
+        <h4>Advantages</h4>
+
+        <ul>
+            <li>The chip does not need to be removed from the system for erasing.</li>
+            <li>Stored information can be selectively erased.</li>
+            <li>Erasing and programming can be performed on a byte-by-byte basis.</li>
+        </ul>
+
+        <h4>Disadvantages Described in the PDF</h4>
+
+        <ul>
+            <li>Different voltages may be required for reading, writing, and erasing.</li>
+            <li>The memory cell structure is complex.</li>
+            <li>The source describes limitations involving density, cost, and reliability.</li>
+        </ul>
+
+        <p>
+            EEPROM is also known as Electrically Alterable ROM (EAROM).
+        </p>
+
+
+        <h3>Comparison of ROM Types</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                        <th>How It Is Programmed or Erased</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>PROM</td>
+                        <td>Programmable ROM</td>
+                        <td>Programmed once.</td>
+                    </tr>
+
+                    <tr>
+                        <td>EPROM</td>
+                        <td>Erasable Programmable ROM</td>
+                        <td>Erased using ultraviolet light, then reprogrammed.</td>
+                    </tr>
+
+                    <tr>
+                        <td>EEPROM</td>
+                        <td>Electrically Erasable Programmable ROM</td>
+                        <td>Erased and programmed using electrical signals.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- SECONDARY STORAGE -->
+    <section class="lesson-block" id="secondary-storage">
+
+        <h2>11. Secondary Storage Devices</h2>
+
+        <p>
+            Secondary storage, also called backup memory or secondary
+            memory, is used to keep data and programs for future use.
+        </p>
+
+        <p>
+            Primary memory has limited capacity and may lose its contents
+            when the power is switched off. Secondary storage provides
+            a way to preserve files, programs, and other information.
+        </p>
+
+        <h3>11.1 Importance of Secondary Storage</h3>
+
+        <ul>
+            <li>Stores files for long-term use.</li>
+            <li>Keeps programs and operating system files.</li>
+            <li>Provides additional storage capacity.</li>
+            <li>Allows users to transfer files between devices.</li>
+            <li>Supports backup and recovery of information.</li>
+        </ul>
+
+        <h3>11.2 Types of Secondary Storage</h3>
+
+        <p>The PDF groups the storage devices into two major categories:</p>
+
+        <ul>
+            <li><strong>Magnetic storage:</strong> Hard disks and floppy disks.</li>
+            <li><strong>Optical storage:</strong> Compact discs and DVDs.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- HARD DISK -->
+    <section class="lesson-block" id="hard-disk">
+
+        <h2>12. Hard Disk</h2>
+
+        <p>
+            A hard disk is a secondary storage device used to store large
+            amounts of information. It can keep programs, data, operating
+            systems, compilers, and application software even when the
+            computer is turned off.
+        </p>
+
+        <p>
+            The hard disk described in the PDF consists of one or more
+            circular disks called platters. The platter surfaces are
+            coated with magnetic material.
+        </p>
+
+        <h3>12.1 Structure of a Hard Disk</h3>
+
+        <h4>Platters</h4>
+
+        <p>
+            Platters are circular disks that provide the surfaces where
+            data is recorded. A hard disk may contain one or more platters.
+        </p>
+
+        <h4>Tracks</h4>
+
+        <p>
+            Tracks are concentric circular paths on the disk surface.
+            They organize the locations where information is recorded.
+        </p>
+
+        <h4>Sectors</h4>
+
+        <p>
+            Each track is divided into smaller sections called sectors.
+            These sections are used to organize stored information.
+        </p>
+
+        <h4>Read/Write Heads</h4>
+
+        <p>
+            Read/write heads read information from and write information
+            to the magnetic surfaces of the disk.
+        </p>
+
+        <h4>Motor</h4>
+
+        <p>
+            A motor rotates the platters at high speed so the read/write
+            heads can access the required areas.
+        </p>
+
+
+        <h3>12.2 How a Hard Disk Works</h3>
+
+        <ol>
+            <li>The motor rotates the platters.</li>
+            <li>The read/write heads move to the required track.</li>
+            <li>The head reads or records magnetic information.</li>
+            <li>The computer retrieves the requested data.</li>
+        </ol>
+
+        <p>
+            The PDF explains that a thin cushion of air forms between
+            the rapidly rotating disk and the read/write head. This
+            allows the head to float above the disk surface during
+            normal operation.
+        </p>
+
+
+        <h3>12.3 Hard Disk Storage Organization</h3>
+
+        <p>
+            The PDF describes disk capacity using the number of recording
+            surfaces, tracks, sectors, and bytes per sector.
+        </p>
+
+        <p class="formula">
+            Storage Capacity =
+            Recording Surfaces × Tracks per Surface × Sectors per Track
+            × Bytes per Sector
+        </p>
+
+        <h3>12.4 Advantages of Hard Disks</h3>
+
+        <ul>
+            <li>Can store large amounts of information.</li>
+            <li>Can store programs and operating system files.</li>
+            <li>Allows data to remain stored after shutdown.</li>
+            <li>Supports direct access to stored information.</li>
+        </ul>
+
+        <h3>12.5 Limitations</h3>
+
+        <ul>
+            <li>Traditional hard disks contain moving mechanical parts.</li>
+            <li>Physical damage can affect stored information.</li>
+            <li>Access speed depends on the drive's design and condition.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- FLOPPY DISK -->
+    <section class="lesson-block" id="floppy-disk">
+
+        <h2>13. Floppy Disk</h2>
+
+        <p>
+            A floppy disk is an older portable magnetic storage device
+            used to store and transfer small amounts of information
+            between computers.
+        </p>
+
+        <p>
+            It contains a thin circular disk coated with magnetic
+            material. The disk is made from a flexible material called
+            Mylar and is protected by an outer covering.
+        </p>
+
+        <h3>13.1 Formatting a Floppy Disk</h3>
+
+        <p>
+            Before data can be stored, a floppy disk must be formatted.
+            Formatting prepares the disk by organizing it into tracks
+            and sectors.
+        </p>
+
+        <h3>13.2 Storage Capacity</h3>
+
+        <p>
+            The PDF gives 1.44 MB as the storage capacity of a common
+            floppy disk. It also compares this capacity to approximately
+            350 pages of text.
+        </p>
+
+        <h3>13.3 Advantages</h3>
+
+        <ul>
+            <li>Portable and easy to carry.</li>
+            <li>Can be used to transfer small files.</li>
+            <li>Can be used for backup purposes.</li>
+        </ul>
+
+        <h3>13.4 Disadvantages</h3>
+
+        <ul>
+            <li>Has limited storage capacity.</li>
+            <li>Has slower access compared with hard disks.</li>
+            <li>Can be damaged easily.</li>
+            <li>Has a higher failure risk compared with modern storage devices.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- COMPACT DISC -->
+    <section class="lesson-block" id="compact-disc">
+
+        <h2>14. Compact Disc (CD)</h2>
+
+        <p>
+            A Compact Disc is an optical storage medium that uses laser
+            light to read information. Unlike magnetic storage devices,
+            optical discs store information using physical patterns
+            that are detected by a laser.
+        </p>
+
+        <p>
+            The PDF describes a CD as having a spiral-shaped track.
+            A laser beam with a wavelength of approximately 780 nm
+            is used for reading and writing information.
+        </p>
+
+        <h3>14.1 CD Storage Capacity</h3>
+
+        <p>
+            The PDF gives an example of an unformatted capacity
+            calculation using 330,000 sectors and 2,352 bytes per sector.
+        </p>
+
+        <p class="formula">
+            330,000 × 2,352 bytes = 776,160,000 bytes
+        </p>
+
+        <p>
+            The source describes this as approximately 776 MB of
+            unformatted capacity and approximately 650 MB of formatted
+            capacity for the example discussed.
+        </p>
+
+
+        <h3>14.2 CD-ROM</h3>
+
+        <p>
+            CD-ROM means Compact Disc Read Only Memory. Information is
+            recorded by the manufacturer, and users can read the stored
+            data but cannot normally change it using an ordinary CD-ROM drive.
+        </p>
+
+        <p>
+            The PDF describes information being recorded using a controlled
+            laser beam to create pits on the disc surface.
+        </p>
+
+        <p>CD-ROMs can contain:</p>
+
+        <ul>
+            <li>Computer programs</li>
+            <li>Text documents</li>
+            <li>Sound recordings</li>
+            <li>Still pictures</li>
+            <li>Video clips</li>
+        </ul>
+
+
+        <h3>14.3 CD-R</h3>
+
+        <p>
+            CD-R means Compact Disc Recordable. It is initially blank
+            and allows a user to record information using a compatible
+            CD writer.
+        </p>
+
+        <p>
+            A CD-R can normally be written only once. After recording,
+            the stored information can be read many times.
+        </p>
+
+        <p>
+            CD-R and CD-ROM are described in the PDF as WORM devices,
+            meaning Write Once, Read Many.
+        </p>
+
+
+        <h3>14.4 CD-RW</h3>
+
+        <p>
+            CD-RW means Compact Disc Rewritable. It allows users to
+            read, write, erase, and rewrite information multiple times
+            using a compatible drive.
+        </p>
+
+        <p>
+            The PDF notes that a CD-RW disc can usually undergo 100
+            or more erase-and-write cycles.
+        </p>
+
+
+        <h3>CD Types Comparison</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                        <th>Writing Capability</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>CD-ROM</td>
+                        <td>Compact Disc Read Only Memory</td>
+                        <td>Read-only for the user.</td>
+                    </tr>
+
+                    <tr>
+                        <td>CD-R</td>
+                        <td>Compact Disc Recordable</td>
+                        <td>Can be written once.</td>
+                    </tr>
+
+                    <tr>
+                        <td>CD-RW</td>
+                        <td>Compact Disc Rewritable</td>
+                        <td>Can be erased and rewritten multiple times.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- DVD -->
+    <section class="lesson-block" id="dvd">
+
+        <h2>15. Digital Versatile Disc (DVD)</h2>
+
+        <p>
+            A Digital Versatile Disc is an optical storage device that
+            looks similar to a CD but can store more information.
+            The PDF explains that DVD technology was developed to hold
+            significantly more information than a CD-ROM.
+        </p>
+
+        <p>
+            DVDs use a laser beam with a wavelength of approximately
+            650 nm for reading and writing information, as described
+            in the source material.
+        </p>
+
+        <h3>15.1 DVD Storage Capacity</h3>
+
+        <p>The PDF provides the following examples:</p>
+
+        <ul>
+            <li>A single-sided, single-layer DVD can store up to 4.7 GB.</li>
+            <li>The source compares this capacity to approximately 26 CD-ROMs.</li>
+            <li>A multilayer, double-sided DVD can hold up to 17 GB.</li>
+        </ul>
+
+        <h3>15.2 Advantages of DVDs</h3>
+
+        <ul>
+            <li>Can store more information than a standard CD.</li>
+            <li>Can store digital images and sound.</li>
+            <li>Supports high-quality video and audio storage.</li>
+            <li>Allows random access to stored information.</li>
+        </ul>
+
+        <h3>15.3 Disadvantages of DVDs</h3>
+
+        <ul>
+            <li>DVD drives and discs may cost more than basic CD equipment.</li>
+            <li>Discs can be scratched or physically damaged.</li>
+            <li>They require a compatible optical drive.</li>
+        </ul>
+
+
+        <h3>CD and DVD Comparison</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>CD</th>
+                        <th>DVD</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Storage technology</td>
+                        <td>Optical</td>
+                        <td>Optical</td>
+                    </tr>
+
+                    <tr>
+                        <td>Laser wavelength in the PDF</td>
+                        <td>Approximately 780 nm</td>
+                        <td>Approximately 650 nm</td>
+                    </tr>
+
+                    <tr>
+                        <td>Capacity example</td>
+                        <td>Approximately 650 MB formatted</td>
+                        <td>4.7 GB for a single-sided, single-layer disc</td>
+                    </tr>
+
+                    <tr>
+                        <td>Common uses</td>
+                        <td>Programs, text, sound, pictures, and video</td>
+                        <td>Digital video, images, sound, and data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- COMPARISON -->
+    <section class="lesson-block" id="comparison">
+
+        <h2>16. Comparison of Computer Memory and Storage</h2>
+
+        <p>
+            Primary memory and secondary storage both keep information,
+            but they serve different purposes in a computer system.
+        </p>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Primary Memory</th>
+                        <th>Secondary Storage</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Holds data and instructions currently needed by the computer.</td>
+                        <td>Keeps files and programs for future use.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Examples</td>
+                        <td>RAM and ROM</td>
+                        <td>Hard disks, floppy disks, CDs, and DVDs</td>
+                    </tr>
+
+                    <tr>
+                        <td>Access</td>
+                        <td>Used directly during computer operation.</td>
+                        <td>Accessed when files or programs are needed.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Volatility</td>
+                        <td>RAM is volatile; ROM is non-volatile.</td>
+                        <td>Designed to retain stored data without normal operating power.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Capacity</td>
+                        <td>Generally more limited than secondary storage.</td>
+                        <td>Provides additional storage capacity.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <h3>Magnetic and Optical Storage Comparison</h3>
+
+        <div class="table-responsive">
+            <table class="lesson-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Magnetic Storage</th>
+                        <th>Optical Storage</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Technology</td>
+                        <td>Uses magnetic recording.</td>
+                        <td>Uses laser light to read or record information.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Examples</td>
+                        <td>Hard disk and floppy disk</td>
+                        <td>CD and DVD</td>
+                    </tr>
+
+                    <tr>
+                        <td>Data organization</td>
+                        <td>Magnetic areas on the storage surface.</td>
+                        <td>Optical patterns on the disc.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Common purpose</td>
+                        <td>Storing programs, files, and other data.</td>
+                        <td>Storing software, documents, audio, images, and video.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- PRACTICAL APPLICATIONS -->
+    <section class="lesson-block" id="practical-applications">
+
+        <h2>17. Practical Applications of Computer Devices</h2>
+
+        <p>
+            Computer input, output, memory, and storage devices are used
+            in everyday activities. They help people enter information,
+            process tasks, view results, and preserve important files.
+        </p>
+
+        <h3>Education</h3>
+
+        <ul>
+            <li>Keyboards are used to type assignments and reports.</li>
+            <li>Scanners digitize printed learning materials.</li>
+            <li>Monitors display lessons, presentations, and research.</li>
+            <li>Printers produce physical copies of school documents.</li>
+            <li>Storage devices keep projects and learning resources.</li>
+        </ul>
+
+        <h3>Business and Retail</h3>
+
+        <ul>
+            <li>Barcode readers identify products during checkout.</li>
+            <li>Magnetic strip readers process information from compatible cards.</li>
+            <li>Computers process sales and inventory records.</li>
+            <li>Printers produce receipts, reports, and invoices.</li>
+            <li>Hard disks store business documents and databases.</li>
+        </ul>
+
+        <h3>Healthcare</h3>
+
+        <ul>
+            <li>Sensors measure physical conditions.</li>
+            <li>Computers process measurements from medical equipment.</li>
+            <li>Monitors display patient information.</li>
+            <li>Storage systems preserve digital records.</li>
+        </ul>
+
+        <h3>Offices and Organizations</h3>
+
+        <ul>
+            <li>Keyboards and mice support everyday computer work.</li>
+            <li>Scanners convert paper records into digital documents.</li>
+            <li>Monitors display documents and spreadsheets.</li>
+            <li>Printers produce reports and official forms.</li>
+            <li>Memory and storage keep applications and files available.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+
+        <h2>18. Key Takeaways</h2>
+
+        <ul>
+            <li>
+                A computer is an electronic device that accepts data,
+                processes it according to instructions, and produces information.
+            </li>
+
+            <li>
+                Analog computers process continuous quantities, digital
+                computers process binary data, and hybrid computers combine
+                both methods.
+            </li>
+
+            <li>
+                The major parts of computer organization include the input
+                unit, CPU, memory unit, and output unit.
+            </li>
+
+            <li>
+                The CPU contains the ALU and Control Unit. The ALU performs
+                arithmetic and logical operations, while the Control Unit
+                coordinates computer activities.
+            </li>
+
+            <li>
+                Input devices allow users to enter data into the computer.
+            </li>
+
+            <li>
+                Output devices present processed information to users.
+            </li>
+
+            <li>
+                Monitors display visual information, while printers produce
+                physical copies.
+            </li>
+
+            <li>
+                RAM is volatile memory, while ROM is non-volatile memory.
+            </li>
+
+            <li>
+                SRAM uses flip-flop circuits, while DRAM stores information
+                using capacitors and requires refreshing.
+            </li>
+
+            <li>
+                PROM, EPROM, and EEPROM are different types of programmable
+                read-only memory.
+            </li>
+
+            <li>
+                Secondary storage preserves files and programs for future use.
+            </li>
+
+            <li>
+                Hard disks and floppy disks use magnetic storage, while CDs
+                and DVDs use optical storage.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+
+        <h2>20. References</h2>
+
+        <h3>Suggested Readings from the Provided PDF</h3>
+
+        <ol>
+            <li>
+                B. Ram. <em>Fundamentals of Microprocessor and Microcomputers.</em>
+                Reprint 2009.
+            </li>
+
+            <li>
+                Donald P. Leach, Albert P. Malvino, and Goutam Saha.
+                <em>Digital Principles and Applications.</em>
+            </li>
+
+            <li>
+                Sunil Mathur. <em>Microprocessor 8085 and Its Interfacing.</em>
+                2nd Edition.
+            </li>
+
+            <li>
+                P. K. Sinha and P. Sinha.
+                <em>Computer Fundamentals.</em> 4th Edition.
+            </li>
+
+            <li>
+                Anita Goyal. <em>Fundamentals of Computers.</em>
+            </li>
+        </ol>
+
+        <h3>Web Links Listed in the Provided PDF</h3>
+
+        <ul>
+            <li>
+                <a href="http://en.kioskea.net/contents/pc/cdrom.php3"
+                   target="_blank" rel="noopener">
+                    CD-ROM Information
+                </a>
+            </li>
+
+            <li>
+                <a href="http://www.sagedata.com/products/bar_code_labels.html"
+                   target="_blank" rel="noopener">
+                    Barcode Labels
+                </a>
+            </li>
+
+            <li>
+                <a href="http://inputandoutputdevicesofcomputer.blogspot.com/2012/11/input-and-output-devices-of-computer.html"
+                   target="_blank" rel="noopener">
+                    Input and Output Devices
+                </a>
+            </li>
+
+            <li>
+                <a href="http://www.build-your-own-computer.net/computer-output-devices.html"
+                   target="_blank" rel="noopener">
+                    Computer Output Devices
+                </a>
+            </li>
+
+            <li>
+                <a href="http://www.iupui.edu/~webtrain/tutorials/win_95_intro.html"
+                   target="_blank" rel="noopener">
+                    Windows 95 Introduction
+                </a>
+            </li>
+
+            <li>
+                <a href="http://www.warepin.com/computer-equipment-storage-room/"
+                   target="_blank" rel="noopener">
+                    Computer Equipment and Storage
+                </a>
+            </li>
+
+            <li>
+                <a href="http://tesdanciireviewer.blogspot.in/2012/08/examples-of-input-and-output-devices.html"
+                   target="_blank" rel="noopener">
+                    Examples of Input and Output Devices
+                </a>
+            </li>
+        </ul>
+
+        <p class="reference-note">
+            Note: These are the references listed in the supplied PDF.
+            Some older links may no longer be available.
+        </p>
+
+    </section>
+
+
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-05.html">
+                    ← Topic 5
+                </a>
+
+                <a class="btn primary" href="topic-07.html">
+                    Topic 7 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+
+    </script>
+
+</body>
+</html>

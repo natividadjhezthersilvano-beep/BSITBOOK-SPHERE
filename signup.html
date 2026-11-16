@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Student Account | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --purple: #6555c7;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #fff;
+            --soft: #f7f7fb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            background: linear-gradient(130deg, #171f3b, #3d3477);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+        }
+
+        .signup-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--paper);
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 25px 80px #0004;
+        }
+
+        .logo {
+            font: 800 30px Manrope, sans-serif;
+            color: var(--purple);
+            margin-bottom: 15px;
+        }
+
+        .logo span {
+            color: #f2a64b;
+        }
+
+        .eyebrow {
+            color: var(--purple);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        h1 {
+            font: 800 27px Manrope, sans-serif;
+            margin: 8px 0;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 15px 0 7px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            outline: none;
+            background: var(--paper);
+            color: var(--ink);
+            font: inherit;
+            font-size: 13px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--purple);
+        }
+
+        .password-row {
+            display: flex;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .password-row input {
+            border: 0;
+            border-radius: 0;
+        }
+
+        .password-row button {
+            border: 0;
+            background: transparent;
+            color: var(--purple);
+            padding: 0 12px;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            margin-top: 20px;
+            border: 0;
+            border-radius: 6px;
+            background: var(--purple);
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            opacity: .9;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--purple);
+        }
+
+        .message {
+            font-size: 12px;
+            margin-top: 12px;
+            text-align: center;
+            min-height: 18px;
+        }
+
+        .success {
+            color: #23834d;
+        }
+
+        .error {
+            color: #c43c55;
+        }
+
+        @media (max-width: 480px) {
+            .signup-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="signup-card">
+
+        <div class="logo">B<span>+</span></div>
+
+        <p class="eyebrow">BSIT STUDENT LEARNING PORTAL</p>
+
+        <h1>Create Account</h1>
+
+        <p class="description">
+            Register your student information to create an account
+            for the BSIT E-Book.
+        </p>
+
+        <form id="signupForm">
+
+            <label for="fullname">Full Name</label>
+            <input
+                type="text"
+                id="fullname"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label for="yearLevel">Year Level</label>
+            <select id="yearLevel" required>
+                <option value="">Select your year level</option>
+                <option value="1">First Year</option>
+                <option value="3">Third Year</option>
+            </select>
+
+            <label for="passkey">Create Passkey</label>
+
+            <div class="password-row">
+                <input
+                    type="password"
+                    id="passkey"
+                    placeholder="Create your passkey"
+                    minlength="6"
+                    required
+                >
+                <button type="button" class="toggle" data-target="passkey">
+                    Show
+                </button>
+            </div>
+
+            <label for="confirmPasskey">Confirm Passkey</label>
+
+            <div class="password-row">
+                <input
+                    type="password"
+                    id="confirmPasskey"
+                    placeholder="Confirm your passkey"
+                    minlength="6"
+                    required
+                >
+                <button type="button" class="toggle" data-target="confirmPasskey">
+                    Show
+                </button>
+            </div>
+
+            <p id="message" class="message" role="status"></p>
+
+            <button type="submit" class="btn">
+                Create Student Account
+            </button>
+
+        </form>
+
+        <a href="index.html" class="back-link">
+            ← Back to Login
+        </a>
+
+    </main>
+
+    <script>
+
+        const signupForm = document.getElementById("signupForm");
+        const message = document.getElementById("message");
+
+        // SHOW OR HIDE PASSKEY
+        document.querySelectorAll(".toggle").forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const input = document.getElementById(
+                    button.dataset.target
+                );
+
+                input.type =
+                    input.type === "password" ? "text" : "password";
+
+                button.textContent =
+                    input.type === "password" ? "Show" : "Hide";
+
+            });
+
+        });
+
+        // REGISTER ACCOUNT
+        signupForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const fullname = document.getElementById("fullname").value.trim();
+            const yearLevel = document.getElementById("yearLevel").value;
+            const passkey = document.getElementById("passkey").value;
+            const confirmPasskey = document.getElementById("confirmPasskey").value;
+
+            if (fullname.length < 2) {
+
+                showMessage("Please enter your full name.", "error");
+                return;
+
+            }
+
+            if (passkey.length < 6) {
+
+                showMessage("Passkey must be at least 6 characters.", "error");
+                return;
+
+            }
+
+            if (passkey !== confirmPasskey) {
+
+                showMessage("Passkeys do not match.", "error");
+                return;
+
+            }
+
+            let accounts = [];
+
+            try {
+
+                accounts = JSON.parse(
+                    localStorage.getItem("bsitAccounts") || "[]"
+                );
+
+            } catch (error) {
+
+                showMessage("Unable to access saved accounts.", "error");
+                return;
+
+            }
+
+            const existingAccount = accounts.find(account =>
+                account.passkey === passkey
+            );
+
+            if (existingAccount) {
+
+                showMessage("This passkey is already registered.", "error");
+                return;
+
+            }
+
+            const newAccount = {
+                fullname: fullname,
+                yearLevel: yearLevel,
+                passkey: passkey
+            };
+
+            accounts.push(newAccount);
+
+            try {
+
+                localStorage.setItem(
+                    "bsitAccounts",
+                    JSON.stringify(accounts)
+                );
+
+                showMessage(
+                    "Account created successfully! Returning to login...",
+                    "success"
+                );
+
+                signupForm.reset();
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1500);
+
+            } catch (error) {
+
+                showMessage("Unable to save your account.", "error");
+
+            }
+
+        });
+
+        function showMessage(text, type) {
+
+            message.textContent = text;
+            message.className = "message " + type;
+
+        }
+
+    </script>
+
+</body>
+</html>

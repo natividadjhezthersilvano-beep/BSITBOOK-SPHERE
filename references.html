@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Meet the developers behind BookSphere, the BSIT E-Book Student Learning Portal.">
+
+    <title>Developers | BSIT E-Book</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --light-purple: #efedff;
+            --orange: #ff6845;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* HEADER */
+
+        .site-header {
+    min-height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px 'Manrope', sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px 'DM Sans', sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+        .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    left: -70px;
+}
+
+.main-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 28px 0;
+    border-bottom: 2px solid transparent;
+    transition: .2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--purple);
+    border-color: var(--purple);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+        /* PAGE CONTENT */
+
+        .developers-section {
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 10px 5.5% 85px;
+        }
+
+        /* PAGE HERO */
+
+        .developers-hero {
+    width: 100%;
+    min-height: 200px;
+    padding: 10px 30px;
+
+    background: linear-gradient(
+        135deg,
+        #171f3b 0%,
+        #1b1b42 55%,
+        #1f185e 100%
+    );
+
+    border-radius: 11px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    margin-bottom: 30px;
+}
+
+.developers-hero .eyebrow {
+    color: #c8bfff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 14px;
+}
+
+.developers-hero h1 {
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(27px, 3vw, 36px);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.developers-hero p {
+    color: #e5e5f0;
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+@media (max-width: 600px) {
+    .developers-hero {
+        min-height: 200px;
+        padding: 32px 22px;
+    }
+}
+
+        /* DEVELOPER GRID */
+
+        .developers-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        /* DEVELOPER CARD */
+
+        .developer-card {
+            margin-top: 60px;
+            min-width: 0;
+            min-height: 260px;
+            padding: 14px;
+            border-radius: 13px;
+            background: linear-gradient(
+                145deg,
+                #1b1b42 0%,
+                #1f185e 100%
+            );
+            border: 1px solid #302c70;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .developer-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(31, 24, 94, 0.15);
+        }
+
+        .developer-image {
+            width: 145px;
+            height: 225px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .developer-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .developer-info {
+            min-width: 0;
+            flex: 1;
+            padding-top: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .developer-number {
+            color: #aaa1ff;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .developer-info h2 {
+            color: #ffffff;
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 5px;
+            overflow-wrap: anywhere;
+        }
+
+        .developer-role {
+            color: #c5bfff;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .developer-description {
+            color: #d5d4e8;
+            font-size: 10px;
+            line-height: 1.7;
+            margin-bottom: 13px;
+        }
+
+        .developer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: auto;
+        }
+
+        .developer-contact a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 27px;
+            padding: 5px 9px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 700;
+            transition: background 0.2s ease;
+        }
+
+        .developer-contact a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px)/2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .footer-bottom a {
+            color: #cfc9ff;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1100px) {
+            .developers-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .developer-card {
+                min-height: 195px;
+            }
+        }
+
+        /* MOBILE NAVIGATION */
+
+        @media (max-width: 800px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .main-nav {
+                position: absolute;
+                top: 76px;
+                left: 0;
+                right: 0;
+                padding: 20px 5.5%;
+                background: #ffffff;
+                border-bottom: 1px solid var(--line);
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                width: 100%;
+                font-size: 13px;
+            }
+        }
+
+        /* SMALL TABLET AND MOBILE */
+
+        @media (max-width: 600px) {
+            .developers-section {
+                padding: 25px 5% 55px;
+            }
+
+            .developers-hero {
+                min-height: 190px;
+                padding: 30px 22px;
+                margin-bottom: 22px;
+            }
+
+            .developers-hero h1 {
+                font-size: 27px;
+            }
+
+            .developers-hero p {
+                font-size: 12px;
+            }
+
+            .developers-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .developer-card {
+                min-height: 185px;
+            }
+
+            .developer-image {
+                width: 120px;
+                height: 155px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 22px 5%;
+            }
+
+            .footer-actions {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* EXTRA SMALL PHONES */
+
+        @media (max-width: 380px) {
+            .developer-card {
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .developer-image {
+                width: 100px;
+                height: 140px;
+            }
+
+            .developer-info h2 {
+                font-size: 14px;
+            }
+
+            .developer-number {
+                font-size: 8px;
+            }
+
+            .developer-description {
+                font-size: 9px;
+            }
+        }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* THEME TOGGLE BUTTON */
+
+
+    </style>
+</head>
+
+<body data-root="" id="top">
+
+    <div id="website">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img src="BookSphere.jfif" alt="BookSphere Logo" class="brand-logo">
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                aria-label="Open navigation"
+                aria-expanded="false"
+                type="button">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                
+    
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="chapters.html">Chapters</a>
+                
+                <a href="activities.html">Activities</a>
+            
+                <a href="references.html">Developers</a>
+            </nav>
+
+        
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="developers-section">
+
+        <!-- PAGE HERO -->
+        <section class="developers-hero">
+
+            <span class="eyebrow">MEET THE TEAM</span>
+
+            <h1>The people behind BookSphere.</h1>
+
+            <p>
+                Meet the creators and contributors who bring our digital
+                learning platform to life.
+            </p>
+
+        </section>
+
+        <!-- DEVELOPERS -->
+        <section class="developers-grid" aria-label="BookSphere developers">
+
+            <!-- DEVELOPER 1 -->
+            <article class="developer-card">
+
+                <div class="developer-image">
+                    <img src="Joshua.png" alt="Joshua D. Ramos">
+                </div>
+
+                <div class="developer-info">
+
+                    <span class="developer-number">
+                         PROJECT MENTOR
+                    </span>
+
+                    <h2>Joshua D. Ramos</h2>
+
+                    <span class="developer-role">
+                        Instructor
+                    </span>
+
+                    <p class="developer-description">
+                        Provides academic guidance and supervision
+                        throughout the project.
+                    </p>
+
+                    <div class="developer-contact">
+                        <a href="mailto:joshua.ramos@mcb.edu.ph">Email</a>
+                        <a href="https://www.facebook.com/share/1JWYkVcgtA/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- DEVELOPER 2 -->
+            <article class="developer-card">
+
+                <div class="developer-image">
+                    <img src="jheztherpic.jpg.jfif" alt="Jhezther S. Natividad">
+                </div>
+
+                <div class="developer-info">
+
+                    <span class="developer-number">
+                         LEAD DEVELOPER
+                    </span>
+
+                    <h2>Jhezther S. Natividad</h2>
+
+                    <span class="developer-role">
+                        Programmer and Designer
+                    </span>
+
+                    <p class="developer-description">
+                        Responsible for the website's interface, visual
+                        design, coding, and implementation.
+                    </p>
+
+                    <div class="developer-contact">
+                        <a href="mailto:natividadjhezther@gmail.com">Email</a>
+                        <a href="https://www.facebook.com/share/1FNEc9Gu2J/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- DEVELOPER 3 -->
+            <article class="developer-card">
+
+                <div class="developer-image">
+                    <img src="photos/68c22368-ab67-4929-87fb-2d8827a1e97d.jfif" alt="Jm L. Flores">
+                </div>
+
+                <div class="developer-info">
+
+                    <span class="developer-number">
+                         CONTENT CONTRIBUTOR
+                    </span>
+
+                    <h2>Jm L. Flores</h2>
+
+                    <span class="developer-role">
+                        Content Provider
+                    </span>
+
+                    <p class="developer-description">
+                        Contributes educational content and learning
+                        materials for the platform.
+                    </p>
+
+                    <div class="developer-contact">
+                        <a href="mailto:jmlopezflores17@gmail.com">Email</a>
+                        <a href="https://www.facebook.com/share/1H8dyVjXXS/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="footer-bottom">
+
+            <span>© 2026 BSIT E-Book Development</span>
+
+            <span>Learn with curiosity. Build with purpose.</span>
+
+            <a href="#top">Back to top ↑</a>
+
+            <button id="logoutBtn" type="button">
+                Log out ↗
+            </button>
+
+        </div>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const ROOT = document.body.dataset.root || "";
+
+        const $ = selector => document.querySelector(selector);
+
+        /* PASSKEY PROTECTION */
+
+        function isUnlocked() {
+            try {
+                return sessionStorage.getItem("bsitOk") === "1";
+            } catch (error) {
+                return false;
+            }
+        }
+
+        if (!isUnlocked()) {
+            window.location.replace(ROOT + "index.html");
+        }
+
+        /* LOGOUT */
+
+        const logoutBtn = $("#logoutBtn");
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (error) {}
+
+                window.location.href = ROOT + "index.html";
+            });
+        }
+
+        /* MOBILE NAVIGATION */
+
+        const navToggle = $("#navToggle");
+        const mainNav = $("#mainNav");
+
+        if (navToggle && mainNav) {
+
+            navToggle.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", isOpen);
+                navToggle.textContent = isOpen ? "✕" : "☰";
+            });
+
+            mainNav.querySelectorAll("a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav.classList.remove("open");
+
+                    navToggle.setAttribute("aria-expanded", "false");
+                    navToggle.textContent = "☰";
+                });
+            });
+        }
+
+        /* ACTIVE NAVIGATION LINK */
+
+        const currentPage =
+            window.location.pathname.split("/").pop().toLowerCase()
+            || "index.html";
+
+        document.querySelectorAll(".main-nav a").forEach(link => {
+
+            const pageLink = link.getAttribute("href").toLowerCase();
+
+            if (pageLink === currentPage) {
+                link.classList.add("active");
+            }
+        });
+
+      /* LIGHT AND DARK MODE */
+
+/* ==============================
+   LIGHT AND DARK MODE
+============================== */
+
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+function getSavedTheme() {
+    try {
+        return localStorage.getItem("bsitTheme") || "light";
+    } catch (error) {
+        return "light";
+    }
+}
+
+function saveTheme(theme) {
+    try {
+        localStorage.setItem("bsitTheme", theme);
+    } catch (error) {
+        // Theme still works even if storage is unavailable.
+    }
+}
+
+function applyTheme(theme) {
+
+    const isDark = theme === "dark";
+
+    document.body.classList.toggle("dark-mode", isDark);
+
+    if (themeIcon) {
+        themeIcon.className = isDark
+            ? "fa-regular fa-sun"
+            : "fa-regular fa-moon";
+    }
+
+    if (themeToggle) {
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+
+        themeToggle.setAttribute(
+            "title",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+    }
+
+    saveTheme(theme);
+}
+
+/* Load previously selected theme */
+
+applyTheme(getSavedTheme());
+
+/* Toggle theme */
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+        const isDark = document.body.classList.contains("dark-mode");
+
+        applyTheme(isDark ? "light" : "dark");
+
+    });
+
+}
+    </script>
+
+</body>
+</html>

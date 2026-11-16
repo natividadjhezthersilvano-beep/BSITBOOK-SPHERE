@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Computer Hardware and Software
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+
+        <a href="#overview" class="active">Overview</a>
+
+        <a href="#introduction">Introduction to Computers</a>
+
+        <a href="#what-is-computer">What Is a Computer?</a>
+
+        <a href="#computer-functions">Four Basic Functions of a Computer</a>
+
+        <a href="#computer-parts">Parts Needed for a Computer to Work</a>
+
+        <a href="#types-of-computers">Types of Computers</a>
+
+        <a href="#hardware">Computer Hardware</a>
+
+        <a href="#software">Computer Software</a>
+
+        <a href="#operating-system">Operating System (OS)</a>
+
+        <a href="#os-components">Three Main OS Components</a>
+
+        <a href="#daily-life">The Use of Computing in Our Daily Life</a>
+
+        <a href="#key-takeaways">Key Takeaways</a>
+
+        <a href="#learning-materials">Videos and Learning Materials</a>
+
+        <a href="#references">References</a>
+
+    </nav>
+
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+
+        <h2>Overview</h2>
+
+        <p>
+            Computers have changed the way people work, communicate,
+            learn, and manage information. From large machines used
+            in the past to modern personal computers and smartphones,
+            computer technology continues to develop and improve.
+        </p>
+
+        <p>
+            This lesson introduces the basic concepts of computing,
+            the definition of a computer, its essential components,
+            hardware and software, operating systems, and the different
+            ways computers are used in everyday life.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Desk_Setup_%28Unsplash%29.jpg"
+     alt="Modern desktop computer setup"
+     class="lesson-image">
+
+    </section>
+
+
+    <!-- INTRODUCTION -->
+    <section class="lesson-block" id="introduction">
+
+        <h2>Introduction to Computers</h2>
+
+        <p>
+            Computers have developed significantly since the
+            introduction of the first modern multipurpose computers.
+            One of the earliest examples was ENIAC (Electronic
+            Numerical Integrator and Computer), developed by
+            American engineers John Mauchly and J. Presper Eckert.
+        </p>
+
+        <p>
+            ENIAC was set up at the University of Pennsylvania in
+            1946. It weighed approximately 30 tons, occupied a
+            room measuring about 30 by 30 feet, contained 18,000
+            vacuum tubes, and used approximately 500 miles of wiring.
+            It could perform around 100,000 operations per second.
+        </p>
+
+        <p>
+            As technology developed, computers became smaller,
+            faster, more powerful, and less expensive. Today,
+            computers are commonly used in schools, businesses,
+            homes, research facilities, and many other industries.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eniac_%28cropped%29.jpg"
+     alt="ENIAC programmers working on the historical computer"
+     class="lesson-image">
+
+        <p class="image-caption">
+            ENIAC, one of the earliest modern multipurpose computers.
+        </p>
+
+    </section>
+
+
+    <!-- WHAT IS A COMPUTER -->
+    <section class="lesson-block" id="what-is-computer">
+
+        <h2>What Is a Computer?</h2>
+
+        <p>
+            A computer is an electronic and programmable device
+            that receives data, processes it according to
+            instructions, produces information, and stores
+            results for future use.
+        </p>
+
+        <p>
+            A computer operates using two essential components:
+            hardware and software. Hardware refers to the physical
+            parts of the computer, while software consists of the
+            programs and instructions that tell the hardware what
+            to do.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Personalcomputer.jpg"
+     alt="Desktop computer with monitor, keyboard, and mouse"
+     class="lesson-image">
+
+        <h3>Two Essential Components</h3>
+
+        <h4>1. Hardware</h4>
+
+        <p>
+            Hardware refers to the physical components of a
+            computer that can be seen and touched. Examples
+            include the monitor, keyboard, mouse, processor,
+            and motherboard.
+        </p>
+
+        <h4>2. Software</h4>
+
+        <p>
+            Software refers to the programs, applications,
+            and instructions that control computer operations.
+            Examples include operating systems, web browsers,
+            and office applications.
+        </p>
+
+    </section>
+
+
+    <!-- FOUR BASIC FUNCTIONS -->
+    <section class="lesson-block" id="computer-functions">
+
+        <h2>Four Basic Functions of a Computer</h2>
+
+        <p>
+            A computer performs four basic functions to turn
+            raw data into useful information.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Information_processing_system_%28english%29.svg"
+     alt="Diagram showing input, processing, output, and storage functions of a computer"
+     class="lesson-image">
+
+        <h3>1. Input</h3>
+
+        <p>
+            Input is the process of receiving data and instructions
+            from the user through input devices.
+        </p>
+
+        <p><strong>Examples:</strong> Keyboard, mouse, and microphone.</p>
+
+        <h3>2. Processing</h3>
+
+        <p>
+            Processing is the process of converting data into
+            meaningful information according to given instructions.
+            The CPU performs the main processing operations.
+        </p>
+
+        <p><strong>Example:</strong> Calculating numbers using a computer.</p>
+
+        <h3>3. Output</h3>
+
+        <p>
+            Output is the information or result produced by
+            the computer after processing data.
+        </p>
+
+        <p><strong>Examples:</strong> Monitor, printer, and speakers.</p>
+
+        <h3>4. Storage</h3>
+
+        <p>
+            Storage is the process of saving data, instructions,
+            and information for future use.
+        </p>
+
+        <p><strong>Examples:</strong> Hard disk drive, SSD, and USB flash drive.</p>
+
+    </section>
+
+
+    <!-- PARTS OF A COMPUTER -->
+    <section class="lesson-block" id="computer-parts">
+
+        <h2>Parts Needed for a Computer to Work</h2>
+
+        <p>
+            A computer requires several important internal
+            components to function properly. These components
+            work together to process information and perform tasks.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Computer_inside.jpg"
+     alt="Internal components of a desktop computer"
+     class="lesson-image">
+
+        <h3>1. Processor (CPU)</h3>
+
+        <p>
+            The Central Processing Unit (CPU) executes instructions
+            from software and hardware. It performs calculations
+            and controls many computer operations.
+        </p>
+
+        <h3>2. Memory (RAM)</h3>
+
+        <p>
+            Random Access Memory (RAM) temporarily stores data
+            and instructions that the CPU is actively using.
+        </p>
+
+        <h3>3. Motherboard</h3>
+
+        <p>
+            The motherboard is the main circuit board that connects
+            the computer's internal and external components.
+        </p>
+
+        <h3>4. Storage Device</h3>
+
+        <p>
+            A storage device permanently stores data, programs,
+            and files. Examples include hard disk drives (HDD)
+            and solid-state drives (SSD).
+        </p>
+
+        <h3>5. Power Supply Unit</h3>
+
+        <p>
+            The power supply unit provides electrical power
+            to the computer's components so they can operate.
+        </p>
+
+        <p>
+            A computer also needs at least one input device,
+            such as a keyboard, and one output device, such
+            as a monitor, to communicate with its user.
+        </p>
+
+    </section>
+
+
+    <!-- TYPES OF COMPUTERS -->
+    <section class="lesson-block" id="types-of-computers">
+
+        <h2>Types of Computers</h2>
+
+        <p>
+            Computers are classified according to their computing
+            power, capacity, size, mobility, and other characteristics.
+            Different types of computers are designed for different
+            purposes and users.
+        </p>
+
+        <img src="photos/wewrer.jpg"
+     class="lesson-image">
+
+        <ul>
+            <li><strong>Personal Computers (PC):</strong>
+                Computers designed for individual users.</li>
+
+            <li><strong>Desktop Computers:</strong>
+                Computers commonly used in homes, offices,
+                and schools.</li>
+
+            <li><strong>Laptop Computers:</strong>
+                Portable computers that can be carried and
+                used in different locations.</li>
+
+            <li><strong>Minicomputers:</strong>
+                Computers designed to support multiple users
+                and computing tasks.</li>
+
+            <li><strong>Handheld Computers:</strong>
+                Small portable computing devices.</li>
+
+            <li><strong>Mainframe Computers:</strong>
+                Powerful computers used to handle large
+                amounts of data and processing tasks.</li>
+
+            <li><strong>Supercomputers:</strong>
+                High-performance computers used for complex
+                calculations and scientific applications.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- HARDWARE -->
+    <section class="lesson-block" id="hardware">
+
+        <h2>Computer Hardware</h2>
+
+        <p>
+            Hardware refers to the physical structure and
+            components of a computer. These components include
+            the processor, memory, storage devices, communication
+            ports, and peripheral devices.
+        </p>
+
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704"
+     alt="Computer hardware components including keyboard, mouse, monitor, and motherboard"
+     class="lesson-image">
+
+        <h3>Examples of Computer Hardware</h3>
+
+        <ul>
+            <li><strong>Mouse:</strong> An input device used
+                to control the pointer on the screen.</li>
+
+            <li><strong>Microphone:</strong> An input device
+                used to record sound and voice.</li>
+
+            <li><strong>Hard Disk:</strong> A storage device
+                used to save and retrieve data.</li>
+
+            <li><strong>Monitor:</strong> An output device
+                that displays visual information.</li>
+
+            <li><strong>Speaker:</strong> An output device
+                that produces audio.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- SOFTWARE -->
+    <section class="lesson-block" id="software">
+
+        <h2>Computer Software</h2>
+
+        <p>
+            Software refers to the nonphysical components of a
+            computer, including programs, applications, data,
+            documents, digital media, and instructions.
+        </p>
+
+        <p>
+            Software allows users to perform different activities
+            and provides instructions that the computer's hardware
+            can read, interpret, and execute.
+        </p>
+
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475"
+     alt="Computer technology and software development"
+     class="lesson-image">
+
+        <h3>Examples of Software</h3>
+
+        <ul>
+            <li>Operating systems</li>
+            <li>Web browsers</li>
+            <li>Word processing applications</li>
+            <li>Spreadsheet applications</li>
+            <li>Digital media applications</li>
+        </ul>
+
+    </section>
+
+
+    <!-- OPERATING SYSTEM -->
+    <section class="lesson-block" id="operating-system">
+
+        <h2>Operating System (OS)</h2>
+
+        <p>
+            An operating system is software that allows users
+            to run other applications on a computing device.
+            It manages the computer's hardware and software
+            resources and helps applications operate efficiently.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Android_OS.jpg"
+     alt="Android operating system user interface"
+     class="lesson-image">
+
+        <h3>Functions of an Operating System</h3>
+
+        <ul>
+            <li>Manages input devices such as keyboards and mice.</li>
+            <li>Manages output devices such as monitors and printers.</li>
+            <li>Controls network devices and connections.</li>
+            <li>Manages storage devices and files.</li>
+            <li>Allocates memory and processor resources.</li>
+            <li>Supports the execution of installed applications.</li>
+        </ul>
+
+        <h3>Examples of Operating Systems</h3>
+
+        <ul>
+            <li>Android</li>
+            <li>iOS</li>
+            <li>macOS</li>
+            <li>Microsoft Windows</li>
+            <li>Linux</li>
+        </ul>
+
+    </section>
+
+
+    <!-- OS COMPONENTS -->
+    <section class="lesson-block" id="os-components">
+
+        <h2>Three Main Operating System Components</h2>
+
+        <p>
+            An operating system consists of different components
+            that work together to manage hardware, provide user
+            interaction, and support application development.
+        </p>
+
+        <h3>1. Kernel</h3>
+
+        <p>
+            The kernel provides basic-level control over computer
+            hardware devices. It manages memory, processes
+            instructions, and handles communication between
+            hardware components.
+        </p>
+
+        <h3>2. User Interface (UI)</h3>
+
+        <p>
+            The user interface allows people to interact with
+            a computer. It may use graphical elements or
+            text-based commands.
+        </p>
+
+        <h4>Command Line Interface (CLI)</h4>
+
+        <p>
+            A text-based interface where users type commands
+            to perform specific operations.
+        </p>
+
+        <h4>Graphical User Interface (GUI)</h4>
+
+        <p>
+            A visual interface that allows users to interact
+            with icons, menus, windows, and other graphical
+            elements using devices such as a mouse or touchpad.
+        </p>
+
+        <h3>3. Application Programming Interfaces (API)</h3>
+
+        <p>
+            An API defines how applications, systems, or
+            software components communicate and use one
+            another's functions.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Debian_12_Bookworm_GNOME_Desktop_English.png"
+     alt="Operating system interface showing graphical desktop elements"
+     class="lesson-image">
+
+    </section>
+
+
+    <!-- DAILY USES -->
+    <section class="lesson-block" id="daily-life">
+
+        <h2>The Use of Computing in Our Daily Life</h2>
+
+        <p>
+            Computers are important in many industries and
+            everyday activities. They help people communicate,
+            organize information, solve problems, and perform
+            tasks more efficiently.
+        </p>
+
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Computer_training_%284428766986%29.jpg"
+     alt="People using computers during a training session"
+     class="lesson-image">
+
+        <h3>1. Banking and Finance</h3>
+
+        <ul>
+            <li><strong>ATM:</strong> Computers process
+                withdrawals and other banking transactions.</li>
+
+            <li><strong>Digital Currency:</strong> Banks use
+                computer systems to maintain digital account records.</li>
+
+            <li><strong>Trading:</strong> Computers support
+                the buying and selling of stocks and commodities.</li>
+        </ul>
+
+        <h3>2. Business</h3>
+
+        <ul>
+            <li><strong>Cash Registers:</strong> Used to
+                complete sales transactions.</li>
+
+            <li><strong>Work Computers:</strong> Help employees
+                complete tasks and solve business problems.</li>
+
+            <li><strong>Servers:</strong> Help manage files,
+                email, and network resources.</li>
+        </ul>
+
+        <h3>3. Communication</h3>
+
+        <ul>
+            <li>Smartphones allow people to communicate and
+                access digital services.</li>
+
+            <li>Email systems allow users to send and receive
+                electronic messages.</li>
+
+            <li>Voice over Internet Protocol (VoIP) supports
+                voice communication through the Internet.</li>
+
+            <li>Voice recognition converts recorded audio
+                into text or other data.</li>
+        </ul>
+
+        <h3>4. Defense and Military</h3>
+
+        <ul>
+            <li>Encryption protects sensitive communications.</li>
+            <li>GPS helps track locations and equipment.</li>
+            <li>Computer-assisted flight systems help operate aircraft.</li>
+            <li>Computers control and operate drones.</li>
+        </ul>
+
+        <h3>5. Education</h3>
+
+        <ul>
+            <li>Provides access to online learning resources.</li>
+            <li>Supports interactive learning experiences.</li>
+            <li>Helps students create, format, and print reports.</li>
+            <li>Maintains student records and academic results.</li>
+            <li>Supports online tests and assessments.</li>
+        </ul>
+
+        <h3>6. Internet</h3>
+
+        <ul>
+            <li><strong>DNS:</strong> Translates website domain
+                names into IP addresses.</li>
+
+            <li><strong>Web Servers:</strong> Receive and send
+                requests when users access websites.</li>
+
+            <li><strong>Programs:</strong> Run services such
+                as search engines, shopping carts, and forums.</li>
+
+            <li><strong>Online Services:</strong> Support
+                services such as email, FTP, and SSH.</li>
+        </ul>
+
+        <h3>7. Medical Field</h3>
+
+        <ul>
+            <li>Stores and manages digital medical records.</li>
+            <li>Monitors patients and helps alert medical staff.</li>
+            <li>Supports medical research and diagnosis.</li>
+            <li>Assists in computer-controlled surgical procedures.</li>
+        </ul>
+
+        <h3>8. Transportation</h3>
+
+        <ul>
+            <li>Controls and manages modern vehicle systems.</li>
+            <li>Helps operate traffic lights.</li>
+            <li>Provides GPS navigation and route calculations.</li>
+            <li>Supports aircraft operations.</li>
+            <li>Helps manage public transportation systems.</li>
+            <li>Supports the development of self-driving cars.</li>
+        </ul>
+
+        <h3>9. Multimedia</h3>
+
+        <ul>
+            <li>Editing videos, music, and audio recordings.</li>
+            <li>Creating computer-generated imagery (CGI).</li>
+            <li>Manipulating pictures, videos, and audio.</li>
+            <li>Creating animations and 3D models.</li>
+            <li>Supporting digital media playback and recording.</li>
+        </ul>
+
+        <h3>10. Robotics</h3>
+
+        <ul>
+            <li>Controls robotic machines and robotic arms.</li>
+            <li>Processes information received from robots.</li>
+            <li>Helps robotic systems respond to different conditions.</li>
+        </ul>
+
+        <h3>11. Simulations</h3>
+
+        <ul>
+            <li><strong>Weather Prediction:</strong> Processes
+                weather data to create forecasts.</li>
+
+            <li><strong>Product Simulations:</strong> Tests
+                how products may work before development.</li>
+
+            <li><strong>Big Data Simulation:</strong> Analyzes
+                large amounts of data to identify patterns.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>A computer is a programmable electronic device
+                that receives, processes, outputs, and stores data.</li>
+
+            <li>ENIAC was one of the earliest modern
+                multipurpose computers.</li>
+
+            <li>Hardware refers to the physical components
+                of a computer.</li>
+
+            <li>Software contains the programs and instructions
+                that control computer operations.</li>
+
+            <li>The four basic computer functions are input,
+                processing, output, and storage.</li>
+
+            <li>The CPU, RAM, motherboard, storage device,
+                and power supply are important computer components.</li>
+
+            <li>An operating system manages hardware and
+                software resources.</li>
+
+            <li>Computers are used in banking, business,
+                communication, education, medicine, transportation,
+                multimedia, robotics, and other industries.</li>
+        </ul>
+
+    </section>
+
+
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+
+        <h2>References</h2>
+
+        <ol>
+            <li>
+                Techopedia. Operating System (OS).
+                <a href="https://www.techopedia.com/definition/3515/operating-system-os"
+                   target="_blank" rel="noopener noreferrer">
+                    https://www.techopedia.com/definition/3515/operating-system-os
+                </a>
+            </li>
+
+            <li>
+                Computer Hope. Computer Definition and Overview.
+                <a href="https://www.computerhope.com/jargon/c/computer.htm"
+                   target="_blank" rel="noopener noreferrer">
+                    https://www.computerhope.com/jargon/c/computer.htm
+                </a>
+            </li>
+
+            <li>
+                Computer Hope. Computer Help and Information.
+                <a href="https://www.computerhope.com/issues/ch001732.htm"
+                   target="_blank" rel="noopener noreferrer">
+                    https://www.computerhope.com/issues/ch001732.htm
+                </a>
+            </li>
+        </ol>
+
+    </section>
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-02.html">
+                    ← Topic 2
+                </a>
+
+                <a class="btn primary" href="topic-04.html">
+                    Topic 4 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

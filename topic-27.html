@@ -1,0 +1,3900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+       Forms and Input Validation
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+           <div class="lesson-layout">
+
+    <aside class="lesson-sidebar">
+        <h3>On This Page</h3>
+
+        <nav class="lesson-toc" id="lessonTOC">
+            <a href="#overview">Overview</a>
+            <a href="#web-forms">Understanding Web Forms</a>
+            <a href="#form-tag">The Form Tag</a>
+            <a href="#get-post">GET and POST Methods</a>
+            <a href="#form-attributes">Form Attributes</a>
+            <a href="#form-controls">Form Controls</a>
+            <a href="#input-types">HTML Input Types</a>
+            <a href="#other-controls">Other Form Controls</a>
+            <a href="#validation">Form Validation</a>
+            <a href="#validation-attributes">Validation Attributes</a>
+            <a href="#regular-expressions">Regular Expressions</a>
+            <a href="#form-security">Form Security</a>
+            <a href="#contact-form">Practical Contact Form</a>
+            <a href="#applications">Practical Applications</a>
+            <a href="#takeaways">Key Takeaways</a>
+            
+        </nav>
+
+    
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+
+      <article class="lesson-content">
+
+            <!-- OVERVIEW -->
+            <section class="lesson-block" id="overview">
+
+                <h2>Overview</h2>
+
+                <p>
+                    Web forms are an essential part of modern websites because
+                    they allow users to enter information, make selections,
+                    and send data to a web server. They provide a way for
+                    websites to communicate with users and collect information
+                    needed to perform different operations.
+                </p>
+
+                <p>
+                    Forms are commonly used for account registration, login
+                    pages, contact pages, online applications, surveys,
+                    feedback systems, search engines, and online purchases.
+                </p>
+
+                <p>
+                    HTML provides different elements for building forms.
+                    The main element is the <strong>form</strong> tag, which
+                    acts as a container for input fields, buttons, selection
+                    menus, and other form controls.
+                </p>
+
+                <p>
+                    After users complete the required fields, they can submit
+                    the form. The submitted information is transmitted to a
+                    server-side program or API, where it can be validated,
+                    processed, stored, or used to perform an action.
+                </p>
+
+                <p>
+                    Form validation is also important because it helps ensure
+                    that the information entered by users follows the expected
+                    format and requirements.
+                </p>
+
+                <figure>
+                    <svg viewBox="0 0 760 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+
+                        <rect x="15" y="55" width="165" height="145" rx="12"
+                              fill="#e8efff" stroke="#4169a8" stroke-width="2"/>
+
+                        <text x="97" y="88" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#183b70">
+                            User
+                        </text>
+
+                        <text x="97" y="119" text-anchor="middle"
+                              font-size="13" fill="#183b70">
+                            Enters information
+                        </text>
+
+                        <text x="97" y="143" text-anchor="middle"
+                              font-size="13" fill="#183b70">
+                            Selects options
+                        </text>
+
+                        <text x="97" y="167" text-anchor="middle"
+                              font-size="13" fill="#183b70">
+                            Submits form
+                        </text>
+
+
+                        <rect x="220" y="55" width="165" height="145" rx="12"
+                              fill="#e9f7ef" stroke="#39966a" stroke-width="2"/>
+
+                        <text x="302" y="88" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#17613e">
+                            HTML Form
+                        </text>
+
+                        <text x="302" y="119" text-anchor="middle"
+                              font-size="13" fill="#17613e">
+                            Input fields
+                        </text>
+
+                        <text x="302" y="143" text-anchor="middle"
+                              font-size="13" fill="#17613e">
+                            Form controls
+                        </text>
+
+                        <text x="302" y="167" text-anchor="middle"
+                              font-size="13" fill="#17613e">
+                            Validation
+                        </text>
+
+
+                        <rect x="425" y="55" width="150" height="145" rx="12"
+                              fill="#fff1df" stroke="#d18a35" stroke-width="2"/>
+
+                        <text x="500" y="88" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#89500e">
+                            Web Server
+                        </text>
+
+                        <text x="500" y="119" text-anchor="middle"
+                              font-size="13" fill="#89500e">
+                            Receives data
+                        </text>
+
+                        <text x="500" y="143" text-anchor="middle"
+                              font-size="13" fill="#89500e">
+                            Processes data
+                        </text>
+
+                        <text x="500" y="167" text-anchor="middle"
+                              font-size="13" fill="#89500e">
+                            Performs actions
+                        </text>
+
+
+                        <rect x="615" y="55" width="130" height="145" rx="12"
+                              fill="#f0eaff" stroke="#8064bd" stroke-width="2"/>
+
+                        <text x="680" y="88" text-anchor="middle"
+                              font-size="18" font-weight="bold" fill="#50388c">
+                            Database
+                        </text>
+
+                        <text x="680" y="119" text-anchor="middle"
+                              font-size="13" fill="#50388c">
+                            Stores records
+                        </text>
+
+                        <text x="680" y="143" text-anchor="middle"
+                              font-size="13" fill="#50388c">
+                            Retrieves data
+                        </text>
+
+                        <text x="680" y="167" text-anchor="middle"
+                              font-size="13" fill="#50388c">
+                            Updates records
+                        </text>
+
+
+                        <path d="M180 127 H215" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M207 120 L215 127 L207 134" stroke="currentColor" stroke-width="2.5" fill="none"/>
+
+                        <path d="M385 127 H420" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M412 120 L420 127 L412 134" stroke="currentColor" stroke-width="2.5" fill="none"/>
+
+                        <path d="M575 127 H610" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M602 120 L610 127 L602 134" stroke="currentColor" stroke-width="2.5" fill="none"/>
+
+                        <text x="380" y="248" text-anchor="middle"
+                              font-size="14" fill="currentColor">
+                            Typical flow of information in a web form
+                        </text>
+
+                        <text x="380" y="270" text-anchor="middle"
+                              font-size="12" fill="currentColor">
+                            The server may process information and communicate with a database.
+                        </text>
+
+                    </svg>
+
+                    <figcaption>
+                        How information moves from a user through an HTML form
+                        to a server and database.
+                    </figcaption>
+                </figure>
+
+            </section>
+
+
+            <!-- WEB FORMS -->
+            <section class="lesson-block" id="web-forms">
+
+                <h2>Understanding Web Forms</h2>
+
+                <p>
+                    A <strong>web form</strong> is a document or interface
+                    that provides fields where users can enter text,
+                    numbers, personal information, or choose from a list
+                    of available options.
+                </p>
+
+                <p>
+                    The information entered into a form is called user input.
+                    The form collects this information and sends it to a
+                    server for processing when the user submits it.
+                </p>
+
+                <h3>How Web Forms Work</h3>
+
+                <p>
+                    A user opens a webpage containing a form and enters
+                    the requested information. The user may type a name,
+                    email address, phone number, or password, or select
+                    an option from a dropdown menu.
+                </p>
+
+                <p>
+                    Before submission, the browser may check whether the
+                    information satisfies the form's validation requirements.
+                    If the information is valid, the browser sends the form
+                    data to the specified destination.
+                </p>
+
+                <p>
+                    The server receives the information and processes it.
+                    Depending on the application, the server may save the
+                    information in a database, create an account, send an
+                    email, or return a response to the user.
+                </p>
+
+                <h3>Common Examples of Web Forms</h3>
+
+                <p>
+                    <strong>Registration Form:</strong> Collects a user's
+                    name, email address, username, and password when creating
+                    an account.
+                </p>
+
+                <p>
+                    <strong>Login Form:</strong> Collects the username or
+                    email address and password needed to access an account.
+                </p>
+
+                <p>
+                    <strong>Contact Form:</strong> Allows visitors to send
+                    questions, concerns, suggestions, or messages to a
+                    website owner.
+                </p>
+
+                <p>
+                    <strong>Search Form:</strong> Accepts keywords or phrases
+                    that users want to search for.
+                </p>
+
+                <p>
+                    <strong>Feedback Form:</strong> Collects comments,
+                    ratings, complaints, and suggestions from users.
+                </p>
+
+                <p>
+                    <strong>Order Form:</strong> Collects product selections,
+                    quantities, delivery information, and customer details.
+                </p>
+
+                <h3>Form Controls</h3>
+
+                <p>
+                    Form controls are the elements that allow users to
+                    enter, select, edit, or submit information.
+                </p>
+
+                <p>
+                    Examples include textboxes, checkboxes, radio buttons,
+                    dropdown menus, buttons, and text areas.
+                </p>
+
+            </section>
+
+
+            <!-- FORM TAG -->
+            <section class="lesson-block" id="form-tag">
+
+                <h2>The Form Tag</h2>
+
+                <p>
+                    The <strong>&lt;form&gt;</strong> element is the main
+                    container used to create an HTML web form. It groups
+                    different form controls and defines how their data
+                    will be submitted.
+                </p>
+
+                <p>
+                    Form controls such as text fields, checkboxes, radio
+                    buttons, dropdown menus, and submit buttons are placed
+                    inside the form element.
+                </p>
+
+                <h3>Basic Form Structure</h3>
+
+                <pre><code>&lt;form action="process.php" method="post"&gt;
+
+    &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="fullname"&gt;
+
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <p>
+                    In this example, the form contains a text field for
+                    the user's full name and a submit button. When the
+                    button is clicked, the browser sends the form data
+                    according to the specified method and destination.
+                </p>
+
+                <h3>Important Parts of the Form</h3>
+
+                <p>
+                    <strong>Opening Form Tag:</strong> Starts the form
+                    container and defines its submission settings.
+                </p>
+
+                <p>
+                    <strong>Form Controls:</strong> Provide the fields
+                    where users enter or select information.
+                </p>
+
+                <p>
+                    <strong>Submit Button:</strong> Allows the user to
+                    submit the completed form.
+                </p>
+
+                <p>
+                    <strong>Closing Form Tag:</strong> Marks the end of
+                    the form container.
+                </p>
+
+            </section>
+
+
+            <!-- GET AND POST -->
+            <section class="lesson-block" id="get-post">
+
+                <h2>GET and POST Methods</h2>
+
+                <p>
+                    The <strong>method</strong> attribute specifies which
+                    HTTP method the browser uses when submitting form data.
+                    The two commonly used methods are GET and POST.
+                </p>
+
+                <h3>GET Method</h3>
+
+                <p>
+                    The GET method sends form data as part of the URL.
+                    The field names and values are included as URL
+                    parameters in the request.
+                </p>
+
+                <p>
+                    GET is commonly used for search forms, filtering,
+                    and other requests that retrieve information.
+                </p>
+
+                <pre><code>&lt;form action="search.php" method="get"&gt;
+
+    &lt;label for="keyword"&gt;Search:&lt;/label&gt;
+
+    &lt;input type="text" id="keyword" name="q"&gt;
+
+    &lt;button type="submit"&gt;Search&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <p>
+                    A submitted search might produce a URL similar to:
+                </p>
+
+                <pre><code>search.php?q=computer</code></pre>
+
+                <p>
+                    Because the values appear in the URL, GET should not
+                    be used for passwords or other sensitive information.
+                    URLs may be stored in browser history, server logs,
+                    and shared links.
+                </p>
+
+                <h3>POST Method</h3>
+
+                <p>
+                    The POST method sends form data in the body of the
+                    HTTP request instead of placing the values directly
+                    in the URL.
+                </p>
+
+                <p>
+                    POST is commonly used for registration, login,
+                    feedback, file uploads, and other operations that
+                    submit information for processing or storage.
+                </p>
+
+                <pre><code>&lt;form action="register.php" method="post"&gt;
+
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+
+    &lt;input type="email" id="email" name="email"&gt;
+
+    &lt;button type="submit"&gt;Register&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <p>
+                    POST keeps submitted values out of the URL, but it
+                    does not automatically encrypt them. HTTPS is required
+                    to protect information while it travels between the
+                    browser and server.
+                </p>
+
+                <h3>GET vs. POST</h3>
+
+                <p>
+                    <strong>GET:</strong> Sends form data through URL
+                    parameters and is appropriate for retrieving information.
+                </p>
+
+                <p>
+                    <strong>POST:</strong> Sends form data in the request
+                    body and is commonly used when submitting information
+                    for processing.
+                </p>
+
+                <p>
+                    <strong>GET:</strong> Submitted values may appear in
+                    browser history and can be bookmarked or shared.
+                </p>
+
+                <p>
+                    <strong>POST:</strong> Submitted values are not normally
+                    displayed in the URL.
+                </p>
+
+                <p>
+                    <strong>Security:</strong> Neither method alone provides
+                    encryption. Use HTTPS to protect transmitted information.
+                </p>
+
+            </section>
+
+
+            <!-- FORM ATTRIBUTES -->
+            <section class="lesson-block" id="form-attributes">
+
+                <h2>Form Attributes</h2>
+
+                <p>
+                    Form attributes define how the form behaves, where
+                    information is sent, and how the browser handles
+                    submitted data.
+                </p>
+
+                <h3>action</h3>
+
+                <p>
+                    The action attribute specifies the URL of the server-side
+                    script or API endpoint that receives and processes
+                    the submitted form data.
+                </p>
+
+                <pre><code>&lt;form action="process.php" method="post"&gt;</code></pre>
+
+                <h3>method</h3>
+
+                <p>
+                    The method attribute specifies how the browser submits
+                    form information. Common values are get and post.
+                </p>
+
+                <pre><code>&lt;form method="post"&gt;</code></pre>
+
+                <h3>accept-charset</h3>
+
+                <p>
+                    The accept-charset attribute specifies the character
+                    encoding used when submitting the form. UTF-8 is
+                    commonly used for modern websites.
+                </p>
+
+                <pre><code>&lt;form accept-charset="UTF-8"&gt;</code></pre>
+
+                <h3>autocomplete</h3>
+
+                <p>
+                    The autocomplete attribute controls whether the browser
+                    can automatically fill in previously entered information.
+                </p>
+
+                <pre><code>&lt;form autocomplete="on"&gt;</code></pre>
+
+                <p>
+                    It can also be set to off when automatic completion
+                    should not be used for the form.
+                </p>
+
+                <h3>enctype</h3>
+
+                <p>
+                    The enctype attribute specifies how form data is
+                    encoded when the POST method is used.
+                </p>
+
+                <p>
+                    <strong>application/x-www-form-urlencoded:</strong>
+                    The default encoding for standard form submissions.
+                </p>
+
+                <p>
+                    <strong>multipart/form-data:</strong> Used when a form
+                    includes file uploads.
+                </p>
+
+                <pre><code>&lt;form method="post"
+      enctype="multipart/form-data"&gt;
+
+    &lt;input type="file" name="document"&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <h3>name</h3>
+
+                <p>
+                    The name attribute identifies the form. It can be
+                    useful when accessing the form through JavaScript.
+                </p>
+
+                <pre><code>&lt;form name="registrationForm"&gt;</code></pre>
+
+                <h3>novalidate</h3>
+
+                <p>
+                    The novalidate attribute tells the browser not to
+                    perform its normal built-in form validation before
+                    submission.
+                </p>
+
+                <pre><code>&lt;form novalidate&gt;</code></pre>
+
+                <h3>target</h3>
+
+                <p>
+                    The target attribute specifies where the response
+                    from the server should be displayed.
+                </p>
+
+                <p>
+                    For example, the value _blank opens the response
+                    in a new browsing context.
+                </p>
+
+                <pre><code>&lt;form action="process.php"
+      method="post"
+      target="_blank"&gt;</code></pre>
+
+                <p>
+                    These attributes help developers configure the behavior
+                    and submission process of HTML forms.
+                </p>
+
+            </section>
+
+
+            <!-- FORM CONTROLS -->
+            <section class="lesson-block" id="form-controls">
+
+                <h2>Form Controls and Labels</h2>
+
+                <p>
+                    Form controls are HTML elements that allow users to
+                    provide information, choose options, or perform actions
+                    within a form.
+                </p>
+
+                <h3>The Label Element</h3>
+
+                <p>
+                    The <strong>&lt;label&gt;</strong> element provides
+                    a visible description for a form control. It tells
+                    users what information they should enter or select.
+                </p>
+
+                <p>
+                    Labels also improve accessibility. When properly
+                    connected to a form control, clicking the label can
+                    activate or focus the associated field.
+                </p>
+
+                <p>
+                    There are two common ways to associate a label with
+                    a form control.
+                </p>
+
+                <h3>Wrapping the Control</h3>
+
+                <pre><code>&lt;label&gt;
+    Subscribe:
+    &lt;input type="radio" name="subscribe"&gt;
+&lt;/label&gt;</code></pre>
+
+                <h3>Using the for Attribute</h3>
+
+                <pre><code>&lt;label for="subscribe"&gt;Subscribe:&lt;/label&gt;
+
+&lt;input type="radio"
+       name="subscribe"
+       id="subscribe"&gt;</code></pre>
+
+                <p>
+                    The value of the label's for attribute must match
+                    the id of the form control.
+                </p>
+
+                <h3>The name Attribute</h3>
+
+                <p>
+                    The name attribute identifies a form control when
+                    its value is submitted to the server. Without an
+                    appropriate name, a control's value is generally
+                    not included in the submitted form data.
+                </p>
+
+                <pre><code>&lt;input type="text" name="fullname"&gt;</code></pre>
+
+                <h3>The value Attribute</h3>
+
+                <p>
+                    The value attribute specifies the value associated
+                    with a form control. It can provide a default text
+                    value or define the value submitted when an option
+                    is selected.
+                </p>
+
+                <pre><code>&lt;input type="text"
+       name="username"
+       value="Student"&gt;</code></pre>
+
+                <h3>The placeholder Attribute</h3>
+
+                <p>
+                    The placeholder attribute displays temporary
+                    instructional text inside an input field. It
+                    disappears when the user starts typing.
+                </p>
+
+                <pre><code>&lt;input type="tel"
+       name="phone"
+       placeholder="09XX-XXX-XXXX"&gt;</code></pre>
+
+                <p>
+                    A placeholder is a helpful hint, but it should not
+                    replace a proper label because the hint disappears
+                    during data entry.
+                </p>
+
+            </section>
+
+
+            <!-- INPUT TYPES -->
+            <section class="lesson-block" id="input-types">
+
+                <h2>HTML Input Types</h2>
+
+                <p>
+                    The <strong>&lt;input&gt;</strong> element is one of
+                    the most commonly used form controls in HTML. Its
+                    type attribute determines what kind of input field
+                    the browser displays.
+                </p>
+
+                <p>
+                    Different input types are designed for different
+                    kinds of information. Choosing the correct type
+                    improves usability and provides basic browser
+                    validation.
+                </p>
+
+                <h3>Text Input</h3>
+
+                <p>
+                    The text type creates a general textbox that accepts
+                    ordinary text, such as names, usernames, and other
+                    short information.
+                </p>
+
+                <pre><code>&lt;input type="text" name="fullname"&gt;</code></pre>
+
+                <h3>Password Input</h3>
+
+                <p>
+                    The password type creates a field that hides the
+                    characters entered by the user, usually displaying
+                    dots or bullets instead.
+                </p>
+
+                <pre><code>&lt;input type="password" name="password"&gt;</code></pre>
+
+                <h3>Email Input</h3>
+
+                <p>
+                    The email type creates a field for email addresses.
+                    The browser checks whether the entered value follows
+                    a basic email format. It does not confirm that the
+                    email address actually exists.
+                </p>
+
+                <pre><code>&lt;input type="email" name="email"&gt;</code></pre>
+
+                <h3>Telephone Input</h3>
+
+                <p>
+                    The tel type creates a field intended for phone
+                    numbers. It can provide a suitable mobile keyboard,
+                    but it does not automatically enforce one universal
+                    telephone number format.
+                </p>
+
+                <pre><code>&lt;input type="tel"
+       name="phone"
+       placeholder="09XX-XXX-XXXX"&gt;</code></pre>
+
+                <h3>Number Input</h3>
+
+                <p>
+                    The number type creates a field for numeric values.
+                    Browsers commonly display controls that allow users
+                    to increase or decrease the value.
+                </p>
+
+                <pre><code>&lt;input type="number"
+       name="age"
+       min="1"
+       max="100"&gt;</code></pre>
+
+                <h3>Checkbox Input</h3>
+
+                <p>
+                    The checkbox type creates a small square control
+                    that users can check or uncheck. Multiple checkboxes
+                    can be selected at the same time.
+                </p>
+
+                <pre><code>&lt;label&gt;
+    &lt;input type="checkbox" name="interests" value="coding"&gt;
+    Coding
+&lt;/label&gt;
+
+&lt;label&gt;
+    &lt;input type="checkbox" name="interests" value="design"&gt;
+    Web Design
+&lt;/label&gt;</code></pre>
+
+                <h3>Radio Input</h3>
+
+                <p>
+                    The radio type creates a circular selection control.
+                    Radio buttons with the same name are grouped together,
+                    allowing users to select only one option from that
+                    group.
+                </p>
+
+                <pre><code>&lt;label&gt;
+    &lt;input type="radio" name="year" value="first"&gt;
+    First Year
+&lt;/label&gt;
+
+&lt;label&gt;
+    &lt;input type="radio" name="year" value="second"&gt;
+    Second Year
+&lt;/label&gt;</code></pre>
+
+                <h3>Submit Input</h3>
+
+                <p>
+                    The submit type creates a button that submits the
+                    form when clicked.
+                </p>
+
+                <pre><code>&lt;input type="submit" value="Submit"&gt;</code></pre>
+
+                <h3>Reset Input</h3>
+
+                <p>
+                    The reset type creates a button that restores form
+                    controls to their initial values.
+                </p>
+
+                <pre><code>&lt;input type="reset" value="Clear"&gt;</code></pre>
+
+                <h3>Button Input</h3>
+
+                <p>
+                    The button type creates a general clickable button.
+                    It does not submit the form by default and is commonly
+                    connected to JavaScript.
+                </p>
+
+                <pre><code>&lt;input type="button" value="Click Me"&gt;</code></pre>
+
+                <h3>File Input</h3>
+
+                <p>
+                    The file type creates a control that allows users
+                    to browse and select files from their devices.
+                </p>
+
+                <pre><code>&lt;input type="file" name="document"&gt;</code></pre>
+
+                <h3>Hidden Input</h3>
+
+                <p>
+                    The hidden type stores a value in the form without
+                    displaying a visible input control to the user.
+                </p>
+
+                <pre><code>&lt;input type="hidden"
+       name="formType"
+       value="feedback"&gt;</code></pre>
+
+                <p>
+                    Hidden fields are not secure storage. Users can
+                    inspect and modify their values, so the server
+                    must never trust them without verification.
+                </p>
+
+                <h3>Color Input</h3>
+
+                <p>
+                    The color type provides a color picker that allows
+                    users to select a color value.
+                </p>
+
+                <pre><code>&lt;input type="color" name="favoriteColor"&gt;</code></pre>
+
+                <h3>Date Input</h3>
+
+                <p>
+                    The date type provides a date picker for selecting
+                    a calendar date.
+                </p>
+
+                <pre><code>&lt;input type="date" name="birthdate"&gt;</code></pre>
+
+                <h3>Datetime-local Input</h3>
+
+                <p>
+                    The datetime-local type allows users to select
+                    both a date and a time without specifying a time zone.
+                </p>
+
+                <pre><code>&lt;input type="datetime-local" name="appointment"&gt;</code></pre>
+
+                <h3>Month Input</h3>
+
+                <p>
+                    The month type allows users to select a specific
+                    month and year.
+                </p>
+
+                <pre><code>&lt;input type="month" name="enrollmentMonth"&gt;</code></pre>
+
+                <h3>Week Input</h3>
+
+                <p>
+                    The week type allows users to select a particular
+                    week of a year.
+                </p>
+
+                <pre><code>&lt;input type="week" name="scheduleWeek"&gt;</code></pre>
+
+                <h3>Time Input</h3>
+
+                <p>
+                    The time type provides a control for selecting
+                    a particular time of day.
+                </p>
+
+                <pre><code>&lt;input type="time" name="classTime"&gt;</code></pre>
+
+                <h3>Range Input</h3>
+
+                <p>
+                    The range type creates a slider that allows users
+                    to select a numeric value within a specified range.
+                </p>
+
+                <pre><code>&lt;input type="range"
+       name="rating"
+       min="1"
+       max="10"&gt;</code></pre>
+
+                <h3>Search Input</h3>
+
+                <p>
+                    The search type creates a textbox intended for
+                    entering search terms.
+                </p>
+
+                <pre><code>&lt;input type="search" name="keyword"&gt;</code></pre>
+
+                <h3>URL Input</h3>
+
+                <p>
+                    The url type creates a field for website addresses.
+                    The browser checks whether the entered value follows
+                    a basic URL format.
+                </p>
+
+                <pre><code>&lt;input type="url" name="website"&gt;</code></pre>
+
+                <h3>Image Input</h3>
+
+                <p>
+                    The image type creates an image-based submit control.
+                    It can use the src attribute to specify the image
+                    displayed on the button.
+                </p>
+
+                <pre><code>&lt;input type="image"
+       src="submit.png"
+       alt="Submit Form"&gt;</code></pre>
+
+                <p>
+                    The type attribute should be selected based on the
+                    information being collected. Using the correct input
+                    type makes forms easier to use and can provide
+                    built-in browser validation.
+                </p>
+
+            </section>
+
+
+            <!-- OTHER CONTROLS -->
+            <section class="lesson-block" id="other-controls">
+
+                <h2>Other Form Controls</h2>
+
+                <p>
+                    In addition to the input element, HTML provides
+                    several other elements for building more organized
+                    and flexible forms.
+                </p>
+
+                <h3>Button Element</h3>
+
+                <p>
+                    The <strong>&lt;button&gt;</strong> element creates
+                    a customizable button. It can be used to submit a form,
+                    reset form controls, or perform an action through
+                    JavaScript.
+                </p>
+
+                <pre><code>&lt;button type="submit"&gt;Submit Form&lt;/button&gt;
+
+&lt;button type="reset"&gt;Clear Form&lt;/button&gt;
+
+&lt;button type="button"&gt;Open Details&lt;/button&gt;</code></pre>
+
+                <p>
+                    A button inside a form may act as a submit button
+                    by default. Specify its type explicitly to avoid
+                    unexpected form submissions.
+                </p>
+
+                <h3>Select Element</h3>
+
+                <p>
+                    The <strong>&lt;select&gt;</strong> element creates
+                    a dropdown menu or listbox that allows users to
+                    select one or more options.
+                </p>
+
+                <pre><code>&lt;label for="course"&gt;Choose a Course:&lt;/label&gt;
+
+&lt;select id="course" name="course"&gt;
+    &lt;option value="bsit"&gt;BSIT&lt;/option&gt;
+    &lt;option value="bsba"&gt;BSBA&lt;/option&gt;
+    &lt;option value="beed"&gt;BEED&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+                <p>
+                    A dropdown menu conserves screen space because the
+                    available options are displayed when the user opens it.
+                </p>
+
+                <p>
+                    The size attribute can display multiple options as
+                    a listbox. The multiple attribute allows users to
+                    select more than one option.
+                </p>
+
+                <pre><code>&lt;select name="subjects" size="4" multiple&gt;
+    &lt;option value="html"&gt;HTML&lt;/option&gt;
+    &lt;option value="css"&gt;CSS&lt;/option&gt;
+    &lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+    &lt;option value="database"&gt;Database&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+                <h3>Option Element</h3>
+
+                <p>
+                    The <strong>&lt;option&gt;</strong> element defines
+                    an individual choice inside a select menu or datalist.
+                    Its value attribute identifies the selected value
+                    submitted with the form.
+                </p>
+
+                <pre><code>&lt;option value="bsit"&gt;
+    Bachelor of Science in Information Technology
+&lt;/option&gt;</code></pre>
+
+                <h3>Optgroup Element</h3>
+
+                <p>
+                    The <strong>&lt;optgroup&gt;</strong> element groups
+                    related options inside a dropdown menu. The label
+                    attribute provides a visible name for the group.
+                </p>
+
+                <pre><code>&lt;select name="reason"&gt;
+
+    &lt;optgroup label="Feedback"&gt;
+        &lt;option value="complaint"&gt;Complaint&lt;/option&gt;
+        &lt;option value="compliment"&gt;Compliment&lt;/option&gt;
+        &lt;option value="comment"&gt;Comment&lt;/option&gt;
+    &lt;/optgroup&gt;
+
+    &lt;optgroup label="Request"&gt;
+        &lt;option value="catering"&gt;Catering&lt;/option&gt;
+        &lt;option value="suggestion"&gt;Suggestion&lt;/option&gt;
+    &lt;/optgroup&gt;
+
+&lt;/select&gt;</code></pre>
+
+                <h3>Textarea Element</h3>
+
+                <p>
+                    The <strong>&lt;textarea&gt;</strong> element creates
+                    a multiline text field. It is useful when users need
+                    to enter longer messages, comments, feedback, or
+                    descriptions.
+                </p>
+
+                <pre><code>&lt;label for="comments"&gt;Comments:&lt;/label&gt;
+
+&lt;textarea id="comments"
+          name="comments"
+          rows="5"
+          cols="40"
+          placeholder="Write your message here..."&gt;&lt;/textarea&gt;</code></pre>
+
+                <p>
+                    The rows attribute controls the initial visible
+                    height, while cols controls the initial visible
+                    width. Users can usually resize a textarea unless
+                    CSS prevents it.
+                </p>
+
+                <h3>Fieldset Element</h3>
+
+                <p>
+                    The <strong>&lt;fieldset&gt;</strong> element groups
+                    related form controls together. It creates a visible
+                    grouping around the controls.
+                </p>
+
+                <pre><code>&lt;fieldset&gt;
+
+    &lt;legend&gt;Personal Information&lt;/legend&gt;
+
+    &lt;label for="firstName"&gt;First Name:&lt;/label&gt;
+    &lt;input type="text" id="firstName" name="firstName"&gt;
+
+    &lt;label for="lastName"&gt;Last Name:&lt;/label&gt;
+    &lt;input type="text" id="lastName" name="lastName"&gt;
+
+&lt;/fieldset&gt;</code></pre>
+
+                <h3>Legend Element</h3>
+
+                <p>
+                    The <strong>&lt;legend&gt;</strong> element provides
+                    a caption or title for a fieldset. It helps users
+                    understand the purpose of the grouped controls.
+                </p>
+
+                <h3>Datalist Element</h3>
+
+                <p>
+                    The <strong>&lt;datalist&gt;</strong> element provides
+                    a list of suggested values for an input field. Users
+                    can select one of the suggestions or type their own
+                    value.
+                </p>
+
+                <pre><code>&lt;label for="browser"&gt;Choose a Browser:&lt;/label&gt;
+
+&lt;input list="browsers"
+       id="browser"
+       name="browser"&gt;
+
+&lt;datalist id="browsers"&gt;
+    &lt;option value="Chrome"&gt;
+    &lt;option value="Firefox"&gt;
+    &lt;option value="Edge"&gt;
+    &lt;option value="Safari"&gt;
+    &lt;option value="Opera"&gt;
+&lt;/datalist&gt;</code></pre>
+
+                <p>
+                    The input element's list attribute must match the
+                    id of the datalist element.
+                </p>
+
+                <h3>Output Element</h3>
+
+                <p>
+                    The <strong>&lt;output&gt;</strong> element displays
+                    the result of a calculation or an action performed
+                    by JavaScript.
+                </p>
+
+                <pre><code>&lt;form oninput="result.value =
+    Number(first.value) + Number(second.value)"&gt;
+
+    &lt;input type="number" id="first" value="0"&gt;
+
+    +
+
+    &lt;input type="number" id="second" value="0"&gt;
+
+    =
+
+    &lt;output name="result"&gt;0&lt;/output&gt;
+
+&lt;/form&gt;</code></pre>
+
+                <p>
+                    These additional controls help developers create
+                    organized forms that support different types of
+                    user information and interactions.
+                </p>
+
+            </section>
+
+
+            <!-- VALIDATION -->
+            <section class="lesson-block" id="validation">
+
+                <h2>Form Validation</h2>
+
+                <p>
+                    Form validation is the process of checking whether
+                    the information entered by users meets the expected
+                    requirements before it is accepted or processed.
+                </p>
+
+                <p>
+                    Validation is important because incorrect, incomplete,
+                    or improperly formatted information can cause errors
+                    in an application or database.
+                </p>
+
+                <p>
+                    For example, a registration form should not accept
+                    an empty email address, an invalid age, or a missing
+                    password if those fields are required.
+                </p>
+
+                <h3>Why Validation Is Important</h3>
+
+                <p>
+                    <strong>Data Accuracy:</strong> Helps ensure that
+                    information follows the expected format.
+                </p>
+
+                <p>
+                    <strong>Completeness:</strong> Makes sure that required
+                    fields are not left empty.
+                </p>
+
+                <p>
+                    <strong>User Experience:</strong> Helps users identify
+                    and correct mistakes before submitting a form.
+                </p>
+
+                <p>
+                    <strong>Data Processing:</strong> Reduces the chance
+                    of receiving unusable or unexpected information.
+                </p>
+
+                <p>
+                    <strong>Security:</strong> Helps detect suspicious
+                    or unexpected input, although validation alone does
+                    not guarantee security.
+                </p>
+
+                <h3>Three Methods of Form Validation</h3>
+
+                <p>
+                    HTML forms can use three main approaches to validation:
+                    input type validation, HTML validation attributes,
+                    and JavaScript validation.
+                </p>
+
+                <h3>Input Type Validation</h3>
+
+                <p>
+                    Each input type has its own built-in validation
+                    behavior. For example, an email field checks the
+                    general format of an email address, while a number
+                    field checks whether the value is numeric.
+                </p>
+
+                <pre><code>&lt;input type="email" name="email"&gt;
+
+&lt;input type="number" name="age"&gt;</code></pre>
+
+                <h3>HTML Validation Attributes</h3>
+
+                <p>
+                    HTML validation attributes add requirements to
+                    form controls. They can make fields mandatory,
+                    limit the number of characters, set numeric ranges,
+                    and check input patterns.
+                </p>
+
+                <pre><code>&lt;input type="text"
+       name="username"
+       required
+       minlength="4"
+       maxlength="20"&gt;</code></pre>
+
+                <h3>JavaScript Validation</h3>
+
+                <p>
+                    JavaScript can examine form values and apply custom
+                    validation rules that go beyond the built-in HTML
+                    requirements.
+                </p>
+
+                <p>
+                    It is useful when a form requires special conditions,
+                    comparisons between fields, custom error messages,
+                    or more complex validation logic.
+                </p>
+
+                <pre><code>const form = document.querySelector("#registration");
+
+form.addEventListener("submit", function(event) {
+
+    const password =
+        document.querySelector("#password").value;
+
+    const confirmPassword =
+        document.querySelector("#confirmPassword").value;
+
+    if (password !== confirmPassword) {
+
+        event.preventDefault();
+
+        alert("Passwords do not match.");
+
+    }
+
+});</code></pre>
+
+                <p>
+                    Client-side validation improves the user experience,
+                    but it must not be the only validation method.
+                    The server must also validate submitted information
+                    because users can bypass browser-side checks.
+                </p>
+
+            </section>
+
+
+            <!-- VALIDATION ATTRIBUTES -->
+            <section class="lesson-block" id="validation-attributes">
+
+                <h2>Validation Attributes</h2>
+
+                <p>
+                    HTML provides several attributes that define the
+                    requirements for values entered into form controls.
+                    These attributes allow browsers to perform basic
+                    validation without requiring additional JavaScript.
+                </p>
+
+                <h3>required</h3>
+
+                <p>
+                    The required attribute makes a field mandatory.
+                    The browser prevents normal form submission if
+                    the field is empty or otherwise lacks a required
+                    selection.
+                </p>
+
+                <pre><code>&lt;input type="text" name="fullname" required&gt;</code></pre>
+
+                <h3>min</h3>
+
+                <p>
+                    The min attribute defines the minimum acceptable
+                    numeric or date value.
+                </p>
+
+                <pre><code>&lt;input type="number" name="age" min="18"&gt;</code></pre>
+
+                <h3>max</h3>
+
+                <p>
+                    The max attribute defines the maximum acceptable
+                    numeric or date value.
+                </p>
+
+                <pre><code>&lt;input type="number" name="age" max="100"&gt;</code></pre>
+
+                <h3>minlength</h3>
+
+                <p>
+                    The minlength attribute specifies the minimum
+                    number of characters required in a text field.
+                </p>
+
+                <pre><code>&lt;input type="text" name="username" minlength="5"&gt;</code></pre>
+
+                <h3>maxlength</h3>
+
+                <p>
+                    The maxlength attribute specifies the maximum
+                    number of characters that can be entered.
+                </p>
+
+                <pre><code>&lt;input type="text" name="username" maxlength="20"&gt;</code></pre>
+
+                <h3>pattern</h3>
+
+                <p>
+                    The pattern attribute specifies a regular expression
+                    that the input value must match. It is useful for
+                    checking specific formats.
+                </p>
+
+                <pre><code>&lt;input type="text"
+       name="studentID"
+       pattern="[0-9]{4}-[0-9]{4}"
+       title="Enter the format 2026-1234"&gt;</code></pre>
+
+                <h3>step</h3>
+
+                <p>
+                    The step attribute defines the valid increments
+                    for numeric or date-related inputs.
+                </p>
+
+                <pre><code>&lt;input type="number"
+       name="quantity"
+       min="0"
+       max="100"
+       step="5"&gt;</code></pre>
+
+                <h3>Multiple Validation Attributes</h3>
+
+                <p>
+                    Several validation attributes can be combined
+                    in a single input field.
+                </p>
+
+                <pre><code>&lt;input type="number"
+       name="frequency"
+       min="0"
+       max="7"
+       required&gt;</code></pre>
+
+                <p>
+                    This example requires the user to enter a number
+                    between zero and seven.
+                </p>
+
+            </section>
+
+
+            <!-- REGULAR EXPRESSIONS -->
+            <section class="lesson-block" id="regular-expressions">
+
+                <h2>Regular Expressions and Pattern Validation</h2>
+
+                <p>
+                    A regular expression, commonly called a regex,
+                    is a sequence of characters that describes a
+                    pattern used to match or validate text.
+                </p>
+
+                <p>
+                    Regular expressions are useful when a form requires
+                    a specific format, such as an identification number,
+                    postal code, phone number, or username.
+                </p>
+
+                <h3>Example of Pattern Validation</h3>
+
+                <pre><code>&lt;input type="text"
+       name="studentID"
+       pattern="[0-9]{4}-[0-9]{4}"
+       title="Use the format 1234-5678"&gt;</code></pre>
+
+                <p>
+                    In this example, the pattern requires four digits,
+                    a hyphen, and another four digits.
+                </p>
+
+                <h3>Understanding Common Regex Symbols</h3>
+
+                <p>
+                    <strong>[0-9]</strong> matches a digit from zero
+                    through nine.
+                </p>
+
+                <p>
+                    <strong>[A-Z]</strong> matches an uppercase letter.
+                </p>
+
+                <p>
+                    <strong>[a-z]</strong> matches a lowercase letter.
+                </p>
+
+                <p>
+                    <strong>{4}</strong> means the preceding pattern
+                    must occur exactly four times.
+                </p>
+
+                <p>
+                    <strong>+</strong> means one or more occurrences.
+                </p>
+
+                <p>
+                    <strong>*</strong> means zero or more occurrences.
+                </p>
+
+                <p>
+                    <strong>?</strong> means zero or one occurrence.
+                </p>
+
+                <p>
+                    <strong>^</strong> represents the beginning of a
+                    string in a regular expression.
+                </p>
+
+                <p>
+                    <strong>$</strong> represents the end of a string.
+                </p>
+
+                <p>
+                    <strong>\.</strong> matches a literal period.
+                </p>
+
+                <h3>Email Format Example</h3>
+
+                <pre><code>&lt;input type="text"
+       name="email"
+       pattern="[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}"
+       title="Enter a valid email format"
+       required&gt;</code></pre>
+
+                <p>
+                    The pattern checks for a sequence of allowed
+                    characters, an @ symbol, a domain name, and
+                    a domain extension.
+                </p>
+
+                <p>
+                    Regular expressions should be designed carefully.
+                    They can validate a basic format, but they cannot
+                    prove that an email address or phone number actually
+                    belongs to a real person.
+                </p>
+
+            </section>
+
+
+            <!-- SECURITY -->
+            <section class="lesson-block" id="form-security">
+
+                <h2>Form Security and Safe Data Handling</h2>
+
+                <p>
+                    Web forms may collect personal and sensitive
+                    information. Developers must ensure that the
+                    information is handled securely when it is
+                    transmitted, processed, and stored.
+                </p>
+
+                <h3>Use HTTPS</h3>
+
+                <p>
+                    HTTPS protects information while it travels
+                    between the user's browser and the web server.
+                    It helps prevent attackers from reading or
+                    modifying data during transmission.
+                </p>
+
+                <p>
+                    POST does not automatically encrypt form data.
+                    HTTPS is needed to protect the connection.
+                </p>
+
+                <h3>Validate Data on the Server</h3>
+
+                <p>
+                    Browser validation can be bypassed. A user can
+                    disable JavaScript or send a request without
+                    using the normal form interface.
+                </p>
+
+                <p>
+                    Therefore, the server must independently check
+                    all submitted information before accepting it.
+                </p>
+
+                <h3>Prevent SQL Injection</h3>
+
+                <p>
+                    SQL injection is an attack where malicious SQL
+                    statements are inserted into input fields in an
+                    attempt to manipulate database queries.
+                </p>
+
+                <p>
+                    For example, an attacker may enter unexpected
+                    SQL commands into a login or search field.
+                    If the server directly combines that input
+                    with a database query, the database may execute
+                    unintended commands.
+                </p>
+
+                <p>
+                    Developers should use parameterized queries or
+                    prepared statements rather than directly joining
+                    user input into SQL statements.
+                </p>
+
+                <h3>Prevent Cross-Site Scripting</h3>
+
+                <p>
+                    Cross-Site Scripting (XSS) occurs when untrusted
+                    content is treated as executable script or markup
+                    in a webpage.
+                </p>
+
+                <p>
+                    Developers should safely handle user-provided
+                    content, encode output appropriately, and avoid
+                    inserting untrusted input as raw HTML.
+                </p>
+
+                <h3>Protect Sensitive Information</h3>
+
+                <p>
+                    Passwords should never be stored as plain text.
+                    Applications should use appropriate secure password
+                    hashing methods on the server.
+                </p>
+
+                <p>
+                    Hidden form fields should not be trusted for
+                    authorization or other security decisions because
+                    users can inspect and change their values.
+                </p>
+
+            </section>
+
+
+            <!-- PRACTICAL FORM -->
+            <section class="lesson-block" id="contact-form">
+
+                <h2>Practical Activity: Creating a Contact Form</h2>
+
+                <p>
+                    This activity demonstrates how to combine form
+                    elements, labels, input types, dropdown menus,
+                    text areas, fieldsets, and validation attributes
+                    to create a complete contact form.
+                </p>
+
+                <h3>Complete HTML Code</h3>
+
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;Contact Us&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;header&gt;
+        &lt;h1&gt;Our Story&lt;/h1&gt;
+        &lt;p&gt;Learn more about our organization.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+
+        &lt;h2&gt;Contact Us&lt;/h2&gt;
+
+        &lt;form action="process.php"
+              method="post"
+              id="contactusform"
+              autocomplete="on"&gt;
+
+            &lt;fieldset&gt;
+
+                &lt;legend&gt;Personal Information&lt;/legend&gt;
+
+                &lt;label for="fname"&gt;First Name:&lt;/label&gt;
+
+                &lt;input type="text"
+                       id="fname"
+                       name="fname"
+                       placeholder="Enter first name"&gt;
+
+                &lt;br&gt;&lt;br&gt;
+
+                &lt;label for="lname"&gt;Last Name:&lt;/label&gt;
+
+                &lt;input type="text"
+                       id="lname"
+                       name="lname"
+                       placeholder="Enter last name"
+                       required&gt;
+
+                &lt;br&gt;&lt;br&gt;
+
+                &lt;label for="phone"&gt;Phone:&lt;/label&gt;
+
+                &lt;input type="tel"
+                       id="phone"
+                       name="phone"
+                       placeholder="09XX-XXX-XXXX"&gt;
+
+                &lt;br&gt;&lt;br&gt;
+
+                &lt;label for="email"&gt;Email:&lt;/label&gt;
+
+                &lt;input type="email"
+                       id="email"
+                       name="email"
+                       placeholder="example@email.com"
+                       required&gt;
+
+            &lt;/fieldset&gt;
+
+            &lt;br&gt;
+
+            &lt;label for="reason"&gt;
+                Reason for Communication:
+            &lt;/label&gt;
+
+            &lt;br&gt;
+
+            &lt;select id="reason" name="commenttype"&gt;
+
+                &lt;optgroup label="Feedback"&gt;
+
+                    &lt;option value="comment"&gt;
+                        Comment
+                    &lt;/option&gt;
+
+                    &lt;option value="compliment"&gt;
+                        Compliment
+                    &lt;/option&gt;
+
+                    &lt;option value="complaint"&gt;
+                        Complaint
+                    &lt;/option&gt;
+
+                &lt;/optgroup&gt;
+
+                &lt;optgroup label="Request"&gt;
+
+                    &lt;option value="catering"&gt;
+                        Catering
+                    &lt;/option&gt;
+
+                    &lt;option value="suggestion"&gt;
+                        Suggestion
+                    &lt;/option&gt;
+
+                &lt;/optgroup&gt;
+
+            &lt;/select&gt;
+
+            &lt;br&gt;&lt;br&gt;
+
+            &lt;label for="frequency"&gt;
+                How many days per week do you visit?
+            &lt;/label&gt;
+
+            &lt;br&gt;
+
+            &lt;input type="number"
+                   id="frequency"
+                   name="frequency"
+                   min="0"
+                   max="7"
+                   required&gt;
+
+            &lt;br&gt;&lt;br&gt;
+
+            &lt;label for="comments"&gt;Comments:&lt;/label&gt;
+
+            &lt;br&gt;
+
+            &lt;textarea id="comments"
+                      name="comment"
+                      rows="6"
+                      cols="40"
+                      placeholder="Write your message here..."
+                      required&gt;&lt;/textarea&gt;
+
+            &lt;br&gt;&lt;br&gt;
+
+            &lt;button type="submit"&gt;
+                Submit
+            &lt;/button&gt;
+
+            &lt;button type="reset"&gt;
+                Clear
+            &lt;/button&gt;
+
+        &lt;/form&gt;
+
+    &lt;/main&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+                <h3>Explanation of the Activity</h3>
+
+                <p>
+                    The form begins with the form element, which
+                    specifies the submission destination and POST method.
+                </p>
+
+                <p>
+                    The fieldset element groups the user's personal
+                    information, while the legend provides a title
+                    for that group.
+                </p>
+
+                <p>
+                    Each input field has a label that identifies the
+                    information being requested.
+                </p>
+
+                <p>
+                    The text input collects first and last names.
+                    The telephone input collects a phone number, and
+                    the email input checks the general format of
+                    an email address.
+                </p>
+
+                <p>
+                    The select element creates a dropdown menu with
+                    separate Feedback and Request groups using
+                    optgroup and option elements.
+                </p>
+
+                <p>
+                    The number input uses min and max attributes
+                    to restrict the allowed value from zero to seven.
+                </p>
+
+                <p>
+                    The textarea provides a larger area for entering
+                    comments and messages.
+                </p>
+
+                <p>
+                    The required attribute makes the last name,
+                    email, frequency, and comments fields mandatory.
+                </p>
+
+                <p>
+                    The submit button sends the form, while the
+                    reset button restores the fields to their
+                    initial values.
+                </p>
+
+                <p>
+                    For this example to actually save or send data,
+                    the form must connect to a working server-side
+                    handler at the specified action address.
+                </p>
+
+            </section>
+
+
+            <!-- APPLICATIONS -->
+            <section class="lesson-block" id="applications">
+
+                <h2>Practical Applications of Web Forms</h2>
+
+                <p>
+                    HTML forms are used in different types of websites
+                    and information systems because they provide a
+                    standard way to collect and submit user information.
+                </p>
+
+                <p>
+                    <strong>Student Registration Systems:</strong>
+                    Collect student names, contact details, addresses,
+                    academic information, and enrollment preferences.
+                </p>
+
+                <p>
+                    <strong>School Feedback Systems:</strong>
+                    Allow students and visitors to submit comments,
+                    complaints, suggestions, and evaluations.
+                </p>
+
+                <p>
+                    <strong>Online Shopping:</strong>
+                    Collect customer information, delivery addresses,
+                    product selections, and order quantities.
+                </p>
+
+                <p>
+                    <strong>Login and Registration:</strong>
+                    Collect account credentials and information
+                    needed to create or access user accounts.
+                </p>
+
+                <p>
+                    <strong>Search Engines:</strong>
+                    Allow users to enter keywords and search for
+                    information.
+                </p>
+
+                <p>
+                    <strong>Appointment Systems:</strong>
+                    Collect dates, times, contact details, and
+                    appointment preferences.
+                </p>
+
+                <p>
+                    <strong>Online Surveys:</strong>
+                    Collect responses through text fields,
+                    checkboxes, radio buttons, and dropdown menus.
+                </p>
+
+                <p>
+                    <strong>Job Application Systems:</strong>
+                    Allow applicants to provide personal details,
+                    qualifications, and uploaded documents.
+                </p>
+
+            </section>
+
+
+            <!-- TAKEAWAYS -->
+            <section class="lesson-block" id="takeaways">
+
+                <h2>Key Takeaways</h2>
+
+                <p>
+                    HTML forms provide an interface for collecting
+                    information from users and submitting it to
+                    a server for processing.
+                </p>
+
+                <p>
+                    The form element acts as the main container
+                    for input fields, buttons, and other controls.
+                </p>
+
+                <p>
+                    The action attribute identifies the destination
+                    of the form submission, while the method attribute
+                    determines how the data is transmitted.
+                </p>
+
+                <p>
+                    GET sends submitted values through URL parameters,
+                    while POST sends values in the HTTP request body.
+                    HTTPS is needed to protect transmitted data.
+                </p>
+
+                <p>
+                    Labels improve form usability and accessibility
+                    by identifying the purpose of each control.
+                </p>
+
+                <p>
+                    Input types such as text, email, password, number,
+                    date, checkbox, radio, file, and range are designed
+                    for different types of user input.
+                </p>
+
+                <p>
+                    Other HTML controls such as select, option,
+                    optgroup, textarea, fieldset, legend, datalist,
+                    output, and button help create more flexible forms.
+                </p>
+
+                <p>
+                    Validation checks whether information meets
+                    the requirements before it is accepted.
+                    HTML input types, validation attributes,
+                    and JavaScript can all be used for validation.
+                </p>
+
+                <p>
+                    Regular expressions can define specific text
+                    patterns, while server-side validation remains
+                    necessary for reliable data handling.
+                </p>
+
+                <p>
+                    Secure form development requires HTTPS,
+                    safe database queries, appropriate output
+                    handling, and careful protection of user data.
+                </p>
+
+            </section>
+
+
+          
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+             <div class="topic-nav">
+
+                <a class="btn outline" href="topic-26.html">
+                    ← Topic 6
+                </a>
+
+                <a class="btn primary" href="topic-28.html">
+                    Topic 8 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

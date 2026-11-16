@@ -1,0 +1,3662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+
+
+        
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+             <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+       cybersecurity Privacy and Computer Ethics
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+
+        <a href="#overview" class="active">Overview</a>
+
+        <a href="#cybersecurity">Cybersecurity</a>
+        <a href="#security-goals">Goals of Cybersecurity</a>
+
+        <a href="#cyber-threats">Common Cybersecurity Threats</a>
+        <a href="#malware">Types of Malware</a>
+        <a href="#phishing">Phishing and Social Engineering</a>
+
+        <a href="#security-measures">Cybersecurity Measures</a>
+        <a href="#authentication">Authentication and Access Control</a>
+        <a href="#encryption">Encryption and Data Security</a>
+
+        <a href="#privacy">Data Privacy</a>
+        <a href="#personal-information">Personal Information</a>
+        <a href="#privacy-risks">Privacy Risks</a>
+        <a href="#data-protection">Data Protection Practices</a>
+
+        <a href="#philippine-law">Philippine Data Privacy Act</a>
+
+        <a href="#computer-ethics">Computer Ethics</a>
+        <a href="#ethical-issues">Ethical Issues in Computing</a>
+        <a href="#responsible-use">Responsible Use of Technology</a>
+
+        <a href="#practical-applications">Practical Applications</a>
+        <a href="#key-takeaways">Key Takeaways</a>
+        <a href="#references">References</a>
+
+    </nav>
+
+
+
+
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+
+
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+        <h2>Overview</h2>
+
+        <p>
+            Cybersecurity, privacy, and computer ethics are essential areas
+            of information technology that focus on protecting digital
+            systems, safeguarding personal information, and promoting
+            responsible behavior when using computers and the internet.
+            As technology becomes part of everyday life, individuals and
+            organizations increasingly depend on digital systems to store,
+            process, and exchange information.
+        </p>
+
+        <p>
+            Computers and networks are used for online banking, electronic
+            payments, education, communication, healthcare, business operations,
+            entertainment, and government services. Although these technologies
+            provide convenience and efficiency, they also create risks such
+            as hacking, identity theft, malware infections, privacy violations,
+            online scams, and unauthorized access to confidential information.
+        </p>
+
+        <p>
+            Cybersecurity focuses on defending digital systems against attacks.
+            Data privacy focuses on protecting an individual's personal
+            information and controlling how it is processed. Computer ethics
+            establishes moral principles that guide people in using technology
+            properly and respecting the rights of others.
+        </p>
+
+        <p>
+            Understanding these concepts helps users become more responsible
+            digital citizens and prepares IT professionals to develop and
+            maintain secure, trustworthy, and ethical information systems.
+        </p>
+    </section>
+
+    <!-- CYBERSECURITY -->
+    <section class="lesson-block" id="cybersecurity">
+        <h2>Cybersecurity</h2>
+
+        <p>
+            Cybersecurity is the practice of protecting computers, servers,
+            mobile devices, networks, applications, and electronic information
+            from cyberattacks, unauthorized access, damage, disruption, and
+            theft. It combines technologies, security policies, procedures,
+            and user awareness to reduce digital risks.
+        </p>
+
+        <p>
+            Cybersecurity is not limited to installing antivirus software.
+            It also includes protecting network connections, securing
+            applications, managing user permissions, monitoring suspicious
+            activities, backing up information, and responding to security
+            incidents.
+        </p>
+
+        <h3>Importance of Cybersecurity</h3>
+
+        <ul>
+            <li>
+                <strong>Protection of Information:</strong> Prevents
+                unauthorized individuals from accessing confidential
+                documents, personal records, and business information.
+            </li>
+            <li>
+                <strong>Prevention of Financial Loss:</strong> Helps protect
+                online banking accounts, payment information, and financial
+                transactions from fraud and theft.
+            </li>
+            <li>
+                <strong>System Reliability:</strong> Reduces the possibility
+                of attacks that interrupt computer systems, websites,
+                applications, and network services.
+            </li>
+            <li>
+                <strong>Privacy Protection:</strong> Helps prevent the
+                unauthorized collection, exposure, and misuse of personal data.
+            </li>
+            <li>
+                <strong>Business Continuity:</strong> Helps organizations
+                continue operating even when security incidents occur.
+            </li>
+            <li>
+                <strong>Customer Trust:</strong> Demonstrates that an
+                organization takes the protection of customer information
+                seriously.
+            </li>
+            <li>
+                <strong>Legal Compliance:</strong> Helps organizations meet
+                applicable laws, regulations, and contractual security
+                requirements.
+            </li>
+        </ul>
+
+        <h3>Major Areas of Cybersecurity</h3>
+
+        <ul>
+            <li>
+                <strong>Network Security:</strong> Protects computer networks
+                from unauthorized access, malicious traffic, and network-based
+                attacks.
+            </li>
+            <li>
+                <strong>Application Security:</strong> Protects software and
+                applications against vulnerabilities that attackers may
+                exploit.
+            </li>
+            <li>
+                <strong>Information Security:</strong> Protects information
+                from unauthorized access, modification, disclosure, and loss.
+            </li>
+            <li>
+                <strong>Endpoint Security:</strong> Protects devices such as
+                desktop computers, laptops, smartphones, and servers.
+            </li>
+            <li>
+                <strong>Cloud Security:</strong> Protects information,
+                applications, and services stored or operated through cloud
+                computing platforms.
+            </li>
+            <li>
+                <strong>Operational Security:</strong> Focuses on policies
+                and procedures for handling and protecting important information.
+            </li>
+        </ul>
+
+        <h3>Example of Cybersecurity in Practice</h3>
+
+        <p>
+            When a student logs in to a school learning management system,
+            the system checks the student's credentials, verifies access
+            permissions, and protects the connection. Security measures help
+            prevent other people from viewing the student's private records
+            or changing submitted academic information.
+        </p>
+    </section>
+
+    <!-- GOALS OF INFORMATION SECURITY -->
+    <section class="lesson-block" id="security-goals">
+        <h2>Goals of Information Security</h2>
+
+        <p>
+            Information security aims to protect information throughout its
+            lifecycle, including collection, storage, transmission, use, and
+            disposal. One of its most widely used models is the CIA Triad,
+            which consists of Confidentiality, Integrity, and Availability.
+        </p>
+
+        <h3>Confidentiality</h3>
+
+        <p>
+            Confidentiality ensures that information is available only to
+            individuals, applications, or systems that have been authorized
+            to access it. It prevents sensitive information from being
+            disclosed to unauthorized users.
+        </p>
+
+        <p>
+            Confidentiality can be maintained through passwords, encryption,
+            access permissions, authentication, and proper information
+            handling procedures.
+        </p>
+
+        <p><strong>Examples:</strong></p>
+
+        <ul>
+            <li>
+                A student can only access their own private student account.
+            </li>
+            <li>
+                An employee cannot open confidential files without permission.
+            </li>
+            <li>
+                A hospital limits access to patient records to authorized
+                healthcare personnel.
+            </li>
+        </ul>
+
+        <h3>Integrity</h3>
+
+        <p>
+            Integrity ensures that information remains accurate, complete,
+            consistent, and trustworthy. It prevents unauthorized changes,
+            deletion, or alteration of data.
+        </p>
+
+        <p>
+            Organizations use permissions, audit logs, checksums, digital
+            signatures, and validation procedures to help maintain data
+            integrity.
+        </p>
+
+        <p><strong>Examples:</strong></p>
+
+        <ul>
+            <li>
+                A banking system prevents unauthorized modification of
+                account balances.
+            </li>
+            <li>
+                A school database records changes made to student grades.
+            </li>
+            <li>
+                A downloaded file can be checked against a published hash
+                value to detect unexpected changes.
+            </li>
+        </ul>
+
+        <h3>Availability</h3>
+
+        <p>
+            Availability ensures that information, applications, and systems
+            are accessible to authorized users when needed. It involves
+            maintaining system performance and preventing unnecessary
+            interruptions.
+        </p>
+
+        <p>
+            Availability can be improved through regular maintenance,
+            backups, redundant systems, monitoring, disaster recovery plans,
+            and protection against denial-of-service attacks.
+        </p>
+
+        <p><strong>Examples:</strong></p>
+
+        <ul>
+            <li>
+                An online enrollment system remains accessible during
+                enrollment periods.
+            </li>
+            <li>
+                A business maintains backup internet connections to reduce
+                service interruptions.
+            </li>
+            <li>
+                A hospital maintains access to essential digital systems
+                during emergencies.
+            </li>
+        </ul>
+
+        <h3>Additional Information Security Principles</h3>
+
+        <ul>
+            <li>
+                <strong>Authentication:</strong> Confirms the identity of
+                users or systems.
+            </li>
+            <li>
+                <strong>Authorization:</strong> Determines what an authenticated
+                user is permitted to access or perform.
+            </li>
+            <li>
+                <strong>Accountability:</strong> Ensures that activities can
+                be traced to the responsible user or system.
+            </li>
+            <li>
+                <strong>Non-repudiation:</strong> Provides evidence that a
+                particular action or transaction occurred and helps prevent
+                someone from falsely denying their participation.
+            </li>
+        </ul>
+    </section>
+
+    <!-- CYBERSECURITY THREATS -->
+    <section class="lesson-block" id="cyber-threats">
+        <h2>Cybersecurity Threats</h2>
+
+        <p>
+            A cybersecurity threat is a potential danger that can exploit
+            weaknesses in computer systems, applications, networks, or human
+            behavior. A threat may result in unauthorized access, information
+            theft, data destruction, financial loss, or interruption of
+            services.
+        </p>
+
+        <h3>Common Cybersecurity Threats</h3>
+
+        <ul>
+            <li>
+                <strong>Hacking:</strong> Attempting to gain unauthorized
+                access to computers, networks, accounts, or information
+                systems. Some security professionals also perform authorized
+                testing to identify weaknesses.
+            </li>
+            <li>
+                <strong>Malware:</strong> Malicious software created to damage
+                devices, steal information, monitor users, or gain unauthorized
+                access.
+            </li>
+            <li>
+                <strong>Phishing:</strong> Using fraudulent emails, messages,
+                or websites to trick people into revealing sensitive
+                information.
+            </li>
+            <li>
+                <strong>Ransomware:</strong> Malicious software that encrypts
+                or blocks access to information and demands payment.
+            </li>
+            <li>
+                <strong>Denial-of-Service Attack:</strong> Attempts to make
+                a website, network, or online service unavailable by
+                overwhelming it with traffic or requests.
+            </li>
+            <li>
+                <strong>Distributed Denial-of-Service Attack:</strong>
+                A denial-of-service attack carried out using multiple
+                compromised devices or systems.
+            </li>
+            <li>
+                <strong>Password Attacks:</strong> Attempts to steal, guess,
+                or discover passwords to access protected accounts.
+            </li>
+            <li>
+                <strong>Identity Theft:</strong> The unauthorized use of
+                another person's personal information, often to commit fraud.
+            </li>
+            <li>
+                <strong>Insider Threat:</strong> A security risk caused by
+                someone with authorized access, such as an employee or
+                contractor, who intentionally or accidentally exposes
+                information.
+            </li>
+            <li>
+                <strong>Man-in-the-Middle Attack:</strong> An attacker
+                secretly intercepts or potentially alters communication
+                between two parties.
+            </li>
+        </ul>
+
+        <h3>Vulnerabilities and Exploits</h3>
+
+        <p>
+            A vulnerability is a weakness in software, hardware, network
+            configuration, or security procedures. An exploit is a method
+            or piece of code that takes advantage of a vulnerability.
+            Attackers may use exploits to gain access, execute unauthorized
+            actions, or disrupt systems.
+        </p>
+
+        <p>
+            Regular security updates, system testing, vulnerability
+            assessments, and secure configuration practices help reduce
+            these risks.
+        </p>
+
+        <h3>Possible Effects of Cyberattacks</h3>
+
+        <ul>
+            <li>Loss or theft of confidential information.</li>
+            <li>Financial damage to individuals and organizations.</li>
+            <li>Interruption of business and school operations.</li>
+            <li>Damage to an organization's reputation.</li>
+            <li>Unauthorized use of personal accounts.</li>
+            <li>Loss of customer and public trust.</li>
+        </ul>
+    </section>
+
+    <!-- MALWARE -->
+    <section class="lesson-block" id="malware">
+        <h2>Malware and Malicious Software</h2>
+
+        <p>
+            Malware is short for malicious software. It refers to programs
+            or code intentionally designed to damage devices, disrupt
+            operations, collect information, or gain unauthorized access.
+            Malware may infect computers through unsafe downloads, malicious
+            attachments, compromised websites, removable devices, and
+            vulnerable applications.
+        </p>
+
+        <h3>Types of Malware</h3>
+
+        <ul>
+            <li>
+                <strong>Computer Virus:</strong> A program that attaches
+                itself to files or applications and spreads when the infected
+                content is executed.
+            </li>
+            <li>
+                <strong>Computer Worm:</strong> Malware that can reproduce
+                and spread across computers or networks without requiring
+                the user to manually run an infected file.
+            </li>
+            <li>
+                <strong>Trojan Horse:</strong> Malicious software disguised
+                as a legitimate or useful application.
+            </li>
+            <li>
+                <strong>Ransomware:</strong> Malware that locks a device or
+                encrypts files and demands payment to restore access.
+            </li>
+            <li>
+                <strong>Spyware:</strong> Software that secretly monitors
+                user activities and collects information.
+            </li>
+            <li>
+                <strong>Adware:</strong> Software that displays unwanted
+                advertisements and may track browsing behavior.
+            </li>
+            <li>
+                <strong>Rootkit:</strong> Malware designed to hide malicious
+                activities and maintain unauthorized access to a system.
+            </li>
+            <li>
+                <strong>Keylogger:</strong> Software or hardware that records
+                keyboard input and may capture passwords or other sensitive
+                information.
+            </li>
+            <li>
+                <strong>Botnet Malware:</strong> Malware that compromises
+                devices and allows attackers to control them as part of a
+                larger network of infected devices.
+            </li>
+        </ul>
+
+        <h3>How Malware Spreads</h3>
+
+        <ul>
+            <li>Opening infected email attachments.</li>
+            <li>Downloading applications from untrusted websites.</li>
+            <li>Installing pirated or modified software.</li>
+            <li>Visiting compromised websites.</li>
+            <li>Connecting infected USB drives.</li>
+            <li>Exploiting outdated operating systems and applications.</li>
+        </ul>
+
+        <h3>Signs of a Possible Malware Infection</h3>
+
+        <ul>
+            <li>Unexpected pop-up advertisements.</li>
+            <li>Unusual computer slowdown or crashes.</li>
+            <li>Unknown applications appearing on a device.</li>
+            <li>Unexpected changes to browser settings.</li>
+            <li>Unusual network or account activity.</li>
+            <li>Files becoming inaccessible or unexpectedly renamed.</li>
+        </ul>
+
+        <h3>Ways to Prevent Malware</h3>
+
+        <ul>
+            <li>Install reputable antivirus or endpoint security software.</li>
+            <li>Keep operating systems and applications updated.</li>
+            <li>Avoid downloading files from unknown sources.</li>
+            <li>Do not open suspicious email attachments.</li>
+            <li>Scan removable storage devices before opening files.</li>
+            <li>Use standard accounts for everyday activities when possible.</li>
+            <li>Maintain regular backups of important information.</li>
+        </ul>
+    </section>
+
+    <!-- PHISHING -->
+    <section class="lesson-block" id="phishing">
+        <h2>Phishing and Social Engineering</h2>
+
+        <p>
+            Phishing is a cyberattack in which attackers pretend to represent
+            trusted organizations, businesses, schools, or individuals.
+            They use fraudulent messages, websites, or phone calls to
+            convince people to disclose passwords, bank information,
+            verification codes, or other confidential data.
+        </p>
+
+        <p>
+            Social engineering is a broader form of manipulation that
+            takes advantage of human emotions and behavior. Attackers may
+            create a sense of urgency, fear, authority, curiosity, or trust
+            to influence their targets.
+        </p>
+
+        <h3>Types of Phishing</h3>
+
+        <ul>
+            <li>
+                <strong>Email Phishing:</strong> Fraudulent emails that
+                imitate banks, online services, schools, or companies.
+            </li>
+            <li>
+                <strong>Spear Phishing:</strong> Personalized attacks
+                directed toward a particular individual or organization.
+            </li>
+            <li>
+                <strong>Whaling:</strong> Targeted phishing that focuses
+                on senior executives or other high-profile individuals.
+            </li>
+            <li>
+                <strong>Smishing:</strong> Phishing performed through SMS
+                or text messages.
+            </li>
+            <li>
+                <strong>Vishing:</strong> Fraudulent phone calls used to
+                obtain confidential information.
+            </li>
+            <li>
+                <strong>Clone Phishing:</strong> A fraudulent copy of a
+                legitimate message containing a malicious link or attachment.
+            </li>
+                <li>
+                <strong>Website Spoofing:</strong> Fake websites designed
+                to look like legitimate websites to steal login credentials
+                or financial information.
+            </li>
+        </ul>
+
+        <h3>Common Social Engineering Techniques</h3>
+
+        <ul>
+            <li>
+                <strong>Pretexting:</strong> Creating a false story or
+                identity to convince someone to reveal information.
+            </li>
+            <li>
+                <strong>Baiting:</strong> Offering something attractive,
+                such as free software or a prize, to trick a user into
+                taking an unsafe action.
+            </li>
+            <li>
+                <strong>Quid Pro Quo:</strong> Promising a service or benefit
+                in exchange for information or access.
+            </li>
+            <li>
+                <strong>Impersonation:</strong> Pretending to be a trusted
+                person, company representative, or technical support worker.
+            </li>
+        </ul>
+
+        <h3>Warning Signs of Phishing</h3>
+
+        <ul>
+            <li>Messages that demand immediate action.</li>
+            <li>Unexpected requests for passwords or verification codes.</li>
+            <li>Suspicious links and unfamiliar website addresses.</li>
+            <li>Unexpected attachments from unknown senders.</li>
+            <li>Spelling errors or unusual sender addresses.</li>
+            <li>Unexpected prizes, rewards, or financial offers.</li>
+        </ul>
+
+        <h3>How to Avoid Phishing</h3>
+
+        <ul>
+            <li>Verify the sender through an official communication channel.</li>
+            <li>Check website addresses carefully before logging in.</li>
+            <li>Never share passwords or one-time verification codes.</li>
+            <li>Do not open unexpected attachments.</li>
+            <li>Report suspicious messages to the appropriate organization.</li>
+            <li>Use multi-factor authentication where available.</li>
+        </ul>
+    </section>
+
+    <!-- SECURITY MEASURES -->
+    <section class="lesson-block" id="security-measures">
+        <h2>Security Measures</h2>
+
+        <p>
+            Security measures are methods, tools, and procedures used to
+            protect information systems from threats. They help prevent
+            unauthorized access, identify suspicious activities, limit
+            damage, and restore normal operations after an incident.
+        </p>
+
+        <h3>Technical Security Measures</h3>
+
+        <ul>
+            <li>
+                <strong>Antivirus Software:</strong> Detects, blocks, and
+                removes many types of malicious software.
+            </li>
+            <li>
+                <strong>Firewall:</strong> Monitors and controls incoming
+                and outgoing network traffic based on security rules.
+            </li>
+            <li>
+                <strong>Encryption:</strong> Protects information by
+                converting readable data into an encoded form.
+            </li>
+            <li>
+                <strong>Intrusion Detection System:</strong> Monitors
+                network or system activities for signs of suspicious behavior.
+            </li>
+            <li>
+                <strong>Intrusion Prevention System:</strong> Detects and
+                attempts to block malicious network activities.
+            </li>
+            <li>
+                <strong>Multi-Factor Authentication:</strong> Requires
+                multiple verification factors to access an account.
+            </li>
+            <li>
+                <strong>Backup Systems:</strong> Preserve additional copies
+                of information for recovery.
+            </li>
+        </ul>
+
+        <h3>Administrative Security Measures</h3>
+
+        <ul>
+            <li>Establishing clear information security policies.</li>
+            <li>Providing cybersecurity training for employees.</li>
+            <li>Limiting access according to job responsibilities.</li>
+            <li>Performing regular security assessments.</li>
+            <li>Creating incident response and recovery procedures.</li>
+        </ul>
+
+        <h3>Physical Security Measures</h3>
+
+        <ul>
+            <li>Using locks and access cards in server rooms.</li>
+            <li>Installing security cameras in restricted areas.</li>
+            <li>Preventing unauthorized physical access to computers.</li>
+            <li>Protecting equipment against theft and environmental damage.</li>
+            <li>Properly disposing of storage devices containing sensitive data.</li>
+        </ul>
+
+        <h3>Security Updates and Patch Management</h3>
+
+        <p>
+            Software updates and security patches correct errors, improve
+            performance, and fix known vulnerabilities. Organizations
+            should regularly identify outdated software and apply appropriate
+            updates after considering compatibility and operational needs.
+        </p>
+    </section>
+
+    <!-- AUTHENTICATION -->
+    <section class="lesson-block" id="authentication">
+        <h2>Authentication and Access Control</h2>
+
+        <p>
+            Authentication is the process of verifying the identity of a
+            person, device, or system before granting access. Access control
+            determines which resources an authenticated user may view,
+            modify, or use.
+        </p>
+
+        <h3>Authentication Factors</h3>
+
+        <ul>
+            <li>
+                <strong>Something You Know:</strong> A password, PIN, or
+                security answer.
+            </li>
+            <li>
+                <strong>Something You Have:</strong> A security token,
+                registered mobile device, or authentication key.
+            </li>
+            <li>
+                <strong>Something You Are:</strong> A physical characteristic
+                such as a fingerprint or facial feature.
+            </li>
+        </ul>
+
+        <h3>Authentication Methods</h3>
+
+        <ul>
+            <li><strong>Password:</strong> A secret combination of characters.</li>
+            <li><strong>PIN:</strong> A personal identification number.</li>
+            <li><strong>Biometrics:</strong> Fingerprint or facial recognition.</li>
+            <li><strong>Security Token:</strong> A physical or digital
+                authentication item.</li>
+            <li><strong>Multi-Factor Authentication:</strong> Uses two or
+                more different authentication factors.</li>
+            <li><strong>Passkeys:</strong> Passwordless credentials that
+                use cryptographic keys and can be protected by a device's
+                biometric or PIN verification.</li>
+        </ul>
+
+        <h3>Access Control Models</h3>
+
+        <ul>
+            <li>
+                <strong>Discretionary Access Control:</strong> The owner of
+                a resource decides which users can access it.
+            </li>
+            <li>
+                <strong>Mandatory Access Control:</strong> Access is
+                determined by centrally defined security classifications
+                and policies.
+            </li>
+            <li>
+                <strong>Role-Based Access Control:</strong> Permissions
+                are assigned according to a user's organizational role.
+            </li>
+            <li>
+                <strong>Attribute-Based Access Control:</strong> Access
+                decisions depend on attributes such as user identity,
+                resource type, location, and conditions.
+            </li>
+        </ul>
+
+        <h3>Principle of Least Privilege</h3>
+
+        <p>
+            The principle of least privilege means that users should receive
+            only the minimum permissions necessary to perform their tasks.
+            This reduces the risk of accidental changes, unauthorized access,
+            and misuse of important information.
+        </p>
+
+        <p>
+            For example, a student may view their grades, while only authorized
+            teachers and administrators can enter or modify official academic
+            records.
+        </p>
+    </section>
+
+    <!-- ENCRYPTION -->
+    <section class="lesson-block" id="encryption">
+        <h2>Encryption and Data Protection</h2>
+
+        <p>
+            Encryption is the process of converting readable information,
+            known as plaintext, into an unreadable format called ciphertext.
+            The process uses an algorithm and a key to protect the information.
+            Decryption converts ciphertext back into readable information
+            for an authorized recipient.
+        </p>
+
+        <h3>Types of Encryption</h3>
+
+        <ul>
+            <li>
+                <strong>Symmetric Encryption:</strong> Uses the same secret
+                key to encrypt and decrypt information. It is generally
+                efficient for protecting large amounts of data.
+            </li>
+            <li>
+                <strong>Asymmetric Encryption:</strong> Uses a public key
+                and a private key. One key is used for operations such as
+                encryption or verification, while the corresponding key
+                performs the matching decryption or signing operation.
+            </li>
+        </ul>
+
+        <h3>Encryption in Everyday Technology</h3>
+
+        <ul>
+            <li>
+                <strong>HTTPS:</strong> Uses TLS to protect communication
+                between a browser and a website.
+            </li>
+            <li>
+                <strong>Secure Messaging:</strong> Some messaging services
+                use end-to-end encryption to protect message contents.
+            </li>
+            <li>
+                <strong>File Encryption:</strong> Protects documents stored
+                on computers and external storage devices.
+            </li>
+            <li>
+                <strong>Online Banking:</strong> Uses encrypted connections
+                to help protect information exchanged during transactions.
+            </li>
+            <li>
+                <strong>Device Encryption:</strong> Helps prevent unauthorized
+                people from reading data stored on a lost or stolen device.
+            </li>
+        </ul>
+
+        <h3>Importance of Encryption</h3>
+
+        <ul>
+            <li>Protects confidential information.</li>
+            <li>Reduces the risk of unauthorized reading of data.</li>
+            <li>Helps secure communication over networks.</li>
+            <li>Supports privacy in digital transactions.</li>
+            <li>Can help verify the authenticity and integrity of information
+                when used with appropriate cryptographic methods.</li>
+        </ul>
+
+        <h3>Encryption and Hashing</h3>
+
+        <p>
+            Encryption and hashing are different security techniques.
+            Encryption is designed to be reversible when the correct key
+            is available. Hashing transforms data into a fixed-length
+            output and is generally designed to be one-way.
+        </p>
+
+        <p>
+            Secure password storage normally uses dedicated password-hashing
+            algorithms with unique salts and appropriate computational
+            settings rather than storing passwords as readable text.
+        </p>
+    </section>
+
+    <!-- DATA PRIVACY -->
+    <section class="lesson-block" id="privacy">
+        <h2>Data Privacy</h2>
+
+        <p>
+            Data privacy refers to the proper collection, processing, use,
+            storage, sharing, retention, and disposal of personal information.
+            It focuses on protecting an individual's privacy and ensuring
+            that information is handled in a lawful, transparent, and
+            responsible manner.
+        </p>
+
+        <p>
+            Data privacy is important because personal information can be
+            misused for identity theft, fraud, unauthorized tracking,
+            discrimination, unwanted marketing, and other harmful activities.
+        </p>
+
+        <h3>Important Principles of Data Privacy</h3>
+
+        <ul>
+            <li>
+                <strong>Transparency:</strong> Individuals should receive
+                clear information about how their personal data is collected
+                and processed.
+            </li>
+            <li>
+                <strong>Legitimate Purpose:</strong> Personal information
+                should be processed for a specified and lawful purpose.
+            </li>
+            <li>
+                <strong>Proportionality:</strong> The information collected
+                should be adequate, relevant, and not excessive for the
+                intended purpose.
+            </li>
+            <li>
+                <strong>Accuracy:</strong> Personal information should be
+                kept accurate and updated when necessary.
+            </li>
+            <li>
+                <strong>Retention Limitation:</strong> Personal information
+                should not be kept longer than necessary, subject to legal
+                requirements.
+            </li>
+            <li>
+                <strong>Security:</strong> Appropriate safeguards should
+                protect information against unauthorized access, loss,
+                destruction, or disclosure.
+            </li>
+        </ul>
+
+        <h3>Importance of Data Privacy</h3>
+
+        <ul>
+            <li>Protects individuals from misuse of personal information.</li>
+            <li>Helps prevent identity theft and online fraud.</li>
+            <li>Maintains confidentiality in personal and professional activities.</li>
+            <li>Promotes trust between users and organizations.</li>
+            <li>Encourages responsible collection and processing of information.</li>
+            <li>Supports compliance with data protection laws.</li>
+        </ul>
+
+        <h3>Data Privacy and Data Security</h3>
+
+        <p>
+            Data privacy and data security are related but different concepts.
+            Data privacy concerns whether personal information is collected
+            and used appropriately. Data security concerns the safeguards
+            used to protect information from unauthorized access, alteration,
+            loss, or destruction.
+        </p>
+
+        <p>
+            For example, a school may use encryption and access controls
+            to secure student records. Its privacy practices determine
+            why the records are collected, who may use them, and when they
+            should be deleted or retained.
+        </p>
+    </section>
+
+    <!-- PERSONAL INFORMATION -->
+    <section class="lesson-block" id="personal-information">
+        <h2>Personal Information</h2>
+
+        <p>
+            Personal information refers to information that identifies an
+            individual or can reasonably be linked to that individual.
+            It may be collected through forms, online accounts, mobile
+            applications, school systems, business transactions, and
+            government services.
+        </p>
+
+        <h3>Examples of Personal Information</h3>
+
+        <ul>
+            <li>Full name</li>
+            <li>Home or mailing address</li>
+            <li>Email address</li>
+            <li>Telephone or mobile number</li>
+            <li>Date of birth</li>
+            <li>Student or employee identification details</li>
+            <li>Account identifiers and usernames</li>
+            <li>Photographs that identify an individual</li>
+        </ul>
+
+        <h3>Sensitive Personal Information</h3>
+
+        <p>
+            Sensitive personal information is a legally defined category
+            that receives additional protection under applicable privacy
+            laws. Under the Philippine Data Privacy Act, it includes
+            information about an individual's race or ethnic origin,
+            marital status, age, color, religious or philosophical
+            affiliation, health, education, genetic or sexual life,
+            certain legal proceedings, and government-issued information
+            specified by the law.
+        </p>
+
+        <h3>Personal Information in Digital Systems</h3>
+
+        <p>
+            Digital systems may collect personal information when users
+            register accounts, complete online forms, purchase products,
+            access educational platforms, or use mobile applications.
+            Organizations should explain the purpose of collection and
+            apply appropriate safeguards.
+        </p>
+
+        <h3>Examples in Different Organizations</h3>
+
+        <ul>
+            <li>
+                <strong>Schools:</strong> Student names, enrollment records,
+                grades, and contact details.
+            </li>
+            <li>
+                <strong>Banks:</strong> Account information, transaction
+                records, and identity verification details.
+            </li>
+            <li>
+                <strong>Hospitals:</strong> Patient identification and
+                medical records.
+            </li>
+            <li>
+                <strong>Online Stores:</strong> Customer names, delivery
+                addresses, and order information.
+            </li>
+            <li>
+                <strong>Government Agencies:</strong> Identification details
+                and records used to provide public services.
+            </li>
+        </ul>
+    </section>
+
+    <!-- ONLINE PRIVACY RISKS -->
+    <section class="lesson-block" id="privacy-risks">
+        <h2>Online Privacy Risks</h2>
+
+        <p>
+            Online privacy risks occur when personal information is exposed,
+            collected without proper authority, or used in ways that
+            individuals do not expect or approve. These risks may come from
+            cybercriminals, careless users, insecure systems, or improper
+            organizational practices.
+        </p>
+
+        <h3>Common Online Privacy Risks</h3>
+
+        <ul>
+            <li>
+                <strong>Identity Theft:</strong> Personal information is
+                used by another person to impersonate an individual.
+            </li>
+            <li>
+                <strong>Data Breach:</strong> Personal or confidential
+                information is accessed, disclosed, altered, or stolen
+                without authorization.
+            </li>
+            <li>
+                <strong>Online Tracking:</strong> Websites and services may
+                collect information about browsing activities and user
+                behavior.
+            </li>
+            <li>
+                <strong>Oversharing:</strong> Posting too much personal
+                information online can expose individuals to fraud,
+                harassment, and unwanted contact.
+            </li>
+            <li>
+                <strong>Unsecured Public Wi-Fi:</strong> Poorly protected
+                networks may expose users to interception and other
+                security threats.
+            </li>
+            <li>
+                <strong>Unauthorized Data Sharing:</strong> Personal
+                information may be disclosed without an appropriate
+                legal basis or proper transparency.
+            </li>
+            <li>
+                <strong>Location Tracking:</strong> Applications and
+                services may collect location information through device
+                permissions and other technologies.
+            </li>
+            <li>
+                <strong>Account Takeover:</strong> Attackers gain control
+                of another person's online account and may access private
+                messages, files, and personal information.
+            </li>
+        </ul>
+
+        <h3>Consequences of Privacy Violations</h3>
+
+        <ul>
+            <li>Financial loss and fraudulent transactions.</li>
+            <li>Exposure of private photographs and documents.</li>
+            <li>Damage to personal or professional reputation.</li>
+            <li>Unwanted messages, harassment, or impersonation.</li>
+            <li>Loss of trust in digital platforms and organizations.</li>
+        </ul>
+    </section>
+
+    <!-- DATA PROTECTION -->
+    <section class="lesson-block" id="data-protection">
+        <h2>Data Protection Practices</h2>
+
+        <p>
+            Data protection practices help individuals and organizations
+            keep information safe throughout its lifecycle. They include
+            technical controls, responsible data handling, secure storage,
+            access management, and appropriate disposal.
+        </p>
+
+        <h3>Ways to Protect Personal Information</h3>
+
+        <ul>
+            <li>Use strong and unique passwords for different accounts.</li>
+            <li>Enable multi-factor authentication whenever available.</li>
+            <li>Never share passwords or verification codes.</li>
+            <li>Review privacy settings on social media accounts.</li>
+            <li>Avoid posting confidential personal information publicly.</li>
+            <li>Use secure websites when submitting sensitive information.</li>
+            <li>Keep devices and applications updated.</li>
+            <li>Back up important files regularly.</li>
+            <li>Be careful when connecting to public Wi-Fi networks.</li>
+            <li>Review application permissions before granting access.</li>
+            <li>Delete information securely when it is no longer needed.</li>
+        </ul>
+
+        <h3>Responsible Data Handling in Organizations</h3>
+
+        <ul>
+            <li>
+                Collect only information necessary for a specified purpose.
+            </li>
+            <li>
+                Explain why personal information is being collected.
+            </li>
+            <li>
+                Limit access to authorized personnel.
+            </li>
+            <li>
+                Use appropriate technical and organizational safeguards.
+            </li>
+            <li>
+                Keep personal information only as long as necessary or
+                required by applicable law.
+            </li>
+            <li>
+                Establish procedures for handling privacy complaints
+                and security incidents.
+            </li>
+            <li>
+                Provide appropriate training to employees who handle
+                personal information.
+            </li>
+        </ul>
+
+        <h3>Data Backup and Recovery</h3>
+
+        <p>
+            Data backup involves creating additional copies of important
+            information so that it can be restored after accidental deletion,
+            hardware failure, ransomware attacks, or other incidents.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Full Backup:</strong> Copies all selected information.
+            </li>
+            <li>
+                <strong>Incremental Backup:</strong> Copies information
+                changed since the most recent backup.
+            </li>
+            <li>
+                <strong>Differential Backup:</strong> Copies information
+                changed since the last full backup.
+            </li>
+        </ul>
+
+        <p>
+            Backups should be protected against unauthorized access and
+            periodically tested to confirm that information can actually
+            be restored.
+        </p>
+    </section>
+
+    <!-- DATA PRIVACY ACT -->
+    <section class="lesson-block" id="philippine-law">
+        <h2>Data Privacy Act of 2012</h2>
+
+        <p>
+            Republic Act No. 10173, also known as the Data Privacy Act of 2012,
+            is a Philippine law that protects the fundamental human right
+            to privacy while ensuring the free flow of information for
+            innovation, growth, and development.
+        </p>
+
+        <p>
+            The law establishes rules and responsibilities for the processing
+            of personal information. It applies to personal information
+            controllers and personal information processors, subject to
+            the law's scope and applicable exceptions.
+        </p>
+
+        <h3>National Privacy Commission</h3>
+
+        <p>
+            The National Privacy Commission (NPC) is an independent body
+            that administers and implements the Data Privacy Act of 2012.
+            It promotes the protection of personal information and helps
+            ensure that organizations follow applicable data privacy
+            requirements.
+        </p>
+
+        <h3>Objectives of the Data Privacy Act</h3>
+
+        <ul>
+            <li>Protect the privacy rights of individuals.</li>
+            <li>Protect personal information in information systems.</li>
+            <li>Promote responsible processing of personal data.</li>
+            <li>Prevent unauthorized disclosure and misuse of information.</li>
+            <li>Establish responsibilities for organizations handling data.</li>
+            <li>Provide mechanisms for addressing privacy complaints.</li>
+        </ul>
+
+        <h3>Important Terms Under the Law</h3>
+
+        <ul>
+            <li>
+                <strong>Data Subject:</strong> An individual whose personal
+                information is processed.
+            </li>
+            <li>
+                <strong>Personal Information Controller:</strong> A person
+                or organization that controls the collection, holding,
+                processing, or use of personal information, or instructs
+                another party to process it on its behalf.
+            </li>
+            <li>
+                <strong>Personal Information Processor:</strong> A person
+                or organization that processes personal information on
+                behalf of a personal information controller.
+            </li>
+            <li>
+                <strong>Processing:</strong> Operations performed on
+                personal information, such as collection, recording,
+                organization, storage, use, modification, retrieval,
+                disclosure, blocking, erasure, or destruction.
+            </li>
+        </ul>
+
+        <h3>Rights of Data Subjects</h3>
+
+        <ul>
+            <li>
+                <strong>Right to Be Informed:</strong> The individual has
+                the right to know whether personal information will be
+                collected or processed and to receive relevant information
+                about that processing.
+            </li>
+            <li>
+                <strong>Right to Access:</strong> The individual may request
+                reasonable access to their personal information.
+            </li>
+            <li>
+                <strong>Right to Object:</strong> The individual may object
+                to certain types of processing under conditions provided
+                by law.
+            </li>
+            <li>
+                <strong>Right to Erasure or Blocking:</strong> The individual
+                may request the blocking, removal, or destruction of personal
+                information in circumstances provided by law.
+            </li>
+            <li>
+                <strong>Right to Rectification:</strong> The individual may
+                request correction of inaccurate or incomplete personal data.
+            </li>
+            <li>
+                <strong>Right to File a Complaint:</strong> The individual
+                may raise a complaint with the National Privacy Commission
+                when privacy rights are violated.
+            </li>
+            <li>
+                <strong>Right to Damages:</strong> The individual may seek
+                compensation when legally entitled.
+            </li>
+            <li>
+                <strong>Right to Data Portability:</strong> The individual
+                may obtain a copy of personal data in an appropriate
+                electronic or structured format when the legal conditions
+                are met.
+            </li>
+        </ul>
+
+        <h3>Examples of Data Privacy in Schools</h3>
+
+        <ul>
+            <li>Keeping student records accessible only to authorized staff.</li>
+            <li>Protecting student grades and examination results.</li>
+            <li>Securing online enrollment and student information systems.</li>
+            <li>Preventing unauthorized disclosure of student contact details.</li>
+            <li>Using appropriate permissions before publishing student photos.</li>
+            <li>Following retention and disposal procedures for student records.</li>
+        </ul>
+
+        <h3>Personal Data Breaches</h3>
+
+        <p>
+            A personal data breach is a security incident that may result
+            in the accidental or unlawful destruction, loss, alteration,
+            unauthorized disclosure of, or access to personal data.
+        </p>
+
+        <p>
+            Organizations should have procedures to detect, investigate,
+            contain, and document personal data breaches. The Data Privacy
+            Act's implementing rules and applicable NPC regulations establish
+            notification requirements for qualifying incidents. Certain
+            reportable breaches must be notified to the NPC and affected
+            data subjects within 72 hours from knowledge or reasonable
+            belief of the breach, subject to applicable rules and exceptions.
+        </p>
+    </section>
+
+    <!-- COMPUTER ETHICS -->
+    <section class="lesson-block" id="computer-ethics">
+        <h2>Computer Ethics</h2>
+
+        <p>
+            Computer ethics refers to the moral principles and standards
+            that guide people's behavior when using computers, the internet,
+            software, and information technology. It helps users understand
+            their responsibilities when accessing, creating, sharing,
+            and managing digital information.
+        </p>
+
+        <p>
+            Computer ethics applies to students, teachers, programmers,
+            IT professionals, business owners, government employees, and
+            ordinary technology users. It encourages honesty, respect,
+            fairness, responsibility, and proper use of digital resources.
+        </p>
+
+        <h3>Fundamental Principles of Computer Ethics</h3>
+
+        <ul>
+            <li>
+                <strong>Respect for Privacy:</strong> Do not access, collect,
+                or disclose another person's information without proper
+                authorization or a valid legal basis.
+            </li>
+            <li>
+                <strong>Honesty:</strong> Do not falsify information,
+                misrepresent digital work, or deceive others using technology.
+            </li>
+            <li>
+                <strong>Respect for Intellectual Property:</strong> Recognize
+                the rights of creators and follow copyright and licensing
+                requirements.
+            </li>
+            <li>
+                <strong>Responsibility:</strong> Consider the possible
+                consequences of actions performed through computer systems.
+            </li>
+            <li>
+                <strong>Fairness:</strong> Avoid using technology to
+                discriminate against or unfairly disadvantage others.
+            </li>
+            <li>
+                <strong>Respect:</strong> Communicate appropriately and
+                avoid harassment, threats, and harmful online behavior.
+            </li>
+            <li>
+                <strong>Accountability:</strong> Accept responsibility
+                for actions performed using digital accounts and systems.
+            </li>
+        </ul>
+
+        <h3>Importance of Computer Ethics</h3>
+
+        <ul>
+            <li>Encourages responsible use of computers and the internet.</li>
+            <li>Protects the rights and privacy of other people.</li>
+            <li>Promotes honesty in academic and professional activities.</li>
+            <li>Discourages cyberbullying and digital misconduct.</li>
+            <li>Respects intellectual property and copyright.</li>
+            <li>Supports fairness and accountability in technology use.</li>
+            <li>Promotes trust in digital communication and information systems.</li>
+        </ul>
+    </section>
+
+    <!-- ETHICAL ISSUES -->
+    <section class="lesson-block" id="ethical-issues">
+        <h2>Ethical Issues in Computing</h2>
+
+        <p>
+            Ethical issues in computing are situations that involve decisions
+            about the proper use of technology, information, software, and
+            digital resources. These issues can affect individuals,
+            organizations, and society.
+        </p>
+
+        <h3>Common Ethical Issues</h3>
+
+        <ul>
+            <li>
+                <strong>Software Piracy:</strong> Copying, installing,
+                distributing, or using software without the required
+                permission or license.
+            </li>
+            <li>
+                <strong>Plagiarism:</strong> Presenting another person's
+                words, ideas, code, or work as one's own without proper
+                acknowledgment.
+            </li>
+            <li>
+                <strong>Unauthorized Access:</strong> Accessing another
+                person's account, computer, network, or information without
+                permission.
+            </li>
+            <li>
+                <strong>Cyberbullying:</strong> Using digital platforms
+                to harass, threaten, embarrass, or intimidate another person.
+            </li>
+            <li>
+                <strong>Copyright Infringement:</strong> Using or distributing
+                protected digital content without the required permission
+                or legal basis.
+            </li>
+            <li>
+                <strong>Online Fraud:</strong> Using digital platforms to
+                deceive people for money, information, or other benefits.
+            </li>
+            <li>
+                <strong>Misuse of Artificial Intelligence:</strong> Using
+                AI tools to create deceptive content, impersonate others,
+                violate privacy, or misrepresent work.
+            </li>
+            <li>
+                <strong>Digital Discrimination:</strong> Using technology
+                in ways that unfairly disadvantage individuals or groups.
+            </li>
+            <li>
+                <strong>Software Manipulation:</strong> Intentionally
+                changing software or digital records to deceive users
+                or obtain unauthorized benefits.
+            </li>
+        </ul>
+
+        <h3>Ethical Issues in Artificial Intelligence</h3>
+
+        <p>
+            Artificial intelligence introduces additional ethical concerns
+            because AI systems can collect and analyze large amounts of
+            information and make predictions or recommendations that
+            influence people's decisions.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Bias:</strong> AI systems may produce unfair results
+                when their training data or design contains biases.
+            </li>
+            <li>
+                <strong>Privacy:</strong> AI applications may process personal
+                information, photographs, recordings, or other sensitive data.
+            </li>
+            <li>
+                <strong>Transparency:</strong> Users may not understand how
+                an AI system produces its results.
+            </li>
+            <li>
+                <strong>Accuracy:</strong> AI tools may generate incorrect,
+                misleading, or fabricated information.
+            </li>
+            <li>
+                <strong>Accountability:</strong> Organizations must consider
+                who is responsible when AI systems cause harm or produce
+                unfair outcomes.
+            </li>
+            <li>
+                <strong>Intellectual Property:</strong> The use of copyrighted
+                material in AI development and generated content can raise
+                legal and ethical questions.
+            </li>
+        </ul>
+    </section>
+
+    <!-- RESPONSIBLE TECHNOLOGY USE -->
+    <section class="lesson-block" id="responsible-use">
+        <h2>Responsible Use of Technology</h2>
+
+        <p>
+            Responsible technology use means using computers, mobile devices,
+            applications, networks, and online services in a safe, respectful,
+            legal, and ethical manner. Users should consider how their online
+            actions may affect themselves and other people.
+        </p>
+
+        <h3>Rules for Responsible Computer Use</h3>
+
+        <ul>
+            <li>Respect other people's privacy and digital property.</li>
+            <li>Do not access files or accounts without permission.</li>
+            <li>Use properly licensed software and authorized resources.</li>
+            <li>Give credit to original authors and information sources.</li>
+            <li>Think carefully before posting or sharing information online.</li>
+            <li>Do not participate in cyberbullying or online harassment.</li>
+            <li>Verify information before sharing it with others.</li>
+            <li>Use AI tools honestly and follow academic or workplace rules.</li>
+            <li>Report suspicious activities and security problems.</li>
+            <li>Follow school, workplace, and applicable technology policies.</li>
+        </ul>
+
+        <h3>Digital Citizenship</h3>
+
+        <p>
+            Digital citizenship refers to the responsible and appropriate
+            use of technology when participating in online communities.
+            A good digital citizen understands online safety, respects
+            other users, evaluates information carefully, and contributes
+            positively to digital environments.
+        </p>
+
+        <h3>Examples of Ethical Computer Use</h3>
+
+        <ul>
+            <li>
+                A student cites websites and books used in a research
+                assignment instead of copying content without acknowledgment.
+            </li>
+            <li>
+                An employee does not share confidential company files with
+                unauthorized people.
+            </li>
+            <li>
+                A programmer protects user information and avoids collecting
+                unnecessary personal data.
+            </li>
+            <li>
+                A social media user asks permission before publishing
+                another person's private photograph.
+            </li>
+            <li>
+                A computer user reports a discovered security vulnerability
+                through an authorized reporting process.
+            </li>
+        </ul>
+    </section>
+
+    <!-- PRACTICAL APPLICATIONS -->
+    <section class="lesson-block" id="practical-applications">
+        <h2>Practical Applications</h2>
+
+        <p>
+            Cybersecurity, privacy, and computer ethics are applied in
+            everyday activities involving computers, mobile devices,
+            networks, and information systems. Their principles help
+            individuals and organizations protect information and use
+            technology responsibly.
+        </p>
+
+        <h3>In Education</h3>
+
+        <ul>
+            <li>Protecting student accounts and academic records.</li>
+            <li>Using school computers and networks responsibly.</li>
+            <li>Avoiding plagiarism in digital assignments.</li>
+            <li>Protecting online classroom and learning platform accounts.</li>
+            <li>Limiting access to student information to authorized staff.</li>
+            <li>Teaching students how to recognize phishing and online scams.</li>
+        </ul>
+
+        <h3>In Business</h3>
+
+        <ul>
+            <li>Securing customer and employee information.</li>
+            <li>Protecting financial and transaction records.</li>
+            <li>Controlling employee access to business systems.</li>
+            <li>Creating backup copies of important company data.</li>
+            <li>Monitoring systems for suspicious activities.</li>
+            <li>Establishing policies for responsible information handling.</li>
+        </ul>
+
+        <h3>In Healthcare</h3>
+
+        <ul>
+            <li>Protecting patient records and medical information.</li>
+            <li>Limiting access to authorized healthcare professionals.</li>
+            <li>Using secure systems for storing and transferring records.</li>
+            <li>Maintaining the availability of important healthcare systems.</li>
+        </ul>
+
+        <h3>In Government</h3>
+
+        <ul>
+            <li>Protecting citizens' personal information.</li>
+            <li>Securing government databases and online services.</li>
+            <li>Preventing unauthorized access to public records.</li>
+            <li>Maintaining the availability of essential digital services.</li>
+        </ul>
+
+        <h3>In Everyday Life</h3>
+
+        <ul>
+            <li>Using secure passwords for social media accounts.</li>
+            <li>Recognizing suspicious messages and online scams.</li>
+            <li>Protecting personal information when shopping online.</li>
+            <li>Reviewing privacy settings on digital platforms.</li>
+            <li>Respecting other people's privacy on social media.</li>
+            <li>Keeping personal devices and applications updated.</li>
+        </ul>
+
+        <h3>Example Scenario: Protecting a School Information System</h3>
+
+        <p>
+            A school maintains a database containing student profiles,
+            grades, enrollment records, and contact information. To protect
+            this database, the school implements user authentication,
+            role-based access control, encrypted connections, regular
+            backups, and security monitoring.
+        </p>
+
+        <p>
+            Students can view their own records, teachers can access the
+            information required for their responsibilities, and authorized
+            administrators can manage official academic records. These
+            measures help maintain confidentiality, integrity, and
+            availability while supporting responsible data processing.
+        </p>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>
+                Cybersecurity protects computers, networks, applications,
+                and information from digital threats.
+            </li>
+            <li>
+                Information security follows the principles of Confidentiality,
+                Integrity, and Availability.
+            </li>
+            <li>
+                Cybersecurity threats include hacking, malware, phishing,
+                ransomware, and denial-of-service attacks.
+            </li>
+            <li>
+                Malware includes viruses, worms, Trojans, ransomware,
+                spyware, and other malicious programs.
+            </li>
+            <li>
+                Authentication verifies identity, while authorization and
+                access control determine permitted activities.
+            </li>
+            <li>
+                Encryption helps protect information from unauthorized reading.
+            </li>
+            <li>
+                Data privacy concerns the proper collection, processing,
+                storage, use, and sharing of personal information.
+            </li>
+            <li>
+                The Data Privacy Act of 2012, or Republic Act No. 10173,
+                protects personal information in the Philippines.
+            </li>
+            <li>
+                Computer ethics promotes honesty, respect, fairness,
+                responsibility, and accountability.
+            </li>
+            <li>
+                Responsible technology use helps create a safer and more
+                respectful digital environment.
+            </li>
+            <li>
+                Every computer user has a responsibility to protect
+                information and respect the rights of others.
+            </li>
+        </ul>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+        <h2>References</h2>
+
+        <ul>
+            <li>
+                National Privacy Commission.
+                <a href="https://privacy.gov.ph/data-privacy-act/"
+                   target="_blank" rel="noopener noreferrer">
+                    Data Privacy Act of 2012
+                </a>
+            </li>
+
+            <li>
+                National Privacy Commission.
+                <a href="https://privacy.gov.ph/"
+                   target="_blank" rel="noopener noreferrer">
+                    Official Website
+                </a>
+            </li>
+
+            <li>
+                National Institute of Standards and Technology.
+                <a href="https://www.nist.gov/cybersecurity"
+                   target="_blank" rel="noopener noreferrer">
+                    Cybersecurity Resources
+                </a>
+            </li>
+
+            <li>
+                Cybersecurity and Infrastructure Security Agency.
+                <a href="https://www.cisa.gov/secure-our-world"
+                   target="_blank" rel="noopener noreferrer">
+                    Secure Our World
+                </a>
+            </li>
+
+            <li>
+                Federal Trade Commission.
+                <a href="https://consumer.ftc.gov/identity-theft-and-online-security"
+                   target="_blank" rel="noopener noreferrer">
+                    Identity Theft and Online Security
+                </a>
+            </li>
+
+            <li>
+                OWASP Foundation.
+                <a href="https://owasp.org/"
+                   target="_blank" rel="noopener noreferrer">
+                    Open Worldwide Application Security Project
+                </a>
+            </li>
+        </ul>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-08.html">
+                    ← Topic 8
+                </a>
+
+                <a class="btn primary" href="topic-10.html">
+                    Topic 10 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+
+         document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

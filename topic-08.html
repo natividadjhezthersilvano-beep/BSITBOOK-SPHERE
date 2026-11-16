@@ -1,0 +1,3231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+
+
+        
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+       Computer Networks and the Internet
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+
+    <h3>On This Page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+        <a href="#overview" class="active">Overview</a>
+
+        <a href="#network-services">Network Services</a>
+
+        <a href="#types-of-networks">Types of Networks</a>
+
+        <a href="#network-media">Network Transmission Media</a>
+
+        <a href="#internetworking">Internetworking</a>
+
+        <a href="#internet">The Internet</a>
+
+        <a href="#world-wide-web">World Wide Web</a>
+
+        <a href="#how-internet-works">How the Internet Works</a>
+
+        <a href="#internet-services">Internet Services</a>
+
+        <a href="#ip-address">IP Address</a>
+
+        <a href="#dns-domain-name">DNS and Domain Names</a>
+
+        <a href="#advantages-disadvantages">Advantages and Disadvantages</a>
+
+        <a href="#websites">Websites and Webpages</a>
+
+        <a href="#web-browsers">Web Browsers</a>
+
+        <a href="#internet-service-providers">Internet Service Providers</a>
+
+        <a href="#internet-connections">Types of Internet Connections</a>
+
+        <a href="#search-engines">Search Engines</a>
+
+        <a href="#key-takeaways">Key Takeaways</a>
+
+        <a href="#references">References</a>
+    </nav>
+
+
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+
+
+
+<article class="lesson-content">
+
+    <!-- INTRODUCTION -->
+    <section class="lesson-block" id="overview">
+        <h2>Computer Networks and Internetworking</h2>
+
+        <p>
+            Computer networking is the connectivity among computers that
+            allows communication between computer systems and devices.
+            A computer network is a group of computers or devices connected
+            to each other so they can exchange information and share resources.
+        </p>
+
+        <p>
+            Networks allow people to communicate, access information,
+            transfer files, use shared printers, and connect to services
+            through the Internet.
+        </p>
+
+        <figure>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/NetworkTopologies.svg"
+         alt="Diagram illustrating star, ring, bus, mesh, and tree network topologies"
+         class="lesson-image">
+
+    <figcaption>Examples of Different Computer Network Topologies</figcaption>
+</figure>
+
+        <h3>Learning Objectives</h3>
+
+        <p>After studying this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Explain computer networking and network services.</li>
+            <li>Identify the different types of computer networks.</li>
+            <li>Recognize the cables and transmission media used in networking.</li>
+            <li>Explain internetworks, intranets, extranets, and the Internet.</li>
+            <li>Describe how the Internet works and identify its services.</li>
+            <li>Explain IP addresses and the Domain Name System.</li>
+            <li>Identify the advantages and disadvantages of the Internet.</li>
+            <li>Differentiate websites, webpages, web portals, and web browsers.</li>
+            <li>Recognize Internet service providers and Internet connections.</li>
+            <li>Explain how search engines are used to find information.</li>
+        </ul>
+    </section>
+
+    <!-- NETWORK SERVICES -->
+    <section class="lesson-block" id="network-services">
+        <h2>Network Services</h2>
+
+        <p>
+            Network services are functions and resources provided through
+            a network. They allow connected users and devices to communicate,
+            exchange information, and access shared resources.
+        </p>
+
+        <h3>Email Service</h3>
+
+        <p>
+            Email service allows users to send and receive electronic
+            messages through a network. It can be used to exchange text,
+            documents, pictures, and other attachments.
+        </p>
+
+        <h3>File Service</h3>
+
+        <p>
+            File service allows users to access, store, and share files
+            through a computer or network storage system. It makes it
+            possible for multiple users to access shared files.
+        </p>
+
+        <h3>Print Service</h3>
+
+        <p>
+            Print service allows users connected to a network to print
+            documents using printers shared through that network.
+        </p>
+
+        <h3>Web Surfing</h3>
+
+        <p>
+            Web surfing allows users to open webpages, visit websites,
+            and explore information available on the Internet.
+        </p>
+
+        <h3>Website Filtering</h3>
+
+        <p>
+            Network administrators can filter or block unwanted websites
+            to control the websites that users can access.
+        </p>
+
+        <h3>Remote Network Access</h3>
+
+        <p>
+            Remote access allows authorized users to connect to a network
+            from another location, such as their home or another workplace.
+        </p>
+
+        <h3>Virus Definition Updates</h3>
+
+        <p>
+            Networks can provide updates for antivirus software installed
+            on connected workstations. These updates help computers identify
+            newer threats.
+        </p>
+
+        <h3>Network Login</h3>
+
+        <p>
+            Network login services allow authorized users to sign in
+            using their accounts and access permitted network resources.
+        </p>
+
+        <h3>Network Address Assignment</h3>
+
+        <p>
+            A computer needs a network address to communicate with other
+            devices. Without an appropriate address, it may not be able
+            to access the Internet or other network resources.
+        </p>
+    </section>
+
+    <!-- TYPES OF NETWORKS -->
+    <section class="lesson-block" id="types-of-networks">
+        <h2>Types of Computer Networks</h2>
+
+        <p>
+            Computer networks can be classified according to the geographical
+            area they cover and the way devices are connected.
+        </p>
+
+        <h3>Local Area Network (LAN)</h3>
+
+        <p>
+            A Local Area Network is a network that covers a small geographical
+            area. It is commonly used in homes, offices, classrooms, and
+            groups of buildings such as schools.
+        </p>
+
+        <p>
+            A LAN allows connected computers and devices to communicate
+            and share resources within a limited area.
+        </p>
+
+        
+
+        <p>Examples of LAN use include:</p>
+
+        <ul>
+            <li>Computers connected in a school computer laboratory.</li>
+            <li>Office computers sharing printers and files.</li>
+            <li>Devices connected to a home Wi-Fi router.</li>
+        </ul>
+
+        <h3>Wide Area Network (WAN)</h3>
+
+        <p>
+            A Wide Area Network covers a large geographical area.
+            It connects LANs and other networks so that users and
+            computers in different locations can communicate.
+        </p>
+
+        <p>
+            WANs can connect networks across cities, regions, countries,
+            and even different parts of the world.
+        </p>
+
+        
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>A company connecting offices in different cities.</li>
+            <li>A bank connecting its branches to a central network.</li>
+            <li>The Internet, which connects networks around the world.</li>
+        </ul>
+
+        <h3>Metropolitan Area Network (MAN)</h3>
+
+        <p>
+            A Metropolitan Area Network connects two or more Local Area
+            Networks or Campus Area Networks within a town, city, or
+            metropolitan area.
+        </p>
+
+        <p>
+            It covers a larger area than a LAN but generally does not
+            extend beyond the boundaries of the city or metropolitan area.
+            Routers, switches, and other network devices can be used
+            to connect the networks.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Connecting several school campuses within one city.</li>
+            <li>Connecting government offices across a metropolitan area.</li>
+            <li>Connecting different branches of an organization within a city.</li>
+        </ul>
+
+        <h3>Wireless LAN and Wireless WAN</h3>
+
+        <p>
+            Wireless LAN (WLAN) and Wireless WAN (WWAN) are wireless
+            equivalents of LAN and WAN. They use wireless communication
+            technologies instead of relying entirely on physical cables.
+        </p>
+
+        <p>
+            Wireless networks commonly use electromagnetic waves,
+            such as radio waves, to transmit information between devices.
+        </p>
+
+        
+
+        <h3>Examples of Wireless Networks</h3>
+
+        <ul>
+            <li><strong>WLAN:</strong> A Wi-Fi network used in a home, school, or office.</li>
+            <li><strong>WWAN:</strong> A wireless network that provides connectivity over a wider geographical area.</li>
+        </ul>
+    </section>
+
+    <!-- NETWORK CABLES -->
+    <section class="lesson-block" id="network-cables">
+        <h2>Different Kinds of Network Cables</h2>
+
+        <p>
+            Networks use different types of transmission media to connect
+            computers and other devices. These include twisted-pair copper
+            wire, coaxial cable, optical fiber, and wireless technologies.
+        </p>
+
+        <p>
+            Devices can be connected over short distances, such as through
+            Bluetooth, or across very long distances through interconnected
+            networks.
+        </p>
+
+        <h3>Copper Wire Cable</h3>
+
+        <p>
+            Copper wire cables transmit information through electrical
+            signals. They are commonly used in wired network connections.
+        </p>
+
+        
+
+        <h3>Coaxial Cable</h3>
+
+        <p>
+            A coaxial cable is a type of electrical cable that contains
+            a central copper conductor surrounded by insulating and
+            protective layers.
+        </p>
+
+        <p>
+            It is used to carry electrical signals and has been used
+            in television systems and some networking applications.
+        </p>
+
+        
+
+        <h3>Parts of a Coaxial Cable</h3>
+
+        <ul>
+            <li><strong>Outer plastic sheath:</strong> Protects the cable from external damage.</li>
+            <li><strong>Copper screen:</strong> Helps protect the signal from interference.</li>
+            <li><strong>Inner dielectric insulator:</strong> Separates the central conductor from the surrounding shield.</li>
+            <li><strong>Copper core:</strong> Carries the electrical signal.</li>
+        </ul>
+
+        <h3>Fiber Optic Cable</h3>
+
+        <p>
+            Fiber optic cables transmit information using light signals
+            through thin strands of glass or plastic. They are used for
+            high-speed data transmission and communication over long distances.
+        </p>
+
+       
+
+        <h3>Wireless Technologies</h3>
+
+        <p>
+            Wireless technologies allow devices to communicate without
+            requiring a physical cable between them. They use signals
+            transmitted through the air.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Wi-Fi</li>
+            <li>Bluetooth</li>
+            <li>Wireless mobile networks</li>
+        </ul>
+    </section>
+
+    <!-- INTERNETWORK -->
+    <section class="lesson-block" id="internetwork">
+        <h2>Internetwork</h2>
+
+        <p>
+            An internetwork is formed when two or more networks or network
+            segments are connected using networking devices such as routers.
+            It allows communication between devices belonging to different
+            networks.
+        </p>
+
+        <p>
+            Internetworks can connect public, private, commercial,
+            industrial, and government networks. Modern internetworks
+            commonly use the Internet Protocol (IP).
+        </p>
+
+        <p>The module discusses these types of internetworks:</p>
+
+        <ul>
+            <li>Intranet</li>
+            <li>Extranet</li>
+            <li>Internet</li>
+        </ul>
+
+        <h3>Intranet</h3>
+
+        <p>
+            An intranet is a private network that uses Internet Protocol
+            and IP-based tools, such as web browsers. It is controlled
+            by a single organization or administrative entity.
+        </p>
+
+        <p>
+            Access is generally limited to authorized members of the
+            organization. It is commonly used by companies, schools,
+            and other institutions to share internal information.
+        </p>
+
+        <p>Examples of intranet resources include:</p>
+
+        <ul>
+            <li>Internal announcements.</li>
+            <li>Employee or student portals.</li>
+            <li>Shared documents and files.</li>
+            <li>Internal communication systems.</li>
+        </ul>
+
+        <h3>Extranet</h3>
+
+        <p>
+            An extranet is a private network that allows limited access
+            to selected users outside an organization. It can connect
+            an organization with trusted external groups, such as
+            business partners, suppliers, or customers.
+        </p>
+
+        <p>
+            Access is restricted and usually requires authorization.
+        </p>
+
+        <h3>Internet</h3>
+
+        <p>
+            The Internet is a worldwide interconnection of computer
+            networks. It connects government, academic, public, and
+            private networks, allowing users around the world to
+            exchange information and access online services.
+        </p>
+
+        <p>
+            The module describes the Internet as developing from the
+            Advanced Research Projects Agency Network (ARPANET), which
+            was developed by the United States Department of Defense's
+            research agency.
+        </p>
+
+        <h3>Intranet, Extranet, and Internet</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Intranet</h3>
+                <ul>
+                    <li>Private network within an organization.</li>
+                    <li>Access is generally limited to authorized members.</li>
+                    <li>Used for internal communication and resources.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Extranet</h3>
+                <ul>
+                    <li>Private network with limited external access.</li>
+                    <li>Connects an organization with selected outside users.</li>
+                    <li>Used for collaboration with trusted partners.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Internet</h3>
+                <ul>
+                    <li>Worldwide network of interconnected networks.</li>
+                    <li>Connects users and devices around the world.</li>
+                    <li>Provides access to many public online services.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORLD WIDE WEB -->
+    <section class="lesson-block" id="world-wide-web">
+        <h2>World Wide Web (WWW)</h2>
+
+        <p>
+            The World Wide Web, commonly called the Web, is a system of
+            interconnected documents and resources that users access
+            through the Internet.
+        </p>
+
+        <p>
+            Using a web browser, users can view webpages containing text,
+            images, videos, and other multimedia content. They can move
+            between pages by clicking hyperlinks.
+        </p>
+
+        <p>
+            The World Wide Web was created in 1989 by Sir Tim Berners-Lee
+            while working at CERN in Geneva, Switzerland.
+        </p>
+
+        <h3>Internet and World Wide Web</h3>
+
+        <p>
+            The Internet and the World Wide Web are related, but they
+            are not the same thing.
+        </p>
+
+        <ul>
+            <li><strong>Internet:</strong> The worldwide network infrastructure that connects computers and devices.</li>
+            <li><strong>World Wide Web:</strong> A system of webpages and online resources accessed through the Internet.</li>
+        </ul>
+    </section>
+
+    <!-- HOW THE INTERNET WORKS -->
+    <section class="lesson-block" id="how-internet-works">
+        <h2>How the Internet Works</h2>
+
+        <p>
+            The Internet connects computers and networks so that
+            information can be exchanged. Connected computers may
+            belong to government agencies, universities, companies,
+            organizations, and individuals.
+        </p>
+
+       
+
+        <h3>Client and Server</h3>
+
+        <p>
+            Many Internet services operate using the client/server model.
+            A client is a computer or application that requests or receives
+            a service. A server provides information, files, or other
+            services to clients.
+        </p>
+
+        
+
+        <h3>Client</h3>
+
+        <p>
+            A client is a device or application that requests information
+            or services from a server. For example, a web browser acts
+            as a client when it requests a webpage.
+        </p>
+
+        <h3>Server</h3>
+
+        <p>
+            A server is a computer or software system that provides
+            information, files, or services to other devices.
+        </p>
+
+        <h3>Internet Service Provider (ISP)</h3>
+
+        <p>
+            An Internet Service Provider is an organization or business
+            that provides users with access to the Internet and related
+            services.
+        </p>
+
+        <p>
+            Users connect through an ISP to access websites, send email,
+            transfer files, and use other Internet services.
+        </p>
+    </section>
+
+    <!-- INTERNET SERVICES -->
+    <section class="lesson-block" id="internet-services">
+        <h2>Internet Services</h2>
+
+        <p>
+            The Internet provides different services that allow people
+            to communicate, share information, transfer files, and
+            access resources from different locations.
+        </p>
+
+        <h3>Electronic Mail (Email)</h3>
+
+        <p>
+            Email is a popular Internet service used to send and receive
+            electronic messages. Messages can be transmitted quickly,
+            and users can read and respond whenever convenient.
+        </p>
+
+        <p>
+            Email also allows users to attach files such as documents,
+            forms, and pictures.
+        </p>
+
+        <p>Common uses of email include:</p>
+
+        <ul>
+            <li>Sending personal and professional messages.</li>
+            <li>Sharing documents and images.</li>
+            <li>Receiving school or workplace announcements.</li>
+            <li>Communicating with people in different locations.</li>
+        </ul>
+
+        <h3>Mailing List</h3>
+
+        <p>
+            An electronic mailing list allows a message or newsletter
+            to be sent to multiple people at the same time.
+        </p>
+
+        <p>
+            It is useful for announcements, newsletters, group updates,
+            and information sharing.
+        </p>
+
+        <h3>Newsgroups</h3>
+
+        <p>
+            Newsgroups are online discussion groups similar to electronic
+            bulletin boards. They allow people to discuss specific topics
+            and share questions, opinions, and information.
+        </p>
+
+        <p>
+            Some newsgroups are moderated. A moderator reviews messages
+            before they are published. Discussions may also be organized
+            into threads so that related messages are grouped together.
+        </p>
+
+        <h3>Chat</h3>
+
+        <p>
+            Chat is an Internet communication service that allows people
+            to exchange messages in real time. Unlike traditional email,
+            chat allows users to communicate through an ongoing conversation.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Online messaging applications.</li>
+            <li>Website live chat.</li>
+            <li>Group chat services.</li>
+        </ul>
+
+        <h3>File Transfer Protocol (FTP)</h3>
+
+        <p>
+            File Transfer Protocol is a standard method for transferring
+            files between computers over a network. It can be used to
+            upload files to another computer or download files from it.
+        </p>
+
+        <p>Common uses include:</p>
+
+        <ul>
+            <li>Uploading website files to a server.</li>
+            <li>Downloading files from a remote computer.</li>
+            <li>Transferring documents between systems.</li>
+        </ul>
+
+        <h3>Telnet</h3>
+
+        <p>
+            Telnet is a network protocol that allows a user to connect
+            to and interact with a remote computer through a terminal.
+            The remote computer is called the host.
+        </p>
+
+        <p>
+            After connecting, the user can enter commands on the remote
+            computer. Telnet is an older remote-access method and does
+            not encrypt its communication, so secure alternatives are
+            preferred for modern systems.
+        </p>
+    </section>
+
+    <!-- IP ADDRESS -->
+    <section class="lesson-block" id="ip-address">
+        <h2>Internet Address and IP Address</h2>
+
+        <p>
+            Computers and devices connected to a network use addresses
+            to identify themselves and communicate with other devices.
+            An Internet Protocol address, commonly called an IP address,
+            identifies a device or network interface.
+        </p>
+
+        <h3>IPv4 Address</h3>
+
+        <p>
+            An IPv4 address consists of four numbers separated by periods.
+            Each number represents an eight-bit section called an octet.
+        </p>
+
+        <p>Example:</p>
+
+        <pre><code>192.168.1.1</code></pre>
+
+        <p>
+            IP addresses allow data to be directed to the correct
+            destination across networks.
+        </p>
+
+        <h3>Why IP Addresses Are Important</h3>
+
+        <ul>
+            <li>Identify devices on a network.</li>
+            <li>Allow devices to communicate.</li>
+            <li>Help route data to its destination.</li>
+            <li>Support access to Internet services and resources.</li>
+        </ul>
+    </section>
+
+    <!-- DNS -->
+    <section class="lesson-block" id="dns">
+        <h2>Domain Name System (DNS)</h2>
+
+        <p>
+            The Domain Name System helps users find resources on the
+            Internet by translating human-readable domain names into
+            IP addresses.
+        </p>
+
+        <p>
+            Remembering numerical IP addresses for every website can
+            be difficult. DNS makes access easier by allowing users
+            to enter familiar domain names instead.
+        </p>
+
+        <p>For example:</p>
+
+        <pre><code>www.example.com</code></pre>
+
+        <p>
+            When a user enters a domain name, the DNS system helps
+            locate the corresponding IP address so the browser can
+            connect to the correct server.
+        </p>
+
+        <h3>Domain Name Format</h3>
+
+        <p>
+            A domain name may contain a hostname, subdomain, and
+            top-level domain.
+        </p>
+
+        <p>Example:</p>
+
+        <pre><code>www.example.com</code></pre>
+
+        <ul>
+            <li><strong>www:</strong> A commonly used hostname or subdomain.</li>
+            <li><strong>example:</strong> The registered domain name.</li>
+            <li><strong>.com:</strong> The top-level domain.</li>
+        </ul>
+
+        <h3>Common Domain Name Extensions</h3>
+
+        <ul>
+            <li><strong>.com:</strong> Commonly associated with commercial organizations.</li>
+            <li><strong>.gov:</strong> Used by government institutions in supported domain systems.</li>
+            <li><strong>.net:</strong> Originally associated with network-related organizations.</li>
+            <li><strong>.org:</strong> Commonly associated with organizations.</li>
+            <li><strong>.in:</strong> Country-code domain associated with India.</li>
+        </ul>
+
+        <p>
+            Country-code domain extensions identify a country or territory.
+            For example, <code>.in</code> is associated with India.
+        </p>
+    </section>
+
+    <!-- ADVANTAGES -->
+    <section class="lesson-block" id="internet-advantages">
+        <h2>Advantages of the Internet</h2>
+
+        <p>
+            The Internet provides many benefits in communication,
+            education, entertainment, business, and access to information.
+        </p>
+
+        <h3>Communication</h3>
+
+        <p>
+            The Internet allows people to communicate with others
+            around the world. Email, chat, and online communication
+            services make it possible to exchange messages quickly.
+        </p>
+
+        <h3>Information</h3>
+
+        <p>
+            The Internet provides access to information about many
+            subjects. Users can search for educational materials,
+            news, research, tutorials, and other resources.
+        </p>
+
+        <h3>Entertainment</h3>
+
+        <p>
+            The Internet provides different forms of entertainment,
+            including online games, music, videos, and other digital
+            content.
+        </p>
+
+        <h3>Online Services</h3>
+
+        <p>
+            Many services are available through the Internet.
+            Examples include online banking, job searching,
+            ticket booking, and other online transactions.
+        </p>
+
+        <h3>E-Commerce</h3>
+
+        <p>
+            Electronic commerce, or e-commerce, refers to business
+            transactions conducted through electronic networks.
+            The Internet allows customers and businesses to buy
+            and sell products and services online.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Shopping for books and household products online.</li>
+            <li>Ordering food through online platforms.</li>
+            <li>Buying and selling products through online stores.</li>
+        </ul>
+    </section>
+
+    <!-- DISADVANTAGES -->
+    <section class="lesson-block" id="internet-disadvantages">
+        <h2>Disadvantages of the Internet</h2>
+
+        <p>
+            Although the Internet provides many benefits, it also
+            presents risks and problems that users should understand.
+        </p>
+
+        <h3>Theft of Personal Information</h3>
+
+        <p>
+            Personal information, such as names, addresses, passwords,
+            and financial details, may be stolen or misused if users
+            do not protect their accounts and information.
+        </p>
+
+        <h3>Spamming</h3>
+
+        <p>
+            Spamming refers to sending large amounts of unwanted
+            electronic messages. Spam messages may contain advertisements,
+            misleading information, or harmful links.
+        </p>
+
+        <h3>Virus and Malware Threats</h3>
+
+        <p>
+            Viruses and other malicious software can affect computer
+            systems and interfere with their normal operation.
+            Malware may damage files, steal information, or disrupt
+            computer activities.
+        </p>
+
+        <h3>Inappropriate Content</h3>
+
+        <p>
+            The Internet contains content that may be inappropriate
+            or harmful for certain users. Filtering tools and responsible
+            browsing practices can help reduce exposure to unwanted content.
+        </p>
+
+        <h3>Safe Internet Practices</h3>
+
+        <ul>
+            <li>Use strong and unique passwords.</li>
+            <li>Avoid opening suspicious links and attachments.</li>
+            <li>Keep operating systems and applications updated.</li>
+            <li>Use trusted security software.</li>
+            <li>Do not share sensitive personal information with unknown sources.</li>
+            <li>Check whether websites and online services are trustworthy.</li>
+        </ul>
+    </section>
+
+    <!-- WEBSITE AND WEBPAGE -->
+    <section class="lesson-block" id="website-webpage">
+        <h2>Website and Webpage</h2>
+
+        <h3>Webpage</h3>
+
+        <p>
+            A webpage is a document or individual page that can be
+            viewed using a web browser. It may contain text, images,
+            videos, links, and other visual or interactive elements.
+        </p>
+
+        
+
+        <h3>Website</h3>
+
+        <p>
+            A website is a collection of related webpages that belong
+            to a person, company, school, organization, or government agency.
+            These pages are usually connected through navigation links.
+        </p>
+
+        <p>Examples of websites include:</p>
+
+        <ul>
+            <li>School websites.</li>
+            <li>Company websites.</li>
+            <li>Government websites.</li>
+            <li>News websites.</li>
+            <li>Online shopping websites.</li>
+        </ul>
+
+        <h3>Website vs. Webpage</h3>
+
+        <div class="comparison-list">
+            <div class="comparison-column">
+                <h3>Website</h3>
+                <ul>
+                    <li>A collection of related webpages.</li>
+                    <li>Usually contains several sections or pages.</li>
+                    <li>Has a common domain name or web address.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-column">
+                <h3>Webpage</h3>
+                <ul>
+                    <li>An individual document on the Web.</li>
+                    <li>Contains specific information or content.</li>
+                    <li>Can be part of a larger website.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Web Portal</h3>
+
+        <p>
+            A web portal provides a single point of access to different
+            types of information, resources, and services. It may combine
+            several tools and content areas in one location.
+        </p>
+
+        <p>Examples of portal features include:</p>
+
+        <ul>
+            <li>User login and account access.</li>
+            <li>Announcements and notifications.</li>
+            <li>Learning materials and online resources.</li>
+            <li>Schedules and other information.</li>
+            <li>Links to different services.</li>
+        </ul>
+    </section>
+
+    <!-- WEB BROWSER -->
+    <section class="lesson-block" id="web-browser">
+        <h2>Web Browser</h2>
+
+        <p>
+            A web browser is a software application that allows users
+            to access, display, and interact with webpages. It can
+            display text, images, videos, music, and other information
+            found on websites.
+        </p>
+
+        <h3>Examples of Web Browsers</h3>
+
+        <p>
+            The module lists the following browsers and their historical
+            introduction dates:
+        </p>
+
+        <ul>
+            <li><strong>Mosaic:</strong> April 22, 1993.</li>
+            <li><strong>Netscape Navigator:</strong> October 13, 1994.</li>
+            <li><strong>Internet Explorer:</strong> August 1995.</li>
+            <li><strong>Opera:</strong> 1996.</li>
+            <li><strong>Mozilla Firefox:</strong> 2004.</li>
+        </ul>
+
+        <p>
+            These are examples from the original learning material.
+            They are not a list of the most popular browsers today.
+        </p>
+
+        
+
+        <h3>Browser Main Menu</h3>
+
+        <p>
+            The browser menu provides access to commands and settings
+            used when browsing websites. Depending on the browser,
+            it may include options for opening pages, saving content,
+            viewing history, and changing settings.
+        </p>
+
+        <h3>Toolbar</h3>
+
+        <p>
+            A toolbar contains buttons or controls that provide quick
+            access to common browser functions.
+        </p>
+
+        
+
+        <h3>Address Bar</h3>
+
+        <p>
+            The address bar is the area where users enter the address
+            or URL of a website they want to visit. It can also display
+            the address of the current webpage.
+        </p>
+    </section>
+
+    <!-- INTERNET SERVICE PROVIDERS -->
+    <section class="lesson-block" id="internet-service-providers">
+        <h2>Internet Service Providers (ISPs)</h2>
+
+        <p>
+            An Internet Service Provider, also called an ISP or Internet
+            access provider, is a business or organization that provides
+            individuals and businesses with access to the Internet and
+            related services.
+        </p>
+
+        <p>
+            Users generally subscribe to an Internet service to connect
+            their devices or networks to the Internet.
+        </p>
+
+        <h3>Internet Service Providers Listed in the Module</h3>
+
+        <p>
+            The original learning material identifies the following
+            providers in India:
+        </p>
+
+        <ul>
+            <li>BSNL Broadband</li>
+            <li>Bharti Airtel</li>
+            <li>Iqara</li>
+            <li>Mahanagar Telephone Nigam Limited (MTNL)</li>
+            <li>Reliance Communications</li>
+            <li>Sancharnet</li>
+            <li>Spice Telecom</li>
+            <li>Tata Teleservices</li>
+            <li>Railtel</li>
+        </ul>
+
+       
+
+        <p>
+            The names above are reproduced from the supplied module
+            and may include historical providers. They should not be
+            treated as a current list of available providers.
+        </p>
+    </section>
+
+    <!-- INTERNET CONNECTIONS -->
+    <section class="lesson-block" id="internet-connections">
+        <h2>Types of Internet Connections</h2>
+
+        <p>
+            Internet connections allow computers and other devices
+            to access online services. The module groups connection
+            types into home user connections and business connections.
+        </p>
+
+        <h3>Home User Connections</h3>
+
+        <h3>Dial-up Connection</h3>
+
+        <p>
+            Dial-up is a form of Internet access that uses a telephone
+            line. A computer connects to an Internet Service Provider
+            through a modem, which establishes a connection using
+            telephone-line signals.
+        </p>
+
+        
+
+        <h3>Modem</h3>
+
+        <p>
+            The word modem comes from modulator-demodulator. A modem
+            converts digital information into signals suitable for
+            transmission and converts received signals back into
+            digital information.
+        </p>
+
+        <p>
+            Modems allow computers and other devices to communicate
+            through transmission systems that carry signals.
+        </p>
+
+        <h3>Digital Subscriber Line (DSL)</h3>
+
+        <p>
+            DSL, or Digital Subscriber Line, is a technology that
+            provides digital data transmission over the wires of
+            a local telephone network.
+        </p>
+
+        <p>
+            DSL allows Internet data to be transmitted through
+            telephone-line infrastructure.
+        </p>
+
+        <h3>Broadband Wireless Access</h3>
+
+        <p>
+            Broadband wireless access provides high-speed wireless
+            Internet and data network access over a wider area.
+        </p>
+
+        
+
+        <h3>Cable Modem</h3>
+
+        <p>
+            A cable modem provides Internet access through the
+            infrastructure used by cable television systems.
+            It allows broadband Internet data to travel through
+            a cable network.
+        </p>
+
+       
+
+        <h3>Integrated Services Digital Network (ISDN)</h3>
+
+        <p>
+            ISDN is a communication technology that allows multiple
+            types of communication, such as data, voice, video,
+            and fax, to be transmitted through a digital telephone line.
+        </p>
+
+        <p>
+            The module explains that ISDN can support multiple
+            simultaneous connections and can be used for communication
+            such as videoconferencing, including voice, video, and text.
+        </p>
+
+        <h3>Business Connections</h3>
+
+        <p>
+            The module identifies DSL and SHDSL as business connection
+            types.
+        </p>
+
+        <h3>DSL</h3>
+
+        <p>
+            DSL provides digital data transmission through telephone
+            network wires. It can be used by businesses that need
+            Internet connectivity through telephone-line infrastructure.
+        </p>
+
+        <h3>SHDSL</h3>
+
+        <p>
+            SHDSL stands for Symmetric High-speed Digital Subscriber Line.
+            It is a type of DSL technology designed to provide symmetric
+            data transmission, meaning upload and download speeds are
+            designed to be similar.
+        </p>
+    </section>
+
+    <!-- SEARCH ENGINES -->
+    <section class="lesson-block" id="search-engines">
+        <h2>Search Engines</h2>
+
+        <p>
+            The Internet contains a large amount of information, but
+            finding a particular topic or resource can be difficult.
+            Search engines help users locate information by searching
+            through indexed webpages and displaying relevant results.
+        </p>
+
+        <p>
+            Users enter words or phrases related to the information
+            they want to find. The search engine then displays a list
+            of results that may contain the requested information.
+        </p>
+
+        <h3>Examples of Search Engines Listed in the Module</h3>
+
+        <ul>
+            <li>Google</li>
+            <li>Yahoo</li>
+            <li>MSN</li>
+            <li>Netscape</li>
+            <li>AltaVista Search</li>
+        </ul>
+
+        <p>
+            Some names in this list are historical examples from
+            the provided learning material.
+        </p>
+
+        <h3>How to Use a Search Engine</h3>
+
+        <p>
+            A search engine can be used to find information by entering
+            a keyword or phrase in its search box.
+        </p>
+
+        <ul>
+            <li>Open a search engine website.</li>
+            <li>Find the search box provided on the page.</li>
+            <li>Type a word, topic, or sentence describing the information you need.</li>
+            <li>Press Enter or select the search button.</li>
+            <li>Review the list of search results.</li>
+            <li>Open a result that appears relevant to your topic.</li>
+            <li>Return to the results and try another link if the information is not useful.</li>
+            <li>Change your keywords or try another search engine when necessary.</li>
+        </ul>
+
+        
+
+        
+
+        
+
+        <h3>Search Keywords</h3>
+
+        <p>
+            Keywords are words or phrases entered into a search engine
+            to describe the information a user wants to find.
+        </p>
+
+        <p>For example, a user who wants information about roses may search for:</p>
+
+        <pre><code>Types of roses</code></pre>
+
+        <p>
+            Search engines may also provide other services, such as
+            email and other online tools.
+        </p>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-block" id="key-takeaways">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Computer networking connects devices so they can communicate and share information.</li>
+            <li>Network services provide functions such as email, file sharing, printing, and remote access.</li>
+            <li>LAN, WAN, MAN, WLAN, and WWAN describe different types of networks.</li>
+            <li>Networking media include copper wire, coaxial cable, fiber optic cable, and wireless technologies.</li>
+            <li>An internetwork connects two or more networks.</li>
+            <li>An intranet is a private organizational network, while an extranet provides limited access to selected external users.</li>
+            <li>The Internet is a worldwide network of interconnected networks.</li>
+            <li>The World Wide Web is a system of webpages and resources accessed through the Internet.</li>
+            <li>Internet services include email, mailing lists, newsgroups, chat, FTP, and Telnet.</li>
+            <li>IP addresses identify devices and help route information across networks.</li>
+            <li>DNS translates domain names into IP addresses.</li>
+            <li>The Internet provides communication, information, entertainment, online services, and e-commerce.</li>
+            <li>Internet users should protect their personal information and avoid unsafe online activities.</li>
+            <li>A website is a collection of webpages, while a web portal provides access to multiple resources and services.</li>
+            <li>A web browser allows users to view and interact with webpages.</li>
+            <li>ISPs provide Internet access to individuals and organizations.</li>
+            <li>Internet connection types include dial-up, DSL, wireless broadband, cable modem, ISDN, and SHDSL.</li>
+            <li>Search engines help users locate information by entering keywords or phrases.</li>
+        </ul>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+        <h2>References</h2>
+
+        <ul>
+            <li>
+                <strong>Computer Networks and Internetworking.</strong>
+                Fundamentals of IT, India Development Gateway.
+                Provided course PDF, 15 pages.
+            </li>
+            <li>
+                Images used in this lesson were extracted from the
+                supplied Computer Networks and Internetworking PDF.
+            </li>
+        </ul>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-07.html">
+                    ← Topic 7
+                </a>
+
+                <a class="btn primary" href="topic-09.html">
+                    Topic 9 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+ document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

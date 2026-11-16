@@ -1,0 +1,3846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Data, information, and number systems
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+
+        <a href="#overview">Overview</a>
+
+        <a href="#data-representation">Data Representation</a>
+
+        <a href="#number-systems">Number Systems</a>
+
+        <a href="#number-conversions">Number System Conversions</a>
+
+        <a href="#character-codes">Character Representation</a>
+
+        <a href="#numeric-data">Numeric Data Representation</a>
+
+        <a href="#integer-representation">Integer Representation</a>
+
+        <a href="#binary-arithmetic">Binary Arithmetic</a>
+
+        <a href="#binary-fractions">Binary Fractions</a>
+
+        <a href="#overflow">Overflow</a>
+
+        <a href="#floating-point">Floating-Point Representation</a>
+
+        <a href="#bcd">Binary Coded Decimal</a>
+
+        <a href="#boolean">Boolean Representation</a>
+
+        <a href="#data-types">Data Types</a>
+
+        <a href="#data-selection">Selecting Data Types</a>
+
+        <a href="#practical-applications">Practical Applications</a>
+
+        <a href="#key-takeaways">Key Takeaways</a>
+
+        
+
+        <a href="#references">References</a>
+
+    </nav>
+
+
+
+
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+
+
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+
+        <h2>Overview</h2>
+
+        <p>
+            Number systems and data representation are important
+            concepts in computer science. They explain how computers
+            store, process, and communicate different types of
+            information using digital values.
+        </p>
+
+        <p>
+            Unlike humans, who commonly use the decimal number system,
+            computers primarily use the binary number system, which
+            consists of only two digits: 0 and 1.
+        </p>
+
+        <p>
+            Text, images, audio, videos, and other types of information
+            must be converted into digital representations before
+            computers can process and store them.
+        </p>
+
+        <h3>Learning Objectives</h3>
+
+        <p>After completing this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Explain the concept of data representation.</li>
+            <li>Identify the different number systems used in computing.</li>
+            <li>Convert numbers between binary, decimal, octal, and hexadecimal.</li>
+            <li>Explain how characters and numeric values are represented.</li>
+            <li>Understand signed and unsigned integer representation.</li>
+            <li>Perform basic binary arithmetic operations.</li>
+            <li>Describe floating-point and BCD representation.</li>
+            <li>Identify different data types and their uses.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- DATA REPRESENTATION -->
+    <section class="lesson-block" id="data-representation">
+
+        <h2>Data Representation</h2>
+
+        <p>
+            Data representation refers to the method used by computers
+            to express information in a form that can be understood
+            and processed by electronic systems.
+        </p>
+
+        <p>
+            Computers represent information using binary digits,
+            commonly called bits. A bit can have only one of two
+            possible values: 0 or 1.
+        </p>
+
+        <h3>Analog and Digital Representation</h3>
+
+        <p>
+            Information can be represented in analog or digital form.
+            Analog representation uses continuous values, while
+            digital representation uses separate and discrete values.
+        </p>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Analog_digital_signal.svg"
+     alt="Comparison of analog and digital signals"
+     class="lesson-image">
+
+        <h4>Analog Representation</h4>
+
+        <p>
+            Analog representation uses continuous signals that can
+            change smoothly over time. It can represent physical
+            quantities such as temperature, sound, and light.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Traditional analog clocks</li>
+            <li>Vinyl record audio signals</li>
+            <li>Mercury thermometers</li>
+            <li>Analog radio signals</li>
+        </ul>
+
+        <h4>Digital Representation</h4>
+
+        <p>
+            Digital representation stores information using discrete
+            values. Computers commonly use binary digits to represent
+            digital information.
+        </p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Digital photographs</li>
+            <li>Computer documents</li>
+            <li>Digital music files</li>
+            <li>Videos stored on computers</li>
+            <li>Electronic databases</li>
+        </ul>
+
+        <h3>Bits and Bytes</h3>
+
+        <p>
+            A bit is the smallest unit of digital information.
+            A byte consists of eight bits and is commonly used
+            to measure computer memory and storage.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Unit</th>
+                    <th>Equivalent</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Bit</td>
+                    <td>One binary digit (0 or 1)</td>
+                </tr>
+
+                <tr>
+                    <td>Byte</td>
+                    <td>8 bits</td>
+                </tr>
+
+                <tr>
+                    <td>Kilobyte (KB)</td>
+                    <td>1,000 bytes</td>
+                </tr>
+
+                <tr>
+                    <td>Megabyte (MB)</td>
+                    <td>1,000 KB</td>
+                </tr>
+
+                <tr>
+                    <td>Gigabyte (GB)</td>
+                    <td>1,000 MB</td>
+                </tr>
+
+                <tr>
+                    <td>Terabyte (TB)</td>
+                    <td>1,000 GB</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <p>
+            Storage manufacturers commonly use decimal units
+            (1 KB = 1,000 bytes). Operating systems and technical
+            contexts may also use binary units such as KiB,
+            where 1 KiB = 1,024 bytes.
+        </p>
+
+        <h3>Why Do Computers Use Binary?</h3>
+
+        <p>
+            Computers use binary because their electronic circuits
+            can distinguish between two states, such as ON and OFF.
+            These states can be represented by 1 and 0.
+        </p>
+
+        <ul>
+            <li>0 represents a low or OFF state.</li>
+            <li>1 represents a high or ON state.</li>
+        </ul>
+
+        <h3>Binary Place Values</h3>
+
+        <p>
+            Each binary position represents a power of two.
+            The rightmost position starts with 2⁰, followed by
+            2¹, 2², 2³, and so on.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Power</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>1st</td><td>2⁰</td><td>1</td></tr>
+                <tr><td>2nd</td><td>2¹</td><td>2</td></tr>
+                <tr><td>3rd</td><td>2²</td><td>4</td></tr>
+                <tr><td>4th</td><td>2³</td><td>8</td></tr>
+                <tr><td>5th</td><td>2⁴</td><td>16</td></tr>
+                <tr><td>6th</td><td>2⁵</td><td>32</td></tr>
+                <tr><td>7th</td><td>2⁶</td><td>64</td></tr>
+                <tr><td>8th</td><td>2⁷</td><td>128</td></tr>
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- NUMBER SYSTEMS -->
+    <section class="lesson-block" id="number-systems">
+
+        <h2>Number Systems</h2>
+
+        <p>
+            A number system is a method of representing numerical
+            values using a specific set of digits and a base.
+            The base determines how many different digits are
+            available in the system.
+        </p>
+
+        <h3>Binary Number System</h3>
+
+        <p>
+            The binary number system has a base of 2 and uses
+            only two digits: 0 and 1. It is the primary number
+            system used by digital computers.
+        </p>
+
+        <p>Example:</p>
+
+        <pre>
+1010₂ = 10₁₀
+        </pre>
+
+        <h3>Decimal Number System</h3>
+
+        <p>
+            The decimal number system has a base of 10.
+            It uses ten digits, from 0 to 9, and is the
+            number system commonly used in everyday life.
+        </p>
+
+        <p>Example:</p>
+
+        <pre>
+245₁₀
+        </pre>
+
+        <h3>Octal Number System</h3>
+
+        <p>
+            The octal number system has a base of 8.
+            It uses the digits 0 through 7. Each octal digit
+            can represent a group of three binary bits.
+        </p>
+
+        <p>Example:</p>
+
+        <pre>
+157₈
+        </pre>
+
+        <h3>Hexadecimal Number System</h3>
+
+        <p>
+            The hexadecimal number system has a base of 16.
+            It uses the digits 0 through 9 and the letters
+            A through F.
+        </p>
+
+        <p>
+            The letters A, B, C, D, E, and F represent
+            decimal values 10, 11, 12, 13, 14, and 15.
+        </p>
+
+        <p>Example:</p>
+
+        <pre>
+2F₁₆
+        </pre>
+
+        <h3>Comparison of Number Systems</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Number System</th>
+                    <th>Base</th>
+                    <th>Digits Used</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Binary</td>
+                    <td>2</td>
+                    <td>0 and 1</td>
+                </tr>
+
+                <tr>
+                    <td>Decimal</td>
+                    <td>10</td>
+                    <td>0 to 9</td>
+                </tr>
+
+                <tr>
+                    <td>Octal</td>
+                    <td>8</td>
+                    <td>0 to 7</td>
+                </tr>
+
+                <tr>
+                    <td>Hexadecimal</td>
+                    <td>16</td>
+                    <td>0 to 9 and A to F</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Positionalnotationtable.jpg"
+     alt="Comparison of hexadecimal, decimal, and binary number systems"
+     class="lesson-image">
+
+    </section>
+
+
+    <!-- NUMBER CONVERSIONS -->
+    <section class="lesson-block" id="number-conversions">
+
+        <h2>Number System Conversions</h2>
+
+        <p>
+            Number system conversion is the process of changing
+            a numerical value from one number system to another
+            without changing its actual value.
+        </p>
+
+        <h3>Binary to Decimal</h3>
+
+        <p>
+            To convert binary to decimal, multiply each binary
+            digit by its corresponding power of two and add
+            the results.
+        </p>
+
+        <p><strong>Example: Convert 1011₂ to decimal.</strong></p>
+
+        <pre>
+1011₂
+
+= (1 × 2³) + (0 × 2²) + (1 × 2¹) + (1 × 2⁰)
+
+= 8 + 0 + 2 + 1
+
+= 11₁₀
+        </pre>
+
+        <h3>Decimal to Binary</h3>
+
+        <p>
+            To convert decimal to binary, repeatedly divide
+            the number by 2. Record each remainder and read
+            the remainders from bottom to top.
+        </p>
+
+        <p><strong>Example: Convert 25₁₀ to binary.</strong></p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Division</th>
+                    <th>Quotient</th>
+                    <th>Remainder</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>25 ÷ 2</td><td>12</td><td>1</td></tr>
+                <tr><td>12 ÷ 2</td><td>6</td><td>0</td></tr>
+                <tr><td>6 ÷ 2</td><td>3</td><td>0</td></tr>
+                <tr><td>3 ÷ 2</td><td>1</td><td>1</td></tr>
+                <tr><td>1 ÷ 2</td><td>0</td><td>1</td></tr>
+            </tbody>
+
+        </table>
+
+        <pre>
+Read the remainders from bottom to top.
+
+25₁₀ = 11001₂
+        </pre>
+
+        <h3>Decimal to Octal</h3>
+
+        <p><strong>Example: Convert 156₁₀ to octal.</strong></p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Division</th>
+                    <th>Quotient</th>
+                    <th>Remainder</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>156 ÷ 8</td><td>19</td><td>4</td></tr>
+                <tr><td>19 ÷ 8</td><td>2</td><td>3</td></tr>
+                <tr><td>2 ÷ 8</td><td>0</td><td>2</td></tr>
+            </tbody>
+
+        </table>
+
+        <pre>
+Read from bottom to top.
+
+156₁₀ = 234₈
+        </pre>
+
+        <h3>Decimal to Hexadecimal</h3>
+
+        <p><strong>Example: Convert 254₁₀ to hexadecimal.</strong></p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Division</th>
+                    <th>Quotient</th>
+                    <th>Remainder</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>254 ÷ 16</td><td>15</td><td>14 (E)</td></tr>
+                <tr><td>15 ÷ 16</td><td>0</td><td>15 (F)</td></tr>
+            </tbody>
+
+        </table>
+
+        <pre>
+Read from bottom to top.
+
+254₁₀ = FE₁₆
+        </pre>
+
+        <h3>Hexadecimal to Decimal</h3>
+
+        <p><strong>Example: Convert 2F₁₆ to decimal.</strong></p>
+
+        <pre>
+2F₁₆
+
+= (2 × 16¹) + (15 × 16⁰)
+
+= 32 + 15
+
+= 47₁₀
+        </pre>
+
+        <h3>Binary to Octal</h3>
+
+        <p>
+            Group the binary digits into sets of three,
+            starting from the right. Convert each group
+            into its corresponding octal digit.
+        </p>
+
+        <p><strong>Example: Convert 110101₂ to octal.</strong></p>
+
+        <pre>
+110 101
+
+110 = 6
+101 = 5
+
+Answer: 65₈
+        </pre>
+
+        <h3>Binary to Hexadecimal</h3>
+
+        <p>
+            Group the binary digits into sets of four,
+            starting from the right. Convert each group
+            into its corresponding hexadecimal digit.
+        </p>
+
+        <p><strong>Example: Convert 11101111₂ to hexadecimal.</strong></p>
+
+        <pre>
+1110 1111
+
+1110 = E
+1111 = F
+
+Answer: EF₁₆
+        </pre>
+
+    </section>
+
+
+    <!-- CHARACTER CODES -->
+    <section class="lesson-block" id="character-codes">
+
+        <h2>Character Representation</h2>
+
+        <p>
+            Computers must represent letters, numbers,
+            punctuation marks, and symbols using numerical
+            codes. Character encoding provides a standard
+            method for converting characters into values
+            that computers can store and process.
+        </p>
+
+        <img src="images/character-encoding.jpg"
+             alt="ASCII and Unicode character encoding chart"
+             class="lesson-image">
+
+        <h3>ASCII</h3>
+
+        <p>
+            ASCII stands for American Standard Code for
+            Information Interchange. The original ASCII
+            standard uses 7 bits and can represent
+            128 different characters.
+        </p>
+
+        <p>
+            These include uppercase and lowercase letters,
+            numbers, punctuation marks, and control characters.
+        </p>
+
+        <h3>ASCII Examples</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Decimal Value</th>
+                    <th>7-Bit Binary</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>A</td><td>65</td><td>1000001</td></tr>
+                <tr><td>B</td><td>66</td><td>1000010</td></tr>
+                <tr><td>C</td><td>67</td><td>1000011</td></tr>
+                <tr><td>a</td><td>97</td><td>1100001</td></tr>
+                <tr><td>b</td><td>98</td><td>1100010</td></tr>
+                <tr><td>0</td><td>48</td><td>0110000</td></tr>
+                <tr><td>1</td><td>49</td><td>0110001</td></tr>
+            </tbody>
+
+        </table>
+
+        <h3>EBCDIC</h3>
+
+        <p>
+            EBCDIC stands for Extended Binary Coded Decimal
+            Interchange Code. It is an 8-bit character
+            encoding system associated with IBM mainframe
+            computers.
+        </p>
+
+        <h3>Unicode</h3>
+
+        <p>
+            Unicode is a universal character standard designed
+            to represent characters from many languages and
+            writing systems. It also includes symbols and
+            emoji.
+        </p>
+
+        <h3>Unicode Encoding Forms</h3>
+
+        <ul>
+            <li>
+                <strong>UTF-8:</strong> Uses one to four bytes
+                to encode a Unicode character.
+            </li>
+
+            <li>
+                <strong>UTF-16:</strong> Uses one or two
+                16-bit code units.
+            </li>
+
+            <li>
+                <strong>UTF-32:</strong> Uses one 32-bit
+                code unit per Unicode code point.
+            </li>
+        </ul>
+
+        <h3>Comparison of Character Encoding</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Encoding</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>ASCII</td>
+                    <td>Original 7-bit character encoding standard.</td>
+                </tr>
+
+                <tr>
+                    <td>EBCDIC</td>
+                    <td>8-bit encoding associated with IBM mainframes.</td>
+                </tr>
+
+                <tr>
+                    <td>Unicode</td>
+                    <td>Universal standard for representing characters from many writing systems.</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- NUMERIC DATA -->
+    <section class="lesson-block" id="numeric-data">
+
+        <h2>Numeric Data Representation</h2>
+
+        <p>
+            Numeric data representation explains how computers
+            store and process numerical values. These values
+            can be whole numbers or numbers containing fractional
+            parts.
+        </p>
+
+        <p>Numeric data is commonly divided into:</p>
+
+        <ul>
+            <li>Integer numbers</li>
+            <li>Floating-point numbers</li>
+        </ul>
+
+        <h3>Integer Numbers</h3>
+
+        <p>
+            Integers are whole numbers without fractional
+            or decimal parts. Examples include 5, 20, 100,
+            -10, and -25.
+        </p>
+
+        <h3>Floating-Point Numbers</h3>
+
+        <p>
+            Floating-point numbers represent values that
+            may contain fractional or decimal parts.
+            Examples include 3.14, 25.75, and -10.5.
+        </p>
+
+        <h3>Numeric Representation Comparison</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Example</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Integer</td>
+                    <td>25</td>
+                    <td>Stores whole numbers.</td>
+                </tr>
+
+                <tr>
+                    <td>Floating-point</td>
+                    <td>25.75</td>
+                    <td>Stores numbers with fractional values.</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- INTEGER REPRESENTATION -->
+    <section class="lesson-block" id="integer-representation">
+
+        <h2>Integer Representation</h2>
+
+        <p>
+            Integer representation is the method computers
+            use to store whole numbers in binary form.
+            Integers can be represented as signed or unsigned.
+        </p>
+
+        <h3>Unsigned Integers</h3>
+
+        <p>
+            Unsigned integers represent zero and positive
+            values only. All available bits are used to
+            represent the numerical value.
+        </p>
+
+        <p>
+            For example, an 8-bit unsigned integer can
+            represent values from 0 to 255.
+        </p>
+
+        <pre>
+Minimum: 00000000 = 0
+Maximum: 11111111 = 255
+        </pre>
+
+        <h3>Signed Integers</h3>
+
+        <p>
+            Signed integers can represent positive and
+            negative numbers. One common method used to
+            represent signed integers is two's complement.
+        </p>
+
+        <h3>Two's Complement</h3>
+
+        <p>
+            Two's complement is a binary representation
+            commonly used to store signed integers.
+            It allows computers to perform addition
+            and subtraction using the same basic
+            arithmetic circuits.
+        </p>
+
+        <p>
+            To obtain the two's complement of a binary
+            number:
+        </p>
+
+        <ol>
+            <li>Invert all bits, changing 0 to 1 and 1 to 0.</li>
+            <li>Add 1 to the inverted binary number.</li>
+        </ol>
+
+        <p><strong>Example: Represent -5 using 8-bit two's complement.</strong></p>
+
+        <pre>
+Positive 5:
+
+00000101
+
+Invert all bits:
+
+11111010
+
+Add 1:
+
+11111010
+       +1
+--------
+11111011
+
+Therefore:
+
+-5 = 11111011
+        </pre>
+
+        <h3>Most Significant Bit and Least Significant Bit</h3>
+
+        <p>
+            The most significant bit (MSB) is the leftmost
+            bit in a binary number. It has the highest
+            positional value.
+        </p>
+
+        <p>
+            The least significant bit (LSB) is the rightmost
+            bit. It has the lowest positional value.
+        </p>
+
+        <pre>
+Example:
+
+10110110
+
+MSB = 1
+LSB = 0
+        </pre>
+
+        <h3>Signed and Unsigned Comparison</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Representation</th>
+                    <th>8-Bit Range</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Unsigned Integer</td>
+                    <td>0 to 255</td>
+                </tr>
+
+                <tr>
+                    <td>Signed Two's Complement</td>
+                    <td>-128 to 127</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        
+
+    </section>
+
+
+    <!-- BINARY ARITHMETIC -->
+    <section class="lesson-block" id="binary-arithmetic">
+
+        <h2>Binary Arithmetic</h2>
+
+        <p>
+            Binary arithmetic involves performing mathematical
+            operations using binary digits. Computers use
+            binary arithmetic circuits to perform calculations.
+        </p>
+
+        <h3>Binary Addition</h3>
+
+        <p>The basic rules of binary addition are:</p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>0 + 0</td><td>0</td></tr>
+                <tr><td>0 + 1</td><td>1</td></tr>
+                <tr><td>1 + 0</td><td>1</td></tr>
+                <tr><td>1 + 1</td><td>10 (carry 1)</td></tr>
+            </tbody>
+
+        </table>
+
+        <p><strong>Example: Add 1010₂ and 0011₂.</strong></p>
+
+        <pre>
+   1010
+ + 0011
+ ------
+   1101
+        </pre>
+
+        <h3>Binary Subtraction</h3>
+
+        <p>The basic rules of binary subtraction are:</p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>0 - 0</td><td>0</td></tr>
+                <tr><td>1 - 0</td><td>1</td></tr>
+                <tr><td>1 - 1</td><td>0</td></tr>
+                <tr><td>0 - 1</td><td>Borrow required</td></tr>
+            </tbody>
+
+        </table>
+
+        <p><strong>Example: Subtract 0011₂ from 1000₂.</strong></p>
+
+        <pre>
+   1000
+ - 0011
+ ------
+   0101
+        </pre>
+
+        <h3>Binary Multiplication</h3>
+
+        <p>
+            Binary multiplication follows the same basic
+            principle as decimal multiplication, but it
+            uses only 0 and 1.
+        </p>
+
+        <p><strong>Example: Multiply 101₂ by 10₂.</strong></p>
+
+        <pre>
+    101
+  ×  10
+  -----
+    000
+ + 1010
+  -----
+   1010
+        </pre>
+
+        <h3>Binary Division</h3>
+
+        <p>
+            Binary division follows the same general
+            process as long division in the decimal system.
+        </p>
+
+        <p><strong>Example: Divide 1100₂ by 10₂.</strong></p>
+
+        <pre>
+1100₂ = 12₁₀
+10₂   = 2₁₀
+
+12 ÷ 2 = 6
+
+6₁₀ = 110₂
+
+Answer: 110₂
+        </pre>
+
+    </section>
+
+
+    <!-- BINARY FRACTIONS -->
+    <section class="lesson-block" id="binary-fractions">
+
+        <h2>Binary Fractions</h2>
+
+        <p>
+            Binary fractions represent values smaller than
+            one using digits after the binary point.
+            Each position after the point represents a
+            negative power of two.
+        </p>
+
+        <p>
+            The first position after the binary point
+            represents 2⁻¹, followed by 2⁻², 2⁻³, and so on.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Power</th>
+                    <th>Decimal Value</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>1st</td><td>2⁻¹</td><td>0.5</td></tr>
+                <tr><td>2nd</td><td>2⁻²</td><td>0.25</td></tr>
+                <tr><td>3rd</td><td>2⁻³</td><td>0.125</td></tr>
+                <tr><td>4th</td><td>2⁻⁴</td><td>0.0625</td></tr>
+            </tbody>
+
+        </table>
+
+        <h3>Binary Fraction to Decimal</h3>
+
+        <p><strong>Example: Convert 0.101₂ to decimal.</strong></p>
+
+        <pre>
+0.101₂
+
+= (1 × 2⁻¹) + (0 × 2⁻²) + (1 × 2⁻³)
+
+= 0.5 + 0 + 0.125
+
+= 0.625₁₀
+        </pre>
+
+        <h3>Decimal Fraction to Binary</h3>
+
+        <p>
+            To convert a decimal fraction to binary,
+            repeatedly multiply the fractional part by 2.
+            Record the integer part of each result in order.
+        </p>
+
+        <p><strong>Example: Convert 0.625₁₀ to binary.</strong></p>
+
+        <pre>
+0.625 × 2 = 1.25  → 1
+0.25  × 2 = 0.50  → 0
+0.50  × 2 = 1.00  → 1
+
+Answer: 0.101₂
+        </pre>
+
+    </section>
+
+
+    <!-- OVERFLOW -->
+    <section class="lesson-block" id="overflow">
+
+        <h2>Overflow</h2>
+
+        <p>
+            Overflow occurs when the result of a calculation
+            exceeds the range that can be represented using
+            a fixed number of bits.
+        </p>
+
+        <p>
+            A computer system has a limited number of bits
+            available for storing a value. If the result
+            is outside the supported range, overflow may occur.
+        </p>
+
+        <h3>Example of Unsigned Overflow</h3>
+
+        <p>
+            An 8-bit unsigned integer can store values
+            from 0 to 255. Adding 1 to 255 produces a
+            mathematical result of 256, which cannot
+            be represented in 8 bits.
+        </p>
+
+        <pre>
+  11111111  = 255
++ 00000001  =   1
+-----------
+1 00000000  = 256
+
+The extra carry is outside the 8-bit result.
+        </pre>
+
+        <h3>Causes of Overflow</h3>
+
+        <ul>
+            <li>Adding values that exceed the available range.</li>
+            <li>Using a data type that is too small for the result.</li>
+            <li>Performing calculations with very large values.</li>
+        </ul>
+
+        <h3>Why Overflow Matters</h3>
+
+        <p>
+            Overflow can produce incorrect results in
+            software calculations. It is important in
+            financial systems, scientific applications,
+            and other programs that require accurate
+            numerical processing.
+        </p>
+
+    </section>
+
+
+    <!-- FLOATING POINT -->
+    <section class="lesson-block" id="floating-point">
+
+        <h2>Floating-Point Representation</h2>
+
+        <p>
+            Floating-point representation is a method used
+            by computers to store real numbers, including
+            numbers with fractional parts and very large
+            or very small values.
+        </p>
+
+        <p>
+            It represents numbers using a sign, exponent,
+            and significand (also called the fraction or
+            mantissa in many introductory explanations).
+        </p>
+
+        
+
+        <h3>Scientific Notation</h3>
+
+        <p>
+            Scientific notation expresses a number as
+            a value multiplied by a power of a base.
+            In decimal scientific notation, the base is 10.
+        </p>
+
+        <p><strong>Example:</strong></p>
+
+        <pre>
+125000 = 1.25 × 10⁵
+        </pre>
+
+        <p>
+            Binary floating-point uses a similar idea,
+            but represents values using powers of two.
+        </p>
+
+        <h3>IEEE 754 Single Precision</h3>
+
+        <p>
+            IEEE 754 is a widely used standard for
+            representing floating-point numbers.
+            Its single-precision format uses 32 bits.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Number of Bits</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Sign</td>
+                    <td>1</td>
+                    <td>Indicates positive or negative.</td>
+                </tr>
+
+                <tr>
+                    <td>Exponent</td>
+                    <td>8</td>
+                    <td>Stores the exponent using a biased representation.</td>
+                </tr>
+
+                <tr>
+                    <td>Fraction</td>
+                    <td>23</td>
+                    <td>Stores the fraction portion of the value.</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>Floating-Point Limitations</h3>
+
+        <ul>
+            <li>
+                Some decimal fractions cannot be represented
+                exactly in binary.
+            </li>
+
+            <li>
+                Calculations may produce rounded results.
+            </li>
+
+            <li>
+                Limited precision can affect calculation accuracy.
+            </li>
+
+            <li>
+                Overflow and underflow may occur when values
+                exceed the supported range.
+            </li>
+        </ul>
+
+        <h3>Applications of Floating-Point Numbers</h3>
+
+        <ul>
+            <li>Scientific calculations</li>
+            <li>Weather forecasting</li>
+            <li>Computer graphics</li>
+            <li>Engineering calculations</li>
+            <li>Statistical applications</li>
+        </ul>
+
+    </section>
+
+
+    <!-- BCD -->
+    <section class="lesson-block" id="bcd">
+
+        <h2>Binary Coded Decimal (BCD)</h2>
+
+        <p>
+            Binary Coded Decimal, commonly known as BCD,
+            is a method of representing decimal digits
+            using groups of four binary bits.
+        </p>
+
+        <p>
+            In BCD, each decimal digit is represented
+            separately by its corresponding 4-bit binary value.
+        </p>
+
+        
+
+        <h3>BCD Conversion Table</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Decimal Digit</th>
+                    <th>BCD Representation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>0</td><td>0000</td></tr>
+                <tr><td>1</td><td>0001</td></tr>
+                <tr><td>2</td><td>0010</td></tr>
+                <tr><td>3</td><td>0011</td></tr>
+                <tr><td>4</td><td>0100</td></tr>
+                <tr><td>5</td><td>0101</td></tr>
+                <tr><td>6</td><td>0110</td></tr>
+                <tr><td>7</td><td>0111</td></tr>
+                <tr><td>8</td><td>1000</td></tr>
+                <tr><td>9</td><td>1001</td></tr>
+            </tbody>
+
+        </table>
+
+        <h3>BCD Example</h3>
+
+        <p><strong>Convert 25 into BCD.</strong></p>
+
+        <pre>
+2 = 0010
+5 = 0101
+
+25 = 0010 0101
+        </pre>
+
+        <p>
+            Each decimal digit is converted separately.
+            Therefore, BCD representation is different
+            from converting the entire number directly
+            into ordinary binary.
+        </p>
+
+        <h3>Applications of BCD</h3>
+
+        <ul>
+            <li>Digital clocks</li>
+            <li>Calculators</li>
+            <li>Digital displays</li>
+            <li>Electronic measuring devices</li>
+        </ul>
+
+        <h3>Advantages of BCD</h3>
+
+        <ul>
+            <li>Easy conversion between decimal digits and BCD.</li>
+            <li>Useful for displaying decimal values.</li>
+            <li>Can simplify certain decimal-based applications.</li>
+        </ul>
+
+        <h3>Limitations of BCD</h3>
+
+        <ul>
+            <li>Uses more bits than ordinary binary for many values.</li>
+            <li>Not all possible 4-bit combinations represent valid decimal digits.</li>
+            <li>Arithmetic operations can require additional processing.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- BOOLEAN -->
+    <section class="lesson-block" id="boolean">
+
+        <h2>Boolean Representation</h2>
+
+        <p>
+            Boolean representation is used to represent
+            logical values. It has only two possible states:
+            TRUE and FALSE.
+        </p>
+
+        <p>
+            In digital systems, Boolean values are commonly
+            associated with binary values:
+        </p>
+
+        <ul>
+            <li>TRUE = 1</li>
+            <li>FALSE = 0</li>
+        </ul>
+
+        <h3>Boolean Operators</h3>
+
+        <p>
+            Boolean operators are used to perform logical
+            operations and evaluate conditions.
+        </p>
+
+        <h3>AND Operator</h3>
+
+        <p>
+            The AND operator returns TRUE only when
+            both input conditions are TRUE.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A AND B</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>TRUE</td><td>TRUE</td><td>TRUE</td></tr>
+                <tr><td>TRUE</td><td>FALSE</td><td>FALSE</td></tr>
+                <tr><td>FALSE</td><td>TRUE</td><td>FALSE</td></tr>
+                <tr><td>FALSE</td><td>FALSE</td><td>FALSE</td></tr>
+            </tbody>
+
+        </table>
+
+        <h3>OR Operator</h3>
+
+        <p>
+            The OR operator returns TRUE when at least
+            one of the input conditions is TRUE.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A OR B</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>TRUE</td><td>TRUE</td><td>TRUE</td></tr>
+                <tr><td>TRUE</td><td>FALSE</td><td>TRUE</td></tr>
+                <tr><td>FALSE</td><td>TRUE</td><td>TRUE</td></tr>
+                <tr><td>FALSE</td><td>FALSE</td><td>FALSE</td></tr>
+            </tbody>
+
+        </table>
+
+        <h3>NOT Operator</h3>
+
+        <p>
+            The NOT operator reverses the logical value.
+            TRUE becomes FALSE, and FALSE becomes TRUE.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>NOT A</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr><td>TRUE</td><td>FALSE</td></tr>
+                <tr><td>FALSE</td><td>TRUE</td></tr>
+            </tbody>
+
+        </table>
+
+        <h3>Applications of Boolean Representation</h3>
+
+        <ul>
+            <li>Decision-making in computer programs</li>
+            <li>Digital electronic circuits</li>
+            <li>Database conditions</li>
+            <li>Search filters</li>
+            <li>Access control systems</li>
+        </ul>
+
+    </section>
+
+
+    <!-- DATA TYPES -->
+    <section class="lesson-block" id="data-types">
+
+        <h2>Data Types</h2>
+
+        <p>
+            A data type identifies the kind of value that
+            a variable can store. It helps a programming
+            language determine how data should be handled
+            and what operations can be performed.
+        </p>
+
+        <h3>Common Data Types</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Integer</td>
+                    <td>Stores whole numbers.</td>
+                    <td>25</td>
+                </tr>
+
+                <tr>
+                    <td>Float</td>
+                    <td>Stores numbers with fractional values.</td>
+                    <td>3.14</td>
+                </tr>
+
+                <tr>
+                    <td>Double</td>
+                    <td>Stores floating-point values with greater precision than a typical float.</td>
+                    <td>125.6789</td>
+                </tr>
+
+                <tr>
+                    <td>Character</td>
+                    <td>Stores a single character.</td>
+                    <td>'A'</td>
+                </tr>
+
+                <tr>
+                    <td>String</td>
+                    <td>Stores a sequence of characters.</td>
+                    <td>"Hello"</td>
+                </tr>
+
+                <tr>
+                    <td>Boolean</td>
+                    <td>Stores TRUE or FALSE.</td>
+                    <td>TRUE</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>Examples in Programming</h3>
+
+        <pre>
+// Character
+char grade = 'A';
+
+// Integer
+int age = 20;
+
+// Floating-point
+float temperature = 36.5;
+
+// Boolean
+bool isEnrolled = true;
+
+// String
+string studentName = "Alex";
+        </pre>
+
+        <p>
+            The exact names, sizes, and supported ranges
+            of data types depend on the programming language
+            and the system being used.
+        </p>
+
+    </section>
+
+
+    <!-- DATA SELECTION -->
+    <section class="lesson-block" id="data-selection">
+
+        <h2>Selecting Appropriate Data Types</h2>
+
+        <p>
+            Selecting the appropriate data type is important
+            when developing computer programs. The selected
+            data type affects how information is stored,
+            processed, and interpreted.
+        </p>
+
+        <h3>Factors to Consider</h3>
+
+        <ul>
+            <li>
+                <strong>Type of information:</strong>
+                Determine whether the value is a number,
+                character, text, or logical value.
+            </li>
+
+            <li>
+                <strong>Range of values:</strong>
+                Consider the minimum and maximum values
+                that must be stored.
+            </li>
+
+            <li>
+                <strong>Precision:</strong>
+                Determine whether decimal accuracy is required.
+            </li>
+
+            <li>
+                <strong>Memory usage:</strong>
+                Consider how much memory the selected
+                data type requires.
+            </li>
+
+            <li>
+                <strong>Operations:</strong>
+                Choose a type that supports the calculations
+                or comparisons needed by the program.
+            </li>
+        </ul>
+
+        <h3>Examples of Data Type Selection</h3>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Information</th>
+                    <th>Suggested Data Type</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Student age</td>
+                    <td>Integer</td>
+                    <td>Usually stored as a whole number.</td>
+                </tr>
+
+                <tr>
+                    <td>Student name</td>
+                    <td>String</td>
+                    <td>Contains multiple characters.</td>
+                </tr>
+
+                <tr>
+                    <td>Subject grade</td>
+                    <td>Float or Double</td>
+                    <td>May contain decimal values.</td>
+                </tr>
+
+                <tr>
+                    <td>Enrollment status</td>
+                    <td>Boolean</td>
+                    <td>Can be TRUE or FALSE.</td>
+                </tr>
+
+                <tr>
+                    <td>Section code</td>
+                    <td>String</td>
+                    <td>May contain letters and numbers.</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- PRACTICAL APPLICATIONS -->
+    <section class="lesson-block" id="practical-applications">
+
+        <h2>Practical Applications</h2>
+
+        <p>
+            Number systems and data representation are
+            used in almost every area of computing.
+            They allow computer systems to store,
+            process, and exchange information.
+        </p>
+
+        <h3>Computer Programming</h3>
+
+        <p>
+            Programmers use number systems and data types
+            to store values, perform calculations, and
+            create logical conditions in applications.
+        </p>
+
+        <h3>Database Management</h3>
+
+        <p>
+            Databases use data types to organize and store
+            information such as names, ages, addresses,
+            dates, and numerical records.
+        </p>
+
+        <h3>Digital Communication</h3>
+
+        <p>
+            Digital communication systems convert information
+            into binary data so that it can be transmitted
+            between computers and other electronic devices.
+        </p>
+
+        <h3>Computer Graphics</h3>
+
+        <p>
+            Digital images are represented using numerical
+            values. These values describe pixel colors,
+            brightness, and other image properties.
+        </p>
+
+        <h3>Audio and Video Processing</h3>
+
+        <p>
+            Audio and video systems convert signals into
+            digital data. Computers process this information
+            to record, edit, store, and play multimedia files.
+        </p>
+
+        <h3>Cybersecurity</h3>
+
+        <p>
+            Binary representation and data encoding are
+            important in computer security, data processing,
+            encryption systems, and digital communication.
+        </p>
+
+        <h3>Real-Life Example: Student Information System</h3>
+
+        <p>
+            A student information system stores different
+            kinds of data about students.
+        </p>
+
+        <table class="lesson-table">
+
+            <thead>
+                <tr>
+                    <th>Student Information</th>
+                    <th>Data Type</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Student ID</td>
+                    <td>String</td>
+                    <td>2026-001</td>
+                </tr>
+
+                <tr>
+                    <td>Student Name</td>
+                    <td>String</td>
+                    <td>Alex Santos</td>
+                </tr>
+
+                <tr>
+                    <td>Age</td>
+                    <td>Integer</td>
+                    <td>20</td>
+                </tr>
+
+                <tr>
+                    <td>Grade</td>
+                    <td>Decimal</td>
+                    <td>92.5</td>
+                </tr>
+
+                <tr>
+                    <td>Enrollment Status</td>
+                    <td>Boolean</td>
+                    <td>TRUE</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <p>
+            This example demonstrates how different data
+            types are selected depending on the information
+            being stored.
+        </p>
+
+    </section>
+
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>
+                Data representation explains how computers
+                store and process information.
+            </li>
+
+            <li>
+                A bit is the smallest unit of digital
+                information, while a byte contains eight bits.
+            </li>
+
+            <li>
+                Computers primarily use binary because
+                electronic circuits can represent two states.
+            </li>
+
+            <li>
+                Binary, decimal, octal, and hexadecimal
+                are important number systems in computing.
+            </li>
+
+            <li>
+                Number system conversion changes the
+                representation of a value without changing
+                its actual quantity.
+            </li>
+
+            <li>
+                ASCII, EBCDIC, and Unicode are character
+                encoding standards.
+            </li>
+
+            <li>
+                Signed and unsigned integers have different
+                numerical ranges.
+            </li>
+
+            <li>
+                Two's complement is commonly used to
+                represent signed integers.
+            </li>
+
+            <li>
+                Binary arithmetic includes addition,
+                subtraction, multiplication, and division.
+            </li>
+
+            <li>
+                Floating-point representation is used
+                for numbers containing fractional values.
+            </li>
+
+            <li>
+                BCD represents each decimal digit using
+                four binary bits.
+            </li>
+
+            <li>
+                Boolean representation uses TRUE and
+                FALSE logical values.
+            </li>
+
+            <li>
+                Choosing the correct data type helps
+                programs store and process information
+                properly.
+            </li>
+        </ul>
+
+    </section>
+
+
+
+    <!-- REFERENCES -->
+    <section class="lesson-block" id="references">
+
+        <h2>References</h2>
+
+        <p>
+            The following learning materials provide additional
+            information about number systems and data representation.
+        </p>
+
+        <ul>
+
+            <li>
+                <a href="https://runestone.academy/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Runestone Academy
+                </a>
+                – Computer science learning materials.
+            </li>
+
+            <li>
+                <a href="https://www.unicode.org/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Unicode Consortium
+                </a>
+                – Unicode character encoding standards.
+            </li>
+
+            <li>
+                <a href="https://www.asciitable.com/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    ASCII Table
+                </a>
+                – ASCII character codes and their values.
+            </li>
+
+            <li>
+                <a href="https://standards.ieee.org/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    IEEE Standards Association
+                </a>
+                – Technical standards, including floating-point representation.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-04.html">
+                    ← Topic 4
+                </a>
+
+                <a class="btn primary" href="topic-06.html">
+                    Topic 6 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>
