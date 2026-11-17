@@ -1,0 +1,2737 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="BookSphere activities and assessments.">
+<title>Activities | BookSphere</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --ink: #202641;
+    --navy: #171f3b;
+    --purple: #6555c7;
+    --purple-dark: #40318f;
+    --muted: #737d92;
+    --line: #e9eaf1;
+    --paper: #ffffff;
+    --soft: #f7f7fb;
+    --success: #23845b;
+    --danger: #c43c55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: var(--ink);
+    background: #f5f5fa;
+    line-height: 1.6;
+}
+
+button, select { font: inherit; }
+button { cursor: pointer; }
+
+/* HEADER */
+
+ .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+     text-decoration: none;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+     text-decoration: none;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .brand-symbol {
+            width: 36px;
+            height: 36px;
+            border-radius: 7px;
+            background: var(--purple);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font: 800 20px Manrope, sans-serif;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            left: -70px;
+        }
+
+        .main-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 28px 0;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--purple);
+    border-bottom: none;
+}
+
+        .nav-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    font-size: 23px;
+    cursor: pointer;
+    color: var(--ink);
+}
+
+  .page-hero {
+            background: linear-gradient(115deg, #24264e, #35316d 60%, #51449b);
+            color: white;
+            padding: 65px 5.5% 75px;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: #c8bfff;
+        }
+
+        .page-hero h1 {
+            font: 800 clamp(34px, 5vw, 52px)/1.15 Manrope, sans-serif;
+            letter-spacing: -1.8px;
+            margin: 14px 0;
+        }
+
+        .page-hero h1 em {
+            color: #c8bfff;
+            font-style: normal;
+        }
+
+        .page-hero p {
+            max-width: 580px;
+            color: #d0d0e2;
+            font-size: 14px;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+
+
+/* MAIN */
+
+main { min-height: 600px; }
+
+.section-wrap {
+    max-width: 1150px;
+    margin: auto;
+    padding: 55px 25px 75px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-family: "Manrope", sans-serif;
+    color: var(--navy);
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -.8px;
+    margin: 8px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* SUBJECT GRID */
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.subject-card {
+    display: flex;
+    align-items: stretch;
+    min-height: 205px;
+    background: white;
+    border: 1px solid #e9e8f1;
+    border-radius: 17px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(29, 27, 68, .045);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    cursor: pointer;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(101,85,199,.45);
+    box-shadow: 0 15px 32px rgba(48, 36, 110, .12);
+}
+
+.subject-card:focus-visible {
+    outline: 3px solid rgba(101,85,199,.45);
+    outline-offset: 3px;
+}
+
+.book-cover {
+    width: 160px;
+    min-width: 145px;
+    min-height: 205px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #211b50, #6555c7);
+}
+
+.book-cover::before {
+    content: "";
+    width: 140px;
+    height: 140px;
+    border: 1px solid rgba(255,255,255,.17);
+    border-radius: 50%;
+    position: absolute;
+    right: -65px;
+    top: -45px;
+}
+
+.book-cover::after {
+    content: "";
+    width: 110px;
+    height: 110px;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 50%;
+    position: absolute;
+    left: -65px;
+    bottom: -40px;
+}
+
+.cover-top,
+.cover-bottom {
+    position: relative;
+    z-index: 1;
+    top: -40px;
+}
+
+.cover-year {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,.75);
+    text-transform: uppercase;
+}
+
+.cover-title {
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.cover-line {
+    width: 30px;
+    height: 3px;
+    background: rgba(255,255,255,.7);
+    border-radius: 5px;
+    margin-top: 12px;
+}
+
+.subject-info {
+    flex: 1;
+    min-width: 0;
+    padding: 24px 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subject-tag {
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.subject-info h3 {
+    color: var(--navy);
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.subject-info p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 17px;
+}
+
+.subject-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.topic-count {
+    font-size: 11px;
+    color: #8b91a2;
+    font-weight: 700;
+}
+
+.open-label {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.subject-card:hover .open-label {
+    color: var(--purple-dark);
+}
+
+/* ASSESSMENT PAGE */
+
+.assessment-section { display: none; }
+
+.assessment-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.back-button {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: var(--navy);
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.back-button:hover {
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+.assessment-layout {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 23px;
+    align-items: start;
+}
+
+.sidebar {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar h3 {
+    color: var(--navy);
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    margin: 8px 0;
+}
+
+.sidebar > p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.student-info {
+    background: #f5f3ff;
+    border: 1px solid #ebe7ff;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+}
+
+.student-info small {
+    display: block;
+    color: #8179aa;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.student-info strong {
+    color: var(--navy);
+    font-size: 13px;
+    display: block;
+    margin-top: 4px;
+}
+
+.field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.subject-select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    padding: 12px;
+    outline: none;
+    background: white;
+    color: var(--ink);
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.subject-select:focus { border-color: var(--purple); }
+
+.progress-box {
+    padding-top: 17px;
+    border-top: 1px solid var(--line);
+}
+
+.progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.progress-track {
+    height: 7px;
+    border-radius: 20px;
+    background: #eeedf5;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #6555c7, #9a8ce9);
+    border-radius: 20px;
+    transition: width .25s;
+}
+
+/* CONTENT PANEL */
+
+.content-panel {
+    min-width: 0;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.content-heading {
+    padding: 25px 28px;
+    border-bottom: 1px solid var(--line);
+}
+
+.content-heading small {
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.content-heading h2 {
+    font-family: "Manrope", sans-serif;
+    color: var(--navy);
+    font-size: 22px;
+    line-height: 1.4;
+    margin: 7px 0;
+}
+
+.content-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.content-tabs {
+    display: flex;
+    gap: 5px;
+    padding: 13px 25px 0;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+}
+
+.tab-button {
+    border: none;
+    background: transparent;
+    color: #858b9c;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 12px 14px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.tab-button.active {
+    color: var(--purple);
+    border-bottom-color: var(--purple);
+}
+
+.quiz-panel { padding: 27px; }
+.quiz-panel.hidden { display: none; }
+
+.question-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.question-number {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.question-count {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.question-text {
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 23px;
+}
+
+.answer-list {
+    display: grid;
+    gap: 11px;
+}
+
+.answer-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 15px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+    color: #505a70;
+    font-size: 13px;
+}
+
+.answer-option:hover {
+    border-color: #b8afea;
+    background: #faf9ff;
+}
+
+.answer-option.selected {
+    border-color: var(--purple);
+    background: #f5f3ff;
+    color: var(--navy);
+}
+
+.answer-letter {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: #f0eff6;
+    color: #70778b;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.answer-option.selected .answer-letter {
+    background: var(--purple);
+    color: white;
+}
+
+.quiz-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 27px;
+}
+
+.primary-button,
+.secondary-button {
+    border: none;
+    border-radius: 9px;
+    padding: 12px 19px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.primary-button {
+    background: var(--purple);
+    color: white;
+}
+
+.primary-button:hover {
+    background: var(--purple-dark);
+    transform: translateY(-1px);
+}
+
+.secondary-button {
+    background: #f0eff6;
+    color: var(--navy);
+}
+
+.secondary-button:hover { background: #e7e4f6; }
+
+.primary-button:disabled,
+.secondary-button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* GLOSSARY */
+
+.resource-heading { margin-bottom: 22px; }
+
+.resource-heading h3 {
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 5px;
+}
+
+.resource-heading p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.glossary-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.glossary-item {
+    padding: 17px 18px;
+    background: #fafaff;
+    border: 1px solid #eeecf8;
+    border-left: 3px solid var(--purple);
+    border-radius: 9px;
+    min-width: 0;
+    transition: .2s;
+}
+
+.glossary-item:hover {
+    background: #f4f2ff;
+    border-color: #d8d1fa;
+    border-left-color: var(--purple-dark);
+}
+
+.glossary-item h4 {
+    font-family: "Manrope", sans-serif;
+    font-size: 13px;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+.glossary-item p {
+    color: #747d90;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* REFERENCES */
+
+.reference-list {
+    display: grid;
+    gap: 12px;
+}
+
+.reference-item {
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #fff;
+}
+
+.reference-item h4 {
+    color: var(--navy);
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.reference-item p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.reference-item a {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.reference-item a:hover { text-decoration: underline; }
+
+/* RESULT */
+
+.result-box {
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.result-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 17px;
+    display: grid;
+    place-items: center;
+    background: #f0edff;
+    color: var(--purple);
+    border-radius: 50%;
+    font-size: 28px;
+}
+
+.result-box h3 {
+    font-family: "Manrope", sans-serif;
+    color: var(--navy);
+    font-size: 23px;
+    margin-bottom: 7px;
+}
+
+.result-box p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.score-number {
+    color: var(--purple);
+    font-size: 40px;
+    font-weight: 800;
+    font-family: "Manrope", sans-serif;
+    margin: 15px 0;
+}
+
+.result-actions {
+    margin-top: 23px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* FOOTER */
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+    width: 100%;
+    background: #171e38;
+    color: #ffffff;
+    padding: 30px 5.5%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* MAIN FOOTER */
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 24px;
+}
+
+.footer-brand h3 {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+}
+
+.footer-brand p {
+    color: #9ba2b8;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* FOOTER LINKS */
+
+.footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-actions a,
+.footer-actions button {
+    color: #cfc9ff;
+    font-family: inherit;
+    font-size: 11px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.footer-actions a:hover,
+.footer-actions button:hover {
+    color: #ffffff;
+}
+
+/* COPYRIGHT */
+
+.footer-bottom {
+    border-top: 1px solid #343d59;
+    padding-top: 18px;
+}
+
+.footer-bottom p {
+    color: #9ba2b8;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+/* ==============================
+   TABLET RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+
+    footer {
+        padding: 28px 30px;
+    }
+
+    .footer-main {
+        gap: 20px;
+    }
+
+}
+
+/* ==============================
+   MOBILE RESPONSIVE
+============================== */
+
+@media (max-width: 600px) {
+
+    footer {
+        padding: 25px 20px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        padding-bottom: 22px;
+    }
+
+    .footer-brand h3 {
+        font-size: 16px;
+    }
+
+    .footer-brand p {
+        font-size: 11px;
+    }
+
+    .footer-actions {
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 16px;
+    }
+
+    .footer-bottom p {
+        font-size: 10px;
+    }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 400px) {
+
+    footer {
+        padding: 22px 15px;
+    }
+
+    .footer-actions {
+        gap: 18px;
+    }
+
+    .footer-actions a,
+    .footer-actions button {
+        font-size: 10px;
+    }
+
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .assessment-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .subject-card, .book-cover { min-height: 190px; }
+}
+
+@media (max-width: 760px) {
+    .header-inner {
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 13px 20px;
+    }
+
+    .page-hero { padding: 50px 20px 58px; }
+    .section-wrap { padding: 40px 20px 60px; }
+}
+
+
+/* =========================================
+   RESPONSIVE SUBJECT CARDS
+========================================= */
+
+@media (max-width: 700px) {
+
+    .subject-grid {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+        gap: 18px;
+    }
+
+    .subject-card {
+        width: 100%;
+        min-width: 0;
+        min-height: 175px;
+    }
+
+    .book-cover {
+        flex: 0 0 115px;
+        width: 115px;
+        min-width: 115px;
+        min-height: 175px;
+        padding: 16px 12px;
+    }
+
+    .cover-title {
+        font-size: 14px;
+        line-height: 1.3;
+        overflow-wrap: break-word;
+    }
+
+    .subject-info {
+        flex: 1 1 0;
+        width: 0;
+        min-width: 0;
+        padding: 17px 14px;
+        overflow-wrap: break-word;
+    }
+
+    .subject-info h3 {
+        font-size: 15px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .subject-info p {
+        font-size: 11px;
+        line-height: 1.6;
+        overflow-wrap: break-word;
+    }
+
+    .subject-bottom {
+        gap: 6px;
+    }
+
+    .topic-count,
+    .open-label {
+        font-size: 10px;
+    }
+
+    .section-wrap {
+        width: 100%;
+        padding: 40px 18px 60px;
+    }
+}
+
+/* SMALL MOBILE SCREENS */
+
+@media (max-width: 380px) {
+
+    .subject-card {
+        min-height: 165px;
+    }
+
+    .book-cover {
+        flex-basis: 105px;
+        width: 105px;
+        min-width: 105px;
+        min-height: 165px;
+        padding: 14px 10px;
+    }
+
+    .cover-title {
+        font-size: 13px;
+    }
+
+    .subject-info {
+        padding: 13px 11px;
+    }
+
+    .subject-info h3 {
+        font-size: 13px;
+    }
+
+    .subject-info p {
+        font-size: 10px;
+    }
+
+    .subject-tag {
+        font-size: 9px;
+    }
+}
+
+/* PREVENT HORIZONTAL OVERFLOW */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.subject-grid,
+.subject-card,
+.subject-info {
+    box-sizing: border-box;
+}
+
+
+/* MOBILE NAVIGATION */
+
+@media (max-width: 760px) {
+
+    .site-header {
+        height: 76px;
+        padding: 0 20px;
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .nav-toggle {
+        display: block;
+        font-size: 26px;
+        background: none;
+        border: none;
+        color: var(--ink);
+        cursor: pointer;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        padding: 18px 20px;
+        background: var(--paper);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        z-index: 100;
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .main-nav a {
+        width: 100%;
+        padding: 12px 0;
+        text-align: center;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* HIDE TOGGLE ON DESKTOP */
+
+@media (min-width: 761px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .main-nav {
+        display: flex;
+    }
+}
+
+
+</style>
+</head>
+
+<body id="top">
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <a class="brand" href="index.html">
+
+            <img src="BookSphere.jfif"
+                 alt="BookSphere Logo"
+                 class="brand-logo">
+
+            <span>
+                BookSphere
+                <small>STUDENT LEARNING PORTAL</small>
+            </span>
+
+        </a>
+
+        <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Open navigation">
+
+            ☰
+
+        </button>
+
+        <nav class="main-nav" id="mainNav">
+
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="chapters.html">Chapters</a>
+            <a href="activities.html">Activities</a>
+            <a href="about.html#developers">Developers</a>
+
+        </nav>
+
+    </header>
+
+  <section class="page-hero">
+
+            <div class="hero-inner">
+
+                <span class="eyebrow">
+                    STUDENT LEARNING ACTIVITIES
+                </span>
+
+                <h1>
+                    Learn. Practice.
+                    <br>
+                    <em>Improve.</em>
+                </h1>
+
+                <p>
+                    Test your knowledge through subject-based quizzes.
+                    Each subject contains ten questions designed to help
+                    you review important concepts and improve your
+                    understanding of information technology.
+                </p>
+
+            </div>
+
+        </section>
+
+
+<main>
+
+    <section class="section-wrap" id="subjectSection">
+        <div class="section-heading">
+            <span class="eyebrow">Choose Your Subject</span>
+            <h2>Explore Your Assessments</h2>
+            <p>Select a subject to start your knowledge assessment.</p>
+        </div>
+
+        <div class="subject-grid" id="subjectGrid"></div>
+    </section>
+
+    <section class="section-wrap assessment-section" id="assessmentSection">
+
+        <div class="assessment-top">
+            <button class="back-button" onclick="backToSubjects()">
+                ← Back to Subjects
+            </button>
+        </div>
+
+        <div class="assessment-layout">
+
+            <aside class="sidebar">
+                <span class="eyebrow">Your Assessment</span>
+                <h3>Knowledge Check</h3>
+
+                <p>
+                    Choose a subject and answer the questions to check
+                    your understanding of the lesson.
+                </p>
+
+                <div class="student-info">
+                    <small>Student Level</small>
+                    <strong id="studentYearLabel">First Year</strong>
+                </div>
+
+                <label class="field-label" for="subjectSelect">
+                    Select Subject
+                </label>
+
+                <select class="subject-select" id="subjectSelect"
+                        onchange="loadQuiz()">
+                </select>
+
+                <div class="progress-box">
+                    <div class="progress-row">
+                        <span>Assessment Progress</span>
+                        <span id="progressText">0 / 10</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="content-panel">
+
+                <div class="content-heading">
+                    <small id="assessmentYear">FIRST YEAR</small>
+                    <h2 id="assessmentSubjectTitle">Select a Subject</h2>
+                    <p id="assessmentDescription">
+                        Answer the questions and review your learning materials.
+                    </p>
+                </div>
+
+                <div class="content-tabs">
+                    <button class="tab-button active"
+                            onclick="switchTab('quizPanel', this)">
+                        Quiz
+                    </button>
+
+                    <button class="tab-button"
+                            onclick="switchTab('glossaryPanel', this)">
+                        Glossary
+                    </button>
+
+                    <button class="tab-button"
+                            onclick="switchTab('referencesPanel', this)">
+                        References
+                    </button>
+                </div>
+
+                <div class="quiz-panel" id="quizPanel">
+                    <div id="quizContent">
+                        <div class="question-top">
+                            <span class="question-number">Question 1</span>
+                            <span class="question-count">10 Questions</span>
+                        </div>
+
+                        <h3 class="question-text">
+                            Select a subject to begin your assessment.
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="quiz-panel hidden" id="glossaryPanel">
+                    <div class="resource-heading">
+                        <h3>Glossary of Terms</h3>
+                        <p>
+                            Explore 20 important terms and definitions
+                            from your selected subject.
+                        </p>
+                    </div>
+
+                    <div class="glossary-list" id="glossaryList"></div>
+                </div>
+
+                <div class="quiz-panel hidden" id="referencesPanel">
+                    <div class="resource-heading">
+                        <h3>Learning References</h3>
+                        <p>
+                            Explore these learning resources for additional
+                            information about your selected subject.
+                        </p>
+                    </div>
+
+                    <div class="reference-list" id="referenceList"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-container">
+
+        <div class="footer-main">
+            <div class="footer-brand">
+                <h3>BSIT E-BOOK</h3>
+                <p>Learn with curiosity. Build with purpose.</p>
+            </div>
+
+            <div class="footer-actions">
+                <a href="#top">Back to top ↑</a>
+                <button id="logoutBtn" type="button">Log out ↗</button>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BSIT E-Book Development. All rights reserved.</p>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+
+/* =========================================
+   LOGIN PROTECTION
+========================================= */
+
+if (sessionStorage.getItem("bsitOk") !== "1") {
+    window.location.href = "index.html";
+}
+
+function logout() {
+    sessionStorage.removeItem("bsitOk");
+    sessionStorage.removeItem("bsitYear");
+    sessionStorage.removeItem("bsitStudent");
+    window.location.href = "index.html";
+}
+
+
+/* =========================================
+   YEAR LEVEL
+========================================= */
+
+const savedYear = (sessionStorage.getItem("bsitYear") || "first").toLowerCase();
+
+const studentYear =
+    savedYear.includes("3") || savedYear.includes("third")
+        ? "third"
+        : "first";
+
+const yearLabel = studentYear === "first" ? "First Year" : "Third Year";
+
+document.getElementById("studentYearLabel").textContent = yearLabel;
+
+
+
+
+
+/* =========================================
+   SUBJECT DATA
+   Keep your original subject terms here.
+========================================= */
+
+const subjectData = {
+
+first: [
+    {
+        title: "History and Evolution of Computers",
+        description: "Explore the development of computers and the people and inventions that shaped modern computing.",
+        terms: [
+            ["Difference Engine", "Charles Babbage's mechanical calculator designed to calculate polynomial tables."],
+            ["Stepped Reckoner", "Leibniz's mechanical calculator using a stepped drum mechanism."],
+            ["Jacquard Loom", "A loom controlled by punched cards, demonstrating programmable instructions."],
+            ["Punch Card", "A card with holes used to store or input data into machines."],
+            ["Mark I", "An early electromechanical computer developed with Harvard and IBM."],
+            ["Colossus", "An electronic computer used during World War II for codebreaking."],
+            ["UNIVAC I", "An early commercial computer used for business and government data processing."],
+            ["Transistor", "A semiconductor device used to switch or amplify electronic signals."],
+            ["Integrated Circuit", "A set of electronic components fabricated on a single chip."],
+            ["Computer Architecture", "The design and organization of a computer's major components."]
+        ]
+    },
+    {
+        title: "Computer Generations and Classifications",
+        description: "Understand the generations of computers and the different ways computers are classified.",
+        terms: [
+            ["Vacuum Tube", "An electronic component used for switching and amplification in early computers."],
+            ["Transistorized Computer", "A computer that uses transistors instead of vacuum tubes."],
+            ["Integrated Circuit Computer", "A computer that uses integrated circuits to combine electronic components."],
+            ["Personal Computer", "A computer designed primarily for use by one person."],
+            ["Desktop Computer", "A personal computer designed to remain at a desk."],
+            ["Laptop", "A portable personal computer with an integrated screen and keyboard."],
+            ["Tablet", "A portable touchscreen computing device."],
+            ["Server Computer", "A computer that provides services or resources to other devices."],
+            ["Analog Computer", "A computer that processes continuously varying physical quantities."],
+            ["Digital Computer", "A computer that processes discrete values, usually represented in binary."]
+        ]
+    },
+    {
+        title: "Computer Hardware and Software",
+        description: "Learn about the physical components of a computer and the software that operates it.",
+        terms: [
+            ["Peripheral", "An external or auxiliary device connected to a computer."],
+            ["Power Supply Unit", "Hardware that converts electrical power into usable power for computer components."],
+            ["Cooling System", "Fans or liquid cooling systems that remove heat from computer components."],
+            ["Network Interface Card", "Hardware that connects a computer to a network."],
+            ["Sound Card", "Hardware that processes audio input and output."],
+            ["Firmware", "Software embedded in hardware that provides low-level control."],
+            ["Application Software", "Programs designed to help users perform specific tasks."],
+            ["System Software", "Software that manages hardware and supports applications."],
+            ["Utility Software", "Programs that maintain, protect, or optimize a computer."],
+            ["Open-Source Software", "Software whose source code can be inspected and modified under its license."]
+        ]
+    },
+    {
+        title: "Input, Processing, Output, and Storage",
+        description: "Discover how computers receive, process, display, and store information.",
+        terms: [
+            ["Touchscreen", "A display that also detects touch input."],
+            ["Microphone", "An input device that captures sound."],
+            ["Webcam", "A camera used to capture images or video for a computer."],
+            ["Joystick", "An input device used to control movement or actions."],
+            ["Projector", "An output device that displays computer visuals on a larger surface."],
+            ["Speakers", "Output devices that convert audio signals into sound."],
+            ["Plotter", "An output device that draws vector graphics on paper."],
+            ["Primary Storage", "Memory directly accessible by the processor."],
+            ["Secondary Storage", "Non-volatile storage used to retain data long-term."],
+            ["Optical Disc", "Storage media read or written using laser technology."]
+        ]
+    },
+    {
+        title: "Data, Information, and Number Systems",
+        description: "Learn how data is represented, measured, converted, and processed by computers.",
+        terms: [
+            ["Nibble", "A group of four bits."],
+            ["Kilobyte", "A unit of digital storage commonly represented as 1,000 or 1,024 bytes depending on context."],
+            ["Megabyte", "A unit of digital storage equal to one million bytes in decimal notation."],
+            ["Gigabyte", "A unit of digital storage equal to one billion bytes in decimal notation."],
+            ["Terabyte", "A unit of digital storage equal to one trillion bytes in decimal notation."],
+            ["Boolean", "A data type with two logical values: true and false."],
+            ["Character Encoding", "A system for representing text characters as numeric values."],
+            ["BCD", "Binary-coded decimal, representing each decimal digit with a group of binary bits."],
+            ["Signed Number", "A number representation that supports positive and negative values."],
+            ["Data Processing", "The collection and transformation of data into useful information."]
+        ]
+    },
+    {
+        title: "Operating System Fundamentals",
+        description: "Understand how operating systems manage hardware, software, memory, and files.",
+        terms: [
+            ["Device Management", "Operating system activity that controls and coordinates hardware devices."],
+            ["File System", "The method an operating system uses to organize and store files."],
+            ["Virtual Memory", "A memory-management technique that uses storage to extend addressable memory."],
+            ["Paging", "A memory-management technique that divides memory into fixed-size blocks."],
+            ["Interrupt", "A signal that requests processor attention."],
+            ["System Call", "A request by a program for a service from the operating system."],
+            ["Shell", "A program that provides an interface for interacting with the operating system."],
+            ["Bootloader", "A program that starts the operating system loading process."],
+            ["Real-Time Operating System", "An operating system designed to respond to events within defined time limits."],
+            ["Distributed Operating System", "An operating system that coordinates multiple connected computers."]
+        ]
+    },
+    {
+        title: "Programs and Processes",
+        description: "Explore how programs are written, executed, scheduled, and managed by computers.",
+        terms: [
+            ["Source Code", "Human-readable instructions written in a programming language."],
+            ["Machine Code", "Instructions represented in a form directly executed by a processor."],
+            ["Algorithm", "A finite sequence of steps for solving a problem."],
+            ["Debugging", "Finding and correcting errors in a program."],
+            ["Syntax Error", "An error caused by code that violates language grammar."],
+            ["Runtime Error", "An error that occurs while a program is executing."],
+            ["Logic Error", "A flaw that causes a program to produce an incorrect result."],
+            ["Scheduler", "An operating system component that selects processes or threads for execution."],
+            ["Priority Scheduling", "A scheduling method that selects tasks according to assigned priority."],
+            ["Semaphore", "A synchronization mechanism used to control access to shared resources."]
+        ]
+    },
+    {
+        title: "Computer Networks and the Internet",
+        description: "Learn about network communication, devices, protocols, and internet connectivity.",
+        terms: [
+            ["PAN", "A network connecting devices around one person."],
+            ["MAN", "A network covering a metropolitan or city-sized area."],
+            ["Modem", "A device that modulates and demodulates signals for data communication."],
+            ["Access Point", "A device that allows wireless devices to connect to a network."],
+            ["MAC Address", "A hardware identifier assigned to a network interface."],
+            ["DHCP", "A protocol that automatically assigns IP configuration to devices."],
+            ["TCP", "A transport protocol that provides reliable, ordered data delivery."],
+            ["UDP", "A transport protocol that sends datagrams without guaranteeing delivery."],
+            ["Packet", "A formatted unit of data transmitted across a network."],
+            ["Network Topology", "The physical or logical arrangement of network devices and connections."]
+        ]
+    },
+    {
+        title: "Cybersecurity, Privacy, and Computer Ethics",
+        description: "Understand common cyber threats, data protection, online privacy, and responsible technology use.",
+        terms: [
+            ["Spyware", "Malware that secretly monitors user activity or collects information."],
+            ["Trojan Horse", "Malware disguised as legitimate software."],
+            ["Antivirus", "Software designed to detect, block, or remove malicious programs."],
+            ["Vulnerability", "A weakness that can be exploited to compromise a system."],
+            ["Threat", "A potential cause of harm to a system or its data."],
+            ["Risk", "The likelihood and impact of a threat exploiting a vulnerability."],
+            ["Data Breach", "An incident involving unauthorized access to or disclosure of data."],
+            ["Social Engineering", "Manipulating people into revealing information or taking unsafe actions."],
+            ["Two-Factor Authentication", "Authentication requiring two different verification factors."],
+            ["Responsible Disclosure", "Reporting a security weakness to the affected organization appropriately."]
+        ]
+    },
+    {
+        title: "Emerging Technologies and Artificial Intelligence",
+        description: "Explore modern innovations and technologies that are shaping the future of computing.",
+        terms: [
+            ["Neural Network", "A computational model inspired by connected neurons."],
+            ["Generative AI", "Artificial intelligence that creates content such as text, images, audio, or code."],
+            ["Robotics", "The design and use of programmable machines that perform tasks."],
+            ["Autonomous System", "A system that performs operations with limited human intervention."],
+            ["Edge Computing", "Processing data near where it is generated."],
+            ["Big Data", "Very large or complex datasets requiring specialized processing."],
+            ["Data Mining", "Discovering patterns and useful relationships in datasets."],
+            ["Quantum Computing", "Computing using quantum-mechanical principles."],
+            ["3D Printing", "Creating physical objects from digital models by adding material in layers."],
+            ["Biometrics", "Identifying people using physical or behavioral characteristics."]
+        ]
+    }
+],
+
+third: [
+    {
+        title: "Internet and World Wide Web Fundamentals",
+        description: "Understand the internet, the World Wide Web, websites, and online services.",
+        terms: [
+            ["Hypertext", "Text containing links to other documents or resources."],
+            ["Hypermedia", "Content that links text, images, audio, video, and other media."],
+            ["Web Standards", "Shared technical rules that help websites work consistently."],
+            ["Search Engine", "A service that finds web pages based on user queries."],
+            ["Search Index", "A database of discovered web content used by a search engine."],
+            ["Web Portal", "A website that provides access to multiple services or information sources."],
+            ["Intranet", "A private network using internet technologies within an organization."],
+            ["Extranet", "A controlled private network that gives authorized external users access."],
+            ["ISP", "An Internet Service Provider that supplies internet connectivity."],
+            ["Web Application", "Software accessed through a web browser."]
+        ]
+    },
+    {
+        title: "Web Browsers, Servers, and HTTP/HTTPS",
+        description: "Learn how browsers and servers communicate and how web requests are processed.",
+        terms: [
+            ["Browser Engine", "The component that interprets web content and coordinates page rendering."],
+            ["Rendering Engine", "Software that turns HTML and CSS into the visual page."],
+            ["Cache", "Stored copies of resources used to speed up later access."],
+            ["DNS Lookup", "The process of finding the IP address associated with a domain."],
+            ["REST", "An architectural style for designing networked APIs."],
+            ["API", "A defined interface that allows software systems to communicate."],
+            ["JSON", "A lightweight text format for exchanging structured data."],
+            ["HTTP Header", "Metadata sent with an HTTP request or response."],
+            ["Redirect", "An HTTP response that sends a client to another URL."],
+            ["Server-Side Rendering", "Generating page HTML on a server before sending it to a browser."]
+        ]
+    },
+    {
+        title: "HTML Structure and Semantic Elements",
+        description: "Explore HTML elements and semantic structures used to organize web page content.",
+        terms: [
+            ["Attribute", "Additional information placed in an HTML element's start tag."],
+            ["Ordered List", "An HTML list whose items have a sequence."],
+            ["Unordered List", "An HTML list whose items are displayed without a numbered sequence."],
+            ["Table", "An HTML structure for organizing data into rows and columns."],
+            ["Figure Element", "A semantic element for self-contained media or illustrations."],
+            ["Figcaption", "An element that provides a caption for a figure."],
+            ["Header Element", "A semantic element for introductory content or navigation."],
+            ["Main Element", "An element containing the page's primary content."],
+            ["Section Element", "An element grouping related thematic content."],
+            ["Footer Element", "A semantic element for footer information."]
+        ]
+    },
+    {
+        title: "CSS Styling, Layouts, Flexbox, and Grid",
+        description: "Learn how CSS controls the appearance, layout, spacing, and presentation of websites.",
+        terms: [
+            ["Cascade", "The rules used to determine which CSS declarations apply."],
+            ["Specificity", "A weight used to decide which selector wins in the cascade."],
+            ["Inheritance", "The passing of certain CSS property values from parent to child."],
+            ["Pseudo-Class", "A selector for an element in a particular state."],
+            ["Pseudo-Element", "A selector that styles a specific part of an element."],
+            ["Positioning", "CSS control over how an element is placed in a layout."],
+            ["Z-Index", "A property that controls the stacking order of positioned elements."],
+            ["Transition", "A CSS feature that animates changes between property values."],
+            ["Animation", "A CSS feature that applies keyframed visual changes."],
+            ["CSS Variable", "A custom property that stores a reusable CSS value."]
+        ]
+    },
+    {
+        title: "Responsive Web Design",
+        description: "Understand how to create websites that adapt to different screens and devices.",
+        terms: [
+            ["Adaptive Design", "Design using selected layouts for different device or screen categories."],
+            ["Mobile Viewport", "The visible browser area on a mobile device."],
+            ["Viewport Meta Tag", "HTML metadata that controls viewport sizing and scaling."],
+            ["rem", "A CSS relative unit based on the root element's font size."],
+            ["em", "A CSS relative unit based on the font size of the relevant element."],
+            ["vw", "A CSS unit equal to one percent of viewport width."],
+            ["vh", "A CSS unit equal to one percent of viewport height."],
+            ["Flexible Image", "An image styled to scale within its container."],
+            ["Responsive Navigation", "Navigation that adapts to different screen sizes."],
+            ["Touch Target", "An interactive area sized for reliable touch interaction."]
+        ]
+    },
+    {
+        title: "JavaScript Fundamentals and DOM Manipulation",
+        description: "Explore JavaScript programming, events, functions, and interactive web elements.",
+        terms: [
+            ["ECMAScript", "The standardized specification underlying JavaScript."],
+            ["Scope", "The region of code where a variable or binding can be accessed."],
+            ["Hoisting", "JavaScript behavior that processes declarations before execution."],
+            ["Callback", "A function passed to another function to be called later."],
+            ["Promise", "An object representing the eventual result of an asynchronous operation."],
+            ["Async/Await", "Syntax for writing promise-based asynchronous code."],
+            ["Event Bubbling", "The propagation of an event from a target element toward ancestors."],
+            ["Event Delegation", "Handling events on a parent for events from its child elements."],
+            ["Local Storage", "Browser storage that persists key-value data across sessions."],
+            ["Session Storage", "Browser storage that lasts for the current tab session."]
+        ]
+    },
+    {
+        title: "Forms and Input Validation",
+        description: "Learn how to collect user information and validate form data correctly.",
+        terms: [
+            ["Select Element", "A form control that lets users choose from a list of options."],
+            ["Textarea", "A form control for multi-line text input."],
+            ["Radio Button", "A control for selecting one option from a group."],
+            ["Checkbox", "A control for selecting one or more options."],
+            ["Email Input", "An input type intended for email addresses."],
+            ["Number Input", "An input type for numeric values."],
+            ["Validation Constraint", "A rule that input must satisfy before submission."],
+            ["Sanitization", "Cleaning or transforming input to reduce unsafe content."],
+            ["Error Message", "Feedback explaining why submitted data is invalid."],
+            ["Accessible Name", "The name announced by assistive technology for a control."]
+        ]
+    },
+    {
+        title: "User Interface Design and Accessibility",
+        description: "Understand usability, interface design principles, and accessible web experiences.",
+        terms: [
+            ["UX Research", "Gathering information about user needs and behavior."],
+            ["Usability", "How effectively and easily users can complete tasks."],
+            ["Design System", "A reusable set of design rules and interface components."],
+            ["Responsive Typography", "Text sizing and layout that adapt to viewport size."],
+            ["Focus Indicator", "A visible style showing which element has keyboard focus."],
+            ["Screen Reader", "Assistive software that reads interface content aloud."],
+            ["Semantic Structure", "Meaningful organization of page content using appropriate elements."],
+            ["Color Contrast Ratio", "A measure of contrast between foreground and background colors."],
+            ["WCAG", "Web Content Accessibility Guidelines."],
+            ["Accessibility Audit", "An evaluation of how accessible a digital product is."]
+        ]
+    },
+    {
+        title: "Authentication, Authorization, and Web Security",
+        description: "Learn how websites protect accounts, manage permissions, and secure information.",
+        terms: [
+            ["Credential", "Information used to prove identity, such as a username and password."],
+            ["Salt", "Random data added to a password before hashing."],
+            ["Token", "A digital value used to represent authorization or session information."],
+            ["JSON Web Token", "A compact token format for transferring claims between parties."],
+            ["Brute-Force Attack", "Repeatedly trying possible credentials to gain access."],
+            ["Rate Limiting", "Restricting how frequently a user or system can make requests."],
+            ["HTTPS Certificate", "A digital certificate used to authenticate a website for TLS."],
+            ["Content Security Policy", "A browser security policy that restricts resource and script loading."],
+            ["Input Sanitization", "Removing or encoding unsafe input before use."],
+            ["Least Privilege", "Giving users or processes only the permissions they need."]
+        ]
+    },
+    {
+        title: "Website Testing, Hosting, Deployment, and Maintenance",
+        description: "Explore how websites are tested, published, monitored, and maintained.",
+        terms: [
+            ["Unit Testing", "Testing a small isolated piece of software."],
+            ["Integration Testing", "Testing whether connected components work together."],
+            ["Regression Testing", "Repeating tests to ensure changes have not broken existing features."],
+            ["Test Case", "A set of steps and expected results used to test functionality."],
+            ["Bug", "A defect that causes software to behave incorrectly."],
+            ["Continuous Integration", "Automatically integrating and testing code changes."],
+            ["Continuous Deployment", "Automatically releasing tested changes to production."],
+            ["DNS Record", "An entry that maps a domain or service to network information."],
+            ["SSL/TLS Certificate", "A certificate used to establish encrypted connections."],
+            ["Uptime", "The amount of time a service remains operational."]
+        ]
+    }
+]
+
+};
+
+/* =========================================
+   SUBJECT-SPECIFIC EXTRA GLOSSARY
+   Each subject receives 10 additional terms.
+========================================= */
+
+const extraGlossary = {
+
+first: [
+    [
+        ["Abacus", "An early counting tool that uses beads moved along rods or wires."],
+        ["Analytical Engine", "A mechanical general-purpose computing machine designed by Charles Babbage."],
+        ["Ada Lovelace", "A mathematician known for writing an early algorithm intended for a machine."],
+        ["Alan Turing", "A mathematician whose work helped establish theoretical computer science."],
+        ["ENIAC", "An early general-purpose electronic digital computer."],
+        ["Mechanical Computer", "A computing device that uses moving mechanical parts to perform calculations."],
+        ["Electromechanical Computer", "A computer that combines electrical and mechanical components."],
+        ["Stored-Program Concept", "The idea of storing program instructions in computer memory."],
+        ["Microprocessor", "A processor whose main components are integrated into a single chip."],
+        ["Personal Computing", "The use of computers by individuals for everyday tasks."]
+    ],
+    [
+        ["First Generation", "The computer generation characterized by the use of vacuum tubes."],
+        ["Second Generation", "The computer generation that introduced transistors."],
+        ["Third Generation", "The computer generation associated with integrated circuits."],
+        ["Fourth Generation", "The generation characterized by microprocessors."],
+        ["Fifth Generation", "A generation commonly associated with advanced computing and artificial intelligence."],
+        ["Supercomputer", "A computer designed to perform extremely complex calculations at high speed."],
+        ["Mainframe", "A powerful computer used to process large amounts of organizational data."],
+        ["Workstation", "A high-performance computer designed for technical or professional work."],
+        ["Embedded Computer", "A computer built into another device to perform a specific function."],
+        ["Hybrid Computer", "A computer that combines analog and digital computing features."]
+    ],
+    [
+        ["Central Processing Unit", "The main processor that executes instructions."],
+        ["Motherboard", "The main circuit board connecting a computer's components."],
+        ["Random Access Memory", "Temporary working memory used by running programs."],
+        ["Read-Only Memory", "Non-volatile memory that stores data that is not normally changed."],
+        ["Hard Disk Drive", "A storage device that uses magnetic disks."],
+        ["Solid-State Drive", "A storage device that uses flash memory."],
+        ["Graphics Processing Unit", "A processor designed to handle graphics and parallel computations."],
+        ["Operating Software", "Software that manages computer resources and supports applications."],
+        ["Compiler", "A program that translates source code into another form."],
+        ["Driver", "Software that allows an operating system to communicate with hardware."]
+    ],
+    [
+        ["Keyboard", "An input device used to enter text and commands."],
+        ["Mouse", "A pointing device used to control a cursor."],
+        ["Scanner", "An input device that converts physical documents into digital images."],
+        ["Central Processing Unit", "The component that executes program instructions."],
+        ["Control Unit", "The processor component that coordinates instruction execution."],
+        ["Arithmetic Logic Unit", "The processor component that performs arithmetic and logical operations."],
+        ["Register", "A small, fast storage location inside the processor."],
+        ["Cache Memory", "Small, fast memory that stores frequently accessed data."],
+        ["Hard Disk Drive", "A magnetic storage device used to save files."],
+        ["Solid-State Drive", "A storage device that uses flash memory and has no moving parts."]
+    ],
+    [
+        ["Bit", "The smallest unit of digital information, represented as 0 or 1."],
+        ["Byte", "A group of eight bits."],
+        ["Binary Number System", "A base-two number system using 0 and 1."],
+        ["Decimal Number System", "A base-ten number system using digits 0 through 9."],
+        ["Octal Number System", "A base-eight number system using digits 0 through 7."],
+        ["Hexadecimal Number System", "A base-sixteen number system using digits 0 through 9 and A through F."],
+        ["Data Type", "A classification that determines the kind of value a variable can store."],
+        ["ASCII", "A character encoding standard for representing text."],
+        ["Unicode", "A universal character encoding standard for many writing systems."],
+        ["Binary Conversion", "The process of changing a value from another number system into binary or vice versa."]
+    ],
+    [
+        ["Kernel", "The core part of an operating system that manages system resources."],
+        ["Process Management", "The operating system function that manages running programs."],
+        ["Memory Management", "The process of allocating and tracking computer memory."],
+        ["Multitasking", "The ability of an operating system to manage multiple tasks."],
+        ["Graphical User Interface", "An interface that uses visual elements such as windows and icons."],
+        ["Command-Line Interface", "A text-based interface for entering commands."],
+        ["File Allocation", "The method used to assign storage space to files."],
+        ["Directory", "A structure used to organize files and other directories."],
+        ["Task Manager", "A utility used to view and manage running applications and processes."],
+        ["Booting", "The process of starting a computer and loading its operating system."]
+    ],
+    [
+        ["Variable", "A named storage location used by a program."],
+        ["Function", "A reusable block of code designed to perform a task."],
+        ["Loop", "A programming structure that repeats instructions."],
+        ["Conditional Statement", "A programming structure that makes decisions based on conditions."],
+        ["Compiler", "A program that translates source code into another form."],
+        ["Interpreter", "A program that executes source code or an intermediate representation."],
+        ["Thread", "A sequence of execution within a process."],
+        ["Multithreading", "The ability of a process to use multiple threads."],
+        ["Deadlock", "A situation in which processes wait indefinitely for resources held by one another."],
+        ["Concurrency", "The execution of multiple tasks during overlapping periods."]
+    ],
+    [
+        ["LAN", "A network that connects devices within a limited area."],
+        ["WAN", "A network that covers a large geographical area."],
+        ["Router", "A device that forwards data between networks."],
+        ["Switch", "A device that connects devices within a local network."],
+        ["IP Address", "A numerical address used to identify a device on an IP network."],
+        ["DNS", "A system that translates domain names into IP addresses."],
+        ["Firewall", "A security system that filters network traffic."],
+        ["Bandwidth", "The maximum data transfer capacity of a network connection."],
+        ["Wi-Fi", "A wireless networking technology based on IEEE 802.11 standards."],
+        ["Protocol", "A set of rules that governs communication between devices."]
+    ],
+    [
+        ["Phishing", "A deceptive attempt to obtain sensitive information by pretending to be trustworthy."],
+        ["Ransomware", "Malware that blocks access to data or systems until a demand is met."],
+        ["Encryption", "The process of converting information into a protected form."],
+        ["Decryption", "The process of converting encrypted information back into readable form."],
+        ["Authentication", "The process of verifying a user's identity."],
+        ["Authorization", "The process of determining what an authenticated user can access."],
+        ["Privacy", "The protection and appropriate handling of personal information."],
+        ["Digital Footprint", "The trail of information a person leaves through online activity."],
+        ["Copyright", "Legal protection for original creative works."],
+        ["Cyber Ethics", "Principles for responsible and appropriate use of technology."]
+    ],
+    [
+        ["Machine Learning", "A field of AI in which systems learn patterns from data."],
+        ["Deep Learning", "A machine-learning approach that uses multiple neural network layers."],
+        ["Internet of Things", "A network of physical objects connected to the internet."],
+        ["Cloud Computing", "The delivery of computing services over the internet."],
+        ["Virtual Reality", "A computer-generated environment that users can experience interactively."],
+        ["Augmented Reality", "Technology that overlays digital content onto the real world."],
+        ["Blockchain", "A distributed digital ledger that stores records in linked blocks."],
+        ["Natural Language Processing", "A field of AI focused on understanding and generating human language."],
+        ["Computer Vision", "A field of AI that enables computers to interpret images and videos."],
+        ["Automation", "The use of technology to perform tasks with reduced human intervention."]
+    ]
+],
+
+third: [
+    [
+        ["Internet Protocol", "A protocol responsible for addressing and routing data across networks."],
+        ["World Wide Web", "A system of linked resources accessed through the internet."],
+        ["Web Server", "Software or hardware that stores and delivers web content."],
+        ["Hyperlink", "A clickable reference that connects one resource to another."],
+        ["Web Browser", "Software used to access and display web pages."],
+        ["HTTP", "A protocol used to transfer resources on the web."],
+        ["HTTPS", "HTTP communication protected using TLS encryption."],
+        ["Client-Server Model", "A model in which clients request services from servers."],
+        ["Bandwidth", "The capacity of a network connection to transfer data."],
+        ["Packet Switching", "A method of sending data in separate packets across a network."]
+    ],
+    [
+        ["HTTP Request", "A message sent by a client asking a server for a resource or action."],
+        ["HTTP Response", "A message returned by a server after processing a request."],
+        ["Status Code", "A numerical code indicating the result of an HTTP request."],
+        ["GET Method", "An HTTP method used to retrieve a resource."],
+        ["POST Method", "An HTTP method commonly used to submit data to a server."],
+        ["Cookie", "Small data stored by a browser for a website."],
+        ["Session", "A period of interaction between a user and an application."],
+        ["TLS", "A security protocol used to encrypt network communication."],
+        ["Proxy Server", "A server that forwards requests between clients and other servers."],
+        ["Load Balancer", "A system that distributes requests across multiple servers."]
+    ],
+    [
+        ["DOCTYPE", "A declaration that identifies the HTML document type."],
+        ["HTML Element", "A component of an HTML document, usually defined by tags."],
+        ["Opening Tag", "The tag that begins an HTML element."],
+        ["Closing Tag", "The tag that ends an HTML element when one is required."],
+        ["Anchor Element", "An HTML element used to create hyperlinks."],
+        ["Image Element", "An HTML element used to display an image."],
+        ["Form Element", "An HTML element used to collect user input."],
+        ["Navigation Element", "A semantic HTML element for navigation links."],
+        ["Alt Text", "A text alternative that describes an image."],
+        ["Metadata", "Information about a document that is not usually displayed as page content."]
+    ],
+    [
+        ["CSS Selector", "A pattern used to target HTML elements for styling."],
+        ["Declaration", "A CSS property and its assigned value."],
+        ["Property", "A CSS setting that controls an aspect of an element's appearance."],
+        ["Value", "The setting assigned to a CSS property."],
+        ["Box Model", "The CSS model describing content, padding, borders, and margins."],
+        ["Flex Container", "An element whose children are arranged using Flexbox."],
+        ["Grid Container", "An element whose children are arranged using CSS Grid."],
+        ["Media Query", "A CSS rule that applies styles under specified conditions."],
+        ["Margin", "The space outside an element's border."],
+        ["Padding", "The space between an element's content and border."]
+    ],
+    [
+        ["Breakpoint", "A viewport width at which a responsive layout changes."],
+        ["Fluid Layout", "A layout that adjusts proportionally to available space."],
+        ["Media Query", "A CSS technique for applying styles based on device or viewport conditions."],
+        ["Mobile-First Design", "A design approach that starts with smaller screens."],
+        ["Desktop-First Design", "A design approach that starts with larger screens."],
+        ["Flexible Grid", "A layout grid that adjusts to available screen space."],
+        ["Responsive Image", "An image that adapts to the size of its display area."],
+        ["CSS Clamp", "A CSS function that sets a value between a minimum and maximum."],
+        ["Orientation", "The direction of a device display, such as portrait or landscape."],
+        ["Viewport Width", "The width of the visible browser area."]
+    ],
+    [
+        ["Variable", "A named container for storing a value in JavaScript."],
+        ["Constant", "A variable declaration that cannot be reassigned."],
+        ["Array", "An ordered collection of values."],
+        ["Object", "A collection of properties and values."],
+        ["Function", "A reusable block of JavaScript code."],
+        ["DOM", "The Document Object Model, representing a web page as objects."],
+        ["DOM Element", "An object representing an element in an HTML document."],
+        ["Event Listener", "A function that waits for and responds to an event."],
+        ["Conditional", "A statement that executes code based on a condition."],
+        ["Loop", "A structure that repeats a block of code."]
+    ],
+    [
+        ["Form", "An HTML structure used to collect and submit user information."],
+        ["Form Control", "An interactive element used to collect input."],
+        ["Required Attribute", "An HTML attribute that makes a form field mandatory."],
+        ["Placeholder", "Short guidance displayed inside an empty input field."],
+        ["Pattern Attribute", "An HTML attribute that specifies a validation pattern."],
+        ["Client-Side Validation", "Validation performed in the user's browser."],
+        ["Server-Side Validation", "Validation performed by the server after receiving submitted data."],
+        ["Input Type", "An attribute that defines the expected kind of form input."],
+        ["Submit Button", "A button that submits form data."],
+        ["Fieldset", "An HTML element that groups related form controls."]
+    ],
+    [
+        ["Wireframe", "A basic visual outline of a page's structure."],
+        ["Prototype", "An early model used to test an interface or concept."],
+        ["Consistency", "Using similar patterns and behaviors throughout an interface."],
+        ["Navigation Design", "The organization of links that helps users move through a website."],
+        ["Visual Hierarchy", "The arrangement of elements to show their relative importance."],
+        ["Keyboard Navigation", "Using a keyboard to move through and interact with a website."],
+        ["ARIA", "Accessible Rich Internet Applications attributes that add accessibility information."],
+        ["Alternative Text", "Text that describes the purpose or content of an image."],
+        ["Landmark", "A semantic region that helps assistive technology navigate a page."],
+        ["Inclusive Design", "Designing products that can be used by people with diverse needs."]
+    ],
+    [
+        ["Password Hashing", "The process of converting a password into a fixed-length hash value."],
+        ["Multi-Factor Authentication", "Authentication that requires more than one verification factor."],
+        ["Session Hijacking", "An attack in which someone takes control of a user's active session."],
+        ["Cross-Site Scripting", "An attack that injects malicious scripts into web content."],
+        ["SQL Injection", "An attack that manipulates database queries through unsafe input."],
+        ["Cross-Site Request Forgery", "An attack that tricks a user's browser into making an unwanted request."],
+        ["Secure Cookie", "A cookie configured to be sent only over secure connections."],
+        ["SameSite Cookie", "A cookie setting that helps control cross-site sending."],
+        ["Access Control", "Rules that determine who can access resources."],
+        ["Security Audit", "A review of a system's security controls and weaknesses."]
+    ],
+    [
+        ["Web Testing", "The process of checking a website's functionality, performance, and quality."],
+        ["Performance Testing", "Testing how a website performs under different workloads."],
+        ["Cross-Browser Testing", "Checking whether a website works across different browsers."],
+        ["Accessibility Testing", "Checking whether a website can be used by people with disabilities."],
+        ["Deployment", "The process of making a website or application available for use."],
+        ["Hosting Provider", "A service that provides resources for publishing a website."],
+        ["Version Control", "A system that tracks changes to files and source code."],
+        ["Git", "A distributed version control system."],
+        ["Backup", "A copy of data kept for recovery."],
+        ["Maintenance", "Ongoing work to update, monitor, and improve a website."]
+    ]
+]
+
+};
+
+/* =========================================
+   SUBJECT-SPECIFIC REFERENCES
+   Each subject has its own references.
+========================================= */
+
+const referenceSources = {
+
+first: [
+    [
+        ["The History of Computers", "Explore the history of computing and important developments in computer technology.", "https://static.vikaspedia.in/media/files_en/education/Digital%20Litercy/TheHistoryofComputers1.pdf"],
+        ["Britannica - Charles Babbage", "Read about the mathematician and inventor associated with early computing machines.", "https://www.britannica.com/biography/Charles-Babbage"],
+        ["Britannica - Computer", "Learn about the history and development of computers.", "https://www.britannica.com/technology/computer"]
+    ],
+    [
+        ["Generations of Computer", "Explore important milestones in computer development.", "https://studynotes.adcmastuana.org/computer/generations.pdf"],
+        ["IBM - What Is a Computer?", "Review computer development, capabilities, and classifications.", "https://www.ibm.com/think/topics/computer"],
+        ["Britannica - Computer", "Read about the development and generations of computers.", "https://www.britannica.com/technology/computer"]
+    ],
+    [
+        ["COMPUTER HARDWARE AND SOFTWARE", "Learn about physical computer components and hardware.", "https://en.univ-batna2.dz/sites/default/files/ang/files/computing_lc_m01.pdf"],
+        ["IBM - Computer Software", "Understand software and its role in computer systems.", "https://www.ibm.com/think/topics/software"],
+        ["Cisco", "Explore networking hardware and other computing technologies.", "https://www.cisco.com/"]
+    ],
+    [
+        ["IBM - Data Storage", "Learn about storage technologies and how digital data is stored.", "https://www.ibm.com/think/topics/data-storage"],
+        ["IBM - Hardware", "Review the physical components used in computer systems.", "https://www.ibm.com/think/topics/hardware"],
+        [" Input/output and data storage devices", "Learn about various input/output and data storage devices.", "https://shivaji.du.ac.in/sPanel/uploads/econtent/3fbe7a7a713a23c5d329b27fb56c97c9.pdf"]
+    ],
+    [
+        ["Khan Academy - Computing", "Study computing concepts and digital information.", "https://www.khanacademy.org/computing"],
+        ["Number Systems and Data Representation", "Learn about different number systems and how data is represented in computers.", "https://gcg42.ac.in/gcgpdf/e-learning-portal/number-systems-data-rep.pdf"],
+        ["CS Field Guide", "Explore computer science concepts and digital representation.", "https://www.csfieldguide.org.nz/"]
+    ],
+    [
+        ["Fundamental Operating Systems", "Learn about the basics of operating systems.", "https://ptgmedia.pearsoncmg.com/images/9781587132636/samplechapter/9781587132636_ch05.pdf"],
+        ["Microsoft Learn - Windows", "Explore operating system features and Windows documentation.", "https://learn.microsoft.com/en-us/windows/"],
+        ["Red Hat - Linux", "Learn about Linux operating systems and their functions.", "https://www.redhat.com/en/topics/linux"],
+        ["IBM - Operating Systems", "Understand the role and functions of operating systems.", "https://www.ibm.com/think/topics/operating-systems"]
+    ],
+    [
+        ["Program and processes", "Learn about programs and processes in operating systems.", "https://people.umass.edu/tongping/teaching/cs3733/lecture-02-ProgramsAndProcesses.pdf"],
+        ["Python Documentation", "Explore programming concepts and language documentation.", "https://docs.python.org/3/"],
+        ["CS Field Guide", "Learn about algorithms and computer science fundamentals.", "https://www.csfieldguide.org.nz/"]
+    ],
+    [
+        
+        ["Computer Networks and Internet working", "Learn about computer networks and how the internet functions.", "https://static.vikaspedia.in/media/files_en/education/Digital%20Litercy/ComputerNetwrrking4.pdf"],
+        ["Cloudflare - Computer Networks", "Understand how computer networks connect devices.", "https://www.cloudflare.com/learning/network-layer/what-is-a-computer-network/"],
+        ["Cloudflare - DNS", "Learn how domain names are translated into IP addresses.", "https://www.cloudflare.com/learning/dns/what-is-dns/"]
+    ],
+    [
+        ["Cybersecurity Ethics", "Explore the ethical considerations in cybersecurity.", "https://www.scu.edu/media/ethics-center/technology-ethics/IntroToCybersecurityEthics.pdf"],
+        ["CISA - Cybersecurity", "Explore cybersecurity guidance and ways to protect digital systems.", "https://www.cisa.gov/"],
+        ["OWASP", "Learn about common security risks and secure computing practices.", "https://owasp.org/"],
+        ["National Privacy Commission", "Review data privacy information and guidance in the Philippines.", "https://privacy.gov.ph/"]
+    ],
+    [
+        ["IBM - Artificial Intelligence", "Explore AI concepts and practical applications.", "https://www.ibm.com/think/topics/artificial-intelligence"],
+        ["Emerging technologies", "Discover the latest trends and developments in technology.", "https://www.jsscacs.edu.in/sites/default/files/Department%20Files/digital%20fluency.pdf"],
+        ["MIT Technology Review", "Read about emerging technologies and computing innovations.", "https://www.technologyreview.com/"]
+    ]
+],
+
+third: [
+    [
+        ["Internet and world wide web fundamentals ", "Learn the basics of the internet and the world wide web.", "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"],
+        ["W3C - Web Standards", "Explore standards that support the development of the web.", "https://www.w3.org/standards/"],
+        ["Cloudflare - What Is the Internet?", "Learn about the internet and its network infrastructure.", "https://www.cloudflare.com/learning/network-layer/what-is-the-internet/"]
+    ],
+    [
+        ["MDN - HTTP Overview", "Learn how HTTP requests and responses work.", "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"],
+        ["MDN - Web Servers", "Understand the role of web servers in delivering websites.", "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server"],
+        ["Web introduction, HTTP ", "Introduction to the Hypertext Transfer Protocol.", "https://ocw.mit.edu/courses/1-264j-database-internet-and-systems-integration-technologies-fall-2013/resources/mit1_264jf13_lect_16/?utm_source=chatgpt.com"]
+    ],
+    [
+        ["Intro to HTML", "Study HTML elements, attributes, and page structure.", "https://web.stanford.edu/class/cs106e/lectureNotes/L10NIntroHTML.pdf?utm_source=chatgpt.com"],
+        ["W3Schools - HTML", "Review HTML examples and basic page structures.", "https://www.w3schools.com/html/"],
+        ["WHATWG - HTML Standard", "Explore the official HTML Living Standard.", "https://html.spec.whatwg.org/"]
+    ],
+    [
+         ["Cascading Style Sheets ", "Learn about CSS and how to style web pages.", "https://web.stanford.edu/class/cs142/lectures/CSS.pdf?utm_source=chatgpt.com"],
+        ["MDN - CSS", "Explore CSS properties, selectors, and styling techniques.", "https://developer.mozilla.org/en-US/docs/Web/CSS"],
+        ["MDN - Flexbox", "Learn how to arrange page elements using CSS Flexbox.", "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"],
+        ["MDN - CSS Grid", "Study two-dimensional layouts using CSS Grid.", "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"]
+    ],
+    [
+         ["RESPONSIVE WEB DESIGN FUNDAMENTALS", "Learn the principles of creating responsive web layouts.", "https://gymnasium.github.io/GYM-109/Lesson_Files/RDF_Lesson_2_Handout.pdf?utm_source=chatgpt.com"],
+        ["MDN - Responsive Design", "Learn how to create layouts that adapt to different screen sizes.", "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"],
+        ["web.dev - Learn Design", "Explore modern web design and responsive layout techniques.", "https://web.dev/learn/design"],
+        ["W3C - Mobile Web", "Review resources about developing for mobile web experiences.", "https://www.w3.org/Mobile/"]
+    ],
+    [
+        ["MDN - JavaScript Guide", "Study JavaScript syntax, functions, objects, and programming concepts.", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"],
+        ["JavaScript and the Living DOM", "Learn how JavaScript interacts with HTML documents through the DOM.", "https://books.simplifycpp.org/book/javascript-and-the-living-dom?utm_source=chatgpt.com"],
+        ["JavaScript.info", "Explore JavaScript tutorials and practical examples.", "https://javascript.info/"]
+    ],
+    [
+         ["Forms and input validation", "Learn how to create and validate HTML forms.", "https://sophialearning.s3.amazonaws.com/packets_pdf/389034/pdf_version/53abc4314545dffed93b629595f1056d.pdf?utm_source=chatgpt.com"],
+        ["MDN - Forms", "Learn about HTML forms and their input elements.", "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms"],
+        ["MDN - Form Validation", "Study browser-based form validation techniques.", "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"],
+        ["W3Schools - HTML Forms", "Review form elements and input examples.", "https://www.w3schools.com/html/html_forms.asp"]
+    ],
+    [
+        ["W3C - Web Accessibility Initiative", "Explore guidance for making websites accessible.", "https://www.w3.org/WAI/"],
+        ["W3C - WCAG", "Review accessibility standards and guidelines.", "https://www.w3.org/WAI/standards-guidelines/wcag/"],
+        ["Nielsen Norman Group", "Learn about usability, user experience, and interface design.", "https://www.nngroup.com/articles/"]
+    ],
+    [
+        ["OWASP Top Ten", "Review common and important web application security risks.", "https://owasp.org/www-project-top-ten/"],
+        ["MDN - Web Security", "Learn about security considerations in web development.", "https://developer.mozilla.org/en-US/docs/Web/Security"],
+        ["Cloudflare - Authentication", "Understand authentication and access management.", "https://www.cloudflare.com/learning/access-management/what-is-authentication/"]
+    ],
+    [
+        ["MDN - Website Testing", "Explore methods for testing web applications.", "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing"],
+        ["Website testing, hosting, deployment, and maintenance", "Learn about testing, hosting, deploying, and maintaining websites.", "https://www.adeanet.org/clearinghouse/sites/default/files/docs/sta_04_website.pdf"],
+        ["Google Lighthouse", "Review website performance, accessibility, and quality.", "https://developer.chrome.com/docs/lighthouse/overview"]
+    ]
+]
+
+};
+
+/* =========================================
+   QUIZ STATE
+========================================= */
+
+let currentSubject = null;
+let currentSubjectIndex = -1;
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let answers = [];
+let quizSubmitted = false;
+
+/* =========================================
+   HTML ESCAPE
+========================================= */
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function(char) {
+        const map = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
+
+        return map[char];
+    });
+}
+
+/* =========================================
+   DISPLAY SUBJECT CARDS
+========================================= */
+
+function loadSubjects() {
+    const grid = document.getElementById("subjectGrid");
+    const subjects = subjectData[studentYear];
+
+    grid.innerHTML = "";
+
+    subjects.forEach((subject, index) => {
+        const card = document.createElement("article");
+
+        card.className = "subject-card";
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex", "0");
+
+        card.innerHTML = `
+            <div class="book-cover">
+                <div class="cover-top">
+                    <div class="cover-year">${yearLabel}</div>
+                </div>
+
+                <div class="cover-bottom">
+                    <div class="cover-title">${escapeHTML(subject.title)}</div>
+                    <div class="cover-line"></div>
+                </div>
+            </div>
+
+            <div class="subject-info">
+                <span class="subject-tag">${yearLabel}</span>
+
+                <h3>${escapeHTML(subject.title)}</h3>
+
+                <p>${escapeHTML(subject.description)}</p>
+
+                <div class="subject-bottom">
+                    <span class="topic-count">10 Questions </span>
+                    <span class="open-label">Start Assessment →</span>
+                </div>
+            </div>
+        `;
+
+        card.addEventListener("click", () => openAssessment(index));
+
+        card.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openAssessment(index);
+            }
+        });
+
+        grid.appendChild(card);
+    });
+}
+
+/* =========================================
+   OPEN ASSESSMENT
+========================================= */
+
+function openAssessment(index) {
+    if (!subjectData[studentYear][index]) return;
+
+    document.getElementById("subjectSection").style.display = "none";
+    document.getElementById("assessmentSection").style.display = "block";
+
+    const select = document.getElementById("subjectSelect");
+
+    select.innerHTML = "";
+
+    subjectData[studentYear].forEach((subject, subjectIndex) => {
+        const option = document.createElement("option");
+        option.value = subjectIndex;
+        option.textContent = subject.title;
+        select.appendChild(option);
+    });
+
+    select.value = index;
+
+    switchTab("quizPanel", document.querySelector(".tab-button"));
+    loadQuiz();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+/* =========================================
+   BACK TO SUBJECTS
+========================================= */
+
+function backToSubjects() {
+    document.getElementById("assessmentSection").style.display = "none";
+    document.getElementById("subjectSection").style.display = "block";
+
+    window.scrollTo({
+        top: document.getElementById("subjectSection").offsetTop - 70,
+        behavior: "smooth"
+    });
+}
+
+/* =========================================
+   CREATE QUIZ QUESTIONS
+========================================= */
+
+function createQuestions(subject) {
+    const concepts = subject.terms;
+
+    return concepts.map((concept, index) => {
+        const correctAnswer = concept[0];
+
+        const wrongAnswers = concepts
+            .filter((item, itemIndex) => itemIndex !== index)
+            .map(item => item[0])
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3);
+
+        const choices = [
+            correctAnswer,
+            ...wrongAnswers
+        ].sort(() => Math.random() - 0.5);
+
+        return {
+            question: `Which term is described as: "${concept[1]}"`,
+            choices: choices,
+            answer: correctAnswer
+        };
+    });
+}
+
+/* =========================================
+   LOAD QUIZ
+========================================= */
+
+function loadQuiz() {
+    const selectedIndex = Number(
+        document.getElementById("subjectSelect").value
+    );
+
+    if (
+        !Number.isInteger(selectedIndex) ||
+        !subjectData[studentYear][selectedIndex]
+    ) {
+        return;
+    }
+
+    currentSubjectIndex = selectedIndex;
+    currentSubject = subjectData[studentYear][currentSubjectIndex];
+
+    currentQuestions = createQuestions(currentSubject);
+
+    currentQuestionIndex = 0;
+    answers = new Array(currentQuestions.length).fill(null);
+    quizSubmitted = false;
+
+    document.getElementById("assessmentSubjectTitle").textContent =
+        currentSubject.title;
+
+    document.getElementById("assessmentYear").textContent =
+        yearLabel.toUpperCase();
+
+    document.getElementById("assessmentDescription").textContent =
+        currentSubject.description;
+
+    updateProgress();
+    renderQuiz();
+    renderGlossary();
+    renderReferences();
+}
+
+
+
+/* =========================================
+   RENDER QUIZ
+========================================= */
+
+function renderQuiz() {
+    const quizContent = document.getElementById("quizContent");
+
+    if (quizSubmitted) {
+        showResult();
+        return;
+    }
+
+    const question = currentQuestions[currentQuestionIndex];
+    const selectedAnswer = answers[currentQuestionIndex];
+
+    let choicesHTML = "";
+
+    question.choices.forEach((choice, index) => {
+        const isSelected = selectedAnswer === choice;
+
+        choicesHTML += `
+            <button type="button"
+                    class="answer-option ${isSelected ? "selected" : ""}"
+                    data-choice-index="${index}"
+                    aria-pressed="${isSelected}">
+
+                <span class="answer-letter">
+                    ${String.fromCharCode(65 + index)}
+                </span>
+
+                <span>${escapeHTML(choice)}</span>
+            </button>
+        `;
+    });
+
+    quizContent.innerHTML = `
+        <div class="question-top">
+            <span class="question-number">
+                Question ${currentQuestionIndex + 1}
+            </span>
+
+            <span class="question-count">
+                ${currentQuestions.length} Questions
+            </span>
+        </div>
+
+        <h3 class="question-text">
+            ${escapeHTML(question.question)}
+        </h3>
+
+        <div class="answer-list">
+            ${choicesHTML}
+        </div>
+
+        <div class="quiz-controls">
+
+            <button class="secondary-button"
+                    onclick="previousQuestion()"
+                    ${currentQuestionIndex === 0 ? "disabled" : ""}>
+                ← Previous
+            </button>
+
+            ${
+                currentQuestionIndex === currentQuestions.length - 1
+                ? `<button class="primary-button" onclick="submitQuiz()">Submit Assessment</button>`
+                : `<button class="primary-button" onclick="nextQuestion()">Next Question →</button>`
+            }
+
+        </div>
+    `;
+
+    quizContent.querySelectorAll(".answer-option").forEach(button => {
+        button.addEventListener("click", () => {
+            const choiceIndex = Number(button.dataset.choiceIndex);
+            selectAnswer(question.choices[choiceIndex]);
+        });
+    });
+}
+
+/* =========================================
+   SELECT ANSWER
+========================================= */
+
+function selectAnswer(choice) {
+    if (quizSubmitted) return;
+
+    answers[currentQuestionIndex] = choice;
+
+    updateProgress();
+    renderQuiz();
+}
+
+/* =========================================
+   QUESTION NAVIGATION
+========================================= */
+
+function nextQuestion() {
+    if (currentQuestionIndex < currentQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderQuiz();
+    }
+}
+
+function previousQuestion() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuiz();
+    }
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+function updateProgress() {
+    const answered = answers.filter(answer => answer !== null).length;
+    const total = currentQuestions.length || 10;
+
+    document.getElementById("progressText").textContent =
+        `${answered} / ${total}`;
+
+    document.getElementById("progressFill").style.width =
+        `${(answered / total) * 100}%`;
+}
+
+/* =========================================
+   SUBMIT QUIZ
+========================================= */
+
+function submitQuiz() {
+    const unanswered = answers.filter(answer => answer === null).length;
+
+    if (unanswered > 0) {
+        alert(
+            `You still have ${unanswered} unanswered question(s). Please answer all questions before submitting.`
+        );
+        return;
+    }
+
+    const confirmed = confirm(
+        "Are you sure you want to submit your assessment?"
+    );
+
+    if (!confirmed) return;
+
+    quizSubmitted = true;
+    showResult();
+}
+
+/* =========================================
+   SHOW RESULT
+========================================= */
+
+function showResult() {
+    let score = 0;
+
+    currentQuestions.forEach((question, index) => {
+        if (answers[index] === question.answer) {
+            score++;
+        }
+    });
+
+    const percentage = Math.round(
+        (score / currentQuestions.length) * 100
+    );
+
+    let message = "Keep practicing. Review your lessons and try again.";
+
+    if (percentage >= 90) {
+        message = "Excellent work! You have an outstanding understanding of this subject.";
+    } else if (percentage >= 80) {
+        message = "Great job! You have a very good understanding of this subject.";
+    } else if (percentage >= 70) {
+        message = "Good effort! Continue reviewing to improve your knowledge.";
+    }
+
+    document.getElementById("quizContent").innerHTML = `
+        <div class="result-box">
+
+            <div class="result-icon">✓</div>
+
+            <h3>Assessment Completed!</h3>
+
+            <p>${escapeHTML(currentSubject.title)}</p>
+
+            <div class="score-number">
+                ${score} / ${currentQuestions.length}
+            </div>
+
+            <p>You scored ${percentage}% on this assessment.</p>
+
+            <p style="margin-top:12px;">
+                ${escapeHTML(message)}
+            </p>
+
+            <div class="result-actions">
+
+                <button class="primary-button" onclick="retryQuiz()">
+                    Try Again
+                </button>
+
+                <button class="secondary-button" onclick="backToSubjects()">
+                    Back to Subjects
+                </button>
+
+            </div>
+        </div>
+    `;
+
+    document.getElementById("progressText").textContent =
+        `${currentQuestions.length} / ${currentQuestions.length}`;
+
+    document.getElementById("progressFill").style.width = "100%";
+}
+
+/* =========================================
+   RETRY QUIZ
+========================================= */
+
+function retryQuiz() {
+    loadQuiz();
+}
+
+/* =========================================
+   RENDER GLOSSARY
+========================================= */
+
+function renderGlossary() {
+    if (!currentSubject || currentSubjectIndex < 0) return;
+
+    const glossaryList = document.getElementById("glossaryList");
+
+    const extraTerms =
+        extraGlossary[studentYear][currentSubjectIndex] || [];
+
+    const glossaryTerms = [
+        ...currentSubject.terms,
+        ...extraTerms
+    ];
+
+    let html = "";
+
+    glossaryTerms.forEach(concept => {
+        html += `
+            <article class="glossary-item">
+                <h4>${escapeHTML(concept[0])}</h4>
+                <p>${escapeHTML(concept[1])}</p>
+            </article>
+        `;
+    });
+
+    glossaryList.innerHTML = html;
+}
+
+/* =========================================
+   RENDER REFERENCES
+========================================= */
+
+function renderReferences() {
+    if (!currentSubject || currentSubjectIndex < 0) return;
+
+    const referenceList = document.getElementById("referenceList");
+
+    const sources =
+        referenceSources[studentYear][currentSubjectIndex] || [];
+
+    if (sources.length === 0) {
+        referenceList.innerHTML =
+            "<p>No references are available for this subject yet.</p>";
+        return;
+    }
+
+    let html = "";
+
+    sources.forEach(source => {
+        html += `
+            <article class="reference-item">
+
+                <h4>${escapeHTML(source[0])}</h4>
+
+                <p>${escapeHTML(source[1])}</p>
+
+                <a href="${escapeHTML(source[2])}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Visit Learning Resource →
+                </a>
+
+            </article>
+        `;
+    });
+
+    referenceList.innerHTML = html;
+}
+
+/* =========================================
+   TAB SWITCHING
+========================================= */
+
+function switchTab(panelId, button) {
+    const panels = [
+        "quizPanel",
+        "glossaryPanel",
+        "referencesPanel"
+    ];
+
+    panels.forEach(id => {
+        document.getElementById(id).classList.add("hidden");
+    });
+
+    document.getElementById(panelId).classList.remove("hidden");
+
+    document.querySelectorAll(".tab-button").forEach(tab => {
+        tab.classList.remove("active");
+    });
+
+    if (button) {
+        button.classList.add("active");
+    }
+}
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+loadSubjects();
+/* LOGOUT */
+
+        const logoutBtn = $("#logoutBtn");
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (error) {}
+
+               window.location.href = "index.html";
+            });
+        }
+
+        
+/* MOBILE NAVIGATION */
+
+const navToggle = document.getElementById("navToggle");
+const mainNav = document.getElementById("mainNav");
+
+if (navToggle && mainNav) {
+
+    navToggle.addEventListener("click", function() {
+
+        const isOpen = mainNav.classList.toggle("open");
+
+        navToggle.textContent = isOpen ? "✕" : "☰";
+
+        navToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation" : "Open navigation"
+        );
+
+        navToggle.setAttribute("aria-expanded", isOpen);
+
+    });
+
+    document.querySelectorAll(".main-nav a").forEach(link => {
+
+        link.addEventListener("click", function() {
+
+            mainNav.classList.remove("open");
+            navToggle.textContent = "☰";
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.setAttribute("aria-label", "Open navigation");
+
+        });
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
