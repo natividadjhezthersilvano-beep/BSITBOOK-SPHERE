@@ -45,15 +45,58 @@
                 ☰
             </button>
 
-            <nav class="main-nav" id="mainNav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="chapters.html">Chapters</a>
-                
-                <a href="activities.html">Activities</a>
-            
-                <a href="about.html#developers">Developers</a>
-            </nav>
+           <nav class="main-nav" id="mainNav">
+
+            <a href="index.html">Home</a>
+
+            <a href="about.html" class="active" data-protected="true">
+                About
+            </a>
+
+            <a href="chapters.html" data-protected="true">
+                Chapters
+            </a>
+
+            <a href="activities.html" data-protected="true">
+                Activities
+            </a>
+
+            <a href="about.html#developers" data-protected="true">
+                Developers
+            </a>
+
+
+            <!-- ACCOUNT BUTTONS -->
+
+            <div class="nav-account" id="navAccount">
+
+                <button
+                    type="button"
+                    class="nav-login"
+                    id="navLoginBtn"
+                >
+                    Log In
+                </button>
+
+                <a
+                    href="signup.html"
+                    class="nav-signup"
+                    id="navSignupBtn"
+                >
+                    Sign Up
+                </a>
+
+                <button
+                    type="button"
+                    class="nav-logout hidden"
+                    id="navLogoutBtn"
+                >
+                    Log Out
+                </button>
+
+            </div>
+
+        </nav>
 
         </header>
 
@@ -717,6 +760,107 @@
             }
 
         });
+
+         function isLoggedIn() {
+
+            try {
+                return sessionStorage.getItem("bsitOk") === "1";
+            } catch (error) {
+                return false;
+            }
+
+        }
+
+
+        /* =====================================
+           UPDATE ACCOUNT NAVIGATION
+        ===================================== */
+
+        function updateAccountNavigation() {
+
+            const loggedIn = isLoggedIn();
+
+            const loginBtn = $("#navLoginBtn");
+            const signupBtn = $("#navSignupBtn");
+            const logoutBtn = $("#navLogoutBtn");
+
+            if (loginBtn) {
+                loginBtn.classList.toggle("hidden", loggedIn);
+            }
+
+            if (signupBtn) {
+                signupBtn.classList.toggle("hidden", loggedIn);
+            }
+
+            if (logoutBtn) {
+                logoutBtn.classList.toggle("hidden", !loggedIn);
+            }
+
+        }
+
+        updateAccountNavigation();
+
+
+        /* =====================================
+           PROTECT ABOUT PAGE
+        ===================================== */
+
+        if (!isLoggedIn()) {
+
+            window.location.replace("index.html?access=required");
+
+        }
+
+
+        /* =====================================
+           LOGIN BUTTON
+        ===================================== */
+
+        const navLoginBtn = $("#navLoginBtn");
+
+        if (navLoginBtn) {
+
+            navLoginBtn.addEventListener("click", function () {
+
+                window.location.href = "index.html";
+
+            });
+
+        }
+
+
+        /* =====================================
+           LOGOUT FUNCTION
+        ===================================== */
+
+        function logoutUser() {
+
+            try {
+
+                sessionStorage.removeItem("bsitOk");
+                sessionStorage.removeItem("bsitYear");
+                sessionStorage.removeItem("bsitStudent");
+
+            } catch (error) {
+
+                console.error("Unable to clear login session:", error);
+
+            }
+
+            window.location.href = "index.html";
+
+        }
+
+
+        /* NAVIGATION LOGOUT */
+
+        const navLogoutBtn = $("#navLogoutBtn");
+
+        if (navLogoutBtn) {
+
+            navLogoutBtn.addEventListener("click", logoutUser);
+
+        }
 
     </script>
 
