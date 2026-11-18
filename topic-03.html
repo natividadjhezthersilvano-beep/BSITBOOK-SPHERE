@@ -1,0 +1,4572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        Computer Hardware and Software
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          
+            <!-- LESSON LAYOUT -->
+            <div class="lesson-layout">
+
+    <!-- TABLE OF CONTENTS -->
+    
+<aside class="lesson-sidebar">
+
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#objectives">Learning Objectives</a>
+        <a href="#computer-system">Understanding a Computer System</a>
+        <a href="#hardware">Computer Hardware</a>
+        <a href="#input-devices">Input Devices</a>
+        <a href="#output-devices">Output Devices</a>
+        <a href="#processing-devices">Processing Devices</a>
+        <a href="#storage-devices">Storage Devices</a>
+        <a href="#software">Computer Software</a>
+        <a href="#system-software">System Software</a>
+        <a href="#application-software">Application Software</a>
+        <a href="#programming-software">Programming Software</a>
+        <a href="#hardware-software">Hardware and Software Relationship</a>
+        <a href="#booting">Booting Process</a>
+        <a href="#drivers">Device Drivers and Utilities</a>
+        <a href="#maintenance">Maintenance and Troubleshooting</a>
+        <a href="#security">Hardware and Software Security</a>
+        <a href="#applications">Practical Applications</a>
+        <a href="#key-takeaways">Key Takeaways</a>
+        
+    </nav>
+
+
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                
+ 
+
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+
+        <h2>Overview</h2>
+
+        <p>
+            A computer system is made up of different components
+            that work together to receive, process, store, and
+            produce information. Two of its most important
+            components are hardware and software. These components
+            work together to allow computers to perform different
+            tasks, from simple calculations to complex operations
+            such as video editing, database management, programming,
+            and communication.
+        </p>
+
+        <p>
+            Computer hardware refers to the physical parts of a
+            computer that can be seen and touched. Examples include
+            the keyboard, mouse, monitor, motherboard, processor,
+            memory, and storage devices. Each hardware component
+            has a specific function that contributes to the overall
+            operation of the computer.
+        </p>
+
+        <p>
+            Computer software refers to the programs, instructions,
+            and data that tell the hardware what tasks to perform.
+            It includes operating systems, application programs,
+            and development tools. Without software, hardware
+            would not know how to perform useful tasks.
+        </p>
+
+        <p>
+            Understanding the difference between hardware and
+            software is important for students studying Information
+            Technology because both are essential in computer
+            operation, system development, maintenance, and
+            troubleshooting.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 300"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Computer hardware and software represented as two connected parts of a computer system">
+
+                <rect x="20" y="20" width="810" height="250"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- Hardware -->
+                <rect x="55" y="65" width="300" height="155"
+                      rx="12" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="205" y="100"
+                      text-anchor="middle"
+                      font-size="23"
+                      font-weight="bold"
+                      fill="#4b3ca6">HARDWARE</text>
+
+                <rect x="115" y="120" width="90" height="55"
+                      rx="5" fill="#ffffff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <rect x="125" y="130" width="70" height="35"
+                      fill="#dce9ff"/>
+
+                <path d="M160 175 V187 M140 187 H180"
+                      stroke="#6555c7" stroke-width="4"/>
+
+                <rect x="225" y="130" width="75" height="45"
+                      rx="5" fill="#c5b9f5"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="205" y="205"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#4b3ca6">Physical Components</text>
+
+                <!-- Connection -->
+                <path d="M375 145 H475 M465 135 L475 145 L465 155"
+                      stroke="#6555c7" stroke-width="4"
+                      fill="none"/>
+
+                <!-- Software -->
+                <rect x="495" y="65" width="300" height="155"
+                      rx="12" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="645" y="100"
+                      text-anchor="middle"
+                      font-size="23"
+                      font-weight="bold"
+                      fill="#174ea6">SOFTWARE</text>
+
+                <rect x="565" y="120" width="160" height="55"
+                      rx="6" fill="#ffffff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <g fill="#347fe0">
+                    <rect x="580" y="132" width="20" height="7" rx="2"/>
+                    <rect x="580" y="146" width="20" height="7" rx="2"/>
+                    <rect x="580" y="160" width="20" height="7" rx="2"/>
+                </g>
+
+                <g fill="#dce9ff" stroke="#347fe0">
+                    <rect x="610" y="132" width="100" height="7" rx="2"/>
+                    <rect x="610" y="146" width="100" height="7" rx="2"/>
+                    <rect x="610" y="160" width="100" height="7" rx="2"/>
+                </g>
+
+                <text x="645" y="205"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#174ea6">Programs and Instructions</text>
+
+                <text x="425" y="250"
+                      text-anchor="middle"
+                      font-size="15"
+                      fill="#202641">
+                    Both components work together to make a computer system function.
+                </text>
+
+            </svg>
+
+            <figcaption>
+                Hardware provides the physical equipment, while
+                software provides the instructions that control it.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- LEARNING OBJECTIVES -->
+    <section class="lesson-block" id="objectives">
+
+        <h2>Learning Objectives</h2>
+
+        <p>After completing this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Define computer hardware and software.</li>
+            <li>Differentiate physical components from computer programs.</li>
+            <li>Identify the major categories of computer hardware.</li>
+            <li>Explain the functions of input, output, processing, and storage devices.</li>
+            <li>Identify the different types of computer software.</li>
+            <li>Explain how hardware and software work together.</li>
+            <li>Describe the importance of device drivers and utility programs.</li>
+            <li>Recognize common hardware and software problems.</li>
+            <li>Apply basic maintenance and security practices.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- COMPUTER SYSTEM -->
+    <section class="lesson-block" id="computer-system">
+
+        <h2>Understanding a Computer System</h2>
+
+        <p>
+            A computer system is an electronic system that accepts
+            data, processes it according to instructions, stores
+            information, and produces meaningful results.
+            It consists of hardware, software, data, users,
+            and procedures.
+        </p>
+
+        <p>
+            These elements must work together to make a computer
+            system useful. Hardware provides the physical
+            equipment, software controls the operations, data
+            provides the information being processed, and users
+            interact with the system to accomplish specific tasks.
+        </p>
+
+        <h3>Basic Functions of a Computer</h3>
+
+        <p>
+            Most computer operations follow four basic functions:
+            input, processing, output, and storage.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Input:</strong> The computer receives
+                data through devices such as keyboards,
+                mice, scanners, and microphones.
+            </li>
+
+            <li>
+                <strong>Processing:</strong> The CPU performs
+                instructions and calculations to transform
+                the input data into useful information.
+            </li>
+
+            <li>
+                <strong>Output:</strong> The computer presents
+                the processed information through devices
+                such as monitors, printers, and speakers.
+            </li>
+
+            <li>
+                <strong>Storage:</strong> The computer saves
+                data and information for future use.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 280"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Input, processing, output, and storage cycle of a computer system">
+
+                <rect x="20" y="20" width="810" height="230"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <rect x="45" y="85" width="155" height="90"
+                      rx="9" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="122" y="120"
+                      text-anchor="middle"
+                      font-size="19"
+                      font-weight="bold"
+                      fill="#4b3ca6">INPUT</text>
+
+                <text x="122" y="145"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#202641">Data received</text>
+
+                <rect x="245" y="85" width="155" height="90"
+                      rx="9" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="322" y="120"
+                      text-anchor="middle"
+                      font-size="19"
+                      font-weight="bold"
+                      fill="#174ea6">PROCESS</text>
+
+                <text x="322" y="145"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#202641">CPU operations</text>
+
+                <rect x="445" y="85" width="155" height="90"
+                      rx="9" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <text x="522" y="120"
+                      text-anchor="middle"
+                      font-size="19"
+                      font-weight="bold"
+                      fill="#26734d">OUTPUT</text>
+
+                <text x="522" y="145"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#202641">Results produced</text>
+
+                <rect x="645" y="85" width="155" height="90"
+                      rx="9" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <text x="722" y="120"
+                      text-anchor="middle"
+                      font-size="19"
+                      font-weight="bold"
+                      fill="#9a6415">STORAGE</text>
+
+                <text x="722" y="145"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#202641">Information saved</text>
+
+                <g stroke="#6555c7" stroke-width="3"
+                   fill="none">
+                    <path d="M200 130 H240 M230 120 L240 130 L230 140"/>
+                    <path d="M400 130 H440 M430 120 L440 130 L430 140"/>
+                    <path d="M600 130 H640 M630 120 L640 130 L630 140"/>
+                </g>
+
+                <text x="425" y="220"
+                      text-anchor="middle"
+                      font-size="15"
+                      fill="#202641">
+                    The four basic functions of a computer system
+                </text>
+
+            </svg>
+
+            <figcaption>
+                A computer receives data, processes it, produces
+                results, and stores information.
+            </figcaption>
+        </figure>
+
+        <h3>Example of a Computer System in Action</h3>
+
+        <p>
+            When a student prepares a school report, the keyboard
+            is used to enter text. The processor handles the
+            instructions from the word-processing application.
+            The monitor displays the document, and the storage
+            device saves the file for future editing.
+        </p>
+
+        <p>
+            This simple activity demonstrates how several
+            hardware components and software programs cooperate
+            to complete one task.
+        </p>
+
+    </section>
+
+
+    <!-- COMPUTER HARDWARE -->
+    <section class="lesson-block" id="hardware">
+
+        <h2>Computer Hardware</h2>
+
+        <p>
+            Computer hardware refers to the physical and
+            tangible components of a computer system.
+            These components can be seen, touched, installed,
+            removed, or replaced.
+        </p>
+
+        <p>
+            Hardware is responsible for receiving input,
+            processing information, displaying results,
+            and storing data. Each component has a particular
+            purpose, and the computer depends on their
+            proper operation.
+        </p>
+
+        <h3>Internal Hardware</h3>
+
+        <p>
+            Internal hardware refers to the components
+            installed inside a computer case or device.
+            These components are responsible for processing
+            data, storing information, supplying power,
+            and connecting different parts of the system.
+        </p>
+
+        <h3>Motherboard</h3>
+
+        <p>
+            The motherboard is the main circuit board of
+            a computer. It provides connections that allow
+            the processor, memory, storage devices, and
+            other components to communicate.
+        </p>
+
+        <p>
+            It contains sockets, slots, connectors, and
+            circuits that help coordinate communication
+            between the computer's hardware components.
+        </p>
+
+        <h3>Central Processing Unit (CPU)</h3>
+
+        <p>
+            The Central Processing Unit, or CPU, is the
+            primary processor of a computer. It executes
+            program instructions, performs calculations,
+            and controls many operations within the system.
+        </p>
+
+        <p>
+            The CPU is commonly described as the brain
+            of the computer because it performs essential
+            processing tasks.
+        </p>
+
+        <p><strong>Important CPU components include:</strong></p>
+
+        <ul>
+            <li>
+                <strong>Arithmetic Logic Unit (ALU):</strong>
+                Performs arithmetic calculations and logical
+                comparisons.
+            </li>
+
+            <li>
+                <strong>Control Unit (CU):</strong>
+                Directs and coordinates the execution
+                of instructions.
+            </li>
+
+            <li>
+                <strong>Registers:</strong>
+                Small, high-speed storage locations inside
+                the CPU that temporarily hold data and
+                instructions.
+            </li>
+
+            <li>
+                <strong>Cache:</strong>
+                High-speed memory that stores frequently
+                accessed information to help the processor
+                retrieve it more quickly.
+            </li>
+        </ul>
+
+        <h3>Random Access Memory (RAM)</h3>
+
+        <p>
+            Random Access Memory is the computer's main
+            working memory. It temporarily holds data
+            and instructions that are currently being
+            used by the processor.
+        </p>
+
+        <p>
+            RAM allows programs and files to be accessed
+            quickly while the computer is running. It is
+            volatile memory, which means its contents
+            are normally lost when the computer is turned off.
+        </p>
+
+        <p>
+            A computer with more RAM can generally handle
+            more active applications and larger workloads
+            without relying as heavily on slower storage.
+            However, actual performance also depends on
+            the processor, software, and other system components.
+        </p>
+
+        <h3>Read-Only Memory (ROM)</h3>
+
+        <p>
+            Read-Only Memory is non-volatile memory that
+            retains information even when the computer
+            is turned off. It is commonly associated with
+            firmware that helps initialize hardware
+            and start the computer.
+        </p>
+
+        <h3>Power Supply Unit (PSU)</h3>
+
+        <p>
+            The Power Supply Unit converts electrical
+            power from an outlet into the appropriate
+            power levels required by internal computer
+            components.
+        </p>
+
+        <p>
+            A properly functioning power supply helps
+            provide stable electricity to the motherboard,
+            processor, storage devices, and other hardware.
+        </p>
+
+        <h3>Graphics Processing Unit (GPU)</h3>
+
+        <p>
+            The Graphics Processing Unit is designed
+            to process graphics and perform many
+            calculations in parallel. It helps generate
+            images, animations, videos, and visual effects.
+        </p>
+
+        <p>
+            GPUs are important for gaming, video editing,
+            3D rendering, scientific computing, and
+            certain artificial intelligence workloads.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 330"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Simplified motherboard diagram showing the CPU, RAM, GPU, storage connectors, and power connection">
+
+                <rect x="90" y="25" width="670" height="280"
+                      rx="14" fill="#dce9df"
+                      stroke="#26734d" stroke-width="4"/>
+
+                <rect x="340" y="105" width="170" height="120"
+                      rx="8" fill="#a7b4c7"
+                      stroke="#202641" stroke-width="3"/>
+
+                <rect x="375" y="130" width="100" height="70"
+                      rx="5" fill="#202641"/>
+
+                <text x="425" y="170"
+                      text-anchor="middle"
+                      font-size="20"
+                      font-weight="bold"
+                      fill="#ffffff">CPU</text>
+
+                <rect x="130" y="70" width="125" height="65"
+                      rx="5" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="3"/>
+
+                <text x="192" y="110"
+                      text-anchor="middle"
+                      font-size="18"
+                      font-weight="bold"
+                      fill="#174ea6">RAM</text>
+
+                <rect x="585" y="70" width="130" height="65"
+                      rx="5" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="3"/>
+
+                <text x="650" y="110"
+                      text-anchor="middle"
+                      font-size="17"
+                      font-weight="bold"
+                      fill="#9a6415">GPU</text>
+
+                <rect x="135" y="205" width="135" height="65"
+                      rx="5" fill="#eee9ff"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <text x="202" y="245"
+                      text-anchor="middle"
+                      font-size="15"
+                      font-weight="bold"
+                      fill="#4b3ca6">STORAGE</text>
+
+                <rect x="580" y="205" width="135" height="65"
+                      rx="5" fill="#fce8ef"
+                      stroke="#c75a85" stroke-width="3"/>
+
+                <text x="647" y="245"
+                      text-anchor="middle"
+                      font-size="15"
+                      font-weight="bold"
+                      fill="#a83d67">POWER</text>
+
+                <g stroke="#26734d" stroke-width="5">
+                    <line x1="255" y1="105" x2="340" y2="140"/>
+                    <line x1="510" y1="140" x2="585" y2="105"/>
+                    <line x1="270" y1="235" x2="340" y2="195"/>
+                    <line x1="510" y1="195" x2="580" y2="235"/>
+                </g>
+
+                <text x="425" y="325"
+                      text-anchor="middle"
+                      font-size="15"
+                      fill="#202641">
+                    Main internal components connected through the motherboard
+                </text>
+
+            </svg>
+
+            <figcaption>
+                The motherboard connects important internal
+                components so they can communicate and operate together.
+            </figcaption>
+        </figure>
+
+        <h3>External Hardware</h3>
+
+        <p>
+            External hardware refers to devices connected
+            to a computer from the outside. These devices
+            allow users to enter data, receive information,
+            communicate, and expand the computer's capabilities.
+        </p>
+
+        <p>
+            Examples include keyboards, mice, monitors,
+            printers, scanners, external drives, webcams,
+            and speakers.
+        </p>
+
+    </section>
+
+
+    <!-- INPUT DEVICES -->
+    <section class="lesson-block" id="input-devices">
+
+        <h2>Input Devices</h2>
+
+        <p>
+            Input devices are hardware components used
+            to enter data and instructions into a computer.
+            They allow users to communicate with the
+            computer and provide the information needed
+            for processing.
+        </p>
+
+        <h3>Keyboard</h3>
+
+        <p>
+            A keyboard is an input device containing
+            keys used to enter letters, numbers, symbols,
+            and commands. It is commonly used for typing
+            documents, writing code, entering data,
+            and controlling applications.
+        </p>
+
+        <h3>Mouse</h3>
+
+        <p>
+            A mouse is a pointing device that allows
+            users to move a pointer, select objects,
+            click buttons, drag items, and navigate
+            graphical user interfaces.
+        </p>
+
+        <h3>Scanner</h3>
+
+        <p>
+            A scanner captures printed documents,
+            photographs, and other physical materials
+            and converts them into digital images.
+            It is commonly used in offices, schools,
+            libraries, and businesses.
+        </p>
+
+        <h3>Microphone</h3>
+
+        <p>
+            A microphone captures sound and converts
+            it into an electronic signal that a computer
+            can process. It is used for voice recording,
+            video conferencing, online communication,
+            and speech recognition.
+        </p>
+
+        <h3>Webcam</h3>
+
+        <p>
+            A webcam captures images and video.
+            It is commonly used for online meetings,
+            virtual classes, video calls, and recording.
+        </p>
+
+        <h3>Touchscreen</h3>
+
+        <p>
+            A touchscreen allows users to interact
+            directly with a display by touching it
+            with a finger or stylus. It is commonly
+            found on smartphones, tablets, kiosks,
+            and some laptop computers.
+        </p>
+
+        <h3>Barcode and QR Code Reader</h3>
+
+        <p>
+            Barcode and QR code readers capture
+            coded information and convert it into
+            data that a computer system can process.
+            They are widely used in retail, inventory
+            management, ticketing, and payment systems.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 280"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Illustrations of a keyboard, mouse, microphone, and scanner as input devices">
+
+                <rect x="20" y="20" width="810" height="220"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- Keyboard -->
+                <rect x="55" y="80" width="175" height="90"
+                      rx="8" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="3"/>
+
+                <g fill="#347fe0">
+                    <rect x="70" y="95" width="20" height="13" rx="2"/>
+                    <rect x="98" y="95" width="20" height="13" rx="2"/>
+                    <rect x="126" y="95" width="20" height="13" rx="2"/>
+                    <rect x="154" y="95" width="20" height="13" rx="2"/>
+                    <rect x="182" y="95" width="30" height="13" rx="2"/>
+
+                    <rect x="70" y="117" width="20" height="13" rx="2"/>
+                    <rect x="98" y="117" width="20" height="13" rx="2"/>
+                    <rect x="126" y="117" width="20" height="13" rx="2"/>
+                    <rect x="154" y="117" width="20" height="13" rx="2"/>
+                    <rect x="182" y="117" width="30" height="13" rx="2"/>
+
+                    <rect x="70" y="139" width="140" height="13" rx="2"/>
+                </g>
+
+                <text x="142" y="200" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#174ea6">Keyboard</text>
+
+                <!-- Mouse -->
+                <rect x="300" y="75" width="70" height="100"
+                      rx="35" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <path d="M335 80 V125"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <text x="335" y="200" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#4b3ca6">Mouse</text>
+
+                <!-- Microphone -->
+                <rect x="470" y="70" width="35" height="90"
+                      rx="18" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="3"/>
+
+                <path d="M455 120 Q455 170 487 170
+                         Q520 170 520 120
+                         M487 170 V185
+                         M470 185 H504"
+                      fill="none" stroke="#39966b"
+                      stroke-width="4"/>
+
+                <text x="487" y="215" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#26734d">Microphone</text>
+
+                <!-- Scanner -->
+                <rect x="625" y="95" width="145" height="65"
+                      rx="8" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="3"/>
+
+                <rect x="645" y="110" width="105" height="25"
+                      rx="3" fill="#ffffff"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <path d="M635 160 L650 175 H750 L765 160"
+                      fill="#d99a38"/>
+
+                <text x="697" y="215" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#9a6415">Scanner</text>
+
+            </svg>
+
+            <figcaption>
+                Examples of input devices used to enter
+                data and instructions into a computer.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- OUTPUT DEVICES -->
+    <section class="lesson-block" id="output-devices">
+
+        <h2>Output Devices</h2>
+
+        <p>
+            Output devices are hardware components that
+            present processed information to users.
+            They convert computer results into forms
+            that people can see, hear, or physically receive.
+        </p>
+
+        <h3>Monitor</h3>
+
+        <p>
+            A monitor is a visual output device that
+            displays text, images, videos, and graphical
+            information. Common display technologies
+            include LCD, LED-backlit LCD, and OLED.
+        </p>
+
+        <h3>Printer</h3>
+
+        <p>
+            A printer produces physical copies of
+            digital documents, images, and other
+            information on paper or similar materials.
+        </p>
+
+        <p><strong>Common types of printers include:</strong></p>
+
+        <ul>
+            <li>
+                <strong>Inkjet Printer:</strong>
+                Uses tiny droplets of liquid ink to
+                produce text and images.
+            </li>
+
+            <li>
+                <strong>Laser Printer:</strong>
+                Uses a laser, toner, and a heated
+                fusing process to produce printed output.
+            </li>
+
+            <li>
+                <strong>Dot Matrix Printer:</strong>
+                Uses small pins that strike an inked
+                ribbon to create characters and images.
+            </li>
+        </ul>
+
+        <h3>Speakers and Headphones</h3>
+
+        <p>
+            Speakers and headphones produce audio output.
+            They allow users to listen to music, videos,
+            notifications, voice calls, and other sounds
+            generated by a computer.
+        </p>
+
+        <h3>Projector</h3>
+
+        <p>
+            A projector displays computer-generated
+            images and videos on a larger surface.
+            It is commonly used in classrooms, business
+            presentations, conferences, and training sessions.
+        </p>
+
+        <h3>Plotter</h3>
+
+        <p>
+            A plotter is an output device used to
+            produce precise large-format drawings.
+            It is commonly used in architecture,
+            engineering, mapping, and technical design.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 280"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Monitor, printer, speakers, and projector as computer output devices">
+
+                <rect x="20" y="20" width="810" height="220"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- Monitor -->
+                <rect x="60" y="65" width="145" height="95"
+                      rx="7" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="3"/>
+
+                <rect x="72" y="77" width="121" height="70"
+                      fill="#202641"/>
+
+                <path d="M132 160 V178 M105 178 H159"
+                      stroke="#347fe0" stroke-width="5"/>
+
+                <text x="132" y="210" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#174ea6">Monitor</text>
+
+                <!-- Printer -->
+                <rect x="275" y="95" width="145" height="70"
+                      rx="7" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="3"/>
+
+                <rect x="300" y="65" width="95" height="45"
+                      fill="#ffffff"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <rect x="300" y="150" width="95" height="45"
+                      fill="#ffffff"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <text x="347" y="220" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#9a6415">Printer</text>
+
+                <!-- Speakers -->
+                <rect x="500" y="75" width="55" height="100"
+                      rx="7" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <rect x="570" y="75" width="55" height="100"
+                      rx="7" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <circle cx="527" cy="115" r="14"
+                        fill="#6555c7"/>
+
+                <circle cx="597" cy="115" r="14"
+                        fill="#6555c7"/>
+
+                <circle cx="527" cy="153" r="7"
+                        fill="#6555c7"/>
+
+                <circle cx="597" cy="153" r="7"
+                        fill="#6555c7"/>
+
+                <text x="562" y="210" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#4b3ca6">Speakers</text>
+
+                <!-- Projector -->
+                <rect x="680" y="90" width="115" height="70"
+                      rx="12" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="3"/>
+
+                <circle cx="785" cy="125" r="17"
+                        fill="#26734d"/>
+
+                <path d="M690 160 L705 180 H770 L785 160"
+                      fill="#39966b"/>
+
+                <text x="737" y="210" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#26734d">Projector</text>
+
+            </svg>
+
+            <figcaption>
+                Output devices present processed information
+                in visual, printed, and audio formats.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- PROCESSING DEVICES -->
+    <section class="lesson-block" id="processing-devices">
+
+        <h2>Processing Devices</h2>
+
+        <p>
+            Processing devices are responsible for executing
+            instructions, performing calculations, and
+            controlling computer operations.
+        </p>
+
+        <h3>Central Processing Unit</h3>
+
+        <p>
+            The CPU executes program instructions and
+            performs arithmetic and logical operations.
+            It coordinates the work of different
+            components and communicates with memory
+            and other hardware.
+        </p>
+
+        <h3>Graphics Processing Unit</h3>
+
+        <p>
+            The GPU handles graphics-related calculations
+            and parallel processing tasks. It is especially
+            useful for rendering images, editing videos,
+            playing games, and processing certain AI workloads.
+        </p>
+
+        <h3>Motherboard Chipset</h3>
+
+        <p>
+            The chipset is part of the motherboard's
+            platform architecture. It helps manage
+            communication between the processor and
+            various connected devices, depending on
+            the motherboard design.
+        </p>
+
+        <h3>How the CPU Processes Instructions</h3>
+
+        <p>
+            The CPU commonly performs operations through
+            a process known as the instruction cycle.
+            This process involves fetching, decoding,
+            and executing instructions.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Fetch:</strong> The processor
+                retrieves an instruction from memory.
+            </li>
+
+            <li>
+                <strong>Decode:</strong> The control unit
+                interprets the instruction and determines
+                what action is required.
+            </li>
+
+            <li>
+                <strong>Execute:</strong> The processor
+                performs the required operation.
+            </li>
+
+            <li>
+                <strong>Store:</strong> The result may be
+                written to a register or memory.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 260"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Fetch decode execute and store instruction cycle">
+
+                <rect x="20" y="20" width="810" height="210"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <rect x="55" y="80" width="155" height="85"
+                      rx="8" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="132" y="115" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#4b3ca6">FETCH</text>
+
+                <text x="132" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">Get instruction</text>
+
+                <rect x="245" y="80" width="155" height="85"
+                      rx="8" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="322" y="115" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#174ea6">DECODE</text>
+
+                <text x="322" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">Interpret command</text>
+
+                <rect x="435" y="80" width="155" height="85"
+                      rx="8" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <text x="512" y="115" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#26734d">EXECUTE</text>
+
+                <text x="512" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">Perform operation</text>
+
+                <rect x="625" y="80" width="155" height="85"
+                      rx="8" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <text x="702" y="115" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#9a6415">STORE</text>
+
+                <text x="702" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">Save result</text>
+
+                <g stroke="#6555c7" stroke-width="3"
+                   fill="none">
+                    <path d="M210 122 H240 M230 112 L240 122 L230 132"/>
+                    <path d="M400 122 H430 M420 112 L430 122 L420 132"/>
+                    <path d="M590 122 H620 M610 112 L620 122 L610 132"/>
+                </g>
+
+                <text x="425" y="205" text-anchor="middle"
+                      font-size="14" fill="#202641">
+                    The CPU repeats this cycle as it executes program instructions.
+                </text>
+
+            </svg>
+
+            <figcaption>
+                The basic instruction cycle performed by the CPU.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- STORAGE DEVICES -->
+    <section class="lesson-block" id="storage-devices">
+
+        <h2>Storage Devices</h2>
+
+        <p>
+            Storage devices are hardware components used
+            to save data, programs, and information.
+            They allow users to keep files even after
+            the computer has been turned off.
+        </p>
+
+        <p>
+            Computer storage is commonly divided into
+            primary storage and secondary storage.
+        </p>
+
+        <h3>Primary Storage</h3>
+
+        <p>
+            Primary storage refers to memory directly
+            used by the processor during computer operation.
+            It includes RAM and certain types of memory
+            used for firmware and immediate processing.
+        </p>
+
+        <h3>Secondary Storage</h3>
+
+        <p>
+            Secondary storage is used for long-term
+            data retention. It can store documents,
+            applications, images, videos, and operating
+            system files even when the computer is powered off.
+        </p>
+
+        <h3>Hard Disk Drive (HDD)</h3>
+
+        <p>
+            A hard disk drive is a storage device that
+            uses rotating magnetic disks to store and
+            retrieve digital information.
+        </p>
+
+        <p>
+            HDDs commonly provide large storage capacities
+            at relatively low costs. They are often used
+            for storing documents, software, media files,
+            and backups.
+        </p>
+
+        <h3>Solid-State Drive (SSD)</h3>
+
+        <p>
+            A solid-state drive stores data using flash
+            memory rather than rotating magnetic disks.
+            It has no moving mechanical parts, which
+            generally makes it faster and more resistant
+            to physical movement than a traditional HDD.
+        </p>
+
+        <h3>USB Flash Drive</h3>
+
+        <p>
+            A USB flash drive is a small portable storage
+            device that connects to a computer through
+            a USB port. It is commonly used to transfer
+            files and carry information between devices.
+        </p>
+
+        <h3>Memory Card</h3>
+
+        <p>
+            Memory cards are compact storage devices
+            commonly used in digital cameras, smartphones,
+            tablets, and other electronic equipment.
+        </p>
+
+        <h3>Optical Discs</h3>
+
+        <p>
+            Optical storage devices use laser technology
+            to read and write information on discs.
+            Examples include CDs, DVDs, and Blu-ray discs.
+        </p>
+
+        <h3>Cloud Storage</h3>
+
+        <p>
+            Cloud storage allows users to save and access
+            files through internet-based services.
+            The information is stored on remote servers
+            managed by a service provider rather than
+            only on the user's local computer.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 290"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Hard disk drive, solid-state drive, USB flash drive, and memory card">
+
+                <rect x="20" y="20" width="810" height="230"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- HDD -->
+                <rect x="55" y="65" width="155" height="105"
+                      rx="10" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="3"/>
+
+                <circle cx="132" cy="117" r="38"
+                        fill="#ffffff" stroke="#347fe0"
+                        stroke-width="3"/>
+
+                <circle cx="132" cy="117" r="9"
+                        fill="#347fe0"/>
+
+                <text x="132" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#174ea6">HDD</text>
+
+                <!-- SSD -->
+                <rect x="255" y="80" width="150" height="75"
+                      rx="7" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <rect x="275" y="100" width="110" height="35"
+                      fill="#6555c7"/>
+
+                <text x="330" y="123" text-anchor="middle"
+                      font-size="13" font-weight="bold"
+                      fill="#ffffff">FLASH</text>
+
+                <text x="330" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#4b3ca6">SSD</text>
+
+                <!-- USB -->
+                <rect x="470" y="105" width="110" height="40"
+                      rx="7" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="3"/>
+
+                <rect x="580" y="113" width="30" height="24"
+                      fill="#a7b4c7" stroke="#596579"
+                      stroke-width="2"/>
+
+                <rect x="490" y="112" width="30" height="25"
+                      rx="3" fill="#39966b"/>
+
+                <text x="525" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#26734d">USB Drive</text>
+
+                <!-- Memory Card -->
+                <path d="M680 75 H770 V160 H680 Z"
+                      fill="#fff0dc" stroke="#d99a38"
+                      stroke-width="3"/>
+
+                <path d="M680 75 L705 75 L705 95 H770"
+                      fill="none" stroke="#d99a38"
+                      stroke-width="3"/>
+
+                <g stroke="#9a6415" stroke-width="3">
+                    <line x1="695" y1="125" x2="755" y2="125"/>
+                    <line x1="695" y1="138" x2="755" y2="138"/>
+                </g>
+
+                <text x="725" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#9a6415">Memory Card</text>
+
+                <text x="425" y="235" text-anchor="middle"
+                      font-size="13" fill="#202641">
+                    Different storage devices provide different capacities and uses.
+                </text>
+
+            </svg>
+
+            <figcaption>
+                Examples of secondary storage devices used
+                to save digital information.
+            </figcaption>
+        </figure>
+
+        <h3>Storage Capacity Units</h3>
+
+        <p>
+            Digital storage is measured using units that
+            represent the amount of information a device
+            can hold.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Bit:</strong> The smallest unit
+                of digital information, represented by 0 or 1.
+            </li>
+
+            <li>
+                <strong>Byte:</strong> A group of 8 bits.
+            </li>
+
+            <li>
+                <strong>Kilobyte (KB):</strong>
+                Approximately 1,000 bytes in decimal
+                storage measurements.
+            </li>
+
+            <li>
+                <strong>Megabyte (MB):</strong>
+                Approximately 1 million bytes.
+            </li>
+
+            <li>
+                <strong>Gigabyte (GB):</strong>
+                Approximately 1 billion bytes.
+            </li>
+
+            <li>
+                <strong>Terabyte (TB):</strong>
+                Approximately 1 trillion bytes.
+            </li>
+        </ul>
+
+        <p>
+            Some computer systems use binary units such
+            as KiB, MiB, GiB, and TiB. These units are
+            based on powers of 1,024 rather than 1,000.
+        </p>
+
+    </section>
+
+
+    <!-- COMPUTER SOFTWARE -->
+    <section class="lesson-block" id="software">
+
+        <h2>Computer Software</h2>
+
+        <p>
+            Computer software refers to the collection
+            of programs, instructions, and related data
+            that direct a computer to perform specific tasks.
+            Unlike hardware, software cannot be physically
+            touched. It is created, installed, executed,
+            updated, and maintained through digital files
+            and computer systems.
+        </p>
+
+        <p>
+            Software acts as the connection between users
+            and computer hardware. It allows users to
+            create documents, browse websites, edit images,
+            manage databases, communicate with others,
+            and perform many other activities.
+        </p>
+
+        <h3>Why Software Is Important</h3>
+
+        <ul>
+            <li>Provides instructions for computer hardware.</li>
+            <li>Allows users to perform different tasks.</li>
+            <li>Manages computer resources and operations.</li>
+            <li>Automates repetitive activities.</li>
+            <li>Helps organize, process, and protect information.</li>
+            <li>Supports communication between users and devices.</li>
+        </ul>
+
+        <h3>Main Categories of Software</h3>
+
+        <p>
+            Computer software is commonly classified into
+            three major categories: system software,
+            application software, and programming software.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 300"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Three major categories of software: system software, application software, and programming software">
+
+                <rect x="20" y="20" width="810" height="250"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <rect x="50" y="85" width="220" height="125"
+                      rx="10" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="160" y="125" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#4b3ca6">SYSTEM</text>
+
+                <text x="160" y="150" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#4b3ca6">SOFTWARE</text>
+
+                <text x="160" y="183" text-anchor="middle"
+                      font-size="13" fill="#202641">
+                    Operating systems
+                </text>
+
+                <rect x="315" y="85" width="220" height="125"
+                      rx="10" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="425" y="125" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#174ea6">APPLICATION</text>
+
+                <text x="425" y="150" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#174ea6">SOFTWARE</text>
+
+                <text x="425" y="183" text-anchor="middle"
+                      font-size="13" fill="#202641">
+                    User applications
+                </text>
+
+                <rect x="580" y="85" width="220" height="125"
+                      rx="10" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <text x="690" y="125" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#26734d">PROGRAMMING</text>
+
+                <text x="690" y="150" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#26734d">SOFTWARE</text>
+
+                <text x="690" y="183" text-anchor="middle"
+                      font-size="13" fill="#202641">
+                    Development tools
+                </text>
+
+                <text x="425" y="245" text-anchor="middle"
+                      font-size="14" fill="#202641">
+                    Different software categories serve different purposes.
+                </text>
+
+            </svg>
+
+            <figcaption>
+                The major categories of computer software.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- SYSTEM SOFTWARE -->
+    <section class="lesson-block" id="system-software">
+
+        <h2>System Software</h2>
+
+        <p>
+            System software manages and controls the basic
+            operations of a computer. It provides a platform
+            for application programs and helps hardware
+            components communicate and function properly.
+        </p>
+
+        <h3>Operating System</h3>
+
+        <p>
+            An operating system, or OS, is the main system
+            software that manages computer resources and
+            provides services for applications.
+        </p>
+
+        <p>
+            It acts as an intermediary between the user,
+            application programs, and computer hardware.
+        </p>
+
+        <p><strong>Major functions of an operating system:</strong></p>
+
+        <ul>
+            <li>
+                <strong>Process Management:</strong>
+                Controls running programs and allocates
+                processor time.
+            </li>
+
+            <li>
+                <strong>Memory Management:</strong>
+                Allocates and manages memory used by
+                running applications.
+            </li>
+
+            <li>
+                <strong>File Management:</strong>
+                Organizes files and folders and manages
+                access to stored information.
+            </li>
+
+            <li>
+                <strong>Device Management:</strong>
+                Coordinates communication with connected
+                hardware devices.
+            </li>
+
+            <li>
+                <strong>Security Management:</strong>
+                Helps control user access and protect
+                system resources.
+            </li>
+
+            <li>
+                <strong>User Interface:</strong>
+                Provides a way for users to interact
+                with the computer.
+            </li>
+        </ul>
+
+        <h3>Examples of Operating Systems</h3>
+
+        <ul>
+            <li>
+                <strong>Microsoft Windows:</strong>
+                A widely used operating system for
+                desktop and laptop computers.
+            </li>
+
+            <li>
+                <strong>macOS:</strong>
+                Apple's operating system for Mac computers.
+            </li>
+
+            <li>
+                <strong>Linux:</strong>
+                An open-source operating system family
+                commonly used on servers, desktops,
+                and embedded systems.
+            </li>
+
+            <li>
+                <strong>Android:</strong>
+                A mobile operating system used by
+                many smartphones and tablets.
+            </li>
+
+            <li>
+                <strong>iOS:</strong>
+                Apple's mobile operating system
+                for iPhone devices.
+            </li>
+        </ul>
+
+        <h3>Utility Software</h3>
+
+        <p>
+            Utility software helps maintain, protect,
+            and optimize computer systems. It performs
+            supporting tasks that help keep computers
+            reliable and secure.
+        </p>
+
+        <p><strong>Examples include:</strong></p>
+
+        <ul>
+            <li>
+                <strong>Antivirus Software:</strong>
+                Detects, blocks, and removes malicious software.
+            </li>
+
+            <li>
+                <strong>Backup Utilities:</strong>
+                Create copies of important files to
+                protect against data loss.
+            </li>
+
+            <li>
+                <strong>Disk Management Tools:</strong>
+                Help organize storage and manage
+                disk partitions.
+            </li>
+
+            <li>
+                <strong>File Compression Tools:</strong>
+                Reduce file sizes or combine files
+                into compressed archives.
+            </li>
+
+            <li>
+                <strong>System Monitoring Tools:</strong>
+                Display information about memory,
+                processor usage, and system performance.
+            </li>
+        </ul>
+
+        <h3>Firmware</h3>
+
+        <p>
+            Firmware is specialized software stored
+            in non-volatile memory within a hardware
+            device. It provides low-level instructions
+            that help the device operate.
+        </p>
+
+        <p>
+            For example, motherboard firmware helps
+            initialize hardware during startup and
+            prepares the system to load an operating system.
+            Common firmware interfaces include BIOS
+            and UEFI.
+        </p>
+
+    </section>
+
+
+    <!-- APPLICATION SOFTWARE -->
+    <section class="lesson-block" id="application-software">
+
+        <h2>Application Software</h2>
+
+        <p>
+            Application software consists of programs
+            designed to help users accomplish specific
+            tasks. Unlike system software, which manages
+            the computer itself, application software
+            focuses on activities performed by users.
+        </p>
+
+        <h3>Word Processing Software</h3>
+
+        <p>
+            Word processing applications allow users
+            to create, edit, format, save, and print
+            text-based documents.
+        </p>
+
+        <p>
+            They are commonly used for reports,
+            letters, research papers, resumes,
+            and school assignments.
+        </p>
+
+        <p><strong>Examples:</strong> Microsoft Word and Google Docs.</p>
+
+        <h3>Spreadsheet Software</h3>
+
+        <p>
+            Spreadsheet applications organize information
+            into rows and columns. They can perform
+            calculations, analyze data, create charts,
+            and manage numerical information.
+        </p>
+
+        <p><strong>Examples:</strong> Microsoft Excel and Google Sheets.</p>
+
+        <h3>Presentation Software</h3>
+
+        <p>
+            Presentation programs allow users to create
+            slides containing text, images, charts,
+            animations, and multimedia elements.
+        </p>
+
+        <p><strong>Examples:</strong> Microsoft PowerPoint and Google Slides.</p>
+
+        <h3>Database Software</h3>
+
+        <p>
+            Database software is used to create, store,
+            organize, retrieve, and manage structured
+            information.
+        </p>
+
+        <p>
+            It is commonly used in schools, hospitals,
+            banks, businesses, and government offices
+            to manage large amounts of records.
+        </p>
+
+        <p><strong>Examples:</strong> MySQL, Microsoft SQL Server, and PostgreSQL.</p>
+
+        <h3>Web Browsers</h3>
+
+        <p>
+            Web browsers are applications that allow
+            users to access websites and online content.
+            They interpret web technologies and display
+            webpages on the screen.
+        </p>
+
+        <p><strong>Examples:</strong> Google Chrome, Mozilla Firefox, Microsoft Edge, and Safari.</p>
+
+        <h3>Graphics and Multimedia Software</h3>
+
+        <p>
+            These applications are designed for creating
+            and editing images, illustrations, videos,
+            animations, and audio content.
+        </p>
+
+        <p><strong>Examples:</strong> Adobe Photoshop, Canva, Adobe Premiere Pro, and Blender.</p>
+
+        <h3>Communication Software</h3>
+
+        <p>
+            Communication applications allow users
+            to exchange messages, make voice calls,
+            conduct video meetings, and collaborate
+            with other people.
+        </p>
+
+        <p><strong>Examples:</strong> Microsoft Teams, Zoom, and messaging applications.</p>
+
+        <h3>Educational Software</h3>
+
+        <p>
+            Educational software supports teaching
+            and learning through interactive lessons,
+            digital textbooks, quizzes, simulations,
+            and online learning platforms.
+        </p>
+
+        <p><strong>Examples:</strong> Moodle, learning management systems, and educational applications.</p>
+
+        <h3>Business Software</h3>
+
+        <p>
+            Business software helps organizations manage
+            their daily operations. It can support
+            accounting, sales, inventory, customer
+            relationships, and employee management.
+        </p>
+
+        <p><strong>Examples:</strong> Accounting systems, point-of-sale systems, and enterprise resource planning software.</p>
+
+    </section>
+
+
+    <!-- PROGRAMMING SOFTWARE -->
+    <section class="lesson-block" id="programming-software">
+
+        <h2>Programming Software</h2>
+
+        <p>
+            Programming software refers to tools used
+            by developers to create, test, debug,
+            and maintain computer programs and applications.
+            These tools help programmers translate
+            instructions into a form that computers
+            can execute.
+        </p>
+
+        <h3>Code Editors</h3>
+
+        <p>
+            A code editor is a program used to write
+            and modify source code. It often provides
+            features such as syntax highlighting,
+            automatic indentation, and code completion.
+        </p>
+
+        <p><strong>Examples:</strong> Visual Studio Code and Notepad++.</p>
+
+        <h3>Integrated Development Environments (IDEs)</h3>
+
+        <p>
+            An Integrated Development Environment is
+            a software application that combines
+            different programming tools into one
+            workspace.
+        </p>
+
+        <p>
+            An IDE may include a code editor, compiler,
+            debugger, project manager, and tools
+            for building and testing applications.
+        </p>
+
+        <p><strong>Examples:</strong> Visual Studio, IntelliJ IDEA, and Eclipse.</p>
+
+        <h3>Compiler</h3>
+
+        <p>
+            A compiler translates source code into
+            another form, often machine code or
+            intermediate code, so that a computer
+            can execute the program.
+        </p>
+
+        <h3>Interpreter</h3>
+
+        <p>
+            An interpreter executes program instructions
+            through an execution environment. Depending
+            on the language and implementation, it may
+            process code directly or use an intermediate
+            representation.
+        </p>
+
+        <h3>Debugger</h3>
+
+        <p>
+            A debugger helps programmers identify
+            and investigate errors in their programs.
+            It allows developers to pause execution,
+            inspect variables, follow program flow,
+            and examine unexpected behavior.
+        </p>
+
+        <h3>Version Control Software</h3>
+
+        <p>
+            Version control systems track changes
+            made to source code and other project files.
+            They allow developers to review previous
+            versions, collaborate with team members,
+            and manage changes safely.
+        </p>
+
+        <p><strong>Example:</strong> Git.</p>
+
+        <h3>Programming Languages</h3>
+
+        <p>
+            Programming languages provide rules and
+            instructions for writing software.
+            Different languages are designed for
+            different tasks and environments.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Python:</strong>
+                Commonly used for automation, data analysis,
+                web development, and AI.
+            </li>
+
+            <li>
+                <strong>Java:</strong>
+                Used in enterprise applications,
+                backend systems, and Android development.
+            </li>
+
+            <li>
+                <strong>JavaScript:</strong>
+                Commonly used to create interactive
+                websites and web applications.
+            </li>
+
+            <li>
+                <strong>C and C++:</strong>
+                Used in system programming, embedded
+                development, and performance-intensive software.
+            </li>
+
+            <li>
+                <strong>Visual Basic .NET:</strong>
+                Used to develop Windows applications
+                and other .NET-based software.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- HARDWARE AND SOFTWARE RELATIONSHIP -->
+    <section class="lesson-block" id="hardware-software">
+
+        <h2>Relationship Between Hardware and Software</h2>
+
+        <p>
+            Hardware and software are dependent on one
+            another. Hardware provides the physical
+            resources needed to perform operations,
+            while software provides the instructions
+            that determine how those resources are used.
+        </p>
+
+        <p>
+            A computer cannot perform useful tasks
+            using hardware alone because its components
+            need instructions. Likewise, software
+            cannot execute without hardware resources
+            such as a processor, memory, and storage.
+        </p>
+
+        <h3>How They Work Together</h3>
+
+        <p>
+            When a user opens an application, the
+            operating system loads the program and
+            allocates the necessary system resources.
+            The CPU executes its instructions, RAM
+            holds information currently being used,
+            and storage keeps the program and its files.
+            Input and output devices allow the user
+            to interact with the application.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 310"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Relationship between user, application software, operating system, and computer hardware">
+
+                <rect x="20" y="20" width="810" height="270"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <rect x="300" y="45" width="250" height="45"
+                      rx="8" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="425" y="74" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#4b3ca6">USER</text>
+
+                <rect x="300" y="115" width="250" height="45"
+                      rx="8" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="425" y="144" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#174ea6">APPLICATION SOFTWARE</text>
+
+                <rect x="300" y="185" width="250" height="45"
+                      rx="8" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <text x="425" y="214" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#26734d">OPERATING SYSTEM</text>
+
+                <rect x="300" y="255" width="250" height="25"
+                      rx="5" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <text x="425" y="273" text-anchor="middle"
+                      font-size="14" font-weight="bold"
+                      fill="#9a6415">COMPUTER HARDWARE</text>
+
+                <g stroke="#6555c7" stroke-width="3"
+                   fill="none">
+                    <path d="M425 90 V110 M415 100 L425 110 L435 100"/>
+                    <path d="M425 160 V180 M415 170 L425 180 L435 170"/>
+                    <path d="M425 230 V250 M415 240 L425 250 L435 240"/>
+                </g>
+
+            </svg>
+
+            <figcaption>
+                Users interact with applications, which rely
+                on the operating system and hardware to function.
+            </figcaption>
+        </figure>
+
+        <h3>Example: Typing a Document</h3>
+
+        <p>
+            When a user types a document using a word
+            processor, several components work together:
+        </p>
+
+        <ul>
+            <li>
+                The keyboard sends the user's keystrokes
+                to the computer.
+            </li>
+
+            <li>
+                The operating system receives and manages
+                the input.
+            </li>
+
+            <li>
+                The word-processing application interprets
+                the input and updates the document.
+            </li>
+
+            <li>
+                The CPU processes the instructions.
+            </li>
+
+            <li>
+                RAM temporarily holds the document
+                while it is being edited.
+            </li>
+
+            <li>
+                The monitor displays the text on the screen.
+            </li>
+
+            <li>
+                The storage device saves the document
+                when the user chooses to save it.
+            </li>
+        </ul>
+
+        <h3>What Happens When One Is Missing?</h3>
+
+        <p>
+            If a computer has hardware but no usable
+            software, the system cannot perform normal
+            user tasks. If software has no compatible
+            hardware environment, it cannot execute.
+            Both components must be available and
+            properly configured for the computer to work.
+        </p>
+
+    </section>
+
+
+    <!-- BOOTING -->
+    <section class="lesson-block" id="booting">
+
+        <h2>Computer Booting Process</h2>
+
+        <p>
+            Booting is the process of starting a computer
+            and preparing it to run an operating system.
+            When the power button is pressed, the computer
+            performs several startup operations before
+            presenting the login screen or desktop.
+        </p>
+
+        <h3>Cold Booting</h3>
+
+        <p>
+            Cold booting occurs when a computer is started
+            from a completely powered-off state. The
+            computer receives power and begins its
+            startup process.
+        </p>
+
+        <h3>Warm Booting</h3>
+
+        <p>
+            Warm booting refers to restarting a computer
+            without completely removing power from the
+            system. It may be performed through the
+            operating system's restart command.
+        </p>
+
+        <h3>Stages of the Booting Process</h3>
+
+        <ul>
+            <li>
+                <strong>Power On:</strong>
+                The computer receives electrical power.
+            </li>
+
+            <li>
+                <strong>Firmware Initialization:</strong>
+                BIOS or UEFI begins initializing essential
+                hardware components.
+            </li>
+
+            <li>
+                <strong>Hardware Checks:</strong>
+                The system performs startup checks,
+                including the Power-On Self-Test (POST).
+            </li>
+
+            <li>
+                <strong>Boot Device Selection:</strong>
+                Firmware identifies a device containing
+                a bootable operating system.
+            </li>
+
+            <li>
+                <strong>Bootloader Execution:</strong>
+                A bootloader starts the process of
+                loading the operating system.
+            </li>
+
+            <li>
+                <strong>Operating System Loading:</strong>
+                The operating system kernel and required
+                system components are loaded into memory.
+            </li>
+
+            <li>
+                <strong>Login or Desktop:</strong>
+                The computer becomes ready for user interaction.
+            </li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 300"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Computer startup process from power on to operating system desktop">
+
+                <rect x="20" y="20" width="810" height="250"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <rect x="55" y="75" width="155" height="95"
+                      rx="8" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="132" y="112" text-anchor="middle"
+                      font-size="17" font-weight="bold"
+                      fill="#4b3ca6">POWER ON</text>
+
+                <text x="132" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">Start computer</text>
+
+                <rect x="245" y="75" width="155" height="95"
+                      rx="8" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="322" y="112" text-anchor="middle"
+                      font-size="17" font-weight="bold"
+                      fill="#174ea6">FIRMWARE</text>
+
+                <text x="322" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">BIOS / UEFI</text>
+
+                <rect x="435" y="75" width="155" height="95"
+                      rx="8" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <text x="512" y="112" text-anchor="middle"
+                      font-size="17" font-weight="bold"
+                      fill="#26734d">BOOTLOADER</text>
+
+                <text x="512" y="140" text-anchor="middle"
+                      font-size="12" fill="#202641">Start OS loading</text>
+
+                <rect x="625" y="75" width="155" height="95"
+                      rx="8" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <text x="702" y="112" text-anchor="middle"
+                      font-size="17" font-weight="bold"
+                      fill="#9a6415">OPERATING</text>
+
+                <text x="702" y="135" text-anchor="middle"
+                      font-size="17" font-weight="bold"
+                      fill="#9a6415">SYSTEM</text>
+
+                <g stroke="#6555c7" stroke-width="3"
+                   fill="none">
+                    <path d="M210 122 H240 M230 112 L240 122 L230 132"/>
+                    <path d="M400 122 H430 M420 112 L430 122 L420 132"/>
+                    <path d="M590 122 H620 M610 112 L620 122 L610 132"/>
+                </g>
+
+                <text x="425" y="220" text-anchor="middle"
+                      font-size="15" fill="#202641">
+                    The computer prepares its hardware and loads the operating system.
+                </text>
+
+            </svg>
+
+            <figcaption>
+                The simplified sequence of a computer's startup process.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- DRIVERS -->
+    <section class="lesson-block" id="drivers">
+
+        <h2>Device Drivers and Utility Programs</h2>
+
+        <h3>Device Drivers</h3>
+
+        <p>
+            A device driver is specialized software that
+            allows an operating system to communicate
+            with and control a hardware device.
+        </p>
+
+        <p>
+            Different hardware devices may require
+            different drivers so that the operating
+            system can use their features correctly.
+        </p>
+
+        <p><strong>Examples include:</strong></p>
+
+        <ul>
+            <li>Printer drivers for printing documents.</li>
+            <li>Graphics drivers for display and GPU functions.</li>
+            <li>Audio drivers for sound devices.</li>
+            <li>Network drivers for wired and wireless connections.</li>
+            <li>Touchpad drivers for laptop pointing devices.</li>
+        </ul>
+
+        <h3>Why Device Drivers Are Important</h3>
+
+        <ul>
+            <li>Allow hardware devices to communicate with the OS.</li>
+            <li>Enable devices to perform their intended functions.</li>
+            <li>Support hardware features and compatibility.</li>
+            <li>Help resolve certain device-related problems.</li>
+        </ul>
+
+        <h3>Device Drivers vs. Utility Software</h3>
+
+        <p>
+            Device drivers and utility software are both
+            examples of supporting software, but they
+            serve different purposes.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Device drivers:</strong>
+                Allow the operating system to communicate
+                with hardware.
+            </li>
+
+            <li>
+                <strong>Utility software:</strong>
+                Helps maintain, manage, protect, or
+                optimize the computer system.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- MAINTENANCE -->
+    <section class="lesson-block" id="maintenance">
+
+        <h2>Hardware and Software Maintenance</h2>
+
+        <p>
+            Computer maintenance involves activities
+            performed to keep hardware and software
+            functioning properly. Regular maintenance
+            can improve reliability, reduce errors,
+            extend device lifespan, and help prevent
+            unexpected system failures.
+        </p>
+
+        <h3>Hardware Maintenance</h3>
+
+        <p>
+            Hardware maintenance focuses on the physical
+            condition of computer components and devices.
+        </p>
+
+        <ul>
+            <li>
+                Clean the computer case, keyboard,
+                monitor, and other equipment regularly.
+            </li>
+
+            <li>
+                Keep air vents and cooling fans free
+                from dust and obstructions.
+            </li>
+
+            <li>
+                Avoid placing computers in excessively
+                hot or humid environments.
+            </li>
+
+            <li>
+                Use appropriate power protection
+                equipment when necessary.
+            </li>
+
+            <li>
+                Check cables and connections for damage
+                or loose connections.
+            </li>
+
+            <li>
+                Handle internal components carefully
+                to prevent physical damage and
+                electrostatic discharge.
+            </li>
+        </ul>
+
+        <h3>Software Maintenance</h3>
+
+        <p>
+            Software maintenance focuses on keeping
+            programs and operating systems updated,
+            secure, and functioning correctly.
+        </p>
+
+        <ul>
+            <li>Install operating system and application updates.</li>
+            <li>Remove unnecessary applications and temporary files.</li>
+            <li>Use trusted antivirus and security tools.</li>
+            <li>Back up important documents and files.</li>
+            <li>Update drivers when necessary.</li>
+            <li>Uninstall suspicious or unused programs.</li>
+            <li>Monitor system performance and available storage.</li>
+        </ul>
+
+        <h3>Common Hardware Problems</h3>
+
+        <ul>
+            <li>
+                <strong>Computer Overheating:</strong>
+                May be caused by dust buildup, poor
+                ventilation, or cooling system problems.
+            </li>
+
+            <li>
+                <strong>Faulty RAM:</strong>
+                May cause system crashes, startup problems,
+                or unexpected errors.
+            </li>
+
+            <li>
+                <strong>Storage Failure:</strong>
+                May result in inaccessible files,
+                slow performance, or operating system errors.
+            </li>
+
+            <li>
+                <strong>Power Supply Problems:</strong>
+                May cause unexpected shutdowns or
+                prevent the computer from starting.
+            </li>
+
+            <li>
+                <strong>Display Problems:</strong>
+                May result from faulty cables, monitor
+                issues, or graphics hardware problems.
+            </li>
+        </ul>
+
+        <h3>Common Software Problems</h3>
+
+        <ul>
+            <li>
+                <strong>Application Crashes:</strong>
+                May result from software bugs,
+                insufficient resources, or compatibility issues.
+            </li>
+
+            <li>
+                <strong>Operating System Errors:</strong>
+                May be caused by corrupted system files,
+                failed updates, or hardware problems.
+            </li>
+
+            <li>
+                <strong>Malware Infection:</strong>
+                May cause unusual activity, damaged files,
+                or unauthorized access.
+            </li>
+
+            <li>
+                <strong>Driver Problems:</strong>
+                May cause connected devices to malfunction.
+            </li>
+
+            <li>
+                <strong>Insufficient Storage:</strong>
+                May prevent applications from installing
+                or saving files.
+            </li>
+        </ul>
+
+        <h3>Basic Troubleshooting Steps</h3>
+
+        <ol>
+            <li>Identify the problem and observe any error messages.</li>
+            <li>Check power connections and device cables.</li>
+            <li>Restart the computer when appropriate.</li>
+            <li>Check available storage and system resources.</li>
+            <li>Install relevant updates or correct drivers.</li>
+            <li>Scan for malware using trusted security software.</li>
+            <li>Back up important data before performing major repairs.</li>
+            <li>Seek technical assistance if the problem continues.</li>
+        </ol>
+
+    </section>
+
+
+    <!-- SECURITY -->
+    <section class="lesson-block" id="security">
+
+        <h2>Hardware and Software Security</h2>
+
+        <p>
+            Computer security involves protecting
+            hardware, software, networks, and digital
+            information from damage, unauthorized access,
+            theft, and malicious activities.
+        </p>
+
+        <h3>Physical Hardware Security</h3>
+
+        <p>
+            Physical security protects computer devices
+            and equipment from theft, damage, and
+            unauthorized physical access.
+        </p>
+
+        <ul>
+            <li>Keep devices in secure locations.</li>
+            <li>Use locks or access-controlled storage when appropriate.</li>
+            <li>Protect equipment from water, heat, and physical damage.</li>
+            <li>Restrict access to server rooms and equipment areas.</li>
+            <li>Use surge protection and suitable power equipment.</li>
+        </ul>
+
+        <h3>Software Security</h3>
+
+        <p>
+            Software security protects applications,
+            operating systems, and data against threats
+            such as malware, unauthorized access,
+            and software vulnerabilities.
+        </p>
+
+        <ul>
+            <li>Use strong and unique passwords.</li>
+            <li>Enable multi-factor authentication.</li>
+            <li>Keep operating systems and applications updated.</li>
+            <li>Install applications from trusted sources.</li>
+            <li>Avoid suspicious links and email attachments.</li>
+            <li>Use security software when appropriate.</li>
+            <li>Back up important data regularly.</li>
+        </ul>
+
+        <h3>Common Computer Threats</h3>
+
+        <ul>
+            <li>
+                <strong>Virus:</strong>
+                Malicious code that can attach itself
+                to files or programs and spread when executed.
+            </li>
+
+            <li>
+                <strong>Worm:</strong>
+                Malware that can spread between systems
+                without requiring a host file.
+            </li>
+
+            <li>
+                <strong>Trojan Horse:</strong>
+                Malicious software disguised as a
+                legitimate program.
+            </li>
+
+            <li>
+                <strong>Ransomware:</strong>
+                Malware that locks or encrypts data
+                and demands payment.
+            </li>
+
+            <li>
+                <strong>Spyware:</strong>
+                Software designed to secretly collect
+                information about users or their activities.
+            </li>
+
+            <li>
+                <strong>Phishing:</strong>
+                A deceptive attempt to obtain sensitive
+                information by pretending to be a
+                trustworthy person or organization.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- PRACTICAL APPLICATIONS -->
+    <section class="lesson-block" id="applications">
+
+        <h2>Practical Applications of Hardware and Software</h2>
+
+        <p>
+            Hardware and software are used together
+            in almost every field that depends on
+            digital technology. Their combination
+            allows people and organizations to perform
+            tasks more efficiently and accurately.
+        </p>
+
+        <h3>Education</h3>
+
+        <p>
+            Computers, projectors, printers, learning
+            platforms, and educational applications
+            support classroom instruction, online
+            learning, research, and student assessments.
+        </p>
+
+        <h3>Business</h3>
+
+        <p>
+            Businesses use computers, barcode scanners,
+            printers, point-of-sale devices, accounting
+            applications, and inventory systems to
+            manage their daily activities.
+        </p>
+
+        <h3>Healthcare</h3>
+
+        <p>
+            Hospitals use computers, medical monitors,
+            diagnostic equipment, and specialized
+            applications to manage patient records,
+            appointments, and medical information.
+        </p>
+
+        <h3>Banking</h3>
+
+        <p>
+            Banks use servers, databases, ATMs,
+            payment terminals, and banking software
+            to process transactions and manage
+            financial information.
+        </p>
+
+        <h3>Information Technology</h3>
+
+        <p>
+            IT professionals use computers, servers,
+            networking equipment, operating systems,
+            programming tools, and database applications
+            to develop, maintain, and manage information
+            systems.
+        </p>
+
+        <h3>Everyday Activities</h3>
+
+        <p>
+            Individuals use smartphones, laptops,
+            printers, web browsers, communication
+            applications, and cloud services for
+            studying, working, shopping, entertainment,
+            and communication.
+        </p>
+
+    </section>
+
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>
+                Computer hardware refers to the physical
+                components of a computer system.
+            </li>
+
+            <li>
+                Computer software refers to programs
+                and instructions that control computer operations.
+            </li>
+
+            <li>
+                A computer performs four basic functions:
+                input, processing, output, and storage.
+            </li>
+
+            <li>
+                Hardware includes input devices, output
+                devices, processing components, and storage devices.
+            </li>
+
+            <li>
+                The CPU executes instructions and performs
+                calculations, while RAM temporarily holds
+                active data and programs.
+            </li>
+
+            <li>
+                Storage devices retain information for
+                future use, even when the computer is turned off.
+            </li>
+
+            <li>
+                System software manages computer resources
+                and provides a platform for applications.
+            </li>
+
+            <li>
+                Application software helps users perform
+                specific activities such as writing,
+                browsing, calculating, and communicating.
+            </li>
+
+            <li>
+                Programming software provides tools
+                for creating, testing, and maintaining programs.
+            </li>
+
+            <li>
+                Hardware and software depend on one another
+                to make a computer system function.
+            </li>
+
+            <li>
+                Device drivers allow the operating system
+                to communicate with hardware devices.
+            </li>
+
+            <li>
+                Regular maintenance, troubleshooting,
+                and security practices help protect
+                computer systems and information.
+            </li>
+        </ul>
+
+    </section>
+
+
+   
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=2" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <a class="btn outline" href="topic-02.html">
+                    ← Topic 2
+                </a>
+
+                <a class="btn primary" href="topic-04.html">
+                    Topic 4 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+    </script>
+
+</body>
+</html>

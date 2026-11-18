@@ -1,0 +1,3779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Topic 1: History and Evolution of Computers | BSIT E-Book</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --ink: #202641;
+            --navy: #171f3b;
+            --purple: #6555c7;
+            --purple-dark: #45378f;
+            --purple-light: #eeeafc;
+            --muted: #737d92;
+            --line: #e9eaf1;
+            --paper: #ffffff;
+            --soft: #f7f7fb;
+            --code-bg: #252438;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .site-header {
+    height: 76px;
+    padding: 0 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 13px Manrope, sans-serif;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand small {
+    display: block;
+    font: 700 8px "DM Sans", sans-serif;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+        .main-nav {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            left: -70px;
+        }
+
+        .main-nav a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 28px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           GENERAL LAYOUT
+        ===================================== */
+
+        .section-wrap {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 5.5%;
+            padding-right: 5.5%;
+        }
+
+        .topic-page {
+            padding-top: 35px;
+            padding-bottom: 60px;
+        }
+
+        .crumbs {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .crumbs a {
+            color: var(--purple);
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .topic-title {
+            max-width: 850px;
+            font: 800 clamp(27px, 4vw, 38px) / 1.25 Manrope, sans-serif;
+            letter-spacing: -1px;
+            color: var(--navy);
+            margin: 12px 0 25px;
+        }
+
+        /* =====================================
+           TOP ACTIONS
+        ===================================== */
+
+        .lesson-top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: var(--paper);
+            transition: .2s ease;
+        }
+
+        .lesson-action:hover {
+            background: var(--purple-light);
+            border-color: var(--purple);
+        }
+
+        /* =====================================
+           READING PROGRESS
+        ===================================== */
+
+        .progress-container {
+            margin: 0 0 30px;
+            padding: 15px 18px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #progressText {
+            color: var(--purple);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--purple-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 10px;
+            transition: width .15s ease;
+        }
+
+        /* =====================================
+           TWO-COLUMN LESSON LAYOUT
+        ===================================== */
+
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =====================================
+           LEFT TABLE OF CONTENTS
+        ===================================== */
+
+        .lesson-sidebar {
+            position: sticky;
+            top: 95px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 20px 16px;
+            max-height: calc(100vh - 115px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font: 800 14px Manrope, sans-serif;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .sidebar-description {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .sidebar-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin: 15px 0 10px;
+        }
+
+        .lesson-sidebar nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .lesson-sidebar nav a {
+            display: block;
+            padding: 9px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            border-left: 3px solid transparent;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .lesson-sidebar nav a:hover,
+        .lesson-sidebar nav a.active {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            border-left-color: var(--purple);
+        }
+
+        .sidebar-info {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sidebar-info strong {
+            display: block;
+            font: 800 11px Manrope, sans-serif;
+            color: var(--purple-dark);
+            margin-bottom: 7px;
+        }
+
+        .sidebar-info p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* =====================================
+           LESSON CONTENT
+        ===================================== */
+
+        .lesson-main {
+            min-width: 0;
+        }
+
+        .lesson-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+            margin: 0;
+        }
+
+        .lesson-block {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(50, 40, 60, 0.045);
+            padding: 40px 45px;
+            margin-bottom: 25px;
+            scroll-margin-top: 100px;
+        }
+
+        .lesson-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--purple-dark);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .lesson-block h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+        }
+
+        .lesson-block h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--purple);
+            margin: 30px 0 13px;
+            line-height: 1.5;
+        }
+
+        .lesson-block h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 25px 0 10px;
+        }
+
+        .lesson-block p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.9;
+            margin: 0 0 17px;
+            text-align: justify;
+        }
+
+        .lesson-block strong {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .lesson-block ul,
+        .lesson-block ol {
+            padding-left: 24px;
+            margin: 15px 0 23px;
+        }
+
+        .lesson-block li {
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.85;
+            padding-left: 5px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-block li::marker {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* =====================================
+           BOTTOM NAVIGATION
+        ===================================== */
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: var(--purple-dark);
+        }
+
+        .outline {
+            border-color: var(--line);
+            background: var(--paper);
+            color: var(--purple-dark);
+        }
+
+        .outline:hover {
+            background: var(--purple-light);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            background: #171e38;
+            color: #fff;
+            padding: 26px max(5.5%, calc((100% - 1200px) / 2));
+        }
+
+        .footer-bottom {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #9ba2b8;
+            align-items: center;
+        }
+
+        .footer-bottom button {
+            border: 0;
+            background: none;
+            color: #cfc9ff;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 1000px) {
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 10px;
+            }
+
+            .lesson-layout {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .lesson-block {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                color: var(--ink);
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 10px 20px 16px;
+                box-shadow: 0 12px 20px #1112;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 4px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .section-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .lesson-block {
+                padding: 28px 24px;
+            }
+
+            .topic-nav {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-top-actions {
+                align-items: flex-start;
+            }
+
+            .lesson-action {
+                font-size: 11px;
+            }
+
+            .lesson-block {
+                padding: 23px 17px;
+            }
+
+            .lesson-block h2 {
+                font-size: 21px;
+            }
+
+            .lesson-block h3 {
+                font-size: 16px;
+            }
+
+            .lesson-block p,
+            .lesson-block li {
+                font-size: 13px;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topic-nav .btn {
+                width: 100%;
+            }
+        }
+
+.lesson-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 22px 0 25px;
+    border: 1px solid var(--line);
+}
+
+.lesson-image-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -17px;
+    margin-bottom: 25px;
+}
+
+
+/* COMPARISON TABLE */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.lesson-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lesson-table th,
+.lesson-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lesson-table th {
+    color: #202641;
+    font-weight: 700;
+    background: #f7f8fc;
+}
+
+.lesson-table td {
+    color: #40465a;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: #f9fafc;
+}
+
+/* COLUMN WIDTHS */
+
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+    width: 15%;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2) {
+    width: 18%;
+}
+
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+    width: 27%;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+    width: 40%;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .lesson-table th,
+    .lesson-table td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+}
+
+
+.quiz-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px 30px;
+    background: #f7f7fb;
+    border: 1px solid #e9eaf1;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.quiz-label {
+    color: #6555c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.quiz-box h2 {
+    color: #202641;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.quiz-box p {
+    color: #737d92;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 550px;
+}
+
+.quiz-btn {
+    flex-shrink: 0;
+    background: #6555c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quiz-btn:hover {
+    background: #5142ad;
+}
+
+@media (max-width: 650px) {
+    .quiz-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+
+.reading-settings-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reading-settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 600 11px "DM Sans", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.reading-settings-btn:hover,
+.reading-settings-btn.active {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+.settings-arrow {
+    font-size: 13px;
+    transition: transform .2s;
+}
+
+.reading-settings-btn.active .settings-arrow {
+    transform: rotate(180deg);
+}
+
+/* COMPACT DROPDOWN */
+
+.reading-settings-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 255px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px #171f3b18;
+    z-index: 100;
+    color: var(--ink);
+}
+
+.reading-settings-panel[hidden] {
+    display: none !important;
+}
+
+.settings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.settings-heading h3 {
+    font: 800 13px Manrope, sans-serif;
+    color: var(--navy);
+    margin: 0;
+}
+
+.settings-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.close-settings {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+/* SETTINGS GROUP */
+
+.settings-group {
+    margin-bottom: 13px;
+}
+
+.settings-group > label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+/* THEME BUTTONS */
+
+.theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 8px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--muted);
+    font: 600 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-option span {
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+.theme-option.active {
+    background: #f0edff;
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* SELECT */
+
+.settings-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 11px "DM Sans", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-group select:focus {
+    border-color: var(--purple);
+}
+
+.settings-description {
+    color: var(--muted);
+    font-size: 9px;
+    margin: 4px 0 0;
+}
+
+/* RESET */
+
+.reset-settings {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--soft);
+    color: var(--purple);
+    font: 700 10px "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.reset-settings:hover {
+    background: #eeebfc;
+    border-color: var(--purple);
+}
+
+/* DARK MODE */
+
+/* READING SETTINGS FUNCTIONALITY */
+
+/* =====================================
+   READING MODE - DARK THEME
+===================================== */
+
+html[data-theme="dark"] {
+    --ink: #eeeeF8;
+    --navy: #f0edff;
+    --purple: #b6a8ff;
+    --purple-dark: #c4baff;
+    --purple-light: #383052;
+    --muted: #aaa6c0;
+    --line: #39354e;
+    --paper: #201d32;
+    --soft: #292442;
+}
+
+html[data-theme="dark"] body {
+    background: #151323;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .lesson-sidebar,
+html[data-theme="dark"] .lesson-block,
+html[data-theme="dark"] .progress-container {
+    background: #201d32;
+    color: #eeeeF8;
+}
+
+html[data-theme="dark"] .main-nav {
+    background: #201d32;
+}
+
+html[data-theme="dark"] .main-nav a {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .topic-title,
+html[data-theme="dark"] .sidebar-title,
+html[data-theme="dark"] .lesson-block h2,
+html[data-theme="dark"] .lesson-block h3,
+html[data-theme="dark"] .lesson-block h4 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-block p,
+html[data-theme="dark"] .lesson-block li,
+html[data-theme="dark"] .sidebar-info p {
+    color: #d0ccdf;
+}
+
+html[data-theme="dark"] .sidebar-info,
+html[data-theme="dark"] .quiz-box {
+    background: #292442;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .quiz-box h2 {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .quiz-box p {
+    color: #c4baff;
+}
+
+html[data-theme="dark"] .lesson-table th {
+    background: #292442;
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .lesson-table td {
+    color: #d0ccdf;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .lesson-table tbody tr:nth-child(even) {
+    background: #292442;
+}
+
+html[data-theme="dark"] .outline,
+html[data-theme="dark"] .lesson-action {
+    background: #292442;
+    color: #c4baff;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .reading-settings-panel {
+    background: #201d32;
+    color: #eeeeF8;
+    border-color: #39354e;
+}
+
+html[data-theme="dark"] .settings-heading h3,
+html[data-theme="dark"] .settings-group > label {
+    color: #f0edff;
+}
+
+html[data-theme="dark"] .theme-option,
+html[data-theme="dark"] .settings-group select,
+html[data-theme="dark"] .reset-settings,
+html[data-theme="dark"] .reading-settings-btn {
+    background: #292442;
+    color: #eeeeF8;
+    border-color: #494263;
+}
+
+html[data-theme="dark"] .theme-option.active {
+    background: #40365f;
+    border-color: #aa9cff;
+    color: #e0d9ff;
+}
+
+/* =====================================
+   READING FONT SIZE AND STYLE
+===================================== */
+
+.lesson-content {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block p,
+.lesson-content .lesson-block li {
+    font-size: var(--reading-font-size, 14px);
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+
+.lesson-content .lesson-block h2,
+.lesson-content .lesson-block h3,
+.lesson-content .lesson-block h4 {
+    font-family: var(--reading-font, "DM Sans"), sans-serif;
+}
+    </style>
+</head>
+
+<body id="top">
+
+    <div id="website">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <a class="brand" href="index.html">
+                <img
+                    src="photos/BookSphere-removebg-preview.png"
+                    alt="BookSphere Logo"
+                    class="brand-logo"
+                >
+
+                <span>
+                    BookSphere
+                    <small>STUDENT LEARNING PORTAL</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+           <nav class="main-nav" id="mainNav">
+
+    <!-- READING SETTINGS -->
+    <div class="reading-settings-wrap">
+
+        <button class="reading-settings-btn"
+                id="readingSettingsBtn"
+                type="button"
+                aria-expanded="false">
+
+            <span>☷</span>
+            Reading Settings
+            <span class="settings-arrow">⌄</span>
+
+        </button>
+
+        <!-- SETTINGS DROPDOWN -->
+        <div class="reading-settings-panel"
+             id="readingSettingsPanel"
+             hidden>
+
+            <div class="settings-heading">
+
+                <div>
+                    <h3>Reading Settings</h3>
+                    <p>Customize your reading experience.</p>
+                </div>
+
+                <button type="button"
+                        class="close-settings"
+                        id="closeSettings">
+                    ×
+                </button>
+
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <label>Appearance</label>
+
+                <div class="theme-options">
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="light">
+
+                        <span>☀</span>
+                        Light Mode
+
+                    </button>
+
+                    <button type="button"
+                            class="theme-option"
+                            data-theme-choice="dark">
+
+                        <span>☾</span>
+                        Dark Mode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FONT SIZE -->
+            <div class="settings-group">
+
+                <label for="fontSizeSelect">Font Size</label>
+
+                <select id="fontSizeSelect">
+
+                    <option value="12px">Small</option>
+                    <option value="14px">Medium</option>
+                    <option value="16px">Large</option>
+                    <option value="18px">Extra Large</option>
+                    <option value="20px">XX Large</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Adjust the size of the reading text.
+                </p>
+
+            </div>
+
+            <!-- FONT STYLE -->
+            <div class="settings-group">
+
+                <label for="fontStyleSelect">Font Style</label>
+
+                <select id="fontStyleSelect">
+
+                    <option value="DM Sans">DM Sans</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+
+                </select>
+
+                <p class="settings-description">
+                    Choose your preferred reading font.
+                </p>
+
+            </div>
+
+            <!-- RESET -->
+            <button type="button"
+                    class="reset-settings"
+                    id="resetReadingSettings">
+
+                ↻ Reset Settings
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="chapters.html">Chapters</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html#developers">Developers</a>
+
+</nav>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+<main class="section-wrap topic-page" id="top">
+
+    <!-- BREADCRUMB -->
+    <p class="crumbs">
+        <a href="chapters.html">Table of contents</a>
+        / 1st Year · Introduction to Computing
+    </p>
+
+    <span class="eyebrow">
+        1ST YEAR · INTRODUCTION TO COMPUTING
+    </span>
+
+    <h1 class="topic-title">
+        History and Evolution Of Computers
+    </h1>
+
+    <!-- LESSON TOP ACTIONS -->
+    <div class="lesson-top-actions">
+        <a href="chapters.html" class="lesson-action">
+            ← Back to Chapters
+        </a>
+
+       
+    </div>
+
+          <div class="lesson-layout">
+            <!-- LESSON LAYOUT -->
+            <aside class="lesson-sidebar">
+
+    <h3>On this page</h3>
+
+    <nav class="lesson-toc" id="lessonTOC">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#objectives">Learning Objectives</a>
+        <a href="#early-devices">Early Counting Devices</a>
+        <a href="#mechanical-calculators">Mechanical Calculators</a>
+        <a href="#babbage">Charles Babbage and Ada Lovelace</a>
+        <a href="#punched-cards">Punched-Card Computing</a>
+        <a href="#electronic-computers">Early Electronic Computers</a>
+        <a href="#generations">Generations of Computers</a>
+        <a href="#personal-computers">Personal Computers</a>
+        <a href="#internet">Internet and Modern Computing</a>
+        <a href="#modern-technologies">Modern Computing Technologies</a>
+        <a href="#comparison">Computer Evolution</a>
+        <a href="#importance">Importance of Computer Evolution</a>
+        <a href="#key-takeaways">Key Takeaways</a>
+        <a href="#references">References</a>
+    </nav>
+
+
+
+                    <div class="sidebar-info">
+                        <strong>Study Reminder</strong>
+
+                        <p>
+                            Read each section carefully and review the key
+                            takeaways after completing the lesson.
+                        </p>
+                    </div>
+
+                </aside>
+
+               <div class="lesson-main">
+
+                    
+
+ 
+<article class="lesson-content">
+
+    <!-- OVERVIEW -->
+    <section class="lesson-block" id="overview">
+
+        <h2>Overview</h2>
+
+        <p>
+            Computers have become an essential part of everyday life.
+            They are used in education, business, communication,
+            healthcare, entertainment, science, engineering, and
+            many other fields. Modern computers can perform millions
+            or even billions of operations in a short amount of time.
+            However, computers did not become as powerful as they are
+            today overnight. They developed through centuries of
+            inventions, discoveries, and technological improvements.
+        </p>
+
+        <p>
+            The history and evolution of computers describe how people
+            developed tools and machines to solve mathematical
+            problems, organize information, process data, and perform
+            complicated tasks. Early computing devices were operated
+            manually, while later machines used mechanical parts,
+            electrical components, and electronic circuits.
+        </p>
+
+        <p>
+            Over time, computers became smaller, faster, more
+            affordable, and easier to use. They evolved from large
+            machines that occupied entire rooms into portable
+            devices such as laptops, tablets, and smartphones.
+            Today, computing technologies continue to advance through
+            artificial intelligence, cloud computing, robotics,
+            and other emerging innovations.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 300"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Evolution of computers from an abacus to a modern laptop and smartphone">
+
+                <rect x="15" y="25" width="820" height="240"
+                      rx="15" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- Abacus -->
+                <rect x="45" y="90" width="105" height="85"
+                      rx="7" fill="#c58b50"
+                      stroke="#81572d" stroke-width="3"/>
+
+                <path d="M55 112 H140 M55 132 H140 M55 152 H140"
+                      stroke="#81572d" stroke-width="3"/>
+
+                <g fill="#6555c7">
+                    <circle cx="75" cy="112" r="7"/>
+                    <circle cx="105" cy="112" r="7"/>
+                    <circle cx="130" cy="112" r="7"/>
+                    <circle cx="85" cy="132" r="7"/>
+                    <circle cx="115" cy="132" r="7"/>
+                    <circle cx="70" cy="152" r="7"/>
+                    <circle cx="100" cy="152" r="7"/>
+                    <circle cx="130" cy="152" r="7"/>
+                </g>
+
+                <text x="98" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#202641">Abacus</text>
+
+                <!-- Arrow -->
+                <path d="M165 132 H205 M195 122 L205 132 L195 142"
+                      stroke="#6555c7" stroke-width="3"
+                      fill="none"/>
+
+                <!-- Mechanical computer -->
+                <rect x="220" y="88" width="120" height="90"
+                      rx="8" fill="#d9d9e5"
+                      stroke="#77758c" stroke-width="3"/>
+
+                <circle cx="250" cy="130" r="19"
+                        fill="#ffffff" stroke="#6555c7"
+                        stroke-width="3"/>
+
+                <circle cx="300" cy="130" r="19"
+                        fill="#ffffff" stroke="#6555c7"
+                        stroke-width="3"/>
+
+                <path d="M250 110 V150 M230 130 H270
+                         M300 110 V150 M280 130 H320"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="280" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#202641">Mechanical</text>
+
+                <!-- Arrow -->
+                <path d="M355 132 H395 M385 122 L395 132 L385 142"
+                      stroke="#6555c7" stroke-width="3"
+                      fill="none"/>
+
+                <!-- Mainframe -->
+                <rect x="410" y="65" width="105" height="125"
+                      rx="6" fill="#bfc8d8"
+                      stroke="#596579" stroke-width="3"/>
+
+                <rect x="425" y="80" width="75" height="30"
+                      rx="3" fill="#202641"/>
+
+                <g fill="#6555c7">
+                    <rect x="425" y="122" width="75" height="8" rx="2"/>
+                    <rect x="425" y="139" width="75" height="8" rx="2"/>
+                    <rect x="425" y="156" width="75" height="8" rx="2"/>
+                </g>
+
+                <text x="462" y="215" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#202641">Mainframe</text>
+
+                <!-- Arrow -->
+                <path d="M530 132 H570 M560 122 L570 132 L560 142"
+                      stroke="#6555c7" stroke-width="3"
+                      fill="none"/>
+
+                <!-- Desktop -->
+                <rect x="585" y="75" width="100" height="75"
+                      rx="5" fill="#d7dceb"
+                      stroke="#596579" stroke-width="3"/>
+
+                <rect x="595" y="85" width="80" height="53"
+                      fill="#202641"/>
+
+                <path d="M635 150 V168 M610 168 H660"
+                      stroke="#596579" stroke-width="5"
+                      stroke-linecap="round"/>
+
+                <text x="635" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#202641">Desktop</text>
+
+                <!-- Arrow -->
+                <path d="M700 132 H720 M710 122 L720 132 L710 142"
+                      stroke="#6555c7" stroke-width="3"
+                      fill="none"/>
+
+                <!-- Laptop -->
+                <rect x="730" y="90" width="75" height="55"
+                      rx="4" fill="#d7dceb"
+                      stroke="#596579" stroke-width="3"/>
+
+                <rect x="737" y="97" width="61" height="41"
+                      fill="#202641"/>
+
+                <path d="M725 147 H810 L800 158 H735 Z"
+                      fill="#8b91a5" stroke="#596579"
+                      stroke-width="2"/>
+
+                <text x="767" y="205" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#202641">Laptop</text>
+
+                <text x="425" y="245" text-anchor="middle"
+                      font-size="13" fill="#6555c7">
+                    From simple counting tools to modern computing devices
+                </text>
+
+            </svg>
+
+            <figcaption>
+                The evolution of computers from early counting devices
+                to modern portable computers.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- LEARNING OBJECTIVES -->
+    <section class="lesson-block" id="objectives">
+
+        <h2>Learning Objectives</h2>
+
+        <p>After studying this lesson, students should be able to:</p>
+
+        <ul>
+            <li>Explain the historical development of computers.</li>
+            <li>Identify important inventors and their contributions to computing.</li>
+            <li>Describe the major generations of computers.</li>
+            <li>Differentiate early computing devices from modern computers.</li>
+            <li>Explain how technological advancements changed computer capabilities.</li>
+            <li>Recognize the importance of computers in modern society.</li>
+            <li>Identify emerging technologies that influence the future of computing.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- EARLY COUNTING DEVICES -->
+    <section class="lesson-block" id="early-devices">
+
+        <h2>Early Counting Devices</h2>
+
+        <p>
+            Before electronic computers existed, people needed ways
+            to count objects, measure quantities, and perform
+            mathematical calculations. Early counting devices helped
+            simplify these activities, especially in trading,
+            agriculture, construction, and record keeping.
+        </p>
+
+        <h3>Abacus</h3>
+
+        <p>
+            The abacus is one of the oldest known calculating tools.
+            It consists of beads arranged on rods or wires inside a
+            frame. Users move the beads to represent numbers and
+            perform arithmetic operations such as addition,
+            subtraction, multiplication, and division.
+        </p>
+
+        <p>
+            Different civilizations developed their own forms of
+            the abacus. It was widely used in ancient trade and
+            education because it allowed people to calculate
+            quantities more efficiently than counting everything
+            individually.
+        </p>
+
+        <p>
+            Although the abacus does not automatically process
+            information like a modern computer, it introduced an
+            organized method of representing and manipulating
+            numerical values.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 260"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="An abacus with beads arranged on horizontal rods">
+
+                <rect x="180" y="35" width="490" height="185"
+                      rx="12" fill="#c58b50"
+                      stroke="#81572d" stroke-width="5"/>
+
+                <rect x="200" y="55" width="450" height="145"
+                      rx="5" fill="#f4dfc5"/>
+
+                <g stroke="#81572d" stroke-width="5">
+                    <line x1="215" y1="85" x2="635" y2="85"/>
+                    <line x1="215" y1="120" x2="635" y2="120"/>
+                    <line x1="215" y1="155" x2="635" y2="155"/>
+                    <line x1="215" y1="185" x2="635" y2="185"/>
+                </g>
+
+                <g fill="#6555c7" stroke="#493b9c" stroke-width="2">
+                    <circle cx="260" cy="85" r="12"/>
+                    <circle cx="300" cy="85" r="12"/>
+                    <circle cx="390" cy="85" r="12"/>
+                    <circle cx="430" cy="85" r="12"/>
+
+                    <circle cx="280" cy="120" r="12"/>
+                    <circle cx="320" cy="120" r="12"/>
+                    <circle cx="360" cy="120" r="12"/>
+                    <circle cx="450" cy="120" r="12"/>
+
+                    <circle cx="240" cy="155" r="12"/>
+                    <circle cx="330" cy="155" r="12"/>
+                    <circle cx="370" cy="155" r="12"/>
+                    <circle cx="490" cy="155" r="12"/>
+
+                    <circle cx="280" cy="185" r="12"/>
+                    <circle cx="410" cy="185" r="12"/>
+                    <circle cx="450" cy="185" r="12"/>
+                    <circle cx="530" cy="185" r="12"/>
+                </g>
+
+                <text x="425" y="245" text-anchor="middle"
+                      font-size="17" font-weight="bold"
+                      fill="#202641">ABACUS</text>
+
+            </svg>
+
+            <figcaption>
+                The abacus uses movable beads to represent numbers
+                and perform calculations.
+            </figcaption>
+        </figure>
+
+        <h3>Napier's Bones</h3>
+
+        <p>
+            Napier's Bones was invented by Scottish mathematician
+            John Napier in the early seventeenth century. It used
+            numbered rods containing multiplication tables to help
+            users perform multiplication and division.
+        </p>
+
+        <p>
+            The rods were arranged in different combinations to
+            simplify mathematical calculations. This invention
+            helped reduce the amount of manual computation required
+            when solving mathematical problems.
+        </p>
+
+        <h3>Slide Rule</h3>
+
+        <p>
+            The slide rule was developed from logarithmic principles
+            and became an important calculating instrument for
+            engineers, scientists, and mathematicians.
+        </p>
+
+        <p>
+            It consists of graduated scales that slide against one
+            another. By aligning the scales, users can perform
+            multiplication, division, and other mathematical
+            calculations. Slide rules were widely used before
+            electronic calculators became common.
+        </p>
+
+        <h3>Importance of Early Counting Devices</h3>
+
+        <ul>
+            <li>Made mathematical calculations easier and faster.</li>
+            <li>Reduced the need for repeated manual counting.</li>
+            <li>Supported trade, business, construction, and education.</li>
+            <li>Introduced organized methods of representing numerical information.</li>
+            <li>Provided ideas that influenced later calculating machines.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- MECHANICAL CALCULATORS -->
+    <section class="lesson-block" id="mechanical-calculators">
+
+        <h2>Mechanical Calculators</h2>
+
+        <p>
+            As mathematics and commercial activities became more
+            complex, people began developing machines that could
+            perform calculations using mechanical components.
+            These machines used gears, wheels, levers, and rotating
+            mechanisms to process numbers.
+        </p>
+
+        <h3>Pascaline</h3>
+
+        <p>
+            The Pascaline was invented by French mathematician
+            Blaise Pascal in 1642. It was designed to help his
+            father perform tax-related calculations.
+        </p>
+
+        <p>
+            The machine used a series of numbered wheels and gears.
+            When a user turned a wheel, the movement affected the
+            connected wheels, allowing the machine to perform
+            addition and subtraction.
+        </p>
+
+        <p>
+            The Pascaline was an important development because it
+            demonstrated that mechanical devices could perform
+            arithmetic operations automatically.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 280"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Simplified mechanical calculator with number wheels">
+
+                <rect x="170" y="40" width="510" height="190"
+                      rx="18" fill="#d7dceb"
+                      stroke="#596579" stroke-width="4"/>
+
+                <text x="425" y="75" text-anchor="middle"
+                      font-size="21" font-weight="bold"
+                      fill="#202641">PASCALINE</text>
+
+                <g>
+                    <circle cx="275" cy="145" r="43"
+                            fill="#ffffff" stroke="#6555c7"
+                            stroke-width="5"/>
+
+                    <circle cx="425" cy="145" r="43"
+                            fill="#ffffff" stroke="#6555c7"
+                            stroke-width="5"/>
+
+                    <circle cx="575" cy="145" r="43"
+                            fill="#ffffff" stroke="#6555c7"
+                            stroke-width="5"/>
+                </g>
+
+                <g font-size="20" font-weight="bold"
+                   fill="#6555c7" text-anchor="middle">
+                    <text x="275" y="153">5</text>
+                    <text x="425" y="153">8</text>
+                    <text x="575" y="153">3</text>
+                </g>
+
+                <g stroke="#6555c7" stroke-width="3">
+                    <path d="M275 98 V105 M275 185 V192"/>
+                    <path d="M425 98 V105 M425 185 V192"/>
+                    <path d="M575 98 V105 M575 185 V192"/>
+                </g>
+
+                <text x="425" y="260" text-anchor="middle"
+                      font-size="15" fill="#202641">
+                    A mechanical device designed for arithmetic calculations
+                </text>
+
+            </svg>
+
+            <figcaption>
+                A simplified illustration of Pascal's mechanical calculator.
+            </figcaption>
+        </figure>
+
+        <h3>Leibniz's Stepped Reckoner</h3>
+
+        <p>
+            German mathematician Gottfried Wilhelm Leibniz improved
+            mechanical calculating technology by developing the
+            Stepped Reckoner. It used a special mechanical component
+            called a stepped drum.
+        </p>
+
+        <p>
+            Unlike the Pascaline, the Stepped Reckoner was designed
+            to perform addition, subtraction, multiplication,
+            and division. It represented an important step toward
+            more advanced automatic calculation.
+        </p>
+
+        <h3>Importance of Mechanical Calculators</h3>
+
+        <ul>
+            <li>Introduced machines that could perform calculations.</li>
+            <li>Reduced errors in repeated arithmetic operations.</li>
+            <li>Improved the speed of mathematical work.</li>
+            <li>Established mechanical methods later used in computing machines.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- CHARLES BABBAGE -->
+    <section class="lesson-block" id="babbage">
+
+        <h2>Charles Babbage and Ada Lovelace</h2>
+
+        <h3>Charles Babbage</h3>
+
+        <p>
+            Charles Babbage was an English mathematician and inventor
+            often called the Father of the Computer. He proposed
+            machines that could perform complex mathematical
+            calculations automatically.
+        </p>
+
+        <p>
+            He recognized that manually calculating mathematical
+            tables was time-consuming and could produce errors.
+            His designs introduced ideas that later became important
+            in modern computer architecture.
+        </p>
+
+        <h3>Difference Engine</h3>
+
+        <p>
+            The Difference Engine was a mechanical calculating
+            machine designed to automatically calculate and
+            produce mathematical tables. It used a method called
+            finite differences to calculate numerical values.
+        </p>
+
+        <p>
+            Its main purpose was to reduce errors in mathematical
+            tables used by engineers, scientists, and navigators.
+            Although Babbage's original machine was not completed
+            during his lifetime, its design influenced later
+            mechanical computing developments.
+        </p>
+
+        <h3>Analytical Engine</h3>
+
+        <p>
+            Babbage later designed the Analytical Engine, a more
+            advanced proposed mechanical computer. Unlike the
+            Difference Engine, which focused on calculating
+            mathematical tables, the Analytical Engine was designed
+            to perform different types of operations.
+        </p>
+
+        <p>
+            Its design included several important concepts:
+        </p>
+
+        <ul>
+            <li><strong>Mill:</strong> The component responsible for performing calculations, similar to a modern CPU.</li>
+            <li><strong>Store:</strong> A component intended to hold numbers and intermediate results, similar to memory.</li>
+            <li><strong>Input:</strong> Punched cards were intended to provide instructions and data.</li>
+            <li><strong>Output:</strong> The machine was designed to produce printed results.</li>
+            <li><strong>Control:</strong> Instructions would determine the sequence of operations.</li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 320"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Conceptual diagram of the Analytical Engine showing input, processing, storage, and output">
+
+                <rect x="25" y="35" width="800" height="245"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <rect x="55" y="100" width="145" height="105"
+                      rx="9" fill="#e9e5ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <text x="127" y="140" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#4b3ca6">INPUT</text>
+
+                <text x="127" y="165" text-anchor="middle"
+                      font-size="13" fill="#202641">Punched cards</text>
+
+                <rect x="250" y="100" width="165" height="105"
+                      rx="9" fill="#dce9ff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <text x="332" y="140" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#174ea6">MILL</text>
+
+                <text x="332" y="165" text-anchor="middle"
+                      font-size="13" fill="#202641">Processing</text>
+
+                <rect x="465" y="100" width="145" height="105"
+                      rx="9" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <text x="537" y="140" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#26734d">STORE</text>
+
+                <text x="537" y="165" text-anchor="middle"
+                      font-size="13" fill="#202641">Memory</text>
+
+                <rect x="660" y="100" width="135" height="105"
+                      rx="9" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <text x="727" y="140" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#9a6415">OUTPUT</text>
+
+                <text x="727" y="165" text-anchor="middle"
+                      font-size="13" fill="#202641">Results</text>
+
+                <g stroke="#6555c7" stroke-width="3"
+                   fill="none">
+                    <path d="M200 152 H245 M235 142 L245 152 L235 162"/>
+                    <path d="M415 152 H460 M450 142 L460 152 L450 162"/>
+                    <path d="M610 152 H655 M645 142 L655 152 L645 162"/>
+                </g>
+
+                <text x="425" y="250" text-anchor="middle"
+                      font-size="15" fill="#202641">
+                    A conceptual design of an early programmable mechanical computer
+                </text>
+
+            </svg>
+
+            <figcaption>
+                The Analytical Engine introduced concepts similar to
+                the input, processing, storage, and output functions
+                of modern computers.
+            </figcaption>
+        </figure>
+
+        <h3>Ada Lovelace</h3>
+
+        <p>
+            Ada Lovelace was an English mathematician who studied
+            Charles Babbage's Analytical Engine. She wrote detailed
+            notes explaining how the machine could be instructed
+            to perform a sequence of operations.
+        </p>
+
+        <p>
+            Her notes included an algorithm for calculating
+            Bernoulli numbers using the Analytical Engine. Because
+            of this contribution, she is widely recognized as
+            an early pioneer of computer programming and is often
+            described as the first computer programmer.
+        </p>
+
+        <h3>Why Their Contributions Matter</h3>
+
+        <ul>
+            <li>Babbage introduced important concepts of programmable computing.</li>
+            <li>Ada Lovelace demonstrated how machines could follow detailed instructions.</li>
+            <li>Their work influenced the development of modern computer architecture and programming.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- PUNCHED CARD COMPUTING -->
+    <section class="lesson-block" id="punched-cards">
+
+        <h2>Punched-Card Computing</h2>
+
+        <p>
+            Punched cards became an important method of storing
+            and processing information. These cards contained
+            holes arranged in specific patterns. Each pattern
+            represented data or instructions that could be read
+            by a machine.
+        </p>
+
+        <h3>Herman Hollerith</h3>
+
+        <p>
+            Herman Hollerith developed a punched-card tabulating
+            system to process information more efficiently.
+            His technology was used for processing data from
+            the 1890 United States Census.
+        </p>
+
+        <p>
+            Instead of manually counting and organizing every
+            record, information was encoded onto punched cards.
+            Machines could then read and process the cards,
+            making large-scale data processing faster.
+        </p>
+
+        <h3>How Punched Cards Worked</h3>
+
+        <ul>
+            <li>Information was encoded using holes in a card.</li>
+            <li>The card was placed into a reading machine.</li>
+            <li>Electrical or mechanical contacts detected the holes.</li>
+            <li>The machine processed the encoded information.</li>
+            <li>Results were organized and recorded.</li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 300"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Punched card containing rows and columns of holes">
+
+                <rect x="220" y="25" width="410" height="230"
+                      rx="12" fill="#ffffff"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <text x="425" y="58" text-anchor="middle"
+                      font-size="19" font-weight="bold"
+                      fill="#202641">PUNCHED CARD</text>
+
+                <g fill="#f0eff8" stroke="#6555c7"
+                   stroke-width="1.5">
+
+                    <rect x="260" y="80" width="330" height="145"
+                          rx="4"/>
+
+                </g>
+
+                <g fill="#6555c7">
+                    <circle cx="290" cy="105" r="7"/>
+                    <circle cx="335" cy="105" r="7"/>
+                    <circle cx="425" cy="105" r="7"/>
+                    <circle cx="515" cy="105" r="7"/>
+                    <circle cx="560" cy="105" r="7"/>
+
+                    <circle cx="290" cy="145" r="7"/>
+                    <circle cx="380" cy="145" r="7"/>
+                    <circle cx="425" cy="145" r="7"/>
+                    <circle cx="515" cy="145" r="7"/>
+
+                    <circle cx="335" cy="185" r="7"/>
+                    <circle cx="380" cy="185" r="7"/>
+                    <circle cx="470" cy="185" r="7"/>
+                    <circle cx="560" cy="185" r="7"/>
+                </g>
+
+                <text x="425" y="280" text-anchor="middle"
+                      font-size="15" fill="#202641">
+                    Hole patterns represented information for machine processing
+                </text>
+
+            </svg>
+
+            <figcaption>
+                Punched cards stored data using patterns of holes
+                that could be interpreted by machines.
+            </figcaption>
+        </figure>
+
+        <h3>Impact of Punched-Card Technology</h3>
+
+        <p>
+            Punched-card systems helped establish the foundations
+            of automated data processing. They were used in
+            government offices, businesses, scientific institutions,
+            and large organizations.
+        </p>
+
+        <p>
+            Hollerith's work also contributed to the development
+            of the company that eventually became part of IBM,
+            a major computer technology company.
+        </p>
+
+    </section>
+
+
+    <!-- EARLY ELECTRONIC COMPUTERS -->
+    <section class="lesson-block" id="electronic-computers">
+
+        <h2>Development of Early Electronic Computers</h2>
+
+        <p>
+            During the twentieth century, advances in electricity
+            and electronics made it possible to develop computers
+            that could process information much faster than
+            mechanical machines.
+        </p>
+
+        <p>
+            Early electronic computers used vacuum tubes,
+            electrical circuits, switches, and other components.
+            They were designed for scientific calculations,
+            military applications, codebreaking, and large-scale
+            data processing.
+        </p>
+
+        <h3>Atanasoff-Berry Computer (ABC)</h3>
+
+        <p>
+            The Atanasoff-Berry Computer was developed by
+            John Vincent Atanasoff and Clifford Berry during
+            the late 1930s and early 1940s.
+        </p>
+
+        <p>
+            It introduced important ideas such as electronic
+            calculation and binary representation. The machine
+            was designed primarily to solve systems of linear
+            equations rather than serve as a general-purpose
+            programmable computer.
+        </p>
+
+        <h3>Colossus</h3>
+
+        <p>
+            Colossus was an electronic computing machine developed
+            in Britain during World War II. It was used to help
+            analyze encrypted German communications.
+        </p>
+
+        <p>
+            It played an important role in codebreaking and
+            demonstrated how electronic machines could perform
+            specialized information-processing tasks at high speed.
+        </p>
+
+        <h3>ENIAC</h3>
+
+        <p>
+            The Electronic Numerical Integrator and Computer,
+            commonly known as ENIAC, was completed in 1945 and
+            publicly announced in 1946. It was developed by
+            John Mauchly and J. Presper Eckert.
+        </p>
+
+        <p>
+            ENIAC was one of the earliest general-purpose
+            electronic digital computers. It used thousands
+            of vacuum tubes and occupied a large room.
+            It was capable of performing complex numerical
+            calculations much faster than earlier manual
+            and mechanical methods.
+        </p>
+
+        <h3>UNIVAC I</h3>
+
+        <p>
+            The Universal Automatic Computer I, or UNIVAC I,
+            was among the first commercially produced electronic
+            computers in the United States. It was delivered
+            to the United States Census Bureau in 1951.
+        </p>
+
+        <p>
+            UNIVAC I helped demonstrate that computers could
+            be used not only for scientific and military work
+            but also for business and government information
+            processing.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 300"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Simplified illustration of an early electronic computer with large cabinets">
+
+                <rect x="90" y="40" width="670" height="215"
+                      rx="12" fill="#d9dce5"
+                      stroke="#596579" stroke-width="3"/>
+
+                <g>
+                    <rect x="120" y="65" width="145" height="160"
+                          rx="5" fill="#aeb7c8"
+                          stroke="#596579" stroke-width="3"/>
+
+                    <rect x="285" y="65" width="145" height="160"
+                          rx="5" fill="#aeb7c8"
+                          stroke="#596579" stroke-width="3"/>
+
+                    <rect x="450" y="65" width="145" height="160"
+                          rx="5" fill="#aeb7c8"
+                          stroke="#596579" stroke-width="3"/>
+
+                    <rect x="615" y="65" width="115" height="160"
+                          rx="5" fill="#aeb7c8"
+                          stroke="#596579" stroke-width="3"/>
+                </g>
+
+                <g fill="#202641">
+                    <rect x="140" y="85" width="105" height="45" rx="3"/>
+                    <rect x="305" y="85" width="105" height="45" rx="3"/>
+                    <rect x="470" y="85" width="105" height="45" rx="3"/>
+                    <rect x="630" y="85" width="85" height="45" rx="3"/>
+                </g>
+
+                <g fill="#6555c7">
+                    <circle cx="160" cy="155" r="7"/>
+                    <circle cx="190" cy="155" r="7"/>
+                    <circle cx="220" cy="155" r="7"/>
+
+                    <circle cx="325" cy="155" r="7"/>
+                    <circle cx="355" cy="155" r="7"/>
+                    <circle cx="385" cy="155" r="7"/>
+
+                    <circle cx="490" cy="155" r="7"/>
+                    <circle cx="520" cy="155" r="7"/>
+                    <circle cx="550" cy="155" r="7"/>
+
+                    <circle cx="650" cy="155" r="7"/>
+                    <circle cx="680" cy="155" r="7"/>
+                </g>
+
+                <text x="425" y="285" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#202641">EARLY ELECTRONIC COMPUTER</text>
+
+            </svg>
+
+            <figcaption>
+                Early electronic computers used large cabinets
+                filled with electronic components.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- GENERATIONS OF COMPUTERS -->
+    <section class="lesson-block" id="generations">
+
+        <h2>Generations of Computers</h2>
+
+        <p>
+            The development of computers is commonly divided
+            into five generations. Each generation represents
+            an important improvement in the technology used
+            to build and operate computers.
+        </p>
+
+        <h3>First Generation: Vacuum Tubes (1940s–1950s)</h3>
+
+        <p>
+            First-generation computers used vacuum tubes as their
+            primary electronic components. Vacuum tubes controlled
+            the flow of electrical signals and were used to perform
+            calculations and process information.
+        </p>
+
+        <p>
+            These computers were extremely large, expensive,
+            and consumed significant amounts of electricity.
+            They also generated considerable heat and required
+            frequent maintenance.
+        </p>
+
+        <p><strong>Characteristics:</strong></p>
+
+        <ul>
+            <li>Used vacuum tubes for electronic processing.</li>
+            <li>Occupied large rooms or dedicated facilities.</li>
+            <li>Consumed large amounts of electrical power.</li>
+            <li>Generated excessive heat.</li>
+            <li>Used machine language for programming.</li>
+            <li>Had limited memory and storage capabilities.</li>
+        </ul>
+
+        <p><strong>Examples:</strong> ENIAC, UNIVAC I, and EDVAC.</p>
+
+        <h3>Second Generation: Transistors (1950s–1960s)</h3>
+
+        <p>
+            Second-generation computers replaced vacuum tubes
+            with transistors. A transistor is a small electronic
+            component that controls or amplifies electrical signals.
+        </p>
+
+        <p>
+            Transistors were smaller, faster, more reliable,
+            and more energy-efficient than vacuum tubes.
+            As a result, computers became more compact and
+            practical for scientific and business applications.
+        </p>
+
+        <p><strong>Characteristics:</strong></p>
+
+        <ul>
+            <li>Used transistors instead of vacuum tubes.</li>
+            <li>Required less electricity.</li>
+            <li>Produced less heat.</li>
+            <li>Provided improved speed and reliability.</li>
+            <li>Supported assembly language and early high-level languages.</li>
+            <li>Used magnetic-core memory and magnetic tape storage.</li>
+        </ul>
+
+        <p>
+            Programming languages such as FORTRAN and COBOL
+            became important during this period.
+        </p>
+
+        <p><strong>Examples:</strong> IBM 1401 and IBM 7090.</p>
+
+        <h3>Third Generation: Integrated Circuits (1960s–1970s)</h3>
+
+        <p>
+            Third-generation computers used integrated circuits,
+            commonly called ICs. An integrated circuit contains
+            multiple electronic components placed on a small
+            semiconductor chip.
+        </p>
+
+        <p>
+            This technology allowed computers to become smaller,
+            faster, and more reliable. It also reduced manufacturing
+            costs and improved the ability to process multiple
+            tasks efficiently.
+        </p>
+
+        <p><strong>Characteristics:</strong></p>
+
+        <ul>
+            <li>Used integrated circuits.</li>
+            <li>Improved processing speed and accuracy.</li>
+            <li>Reduced physical size and power consumption.</li>
+            <li>Supported operating systems and multiprogramming.</li>
+            <li>Improved input and output devices.</li>
+        </ul>
+
+        <p><strong>Examples:</strong> IBM System/360 and PDP-8.</p>
+
+        <h3>Fourth Generation: Microprocessors (1970s–Present)</h3>
+
+        <p>
+            Fourth-generation computers introduced the
+            microprocessor. A microprocessor is a CPU contained
+            on a single integrated circuit chip.
+        </p>
+
+        <p>
+            This innovation made it possible to build smaller,
+            more affordable, and more powerful computers.
+            It also supported the development of personal
+            computers, laptops, and other devices used by
+            individuals and organizations.
+        </p>
+
+        <p><strong>Characteristics:</strong></p>
+
+        <ul>
+            <li>Used microprocessor technology.</li>
+            <li>Provided faster processing capabilities.</li>
+            <li>Enabled the development of personal computers.</li>
+            <li>Supported graphical user interfaces.</li>
+            <li>Improved memory and storage capacity.</li>
+            <li>Made computers accessible to more people.</li>
+        </ul>
+
+        <p><strong>Examples:</strong> IBM Personal Computer and Apple Macintosh.</p>
+
+        <h3>Fifth Generation: Artificial Intelligence and Advanced Computing</h3>
+
+        <p>
+            Fifth-generation computing focuses on artificial
+            intelligence, advanced processing, machine learning,
+            natural language processing, robotics, and other
+            intelligent technologies.
+        </p>
+
+        <p>
+            Modern computers can analyze large amounts of data,
+            recognize patterns, understand human language,
+            and assist users in performing complex tasks.
+        </p>
+
+        <p>
+            Unlike earlier generations, which are commonly
+            identified by major hardware changes, fifth-generation
+            computing is often described through its emphasis
+            on intelligent systems and advanced computing
+            capabilities.
+        </p>
+
+        <p><strong>Characteristics:</strong></p>
+
+        <ul>
+            <li>Uses artificial intelligence and machine learning.</li>
+            <li>Supports natural language processing.</li>
+            <li>Enables advanced robotics and automation.</li>
+            <li>Processes large amounts of information.</li>
+            <li>Supports intelligent decision-making systems.</li>
+            <li>Continues to explore advanced computing technologies.</li>
+        </ul>
+
+        <p>
+            <strong>Examples:</strong> AI-powered assistants,
+            intelligent robots, machine-learning systems,
+            and advanced computing platforms.
+        </p>
+
+        <figure>
+            <svg viewBox="0 0 850 380"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Five generations of computers from vacuum tubes to artificial intelligence">
+
+                <rect x="20" y="20" width="810" height="340"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- First -->
+                <rect x="45" y="65" width="135" height="210"
+                      rx="9" fill="#eee9ff"
+                      stroke="#6555c7" stroke-width="2"/>
+
+                <rect x="78" y="105" width="68" height="85"
+                      rx="7" fill="#c3c6d3"
+                      stroke="#596579" stroke-width="2"/>
+
+                <g stroke="#6555c7" stroke-width="3">
+                    <line x1="88" y1="118" x2="88" y2="175"/>
+                    <line x1="105" y1="118" x2="105" y2="175"/>
+                    <line x1="122" y1="118" x2="122" y2="175"/>
+                    <line x1="139" y1="118" x2="139" y2="175"/>
+                </g>
+
+                <text x="112" y="215" text-anchor="middle"
+                      font-size="15" font-weight="bold"
+                      fill="#4b3ca6">FIRST</text>
+
+                <text x="112" y="240" text-anchor="middle"
+                      font-size="12" fill="#202641">Vacuum Tubes</text>
+
+                <!-- Second -->
+                <rect x="205" y="65" width="135" height="210"
+                      rx="9" fill="#e5efff"
+                      stroke="#347fe0" stroke-width="2"/>
+
+                <path d="M255 110 L275 145 L255 180 L235 145 Z"
+                      fill="#347fe0"/>
+
+                <path d="M275 145 H300"
+                      stroke="#174ea6" stroke-width="4"/>
+
+                <text x="272" y="215" text-anchor="middle"
+                      font-size="15" font-weight="bold"
+                      fill="#174ea6">SECOND</text>
+
+                <text x="272" y="240" text-anchor="middle"
+                      font-size="12" fill="#202641">Transistors</text>
+
+                <!-- Third -->
+                <rect x="365" y="65" width="135" height="210"
+                      rx="9" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="2"/>
+
+                <rect x="400" y="112" width="65" height="65"
+                      rx="6" fill="#26734d"/>
+
+                <g stroke="#ffffff" stroke-width="2">
+                    <line x1="413" y1="103" x2="413" y2="112"/>
+                    <line x1="428" y1="103" x2="428" y2="112"/>
+                    <line x1="443" y1="103" x2="443" y2="112"/>
+                    <line x1="458" y1="103" x2="458" y2="112"/>
+                    <line x1="413" y1="177" x2="413" y2="186"/>
+                    <line x1="428" y1="177" x2="428" y2="186"/>
+                    <line x1="443" y1="177" x2="443" y2="186"/>
+                    <line x1="458" y1="177" x2="458" y2="186"/>
+                </g>
+
+                <text x="432" y="215" text-anchor="middle"
+                      font-size="15" font-weight="bold"
+                      fill="#26734d">THIRD</text>
+
+                <text x="432" y="240" text-anchor="middle"
+                      font-size="12" fill="#202641">Integrated Circuits</text>
+
+                <!-- Fourth -->
+                <rect x="525" y="65" width="135" height="210"
+                      rx="9" fill="#fff0dc"
+                      stroke="#d99a38" stroke-width="2"/>
+
+                <rect x="557" y="115" width="70" height="65"
+                      rx="5" fill="#d99a38"
+                      stroke="#9a6415" stroke-width="3"/>
+
+                <text x="592" y="154" text-anchor="middle"
+                      font-size="13" font-weight="bold"
+                      fill="#ffffff">CPU</text>
+
+                <text x="592" y="215" text-anchor="middle"
+                      font-size="15" font-weight="bold"
+                      fill="#9a6415">FOURTH</text>
+
+                <text x="592" y="240" text-anchor="middle"
+                      font-size="12" fill="#202641">Microprocessors</text>
+
+                <!-- Fifth -->
+                <rect x="685" y="65" width="135" height="210"
+                      rx="9" fill="#fce8ef"
+                      stroke="#c75a85" stroke-width="2"/>
+
+                <circle cx="752" cy="145" r="38"
+                        fill="#c75a85"/>
+
+                <circle cx="752" cy="145" r="23"
+                        fill="none" stroke="#ffffff"
+                        stroke-width="3"/>
+
+                <path d="M752 107 V183 M714 145 H790
+                         M725 118 L779 172 M779 118 L725 172"
+                      stroke="#ffffff" stroke-width="2"/>
+
+                <text x="752" y="215" text-anchor="middle"
+                      font-size="15" font-weight="bold"
+                      fill="#a83d67">FIFTH</text>
+
+                <text x="752" y="240" text-anchor="middle"
+                      font-size="12" fill="#202641">AI and Advanced Computing</text>
+
+                <text x="425" y="325" text-anchor="middle"
+                      font-size="15" fill="#202641">
+                    Five commonly recognized generations of computer development
+                </text>
+
+            </svg>
+
+            <figcaption>
+                Each generation introduced technologies that improved
+                computer performance, size, reliability, and capabilities.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- PERSONAL COMPUTERS -->
+    <section class="lesson-block" id="personal-computers">
+
+        <h2>Development of Personal Computers</h2>
+
+        <p>
+            The introduction of microprocessors made it possible
+            to develop computers that individuals could use
+            at home, in schools, and in workplaces. Before this
+            development, most computers were expensive systems
+            mainly used by large organizations and institutions.
+        </p>
+
+        <h3>Early Personal Computers</h3>
+
+        <p>
+            During the 1970s, computers such as the Altair 8800
+            introduced a new era of personal computing.
+            These early systems were often sold as kits and
+            required users to assemble or configure parts
+            of the machine.
+        </p>
+
+        <h3>Apple II</h3>
+
+        <p>
+            Released in 1977, the Apple II became one of the
+            influential early personal computers. It provided
+            color graphics and could be used for education,
+            home computing, and business applications.
+        </p>
+
+        <h3>IBM Personal Computer</h3>
+
+        <p>
+            IBM introduced its Personal Computer in 1981.
+            It helped establish a widely adopted platform
+            for business and personal computing.
+        </p>
+
+        <p>
+            The availability of compatible hardware and software
+            contributed to the growth of the personal computer
+            industry.
+        </p>
+
+        <h3>Graphical User Interfaces</h3>
+
+        <p>
+            Graphical user interfaces, or GUIs, changed how
+            people interacted with computers. Instead of
+            relying entirely on typed commands, users could
+            interact with visual elements such as windows,
+            icons, menus, and buttons.
+        </p>
+
+        <p>
+            This made computers easier to learn and use,
+            allowing more people to benefit from computing
+            technology.
+        </p>
+
+        <h3>Impact of Personal Computers</h3>
+
+        <ul>
+            <li>Made computing more accessible to individuals.</li>
+            <li>Improved office productivity and document processing.</li>
+            <li>Supported computer-based education and research.</li>
+            <li>Expanded the software development industry.</li>
+            <li>Encouraged the growth of home computing and digital entertainment.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- INTERNET -->
+    <section class="lesson-block" id="internet">
+
+        <h2>Internet and Modern Computing</h2>
+
+        <p>
+            The development of computer networks transformed
+            how computers communicate and share information.
+            Instead of working only as independent machines,
+            computers could connect with other devices and
+            exchange data across networks.
+        </p>
+
+        <h3>Development of Computer Networks</h3>
+
+        <p>
+            ARPANET was an early computer network developed
+            through research supported by the United States
+            Department of Defense. It became an important
+            foundation in the development of the modern internet.
+        </p>
+
+        <p>
+            The adoption of TCP/IP as a common networking
+            protocol on January 1, 1983, was a major milestone
+            in the development of interconnected networks.
+        </p>
+
+        <h3>World Wide Web</h3>
+
+        <p>
+            The World Wide Web was developed by Tim Berners-Lee
+            at CERN. It introduced a system for accessing and
+            connecting information through webpages and
+            hyperlinks.
+        </p>
+
+        <p>
+            The Web made it easier for people to access
+            information through browsers. It also supported
+            the development of websites, online services,
+            digital publishing, and electronic commerce.
+        </p>
+
+        <h3>Mobile Computing</h3>
+
+        <p>
+            Mobile computing allows users to access information
+            and perform computing tasks through portable devices
+            such as smartphones and tablets.
+        </p>
+
+        <p>
+            Modern mobile devices combine computing hardware,
+            operating systems, wireless communication,
+            cameras, sensors, and applications in a compact form.
+        </p>
+
+        <h3>Cloud Computing</h3>
+
+        <p>
+            Cloud computing allows users and organizations
+            to access computing resources over the internet.
+            These resources may include storage, servers,
+            databases, software, and processing capabilities.
+        </p>
+
+        <p>
+            Instead of maintaining all computing resources
+            locally, users can access services hosted by
+            cloud providers. This makes it easier to store
+            files, collaborate, and use applications across
+            different devices.
+        </p>
+
+        <h3>Modern Applications of the Internet</h3>
+
+        <ul>
+            <li>Online learning and digital classrooms.</li>
+            <li>Electronic banking and online transactions.</li>
+            <li>Social media and instant communication.</li>
+            <li>Online shopping and electronic commerce.</li>
+            <li>Cloud-based storage and collaboration.</li>
+            <li>Remote work and virtual meetings.</li>
+            <li>Streaming services and digital entertainment.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- MODERN TECHNOLOGIES -->
+    <section class="lesson-block" id="modern-technologies">
+
+        <h2>Modern Computing Technologies</h2>
+
+        <p>
+            Computer technology continues to develop as
+            researchers and engineers create new ways
+            to process information, automate activities,
+            and solve complex problems.
+        </p>
+
+        <h3>Artificial Intelligence</h3>
+
+        <p>
+            Artificial intelligence, or AI, refers to
+            technologies that allow computer systems to
+            perform tasks commonly associated with human
+            intelligence.
+        </p>
+
+        <p>
+            These tasks include recognizing images,
+            understanding language, identifying patterns,
+            generating content, and making predictions.
+        </p>
+
+        <p><strong>Examples:</strong></p>
+
+        <ul>
+            <li>Virtual assistants and chatbots.</li>
+            <li>Facial recognition systems.</li>
+            <li>Recommendation systems.</li>
+            <li>AI-assisted writing and research tools.</li>
+            <li>Automated customer support.</li>
+        </ul>
+
+        <h3>Internet of Things (IoT)</h3>
+
+        <p>
+            The Internet of Things refers to physical objects
+            connected to networks that can collect, exchange,
+            and sometimes act on information.
+        </p>
+
+        <p>
+            These devices may contain sensors, processors,
+            and communication technologies that allow them
+            to interact with other systems.
+        </p>
+
+        <p><strong>Examples:</strong></p>
+
+        <ul>
+            <li>Smart home appliances.</li>
+            <li>Fitness trackers and smartwatches.</li>
+            <li>Connected security cameras.</li>
+            <li>Smart agriculture monitoring systems.</li>
+            <li>Industrial monitoring equipment.</li>
+        </ul>
+
+        <h3>Robotics and Automation</h3>
+
+        <p>
+            Robotics combines computer systems, mechanical
+            components, sensors, and control systems to
+            create machines that can perform physical tasks.
+        </p>
+
+        <p>
+            Automation uses technology to perform tasks
+            with reduced human intervention. It is commonly
+            applied in manufacturing, transportation,
+            healthcare, and business operations.
+        </p>
+
+        <h3>Virtual Reality and Augmented Reality</h3>
+
+        <p>
+            Virtual reality (VR) creates computer-generated
+            environments that users can experience through
+            specialized equipment such as VR headsets.
+        </p>
+
+        <p>
+            Augmented reality (AR) adds digital information
+            or objects to a user's view of the real world.
+            These technologies are used in education,
+            gaming, training, design, and entertainment.
+        </p>
+
+        <h3>Quantum Computing</h3>
+
+        <p>
+            Quantum computing is an emerging field that
+            uses principles of quantum mechanics to process
+            information. Unlike conventional computers,
+            which use bits represented as 0 or 1, quantum
+            computers use quantum bits called qubits.
+        </p>
+
+        <p>
+            Quantum computers are being researched for
+            specialized problems in areas such as chemistry,
+            materials science, optimization, and scientific
+            simulation. They are not replacements for
+            ordinary computers in everyday tasks.
+        </p>
+
+        <h3>Cybersecurity</h3>
+
+        <p>
+            As computers become more connected, protecting
+            digital information has become increasingly
+            important. Cybersecurity involves protecting
+            computers, networks, applications, and data
+            from unauthorized access, attacks, and damage.
+        </p>
+
+        <p><strong>Common security practices include:</strong></p>
+
+        <ul>
+            <li>Using strong and unique passwords.</li>
+            <li>Enabling multi-factor authentication.</li>
+            <li>Installing security updates.</li>
+            <li>Using antivirus and other security tools.</li>
+            <li>Backing up important information.</li>
+            <li>Avoiding suspicious links and attachments.</li>
+        </ul>
+
+        <figure>
+            <svg viewBox="0 0 850 310"
+                 class="lesson-image"
+                 role="img"
+                 aria-label="Illustration of modern computing technologies including artificial intelligence, cloud computing, and connected devices">
+
+                <rect x="20" y="20" width="810" height="270"
+                      rx="14" fill="#f7f7fb"
+                      stroke="#d8d4f0"/>
+
+                <!-- AI -->
+                <circle cx="155" cy="125" r="60"
+                        fill="#e9e5ff" stroke="#6555c7"
+                        stroke-width="3"/>
+
+                <circle cx="155" cy="125" r="28"
+                        fill="none" stroke="#6555c7"
+                        stroke-width="3"/>
+
+                <path d="M155 65 V97 M155 153 V185
+                         M95 125 H127 M183 125 H215
+                         M113 83 L133 103 M177 147 L197 167
+                         M197 83 L177 103 M133 147 L113 167"
+                      stroke="#6555c7" stroke-width="3"/>
+
+                <text x="155" y="220" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#4b3ca6">Artificial Intelligence</text>
+
+                <!-- Cloud -->
+                <path d="M365 145
+                         C340 145 330 125 340 108
+                         C348 92 365 88 380 95
+                         C390 65 440 65 450 100
+                         C475 95 495 115 490 135
+                         C487 148 476 155 460 155
+                         H365 Z"
+                      fill="#dce9ff" stroke="#347fe0"
+                      stroke-width="3"/>
+
+                <text x="415" y="125" text-anchor="middle"
+                      font-size="18" font-weight="bold"
+                      fill="#174ea6">CLOUD</text>
+
+                <text x="415" y="220" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#174ea6">Cloud Computing</text>
+
+                <!-- IoT -->
+                <rect x="620" y="75" width="105" height="105"
+                      rx="12" fill="#e4f2e9"
+                      stroke="#39966b" stroke-width="3"/>
+
+                <circle cx="672" cy="125" r="20"
+                        fill="#39966b"/>
+
+                <path d="M672 90 V105 M672 145 V160
+                         M637 125 H652 M692 125 H707"
+                      stroke="#26734d" stroke-width="4"/>
+
+                <path d="M645 90 Q672 60 699 90
+                         M645 160 Q672 190 699 160"
+                      fill="none" stroke="#39966b"
+                      stroke-width="2"/>
+
+                <text x="672" y="220" text-anchor="middle"
+                      font-size="16" font-weight="bold"
+                      fill="#26734d">Internet of Things</text>
+
+                <text x="425" y="265" text-anchor="middle"
+                      font-size="14" fill="#202641">
+                    Modern technologies expand how computers collect, process, and exchange information
+                </text>
+
+            </svg>
+
+            <figcaption>
+                Modern computing includes artificial intelligence,
+                cloud services, and interconnected smart devices.
+            </figcaption>
+        </figure>
+
+    </section>
+
+
+    <!-- COMPUTER EVOLUTION -->
+    <section class="lesson-block" id="comparison">
+
+        <h2>How Computers Have Changed Over Time</h2>
+
+        <p>
+            The evolution of computers can be understood by
+            examining how their physical design, performance,
+            storage, cost, and accessibility have changed.
+        </p>
+
+        <h3>Size and Portability</h3>
+
+        <p>
+            Early electronic computers occupied entire rooms
+            and required specialized facilities. Modern
+            computers can fit inside a backpack, pocket,
+            or even small electronic devices.
+        </p>
+
+        <h3>Processing Speed</h3>
+
+        <p>
+            Early computers performed calculations much more
+            slowly than modern systems. Advances in processors,
+            integrated circuits, and computer architecture
+            have significantly increased processing speed.
+        </p>
+
+        <h3>Storage Capacity</h3>
+
+        <p>
+            Early computers used limited storage methods,
+            including punched cards, magnetic tape, and
+            magnetic drums. Modern devices use solid-state
+            drives, hard disk drives, memory cards, and
+            cloud storage to hold large amounts of data.
+        </p>
+
+        <h3>Cost and Accessibility</h3>
+
+        <p>
+            Early computers were expensive and mainly available
+            to governments, universities, and large companies.
+            Today, personal computers and mobile devices are
+            available to a much wider range of users.
+        </p>
+
+        <h3>User Interaction</h3>
+
+        <p>
+            Earlier systems often required specialized
+            technical knowledge and command-based instructions.
+            Modern computers provide graphical interfaces,
+            touchscreens, voice controls, and other user-friendly
+            interaction methods.
+        </p>
+
+        <h3>Computer Evolution Comparison</h3>
+
+        <ul>
+            <li><strong>Early devices:</strong> Manual counting and mechanical calculation.</li>
+            <li><strong>First generation:</strong> Vacuum tubes and machine language.</li>
+            <li><strong>Second generation:</strong> Transistors and improved reliability.</li>
+            <li><strong>Third generation:</strong> Integrated circuits and operating systems.</li>
+            <li><strong>Fourth generation:</strong> Microprocessors and personal computers.</li>
+            <li><strong>Modern computing:</strong> AI, cloud services, mobile devices, and connected technologies.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- IMPORTANCE -->
+    <section class="lesson-block" id="importance">
+
+        <h2>Importance of Computer Evolution</h2>
+
+        <p>
+            The evolution of computers has changed how people
+            work, communicate, learn, conduct business, and
+            solve problems. Computers have become essential
+            tools for individuals, organizations, and entire
+            industries.
+        </p>
+
+        <h3>Education</h3>
+
+        <p>
+            Computers provide access to digital learning
+            materials, online classrooms, educational software,
+            research databases, and virtual learning platforms.
+            Students can use computers to prepare assignments,
+            conduct research, and develop technical skills.
+        </p>
+
+        <h3>Business and Industry</h3>
+
+        <p>
+            Organizations use computers to manage records,
+            process transactions, monitor operations,
+            communicate with customers, and analyze business
+            information. Computer systems also support
+            inventory management, accounting, and automation.
+        </p>
+
+        <h3>Healthcare</h3>
+
+        <p>
+            Healthcare institutions use computers to maintain
+            patient records, support medical imaging,
+            manage appointments, monitor patients, and
+            assist healthcare professionals in analyzing
+            information.
+        </p>
+
+        <h3>Communication</h3>
+
+        <p>
+            Computers and internet-connected devices allow
+            people to communicate through email, messaging
+            applications, video conferencing, and social
+            networking platforms.
+        </p>
+
+        <h3>Science and Research</h3>
+
+        <p>
+            Scientists and researchers use computers to
+            analyze data, perform simulations, model complex
+            systems, and process information gathered
+            from experiments.
+        </p>
+
+        <h3>Government and Public Services</h3>
+
+        <p>
+            Government agencies use computer systems to
+            maintain public records, process applications,
+            manage information, and provide online services
+            to citizens.
+        </p>
+
+        <h3>Entertainment</h3>
+
+        <p>
+            Computers support digital games, music production,
+            video editing, animation, movie creation,
+            and online streaming services.
+        </p>
+
+        <h3>Challenges of Modern Computing</h3>
+
+        <p>
+            Although computer technology provides many benefits,
+            it also creates challenges that individuals and
+            organizations must address.
+        </p>
+
+        <ul>
+            <li>Cybersecurity threats and unauthorized access.</li>
+            <li>Privacy concerns and misuse of personal information.</li>
+            <li>Technology dependence and excessive screen time.</li>
+            <li>Digital inequality and limited access to technology.</li>
+            <li>Job changes caused by automation.</li>
+            <li>Electronic waste from outdated devices.</li>
+            <li>Spread of misinformation through digital platforms.</li>
+        </ul>
+
+        <p>
+            Understanding these challenges helps users apply
+            technology responsibly, protect information,
+            and make informed decisions when using digital systems.
+        </p>
+
+    </section>
+
+
+    <!-- KEY TAKEAWAYS -->
+    <section class="lesson-block" id="key-takeaways">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>
+                Computers developed from simple counting tools
+                into advanced electronic and digital systems.
+            </li>
+
+            <li>
+                Early devices such as the abacus, Napier's Bones,
+                and slide rule helped people perform calculations.
+            </li>
+
+            <li>
+                Blaise Pascal and Gottfried Wilhelm Leibniz
+                contributed to the development of mechanical
+                calculating machines.
+            </li>
+
+            <li>
+                Charles Babbage introduced important concepts
+                of programmable computing through the Difference
+                Engine and Analytical Engine.
+            </li>
+
+            <li>
+                Ada Lovelace developed an early algorithm for
+                the Analytical Engine and became an important
+                figure in the history of programming.
+            </li>
+
+            <li>
+                Punched-card technology helped automate
+                large-scale data processing.
+            </li>
+
+            <li>
+                Electronic computers introduced faster
+                information processing through electrical
+                and electronic components.
+            </li>
+
+            <li>
+                The five commonly recognized computer generations
+                demonstrate major developments in hardware
+                and computing capabilities.
+            </li>
+
+            <li>
+                Personal computers, the internet, and mobile
+                technologies made computing accessible to
+                more people.
+            </li>
+
+            <li>
+                Modern technologies such as AI, cloud computing,
+                IoT, robotics, and quantum computing continue
+                to influence the future of computing.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <section class="quiz-box">
+    <div>
+        <span class="quiz-label">TEST YOUR KNOWLEDGE</span>
+        <h2>Ready to test what you learned?</h2>
+        <p>
+            Answer the questions about the history and evolution of
+            computers and check your understanding of this lesson.
+        </p>
+    </div>
+
+    <a href="activities.html?subject=0" class="quiz-btn">
+        Take Quiz →
+    </a>
+</section>
+</article>
+
+
+            </div>
+</div>
+
+            
+            <!-- TOPIC NAVIGATION -->
+            <div class="topic-nav">
+
+                <span></span>
+
+                <a class="btn primary" href="topic-02.html">
+                    Topic 2 →
+                </a>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-bottom">
+
+                <span>© 2026 BSIT E-Book Development</span>
+
+                <span>Learn with curiosity. Build with purpose.</span>
+
+                <a href="#top">Back to top ↑</a>
+
+                <button id="logoutBtn">
+                    Log out ↗
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               READING PROGRESS
+            ===================================== */
+
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const lessonContent = document.getElementById("lessonContent");
+
+            let progressFrame = null;
+
+            function updateReadingProgress() {
+
+                if (!progressBar || !progressText || !lessonContent) {
+                    return;
+                }
+
+                const lessonRect = lessonContent.getBoundingClientRect();
+
+                const lessonTop = lessonRect.top + window.scrollY;
+                const lessonHeight = lessonContent.scrollHeight;
+
+                const viewportHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+
+                /*
+                   The reading starts when the top of the lesson
+                   content reaches the top of the viewport.
+
+                   The reading reaches 100% when the bottom of
+                   the lesson content reaches the bottom of the viewport.
+                */
+
+                const readingDistance = lessonHeight - viewportHeight;
+
+                let progress;
+
+                if (readingDistance <= 0) {
+                    progress = scrollPosition + viewportHeight >= lessonTop + lessonHeight
+                        ? 100
+                        : 0;
+                } else {
+                    progress = ((scrollPosition - lessonTop) / readingDistance) * 100;
+                }
+
+                progress = Math.max(0, Math.min(100, progress));
+
+                progressBar.style.width = progress + "%";
+                progressText.textContent = Math.round(progress) + "%";
+            }
+
+            function requestProgressUpdate() {
+
+                if (progressFrame) {
+                    cancelAnimationFrame(progressFrame);
+                }
+
+                progressFrame = requestAnimationFrame(function () {
+                    updateReadingProgress();
+                    progressFrame = null;
+                });
+            }
+
+            window.addEventListener("scroll", requestProgressUpdate, {
+                passive: true
+            });
+
+            window.addEventListener("resize", requestProgressUpdate);
+
+            window.addEventListener("load", updateReadingProgress);
+
+            updateReadingProgress();
+
+
+            /* =====================================
+               TABLE OF CONTENTS ACTIVE SECTION
+            ===================================== */
+
+            const tocLinks = document.querySelectorAll(".lesson-toc a");
+            const lessonSections = document.querySelectorAll(".lesson-block");
+
+            if ("IntersectionObserver" in window) {
+
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+
+                        const visibleSections = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort((a, b) =>
+                                a.boundingClientRect.top - b.boundingClientRect.top
+                            );
+
+                        if (visibleSections.length === 0) {
+                            return;
+                        }
+
+                        const activeSection = visibleSections[0].target;
+
+                        tocLinks.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + activeSection.id
+                            );
+
+                        });
+
+                    },
+                    {
+                        rootMargin: "-15% 0px -70% 0px",
+                        threshold: 0
+                    }
+                );
+
+                lessonSections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            tocLinks.forEach(link => {
+
+                link.addEventListener("click", function () {
+
+                    tocLinks.forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                });
+
+            });
+
+
+            /* =====================================
+               PASSKEY PROTECTION
+            ===================================== */
+
+            const CLASS_PASSKEY = "BSIT2026";
+            const ROOT = document.body.dataset.root || "";
+
+            const $ = selector => document.querySelector(selector);
+
+            const unlocked = () => {
+
+                try {
+                    return sessionStorage.getItem("bsitOk") === "1";
+                } catch (e) {
+                    return false;
+                }
+
+            };
+
+            const lockScreen = $("#lockScreen");
+            const site = $("#website");
+
+            let tries = 0;
+            let lockedUntil = 0;
+
+            if (lockScreen) {
+
+                const show = () => {
+
+                    lockScreen.classList.add("hidden");
+
+                    if (site) {
+                        site.classList.remove("hidden");
+                    }
+
+                    updateReadingProgress();
+
+                };
+
+                if (unlocked()) {
+                    show();
+                }
+
+                $("#unlockForm")?.addEventListener("submit", e => {
+
+                    e.preventDefault();
+
+                    const input = $("#passkey");
+                    const err = $("#loginError");
+
+                    if (!input || !err) {
+                        return;
+                    }
+
+                    const value = input.value.trim();
+
+                    if (Date.now() < lockedUntil) {
+
+                        err.textContent =
+                            "Too many wrong attempts. Try again in " +
+                            Math.ceil((lockedUntil - Date.now()) / 1000) + "s.";
+
+                        return;
+                    }
+
+                    if (!value) {
+
+                        err.textContent = "Please enter the passkey.";
+
+                        return;
+                    }
+
+                    if (value.toLowerCase() === CLASS_PASSKEY.toLowerCase()) {
+
+                        try {
+                            sessionStorage.setItem("bsitOk", "1");
+                        } catch (e) {}
+
+                        err.textContent = "";
+
+                        show();
+
+                    } else {
+
+                        tries++;
+
+                        input.value = "";
+                        input.focus();
+
+                        if (tries >= 3) {
+
+                            lockedUntil = Date.now() + 30000;
+                            tries = 0;
+
+                            err.textContent =
+                                "Access denied. Unauthorized access attempts are blocked for 30 seconds.";
+
+                        } else {
+
+                            err.textContent =
+                                "Incorrect passkey. " + (3 - tries) + " attempt(s) left.";
+
+                        }
+
+                    }
+
+                });
+
+                $("#togglePass")?.addEventListener("click", () => {
+
+                    const password = $("#passkey");
+
+                    if (!password) {
+                        return;
+                    }
+
+                    password.type =
+                        password.type === "password" ? "text" : "password";
+
+                    $("#togglePass").textContent =
+                        password.type === "password" ? "Show" : "Hide";
+
+                });
+
+            } else if (!unlocked()) {
+
+                location.replace(ROOT + "index.html");
+
+            }
+
+
+            /* =====================================
+               LOGOUT
+            ===================================== */
+
+            $("#logoutBtn")?.addEventListener("click", () => {
+
+                try {
+                    sessionStorage.removeItem("bsitOk");
+                } catch (e) {}
+
+                location.href = ROOT + "index.html";
+
+            });
+
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const navToggle = $("#navToggle");
+            const mainNav = $("#mainNav");
+
+            navToggle?.addEventListener("click", () => {
+
+                const isOpen = mainNav.classList.toggle("open");
+
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation" : "Open navigation"
+                );
+
+            });
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    mainNav?.classList.remove("open");
+
+                    navToggle?.setAttribute("aria-expanded", "false");
+
+                });
+
+            });
+
+
+            /* =====================================
+               HIGHLIGHT CURRENT PAGE
+            ===================================== */
+
+            const here = location.pathname.split("/").pop() || "index.html";
+
+            document.querySelectorAll(".main-nav a").forEach(link => {
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href === here ||
+                    (here.startsWith("topic-") && href === "chapters.html")
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+
+            /* =====================================
+               GLOSSARY SEARCH
+            ===================================== */
+
+            const glossarySearch = $("#glossarySearch");
+
+            if (glossarySearch) {
+
+                glossarySearch.addEventListener("input", () => {
+
+                    const query = glossarySearch.value.toLowerCase();
+                    let count = 0;
+
+                    document.querySelectorAll("#glossaryList .term").forEach(term => {
+
+                        const matches = term.textContent.toLowerCase().includes(query);
+
+                        term.hidden = !matches;
+
+                        if (matches) {
+                            count++;
+                        }
+
+                    });
+
+                    const noTerm = $("#noTerm");
+
+                    if (noTerm) {
+                        noTerm.hidden = count > 0;
+                    }
+
+                });
+
+            }
+
+        });
+
+        
+/* =====================================
+   READING SETTINGS
+===================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const settingsButton = document.getElementById("readingSettingsBtn");
+    const settingsPanel = document.getElementById("readingSettingsPanel");
+    const closeButton = document.getElementById("closeSettings");
+
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const fontStyleSelect = document.getElementById("fontStyleSelect");
+
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const resetButton = document.getElementById("resetReadingSettings");
+
+    if (!settingsButton || !settingsPanel) {
+        console.error("Reading Settings elements not found.");
+        return;
+    }
+
+    const defaults = {
+        theme: "light",
+        fontSize: "14px",
+        fontStyle: "DM Sans"
+    };
+
+    let settings = { ...defaults };
+
+    /* OPEN SETTINGS */
+
+    settingsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen = settingsPanel.hidden;
+
+        settingsPanel.hidden = !willOpen;
+
+        settingsButton.classList.toggle("active", willOpen);
+        settingsButton.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    /* CLOSE SETTINGS */
+
+    closeButton?.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeSettings();
+    });
+
+    function closeSettings() {
+        settingsPanel.hidden = true;
+        settingsButton.classList.remove("active");
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+
+    /* APPLY SETTINGS */
+
+    function applySettings() {
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            settings.theme
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font-size",
+            settings.fontSize
+        );
+
+        document.documentElement.style.setProperty(
+            "--reading-font",
+            '"' + settings.fontStyle + '", sans-serif'
+        );
+
+        if (fontSizeSelect) {
+            fontSizeSelect.value = settings.fontSize;
+        }
+
+        if (fontStyleSelect) {
+            fontStyleSelect.value = settings.fontStyle;
+        }
+
+        themeButtons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeChoice === settings.theme
+            );
+
+        });
+    }
+
+    /* SAVE SETTINGS */
+
+    function saveSettings() {
+
+        try {
+            localStorage.setItem(
+                "bookSphereReadingSettings",
+                JSON.stringify(settings)
+            );
+        } catch (error) {
+            console.error("Unable to save settings:", error);
+        }
+    }
+
+    /* LOAD SAVED SETTINGS */
+
+    function loadSettings() {
+
+        try {
+
+            const saved = JSON.parse(
+                localStorage.getItem("bookSphereReadingSettings")
+            );
+
+            if (saved) {
+
+                if (["light", "dark"].includes(saved.theme)) {
+                    settings.theme = saved.theme;
+                }
+
+                if (["12px", "14px", "16px", "18px", "20px"].includes(saved.fontSize)) {
+                    settings.fontSize = saved.fontSize;
+                }
+
+                if ([
+                    "DM Sans",
+                    "Arial",
+                    "Georgia",
+                    "Verdana",
+                    "Times New Roman"
+                ].includes(saved.fontStyle)) {
+                    settings.fontStyle = saved.fontStyle;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Unable to load settings:", error);
+        }
+
+        applySettings();
+    }
+
+    /* LIGHT MODE AND DARK MODE */
+
+    themeButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            settings.theme = this.dataset.themeChoice;
+
+            applySettings();
+            saveSettings();
+
+        });
+
+    });
+
+    /* FONT SIZE */
+
+    fontSizeSelect?.addEventListener("change", function () {
+
+        settings.fontSize = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* FONT STYLE */
+
+    fontStyleSelect?.addEventListener("change", function () {
+
+        settings.fontStyle = this.value;
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* RESET SETTINGS */
+
+    resetButton?.addEventListener("click", function () {
+
+        settings = { ...defaults };
+
+        applySettings();
+        saveSettings();
+
+    });
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !settingsPanel.contains(event.target) &&
+            !settingsButton.contains(event.target)
+        ) {
+            closeSettings();
+        }
+
+    });
+
+    /* INITIALIZE */
+
+    loadSettings();
+
+});
+</script>
+
+</body>
+</html>
